@@ -18,6 +18,10 @@
 Official repository for **TED**, a post-hoc local scoring method for prompted anomaly localization.
 The paper experiments are complete; public code packaging and reproduction checks are proceeding in stages.
 
+## News
+
+- **September 2026:** TED has been accepted to **NeurIPS 2026 Main Track as a Poster**!
+
 ## Method
 
 <p align="center">
