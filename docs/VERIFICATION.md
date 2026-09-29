@@ -1,4 +1,33 @@
-# T-TED core verification
+# Core verification
+
+## C-TED
+
+Validation on September 29, 2026, using Python 3.10.19, PyTorch 2.9.1+cu128,
+NumPy, and CPU execution:
+
+- Four C-TED test methods passed: extracted function integrity; training,
+  inference, bounds, and determinism; zero-gain host preservation; AdaCLIP logit
+  center preservation.
+- Training/inference checks cover AA-CLIP, AdaCLIP, and FAPrompt at three seeds.
+- Nine comparisons against AST-loaded original research functions produced
+  exactly matching calibration dictionaries and inference outputs on synthetic
+  inputs (zero absolute/relative tolerance).
+- The three-host synthetic example passed. FAPrompt tests one explicit branch,
+  not complete two-branch fusion.
+- The combined suite passed 11 tests, with one opt-in CUDA test skipped.
+
+This is CPU core validation, not benchmark reproduction. Complete host feature
+extraction, bank mining, gates/fusion, GPU execution, and dataset metrics have
+not been verified in this public package. Function provenance is recorded in
+`cted_source_manifest.json`; this does not identify a single canonical recipe
+for every paper result.
+
+```bash
+python -m examples.cted_synthetic --host all
+python -m unittest discover -s tests -v
+```
+
+## T-TED
 
 Validation performed on September 29, 2026:
 

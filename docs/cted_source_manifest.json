@@ -1,0 +1,56 @@
+{
+  "aaclip": {
+    "source": "scripts/official_parallel_test_aaclip.py",
+    "source_sha256": "f25d2fb1f16c130b69b254169e565a1b7a6ffb7ccd314e9cf891ae56e6ec00ba",
+    "functions": {
+      "spatial_tanh_zscore": "25aa6b0f39adea0654ed5abaf36f56994c7e7b10ffbb62f36c98a10500d72d8d",
+      "farthest_point_subsample": "3a1f734c4e365161975386b4c547c0442c765ae0a7a22c1825cd39af8193f436",
+      "logmeanexp_negative_sqdist_1d": "dfcfc444922efb774c7bde1b03eeda0a71383ec44530048f4d74d791e41af10e",
+      "prescore_subspace_transport_seg_tokens": "12a63bdeb47ba34e0601f5128ad4aa3c6fc7793da19cf836dd22c3f9b8d7b28a",
+      "subspace_host_residual_map_from_tokens": "aa5766bc75196f86090123d3338774a683f81ca6361a8a9181f5794f90d0db3f",
+      "inverse_softplus": "7678e6c8716e4837133db6c0d689dfb5b492b4eb44e24f60910d0ecd29c6e539",
+      "sample_source_hardpair_indices": "93e535a1e5afc1d28341503dea8e0b729f6f31eddadfc5949c34c76d2aa24cf5",
+      "_orthonormalize_columns": "9a7f70b94b44eca7074cf6663e7f167f57c9a0dd94a773f5869f4b5cbe11ef4a",
+      "build_defect_parallel_basis": "4f0b26baba7a17b2544bd2e0fbc3418b63f7825463609ba6670f407db0d1a86e",
+      "build_random_axis_basis": "a8b621c894d3cacb15b7f93569929aca410dd32847031660d91572b72d35ade9",
+      "train_one_layer_subspace_transport_calibrator": "34bb74a6e0ced38827cd8fc43361bc8ddd5596ce04ecf96e3640722c1b981315"
+    }
+  },
+  "adaclip": {
+    "source": "scripts/official_parallel_test_adaclip.py",
+    "source_sha256": "9ab2938a5ab77d30810f17edafed41c4c435d336a9d0a994efaca237caa3fd01",
+    "functions": {
+      "farthest_point_subsample_indices": "d431762f4df28b0ceba6b305820637b24f80fdf1985c22504e9e0d55946d4779",
+      "logmeanexp_negative_sqdist_1d": "afadb96d91fae6b0f3d0d55f8ed5d2900f7c3c6b4b2aeadb14a011dd62473db3",
+      "add_to_logit_difference": "5b99de31b54a5273ced93746bbf721cdbd95f5420fc90b7b3f3c922d3fd86ebf",
+      "inverse_softplus": "7678e6c8716e4837133db6c0d689dfb5b492b4eb44e24f60910d0ecd29c6e539",
+      "sample_source_hardpair_indices": "93e535a1e5afc1d28341503dea8e0b729f6f31eddadfc5949c34c76d2aa24cf5",
+      "_orthonormalize_columns": "9a7f70b94b44eca7074cf6663e7f167f57c9a0dd94a773f5869f4b5cbe11ef4a",
+      "build_defect_parallel_basis": "ed5abfc6f759d4c87e852a6baa8ac074cc9863e271a73ea03993787b27e2227a",
+      "build_random_axis_basis": "a8b621c894d3cacb15b7f93569929aca410dd32847031660d91572b72d35ade9",
+      "apply_pair_label_control_to_tensors": "596ca523500b91cf0b5aa77ae9328dc719bc8f055f463b8d272fb76c8bcf5fc4",
+      "spatial_tanh_zscore_token": "acbf11dcc94fce5140c2564263ae89ef6bf368c4220d1c75fb4c047c02db429e",
+      "prescore_subspace_transport_tokens": "b9eb51c9ef9ccab8cdc4a9d9f09885fe7c2f9892824a6882503e12f593f802f1",
+      "subspace_host_residual_token_score": "7079b1f07729fcc26f21abef5cae5ff38685caaa0bbec4151db29786c186d5bb",
+      "train_subspace_host_residual_calibrator": "7cca07f402f396b67c8d9b52d8acf4c330c8881f2f2ade30dee090b7bba29703"
+    }
+  },
+  "faprompt": {
+    "source": "scripts/official_parallel_test_faprompt.py",
+    "source_sha256": "40ec6c2ee1582b971c2c87f49ea0f887d319dd5be69bf10023566436c77a4609",
+    "functions": {
+      "farthest_point_subsample_indices": "4a2bc72ebfa1a0ec0514f8226bc0884ba663e1a316b226922489f82b70fa39e4",
+      "logmeanexp_negative_sqdist_1d": "b368542a9949ce3b01de3664887002d7602274f4939f7c4ed6d05ce5419419da",
+      "inverse_softplus": "7678e6c8716e4837133db6c0d689dfb5b492b4eb44e24f60910d0ecd29c6e539",
+      "sample_source_hardpair_indices": "93e535a1e5afc1d28341503dea8e0b729f6f31eddadfc5949c34c76d2aa24cf5",
+      "_orthonormalize_columns": "9a7f70b94b44eca7074cf6663e7f167f57c9a0dd94a773f5869f4b5cbe11ef4a",
+      "build_defect_parallel_basis": "ed5abfc6f759d4c87e852a6baa8ac074cc9863e271a73ea03993787b27e2227a",
+      "build_random_axis_basis": "a8b621c894d3cacb15b7f93569929aca410dd32847031660d91572b72d35ade9",
+      "apply_pair_label_control_to_tensors": "c39e294f5786d428f2150a283d164b655b9b3deb90d2a0f5a9aaee77776dd6b1",
+      "prescore_subspace_transport_tokens": "5c873eee4eb232356fe4056efd5abe5fdafd4c7fbf3cfac57c19347a29e2dcc3",
+      "subspace_host_residual_token_score": "ed81aeb86e1ca3a26f513c7ad325c87f716afc39df0827ab125f4d73f3afed76",
+      "train_subspace_host_residual_calibrator": "1b403b616b687531d9c34a3ece43282db6dd4c6c5e095e2ca12ef4d6164573a6",
+      "spatial_tanh_zscore": "25aa6b0f39adea0654ed5abaf36f56994c7e7b10ffbb62f36c98a10500d72d8d"
+    }
+  }
+}

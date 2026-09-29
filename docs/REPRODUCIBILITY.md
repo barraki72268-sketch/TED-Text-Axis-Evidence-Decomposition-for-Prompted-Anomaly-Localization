@@ -4,7 +4,7 @@
 
 ## Current availability
 
-The [feature-level T-TED scoring core](TTED.md), unit tests, and a synthetic example are available. Full image-inference/training pipelines, checkpoints, and benchmark evaluation commands are not included yet. The following describes the experimental workflow and planned release contents, not a full benchmark installation guide.
+The [feature-level T-TED scoring core](TTED.md) and [host-specific C-TED calibration/inference cores](CTED.md) are available with tests and synthetic examples. C-TED currently covers AA-CLIP, AdaCLIP, and FAPrompt. Full image-inference/training pipelines, checkpoints, and benchmark evaluation commands are not included yet. The following describes the experimental workflow and planned release contents, not a full benchmark installation guide.
 
 ## Experimental workflow
 
@@ -28,12 +28,12 @@ The host is frozen. C-TED uses source defect–Hard-FP pairs with a softplus ran
 | AdaCLIP | 8 | 30 | 2,048 |
 | FAPrompt | 4 | 30 | 2,048 |
 
-These source-point budgets are **not retained-bank sizes**. Host-native recipes, shared-recipe controls, and compatibility variants must be distinguished. In particular, optimizer settings from a shared-recipe audit should not be silently applied to all submitted host-native experiments. Exact parameterization, loss implementation, hard-pair selection, optimizer configuration, and host insertion points will accompany the code release.
+These source-point budgets are **not retained-bank sizes**. Host-native recipes, shared-recipe controls, and compatibility variants must be distinguished. In particular, optimizer settings from a shared-recipe audit should not be silently applied to all submitted host-native experiments. The released [C-TED cores and notes](CTED.md) expose parameterization, loss, pair selection, and host interfaces. Exact configuration-to-result mapping remains pending; synthetic example settings are not paper recipes.
 
 ## Planned implementation release
 
 - [x] T-TED feature-level support and margin computation with numerical tests.
-- [ ] C-TED calibration modules.
+- [x] C-TED calibration and feature-level readout modules for AA-CLIP, AdaCLIP, and FAPrompt.
 - [ ] Host-specific feature/score adapters and source-bank builders.
 - [ ] Explicit source splits, category/image caps, sampling seeds, and bank-size units.
 - [x] Tested core environment documented (Python 3.10.19, PyTorch 2.9.1+cu128).

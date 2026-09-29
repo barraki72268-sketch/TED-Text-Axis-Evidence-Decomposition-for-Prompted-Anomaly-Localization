@@ -43,7 +43,7 @@ TED compares source defect support with source hard false-positive (Hard-FP) sup
 | Backbone and prompts | Frozen | Frozen |
 | Target-domain training or calibration | None | None |
 
-Banks store full-dimensional features and are reprojected onto the query's text direction. Both variants use source evidence, including source defect annotations; **train-free does not mean source-free**. Target labels, masks, and performance are not used for bank construction or calibration.
+Banks store full-dimensional features; query and bank support are computed in the same text-axis coordinate. Axis selection and insertion follow the host interface; see the [C-TED implementation notes](docs/CTED.md#inference-and-host-integration). Both variants use source evidence, including source defect annotations; **train-free does not mean source-free**. Target labels, masks, and performance are not used for bank construction or calibration.
 
 Unlike generic Full-D memory scoring, TED contrasts two source evidence roles on the text axis and preserves the host-score anchor in C-TED. [Same-bank retrieval controls](docs/RESULTS.md#same-bank-retrieval-controls) examine this distinction.
 
@@ -89,11 +89,33 @@ Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th 
 | Research overview and selected figures | Available |
 | Reported result summaries | Available |
 | T-TED feature-level scoring core | [Available and tested](docs/TTED.md) |
-| C-TED implementation | Public release in preparation |
+| C-TED calibration and feature-level inference | [AA-CLIP, AdaCLIP, FAPrompt cores available and CPU-tested](docs/CTED.md) |
 | Host integrations and source-bank construction | Public release in preparation |
 | Full benchmark environment and evaluation commands | Packaging and reproduction checks pending |
 | Checkpoints / calibrated residuals | Public release in preparation |
 | Final camera-ready / arXiv link | To be added when available |
+
+### Try C-TED
+
+The C-TED cores retain the original **host-specific** training and readout functions:
+
+| Host | Code |
+|---|---|
+| AA-CLIP | [`ted/cted/aaclip.py`](ted/cted/aaclip.py) |
+| AdaCLIP | [`ted/cted/adaclip.py`](ted/cted/adaclip.py) |
+| FAPrompt | [`ted/cted/faprompt.py`](ted/cted/faprompt.py) |
+
+With PyTorch and NumPy installed, run from the repository root:
+
+```bash
+python -m examples.cted_synthetic --host all
+python -m unittest discover -s tests -v
+```
+
+These examples use synthetic features, not paper benchmark data. Source calibration
+and feature-level inference were checked against the original functions; complete
+bank mining, detector integration, and benchmark reproduction are not yet packaged.
+See [C-TED training, input contracts, and host integration](docs/CTED.md).
 
 ### Try the T-TED core
 
