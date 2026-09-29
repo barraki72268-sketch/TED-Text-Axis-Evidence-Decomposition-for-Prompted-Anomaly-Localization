@@ -4,7 +4,7 @@
 
 ## Current availability
 
-This is a **documentation-first release**. No training/inference package, verified environment, checkpoint, or runnable evaluation command is included yet. The following describes the experimental workflow and planned release contents, not an installation guide.
+The [feature-level T-TED scoring core](TTED.md), unit tests, and a synthetic example are available. Full image-inference/training pipelines, checkpoints, and benchmark evaluation commands are not included yet. The following describes the experimental workflow and planned release contents, not a full benchmark installation guide.
 
 ## Experimental workflow
 
@@ -32,10 +32,12 @@ These source-point budgets are **not retained-bank sizes**. Host-native recipes,
 
 ## Planned implementation release
 
-- [ ] T-TED support computation and C-TED calibration modules.
+- [x] T-TED feature-level support and margin computation with numerical tests.
+- [ ] C-TED calibration modules.
 - [ ] Host-specific feature/score adapters and source-bank builders.
 - [ ] Explicit source splits, category/image caps, sampling seeds, and bank-size units.
-- [ ] Tested dependency/environment specification.
+- [x] Tested core environment documented (Python 3.10.19, PyTorch 2.9.1+cu128).
+- [ ] Full host/benchmark dependency specification.
 - [ ] Checkpoint acquisition instructions and source-calibrated artifacts where redistributable.
 - [ ] Exact commands for primary result tables and labeled diagnostic experiments.
 - [ ] Per-setting metrics and configuration-to-paper mapping.
@@ -48,7 +50,7 @@ No release date is promised here. This list will be updated as artifacts become 
 
 The study uses MVTec AD, VisA, MPDD, BTAD, and the separately labeled MVTec AD 2 diagnostic. Dataset images shown in figures remain subject to their original terms. No dataset archive or third-party checkpoint is redistributed in this documentation release. Obtain data and host weights from their official providers and follow their access conditions.
 
-A software license has not yet been selected for the forthcoming implementation. Do not infer an MIT or Apache license from the repository being public. Upstream code, models, and datasets retain their own licenses.
+A software license has not yet been selected. Do not infer an MIT or Apache license from the repository being public. Upstream code, models, and datasets retain their own licenses.
 
 ## Reporting a reproduction issue
 

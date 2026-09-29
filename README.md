@@ -17,9 +17,11 @@
 
 > **TL;DR:** A high anomaly response is not necessarily a defect. TED compares support from source defects and source hard false positives along the host's text axis to improve local anomaly ranking—without updating the host backbone or prompts.
 
-**Official research repository. Implementation and checkpoints are being prepared for release.** This repository currently provides a research overview, selected visualizations, and experimental summaries; it is not yet a runnable implementation.
+**Official research repository. The feature-level T-TED scoring core is available.** Full benchmark pipelines, C-TED, and checkpoints are still being prepared. The core is executable on supplied features; it is not an end-to-end image detector.
 
 ## News
+
+- **September 29, 2026:** Released the feature-level T-TED core, tests, and a synthetic example. See [usage and scope](docs/TTED.md).
 
 - **September 2026:** TED was accepted to NeurIPS 2026 as a poster.
 - **September 2026:** Research documentation and selected qualitative results are available. Code release is in preparation.
@@ -102,13 +104,27 @@ Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th 
 |---|---|
 | Research overview and selected figures | Available |
 | Reported result summaries | Available |
-| T-TED and C-TED implementation | In preparation |
+| T-TED feature-level scoring core | [Available and tested](docs/TTED.md) |
+| C-TED implementation | In preparation |
 | Host integrations and source-bank construction | In preparation |
 | Verified environment and evaluation commands | In preparation |
 | Checkpoints / calibrated residuals | In preparation |
 | Final camera-ready / arXiv link | To be added when available |
 
-See the [reproducibility and release notes](docs/REPRODUCIBILITY.md). We intentionally do not provide installation commands or scripts that have not yet been released and tested. Experiments described in the paper should not be confused with currently available repository functionality.
+### Try the T-TED core
+
+From the repository root, with PyTorch installed:
+
+```bash
+python -m unittest discover -s tests -v
+python -m examples.tted_synthetic
+```
+
+Validated with Python 3.10.19 and PyTorch 2.9.1+cu128.
+The synthetic example uses random features and does not reproduce a paper result.
+See [T-TED usage](docs/TTED.md), [verification](docs/VERIFICATION.md), and the
+[reproducibility notes](docs/REPRODUCIBILITY.md).
+Experiments described in the paper should not be confused with currently available repository functionality.
 
 ## Scope and limitations
 
