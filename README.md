@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://openreview.net/forum?id=2lzL7Y6lmU">Paper / OpenReview</a> ·
+  <a href="https://arxiv.org/abs/2609.39033">Paper / OpenReview</a> ·
   <a href="#method">Method</a> ·
   <a href="#results">Results</a> ·
   <a href="#qualitative-results">Visualizations</a> ·
