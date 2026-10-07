@@ -1,5 +1,23 @@
 # Core verification
 
+## Experimental inference bridge (October 7, 2026)
+
+- Five inference test methods cover cached-vs-uncached branch readout parity at
+  three chunk sizes, artifact serialization, zero-strength host preservation,
+  invalid inputs, and rejection of missing source branch scores.
+- The combined suite passes 16 tests; one opt-in CUDA test is skipped.
+- Offline export was exercised on the existing 4,096-entry-per-role MVTec source
+  bank, followed by CPU inference on one MPDD bracket-black scratches image with
+  the original ViT-L/14@336px FAPrompt checkpoint at input size 518.
+- The exported engineering artifact uses alpha 1, rank 4, 30 epochs, and at most
+  2,048 source points. It is not identified with a particular paper-table cell.
+- Raw map outputs and paired previews were generated locally. Dataset images,
+  checkpoints, and calibrated artifacts are not redistributed with this commit.
+
+The bridge still imports the original research evaluator and local modified
+FAPrompt dependencies. No standalone container, public API, AWS deployment,
+mixed-precision quality comparison, or load benchmark is claimed here.
+
 ## C-TED
 
 Validation on September 29, 2026, using Python 3.10.19, PyTorch 2.9.1+cu128,

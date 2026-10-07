@@ -113,8 +113,9 @@ python -m unittest discover -s tests -v
 ```
 
 These examples use synthetic features, not paper benchmark data. Source calibration
-and feature-level inference were checked against the original functions; complete
-bank mining, detector integration, and benchmark reproduction are not yet packaged.
+and feature-level inference were checked against the original functions. An
+experimental FAPrompt image-inference bridge is now available below; standalone
+host packaging, bank mining, and full benchmark reproduction remain pending.
 See [C-TED training, input contracts, and host integration](docs/CTED.md).
 
 ### Try the T-TED core
@@ -131,6 +132,105 @@ The released module scores supplied features. It does not include a full image d
 See [T-TED usage](docs/TTED.md), [verification](docs/VERIFICATION.md), and the
 [reproducibility notes](docs/REPRODUCIBILITY.md).
 Experiments described in the paper should not be confused with currently available repository functionality.
+
+## TED Vision Inspection Service — engineering track
+
+**Goal:** extend the research implementation into a tested inference service with
+FastAPI, Docker, cloud deployment, model lifecycle management, and an optional
+LangChain-assisted inspection report. **This is a work in progress, not a claim
+of completed AWS deployment or production readiness.** The research results
+above remain separate from service validation and performance measurements.
+
+```text
+Offline: source banks → branch calibration → versioned inference artifact
+Online:  image → validation → persistent host + TED engine → maps / score
+Planned: FastAPI → Docker → AWS deployment → logs / metrics / rollback
+Optional: inspection result + retrieved documents → LangChain report with sources
+```
+
+### Implemented: offline export and reusable local inference
+
+- [`export_artifact`](ted/inference/faprompt.py) fits two source-only FAPrompt
+  branch calibrators and stores their parameters, fixed-axis bank projections,
+  interface configuration, training settings, and source-bank/checkpoint hashes.
+- [`FAPromptEngine`](ted/inference/engine.py) loads the host and artifact once,
+  checks the checkpoint/evaluator hashes and source axis, and reuses the model
+  for single-image inference. Overlapping calls are rejected rather than queued
+  without a bound. It does not fit models or read target masks during prediction.
+- [`CLI`](ted/inference/cli.py) exports artifacts and writes raw Host/C-TED maps,
+  paired grayscale previews, artifact identity, and timing metadata. Existing
+  artifacts/output directories are not silently overwritten.
+- Fixed-axis projections and branch directions are cached. Cached readout
+  parity is tested against uncached core composition; this is not yet a measured
+  speedup claim. Changing the host or axis requires re-exporting the artifact.
+
+**Current dependency boundary:** image inference still imports the trusted
+`neurips2026/scripts/official_parallel_test_faprompt.py` evaluator and its modified
+FAPrompt checkout from the original research workspace. It is a local bridge,
+not an independently reproducible image detector from this GitHub clone alone.
+Dataset iteration is not called by the bridge, but evaluator import dependencies
+remain. Upstream extraction, dependency locking, and container portability are
+required before deployment. Do not use untrusted Python/checkpoint files.
+
+With the original host environment and cached backbone weights available:
+
+```bash
+# Explicit alpha: the research evaluator swept strengths; this is not a
+# universal configuration for reproducing every paper result.
+python -m ted.inference.cli export \
+  --research-root /path/to/research-checkout \
+  --bank /path/to/source_branchscore_bank.pt \
+  --checkpoint /path/to/faprompt/epoch_15.pth \
+  --alpha 1.0 --output artifacts/faprompt-source-v1.pt
+
+python -m ted.inference.cli infer \
+  --research-root /path/to/research-checkout \
+  --artifact artifacts/faprompt-source-v1.pt \
+  --checkpoint /path/to/faprompt/epoch_15.pth \
+  --image /path/to/inspection.png \
+  --output-dir outputs/inspection-001 --device cpu
+```
+
+The exporter uses stored branch scores and rejects absent scores rather than
+silently replacing them with axis scores. Current prompt settings are depth 9,
+12 context tokens, and 4 compound context tokens; use compatible source banks
+and checkpoints. A cache created with other prompt settings must not be reused.
+Hash/axis checks reduce accidental mismatches but do not attest the source bank's
+historical provenance or hash every upstream dependency. The host loader may
+download backbone weights when its cache is missing.
+
+On October 7, 2026, the local CPU path was exercised with a real MPDD image,
+MVTec-source banks, and ViT-L/14@336px FAPrompt. This is a single-image smoke
+test, not full benchmark reproduction, GPU validation, or a service load test.
+The returned image score is the unchanged official FAPrompt score, **not a
+calibrated defect probability**. Display-normalized maps are not decision masks;
+no default pass/fail decision or binary defect mask is invented.
+
+### Deployment milestones and acceptance checks
+
+| Stage | Deliverable | Evidence required before marking complete |
+|---|---|---|
+| 1. Inference foundation | Persistent engine, offline artifact, single-image CLI | Local smoke and readout parity tests; available with research dependency |
+| 2. Portable API | `/predict`, `/health`, `/ready`, `/model-info` | Isolated host dependencies; lifespan initialization; image limits; busy/error tests |
+| 3. Docker and CI | Reproducible container and automated tests/build | Clean-environment run; no weights, secrets, or datasets in image; local-only port binding initially |
+| 4. Benchmark | Warm-up, p50/p95, throughput, memory, precision comparison | Fixed hardware/input/bank settings; accuracy regression; API vs model timing separated |
+| 5. AWS | Controlled endpoint and runtime logs | Account/region/budget approval; access control/TLS; deployment and shutdown evidence |
+| 6. MLOps | Tracking, model registry, release manifest, rollback | Version-linked evaluation; explicit promotion; rollback test; no automatic target-based retraining |
+| 7. Inspection assistant | LangChain tools, document retrieval, sourced report | Tool/grounding tests; abstention on missing evidence; separate LLM cost and latency |
+
+Stages 2–7 are planned, not implemented. Model artifacts and local output images
+are excluded from Git. Research figures remain illustrative, not deployment
+screenshots. Other C-TED hosts and T-TED can join the same service interface after
+the first complete path is verified; their existing core availability does not
+mean their service adapters are complete.
+
+The intended API separates image-level thresholds from pixel-mask thresholds.
+Only versioned, validated thresholds should produce decisions. A LangChain
+assistant should call the inspection API and retrieve approved manuals, not
+replace the detector or invent defect causes from an anomaly map. It must not
+autonomously retrain models, change thresholds, or deploy artifacts. References:
+[LangChain learning resources](https://docs.langchain.com/oss/python/learn) and
+[MLflow registry workflows](https://mlflow.org/docs/latest/ml/model-registry/workflow/).
 
 ## Citation
 
