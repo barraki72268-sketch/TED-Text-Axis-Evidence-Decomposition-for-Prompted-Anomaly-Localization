@@ -199,26 +199,63 @@ Hash/axis checks reduce accidental mismatches but do not attest the source bank'
 historical provenance or hash every upstream dependency. The host loader may
 download backbone weights when its cache is missing.
 
-On October 7, 2026, the local CPU path was exercised with a real MPDD image,
-MVTec-source banks, and ViT-L/14@336px FAPrompt. This is a single-image smoke
-test, not full benchmark reproduction, GPU validation, or a service load test.
+On October 7, 2026, CPU and reserved RTX PRO 5000 GPU paths were exercised with
+a real MPDD image, MVTec-source banks, and ViT-L/14@336px FAPrompt. A real
+loopback HTTP server returned three predictions whose raw Host/C-TED maps
+exactly matched the GPU CLI output. This is single-image smoke validation,
+not full benchmark reproduction, a precision study, or a service load test.
 The returned image score is the unchanged official FAPrompt score, **not a
 calibrated defect probability**. Display-normalized maps are not decision masks;
 no default pass/fail decision or binary defect mask is invented.
+
+### Private HTTP service (research dependencies still required)
+
+The [FastAPI adapter](ted/inference/api.py) initializes the model once using
+[lifespan](https://fastapi.tiangolo.com/advanced/events/). It provides `/health`,
+`/ready`, `/model-info`, and `/predict`, caps image uploads at 20 MB / 25 million
+pixels, rejects concurrent predictions with HTTP 503, and logs request IDs and
+timing without storing submitted images. This is **not an authenticated public
+endpoint**. Keep the binding private; external deployment requires access
+control, TLS, ingress limits/timeouts, and deployment approval.
+
+```bash
+pip install -r deployment/requirements-api.txt
+export TED_ARTIFACT=/path/to/calibrated-artifact.pt
+export TED_CHECKPOINT=/path/to/faprompt/epoch_15.pth
+export TED_RESEARCH_ROOT=/path/to/research-checkout
+export FAPROMPT_CACHE_DIR=/path/to/cached-backbone-directory
+export TED_DEVICE=cuda:0  # only inside an authorized GPU allocation
+python -m uvicorn ted.inference.api:create_app --factory \
+  --host 127.0.0.1 --port 8000 --workers 1
+```
+
+In a second shell on the same server, send raw image bytes (not multipart):
+
+```bash
+curl --fail http://127.0.0.1:8000/predict \
+  -H 'Content-Type: image/png' --data-binary @inspection.png
+```
+
+The JSON response includes unchanged host image score, artifact hash, timings,
+lossless raw maps in a base64 NPZ (`host`, `cted`, float32; load with
+`allow_pickle=False`), and paired grayscale PNG previews using a common display
+range. The [HTTP smoke runner](examples/service_smoke.py) starts a loopback
+server, checks three requests against saved CLI maps, and stops the server.
 
 ### Deployment milestones and acceptance checks
 
 | Stage | Deliverable | Evidence required before marking complete |
 |---|---|---|
 | 1. Inference foundation | Persistent engine, offline artifact, single-image CLI | Local smoke and readout parity tests; available with research dependency |
-| 2. Portable API | `/predict`, `/health`, `/ready`, `/model-info` | Isolated host dependencies; lifespan initialization; image limits; busy/error tests |
+| 2. Portable API | `/predict`, `/health`, `/ready`, `/model-info` | Private GPU HTTP smoke and contract tests passed; host dependency isolation remains |
 | 3. Docker and CI | Reproducible container and automated tests/build | Clean-environment run; no weights, secrets, or datasets in image; local-only port binding initially |
 | 4. Benchmark | Warm-up, p50/p95, throughput, memory, precision comparison | Fixed hardware/input/bank settings; accuracy regression; API vs model timing separated |
 | 5. AWS | Controlled endpoint and runtime logs | Account/region/budget approval; access control/TLS; deployment and shutdown evidence |
 | 6. MLOps | Tracking, model registry, release manifest, rollback | Version-linked evaluation; explicit promotion; rollback test; no automatic target-based retraining |
 | 7. Inspection assistant | LangChain tools, document retrieval, sourced report | Tool/grounding tests; abstention on missing evidence; separate LLM cost and latency |
 
-Stages 2–7 are planned, not implemented. Model artifacts and local output images
+Stage 2 has a working private research-backed API, not a standalone distribution.
+Stages 3–7 remain planned. Model artifacts and local output images
 are excluded from Git. Research figures remain illustrative, not deployment
 screenshots. Other C-TED hosts and T-TED can join the same service interface after
 the first complete path is verified; their existing core availability does not

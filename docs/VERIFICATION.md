@@ -1,5 +1,28 @@
 # Core verification
 
+## Private GPU HTTP smoke (October 7, 2026)
+
+- RTX PRO 5000 in an authorized Slurm allocation; Python 3.12.3,
+  PyTorch 2.9.1+cu128, FastAPI 0.142.2, Uvicorn 0.54.0, HTTPX 0.28.1.
+- FAPrompt ViT-L/14@336px, input 518, FP32, MVTec-source engineering artifact
+  SHA-256 `968db05a3cac035ad0e647a23d8468460a915ad87712da0d4bc8028ae588415d`.
+  Alpha remains 1; this is **not** the paper Table 18 alpha-0.5 artifact.
+- A real Uvicorn server on loopback answered three sequential HTTP predictions
+  for the same MPDD bracket-black scratches image. Host and C-TED raw maps
+  exactly matched the prior GPU CLI maps in all three requests (max error 0).
+- Corrupt image input returned HTTP 400. The server was stopped after testing;
+  there is no continuously running endpoint from this smoke test.
+- The combined suite passed 20 tests with one opt-in GPU test skipped. A separate
+  T-TED suite with `TED_TEST_CUDA=1` passed all eight tests, including CUDA parity.
+  API contract tests cover startup reuse, shutdown, image limits, malformed
+  inputs, busy rejection, health responsiveness, and sanitized error responses.
+- GPU CLI model load was 5,246 ms; HTTP-process load was 5,083 ms. Three observed
+  HTTP round trips were 341, 256, and 256 ms, including raw-map/preview encoding.
+  These are **smoke timings**, not warmed p50/p95/throughput benchmark claims.
+
+The original host checkout remains required. Docker build, standalone install,
+AWS, full-dataset reproduction, and mixed-precision quality remain unverified.
+
 ## Experimental inference bridge (October 7, 2026)
 
 - Five inference test methods cover cached-vs-uncached branch readout parity at
@@ -15,8 +38,9 @@
   checkpoints, and calibrated artifacts are not redistributed with this commit.
 
 The bridge still imports the original research evaluator and local modified
-FAPrompt dependencies. No standalone container, public API, AWS deployment,
-mixed-precision quality comparison, or load benchmark is claimed here.
+FAPrompt dependencies. The later private HTTP test above does not establish a
+standalone container, public API, AWS deployment, mixed-precision quality
+comparison, or load benchmark.
 
 ## C-TED
 
