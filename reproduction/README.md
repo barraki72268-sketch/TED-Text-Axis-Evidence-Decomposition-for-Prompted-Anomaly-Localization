@@ -62,6 +62,28 @@ This command does not run a reproduction benchmark.
 
 ## Fresh validation evidence
 
+### Historical host checkpoints
+
+`host-checkpoints.json` links all 207 adapted-host recipes to 11 unique host
+checkpoint files (593,619,560 bytes). Each binding is checked against its
+hash-pinned archived result, including the separate AA-CLIP image/text adapters.
+These are historical model weights; they are not evidence of a successful fresh
+benchmark. Backbone weights, source banks, and TED calibrators are separate
+requirements and are not included in this host-checkpoint catalog.
+
+```bash
+python -m reproduction verify-checkpoints
+python -m reproduction verify-checkpoints --directory /path/to/checkpoints
+python -m reproduction verify-checkpoints --directory /path/to/checkpoints --recipe faprompt-vitl14_336-mvtec2btad-seed0
+```
+
+Without `--directory`, only the catalog and its reference bindings are verified.
+With it, files must exist at `objects/<sha256>` beneath that directory. Every
+required byte hash and size is checked, and missing or modified files cause a
+nonzero exit. No checkpoint is deserialized by this command. Public download
+locations for this complete set are still being prepared; the existing FAPrompt
+release alone does not supply all 11 files. Original component licenses apply.
+
 Dataset input verification and path preparation are documented in
 [DATASETS.md](DATASETS.md). The four currently readable datasets have manifests
 covering 23,091 referenced image/mask files. MVTec AD 2 remains part of the
