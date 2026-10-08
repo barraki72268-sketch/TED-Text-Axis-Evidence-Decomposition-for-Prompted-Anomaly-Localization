@@ -81,6 +81,7 @@ requirements and are not included in this host-checkpoint catalog.
 
 ```bash
 python -m reproduction verify-checkpoints
+python -m reproduction prepare-checkpoints ./host-checkpoints
 python -m reproduction verify-checkpoints --directory /path/to/checkpoints
 python -m reproduction verify-checkpoints --directory /path/to/checkpoints --recipe faprompt-vitl14_336-mvtec2btad-seed0
 ```
@@ -94,6 +95,14 @@ nonzero exit. No checkpoint is deserialized by this command. The complete
 and SHA-256. Extract into a new directory, then run the byte verifier above.
 Original component licenses apply; this archive does not include source banks,
 backbones, or calibrated TED states for all recipes.
+
+`prepare-checkpoints` downloads the pinned archive without login or PyTorch,
+checks its hash and every member, and writes only into a new destination. It
+keeps the downloaded archive in `ted-download-cache` next to the destination.
+For offline use, pass `--archive /path/to/host-checkpoints-20261008.tar`.
+An interrupted download is retained as `.tar.part` for diagnosis and will not
+be overwritten automatically; move that partial file aside before retrying.
+The command writes `input-verification.json` alongside the prepared objects.
 
 A fresh clone at `a5c846b344c3764ea5dc5d2b5957817cc21f54d8` verified the
 actual 11 checkpoint objects with zero errors; the execution report is

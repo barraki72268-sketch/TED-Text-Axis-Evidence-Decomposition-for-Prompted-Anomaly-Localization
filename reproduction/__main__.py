@@ -21,6 +21,9 @@ def main() -> int:
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
+    prepare_weights = sub.add_parser("prepare-checkpoints", help="Download pinned host weights and verify/extract into a new directory")
+    prepare_weights.add_argument("destination", type=Path)
+    prepare_weights.add_argument("--archive", type=Path, help="Use an already downloaded pinned tar archive")
     unpack = sub.add_parser("unpack-source", help="Verify and unpack source into a new directory; evaluation paths still need preparation")
     unpack.add_argument("destination", type=Path)
     for action in ("validate-dataset", "prepare-dataset"):
@@ -40,6 +43,11 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "prepare-checkpoints":
+        from .checkpoint_download import prepare_checkpoints
+        result = prepare_checkpoints(ROOT, args.destination, args.archive)
+        print(json.dumps(result, indent=2))
+        return 1 if result["file_errors"] else 0
     if args.action == "verify-checkpoints":
         from .checkpoints import verify_checkpoints
         result = verify_checkpoints(ROOT, args.directory, args.recipe)
