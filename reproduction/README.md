@@ -177,6 +177,10 @@ does not imply a separately mined source bank. Hash-checked, weights-only CPU
 inspection validated the metadata of all 81 candidate bank files involved.
 Historical directory membership still requires execution-log corroboration;
 these bindings are not proof of fresh bank rebuilding or complete GPU replay.
+`raw-source-banks.json` separately binds the 25 main-table frozen-backbone
+recipes to 10 additional bank objects (145,191,112 bytes), using their explicit
+evaluation command arguments. Five of these recipes still require MVTec AD 2
+data access; having their bank files does not resolve that dataset blocker.
 
 - MVTec AD → VisA/MPDD/BTAD and VisA → MVTec AD are separate protocols.
   The archived BayesPFL MVTec row uses MVTec → MVTec; it must retain that label.
