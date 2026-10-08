@@ -1,0 +1,377 @@
+{
+  "scope": "All active tables, including wrap tables and supplementary/additional arXiv sections. Figures and non-tabular claims still require separate scope inventory.",
+  "datasets": [
+    "MVTec AD",
+    "VisA",
+    "MPDD",
+    "BTAD",
+    "MVTec AD 2"
+  ],
+  "source_zip_sha256": "215b2ab71f5a4d94d7f9b64fb04224781a49e8459b611aaff2f847fb32c68992",
+  "active_tex_files": [
+    {
+      "path": "neurips_2026.tex",
+      "sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6"
+    },
+    {
+      "path": "tab/allVLM.tex",
+      "sha256": "ec5ea23bfa507ecbf24766a8667ce37fe0fa8fde64a7104efd01551b8ceea3be"
+    },
+    {
+      "path": "tab/ablation.tex",
+      "sha256": "8d0f54d888303ba7ade907ad3113f7a84adae12faf335b37c7de8cd2afb4487e"
+    },
+    {
+      "path": "tab/backboneswap_data.tex",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "supp.tex",
+      "sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11"
+    },
+    {
+      "path": "tab/tab_control_fp_merge.tex",
+      "sha256": "99e7d168490cc22dcf6f36e02e5b6276497b846d4fe462d398b7ed23175b2db3"
+    },
+    {
+      "path": "tab/layer_stress.tex",
+      "sha256": "1763f2206c15d58f1cae868f0629a018a2e88beca48426a28e1478dab510b157"
+    },
+    {
+      "path": "supp_fig/efficiency_bank_budget_compact_20260505.tex",
+      "sha256": "5219f68735c5e1fd74cebd4561396a5dfe96d4f6d38730aff47bf0ba5c3009f8"
+    },
+    {
+      "path": "supp_fig/feature_mem_full.tex",
+      "sha256": "ea557c9438269886408c2556092615bfb2e7c905035030e3fd9c065ed3434f6b"
+    },
+    {
+      "path": "supp_fig/weak_source_robustness_20260506.tex",
+      "sha256": "faf239994ab1c86e103a6d3666d02b7598689cd046fa5f12efa8aeb787997815"
+    },
+    {
+      "path": "supp_fig/simple_ablation.tex",
+      "sha256": "64aeedf1e639402943abd747a57b6acf49c9a9364b252f888317fa1cd4da3ce1"
+    },
+    {
+      "path": "supp_fig/residual_strength_boundary_20260507.tex",
+      "sha256": "a5ffeb200d557d766d118a1f92ae58e58c8732345c478b933dd818fef1ca23ba"
+    },
+    {
+      "path": "supp_fig/host_score_only_control_20260507.tex",
+      "sha256": "f2814f324910422077fbda83fcbb67a5c6a0f8c0d31c957151d6f724351d30e1"
+    },
+    {
+      "path": "supp_fig/failure.tex",
+      "sha256": "76774a4a8b4521bc8163f7b2c17ccdf4dcebd707e6b144b1e9952b2775a08fc3"
+    },
+    {
+      "path": "tab/aaclip_only.tex",
+      "sha256": "a11a8677375699c4fe8da5d2a9cedbc37e9d748d8a11233ef100927a175e79c4"
+    },
+    {
+      "path": "tab/FAprompt.tex",
+      "sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    {
+      "path": "tab/Adaptclip.tex",
+      "sha256": "38e49aa0ee4e14a98c437f9bfdbcf4904ca28ae8a11353058effb49cef1f7e74"
+    },
+    {
+      "path": "tab/Adaclip.tex",
+      "sha256": "27c53a5ffd1357b8bcbc8f9326900596debdf327f52b186dd2550f4399be5f03"
+    },
+    {
+      "path": "tab/BayesPFL.tex",
+      "sha256": "cbb8159cfbc8ede2224a3bdc19ea1680e8a1ade3bb529e63a31aefceac26cba2"
+    },
+    {
+      "path": "tab/layer_retrain.tex",
+      "sha256": "eda72e626aae3b0a601204fb8561793f6ec63d98abb7e8cf62c9dec76f15df75"
+    },
+    {
+      "path": "additional_supp.tex",
+      "sha256": "00312de5e90b9bb6356cbc2639533d5d82d36f9d51ab0eda359ea69510d87828"
+    }
+  ],
+  "tables": [
+    {
+      "table": 1,
+      "label": "tab:all_vlm",
+      "source": "tab/allVLM.tex",
+      "caption_tex": "\nCross-dataset transfer results for frozen VLM backbones with class-aware static prompts.\nB denotes standard prompt similarity, T-TED train-free TED, and C-TED source-calibrated TED.\nAll variants use the same frozen backbone and prompts; only the local anomaly score changes.\nBest results within each backbone and target dataset are bolded.\n",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 25
+    },
+    {
+      "table": 2,
+      "label": "tab:failure_conditioned_gains",
+      "source": "neurips_2026.tex",
+      "caption_tex": "\n\\textbf{Failure-conditioned gains.}\nBins are grouped by baseline hard-FP severity before inspecting C-TED gains.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 3,
+      "label": "tab:ted_ablation",
+      "source": "tab/ablation.tex",
+      "caption_tex": "\n  Ablation study of \\textsc{TED} on BTAD.\n  (a) validates the calibrated decoding components on adapted hosts, and\n  (b) analyzes the effect of the residual rank on AA-CLIP.\n  ",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 4,
+      "label": "tab:source_memory_controls",
+      "source": "neurips_2026.tex",
+      "caption_tex": "\n\\textbf{Source-control ablations.}\nControls corrupt source supervision or replace TED with scalar source readouts using the same evidence.\nValues are gains over the host baseline.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 5,
+      "label": "tab:efficiency_bank_sensitivity",
+      "source": "neurips_2026.tex",
+      "caption_tex": "\\textbf{Fixed-bank sensitivity.}",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 6,
+      "label": "tab:supp_fixed_policy",
+      "source": "supp.tex",
+      "caption_tex": "\n\\textbf{Fixed evaluation policy.}\nAll entries are fixed before target evaluation and are not selected using target-domain scores or masks.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 7,
+      "label": "tab:cted_training_control",
+      "source": "tab/tab_control_fp_merge.tex",
+      "caption_tex": "\n\\textbf{Training-control sanity checks for C-TED.}\nAll variants use the same source-only calibration budget and residual capacity.\nPanel (a) tests the effect of swapping defect and hard-normal supervision across host/transfer settings.\nPanel (b) compares additional corrupted-control variants on AA-CLIP MVTec$\\rightarrow$BTAD.\nValues report gains over the corresponding host baseline.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 8,
+      "label": "tab:layer_recipe_stress",
+      "source": "tab/layer_stress.tex",
+      "caption_tex": "\nLayer-recipe stress and TED recovery on MPDD dataset.\nB, T, and C denote the baseline host, train-free TED, and source-calibrated TED.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 9,
+      "label": "tab:supp_efficiency_bank_budget_compact",
+      "source": "supp_fig/efficiency_bank_budget_compact_20260505.tex",
+      "caption_tex": "Fixed source-bank budget sensitivity. Values are averaged over completed transfer settings for each host and bank budget. $\\Delta$Loc is the mean of $\\Delta$PRO and $\\Delta$AP over the host baseline.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 10,
+      "label": "tab:supp_fullfeature_memory_control_full",
+      "source": "supp_fig/feature_mem_full.tex",
+      "caption_tex": "\nTransfer-wise full-feature memory replacement control.\nThe control uses the same source visual banks but removes the text-conditioned readout.\nValues are gains over the corresponding host baseline.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 11,
+      "label": "tab:same_bank_controls",
+      "source": "supp.tex",
+      "caption_tex": "\n    Extended same-bank retrieval controls across AA-CLIP,\n    AdaCLIP, and FAPrompt, with six transfers per host\n    (18 settings in total).\n    Values are mean changes in percentage points relative\n    to the corresponding host.\n    Source banks, hosts, targets, and aggregation are fixed;\n    only the evidence readout changes.\n    Replacement substitutes the host local score, whereas\n    residual mode adds a correction to it.\n  ",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 12,
+      "label": "tab:weak_source_robustness",
+      "source": "supp_fig/weak_source_robustness_20260506.tex",
+      "caption_tex": "\nWeak-source robustness.\nAA-CLIP varies the number of source images per source class used to construct banks.\nFAPrompt varies the retained source-bank budget per class.\nValues are gains over the corresponding host baseline; $\\Delta$Loc is the mean of $\\Delta$PRO and $\\Delta$AP.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 13,
+      "label": "tab:supp_source_readout_extra_controls",
+      "source": "supp_fig/simple_ablation.tex",
+      "caption_tex": "\nSource-supervised readout control.\nThe control uses the same source defect and hard-FP banks as C-TED, but replaces the evidence comparison with a directly learned MLP rank readout.\nReplace uses the learned readout as the local anomaly map, while Residual adds it to the host map.\nRows average completed transfer settings for each host.\nValues are $\\Delta$Loc, the mean of $\\Delta$PRO and $\\Delta$AP over the host baseline.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 14,
+      "label": "tab:supp_residual_strength_boundary",
+      "source": "supp_fig/residual_strength_boundary_20260507.tex",
+      "caption_tex": "\n\\textbf{Residual-strength boundary.}\nAA-CLIP diagnostic with fixed calibrator and protocol.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 15,
+      "label": "tab:supp_host_score_only_control",
+      "source": "supp_fig/host_score_only_control_20260507.tex",
+      "caption_tex": "\nHost-score-only calibration control.\nControls train a source-only rank readout using only the scalar host local score on source defect and hard-FP patches, without source defect/hard-FP support\nfeatures.\nEach entry reports $\\Delta$PRO / $\\Delta$AP over the corresponding host baseline.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 16,
+      "label": "tab:failure_tab",
+      "source": "supp_fig/failure.tex",
+      "caption_tex": "\nFailure-conditioned separability robustness.\nIntervals are setting-level percentile bootstrap 95\\% CIs over completed adapted-host settings.\n$\\Delta$AUC measures the change in AUC for ranking anomalous regions above hard normal regions.\n$\\Delta$Loc is the mean of $\\Delta$PRO and $\\Delta$AP.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 17,
+      "label": "tab:aaclip_hostres_only",
+      "source": "tab/aaclip_only.tex",
+      "caption_tex": "AA-CLIP with host-anchored residual subspace correction. Results are averaged over three seeds; each entry is mean{\\scriptsize $\\pm$std}.",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 48
+    },
+    {
+      "table": 18,
+      "label": "tab:faprompt_results",
+      "source": "tab/FAprompt.tex",
+      "caption_tex": "Results with \\textbf{FAPrompt} as host.",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 20
+    },
+    {
+      "table": 19,
+      "label": "tab:adaptclip_results",
+      "source": "tab/Adaptclip.tex",
+      "caption_tex": "Results with \\textbf{AdaptCLIP} as host.",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 46
+    },
+    {
+      "table": 20,
+      "label": "tab:adaclip_results",
+      "source": "tab/Adaclip.tex",
+      "caption_tex": "Results with \\textbf{AdaCLIP} as host.",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 45
+    },
+    {
+      "table": 21,
+      "label": "tab:bayespfl_results",
+      "source": "tab/BayesPFL.tex",
+      "caption_tex": "Results with \\textbf{BayesPFL} as host using calibrated TED.",
+      "configuration_trace_status": "recipe_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 48
+    },
+    {
+      "table": 22,
+      "label": "tab:layer_recipe_retrain",
+      "source": "tab/layer_retrain.tex",
+      "caption_tex": "\nBidirectional layer-recipe retraining diagnostic.\nEach cell reports I-AUC / P-AUC / PRO / AP.\nB, T, and C denote the retrained host baseline, train-free TED, and source-calibrated TED, respectively.\nFull(B) is the official full-layer baseline recipe; EL-r, M2-r, L2-r, and L-r denote checkpoints retrained with early+last, middle-2, last-2, and last-layer recipes.\n",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 23,
+      "label": "tab:arxiv_conditional_axis",
+      "source": "additional_supp.tex",
+      "caption_tex": "Conditional text-axis audit. AUC and accuracy are reported in percent.\nAll-patch role AUC is a diagnostic, not dataset-level P-AUC.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 24,
+      "label": "tab:arxiv_coverage",
+      "source": "additional_supp.tex",
+      "caption_tex": "Reduced source-category coverage. Wins count positive changes among\nthe 12 host--transfer units after seed averaging.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 25,
+      "label": "tab:arxiv_shared_interface",
+      "source": "additional_supp.tex",
+      "caption_tex": "Separate shared-interface distribution-shift audit. These controls\nmust not be substituted for host-native results.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 26,
+      "label": "tab:arxiv_hfp_fraction",
+      "source": "additional_supp.tex",
+      "caption_tex": "Sensitivity to the source Hard-FP mining fraction without retuning.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 27,
+      "label": "tab:arxiv_bank_protocol",
+      "source": "additional_supp.tex",
+      "caption_tex": "Host-specific source-bank construction. Retained counts sum four\nlayers for AA-CLIP and AdaCLIP; FAPrompt counts refer to its pooled bank.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 28,
+      "label": "tab:arxiv_native_recipes",
+      "source": "additional_supp.tex",
+      "caption_tex": "Submitted target-independent C-TED recipes for the three primary hosts.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 29,
+      "label": "tab:arxiv_shared_recipe",
+      "source": "additional_supp.tex",
+      "caption_tex": "Shared-recipe calibration over the complete 18-cell grid.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 30,
+      "label": "tab:arxiv_training_controls",
+      "source": "additional_supp.tex",
+      "caption_tex": "Source-training and correction-strength controls.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 31,
+      "label": "tab:arxiv_host_summary",
+      "source": "additional_supp.tex",
+      "caption_tex": "Host-native changes across all 76 complete-table settings, including\nlimited and negative results.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 32,
+      "label": "tab:arxiv_rare_defects",
+      "source": "additional_supp.tex",
+      "caption_tex": "Small/rare-defect audit. Evaluations count host--image applications;\nmacro changes and positive-unit counts equally weight host--transfer units.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 33,
+      "label": "tab:arxiv_runtime",
+      "source": "additional_supp.tex",
+      "caption_tex": "Paired host and host+TED profiles on BTAD. Times are ms/image.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    },
+    {
+      "table": 34,
+      "label": "tab:arxiv_module_scaling",
+      "source": "additional_supp.tex",
+      "caption_tex": "Module-level bank-size scaling with 1,369 patches and four layers.",
+      "configuration_trace_status": "pending",
+      "fresh_reproduction_status": "not_complete"
+    }
+  ]
+}

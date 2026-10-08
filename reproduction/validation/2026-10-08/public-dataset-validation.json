@@ -1,0 +1,33 @@
+{
+  "commit": "0c7d441afc2640854117b4e475c6af157b9c8a59",
+  "reports": [
+    {
+      "dataset": "mvtec",
+      "returncode": 0,
+      "seconds": 2.483344078063965,
+      "stdout": "{\n  \"dataset\": \"mvtec\",\n  \"status\": \"verified\",\n  \"files_verified\": 6612,\n  \"file_errors\": 0,\n  \"error_examples\": [],\n  \"roots\": {\n    \"images\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec\",\n    \"masks\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec\"\n  },\n  \"manifest_sha256\": \"061348b922755b9daf30d79bd921cf04d96eb4571ec6a15f09e830c9b6a83575\",\n  \"metadata_sha256\": \"45b03bd7da85a901ee9018b97362d50e5347420d886f9a859252069ff74f448b\",\n  \"counts\": {\n    \"train\": {\n      \"bottle\": 209,\n      \"cable\": 224,\n      \"capsule\": 219,\n      \"carpet\": 280,\n      \"grid\": 264,\n      \"hazelnut\": 391,\n      \"leather\": 245,\n      \"metal_nut\": 220,\n      \"pill\": 267,\n      \"screw\": 320,\n      \"tile\": 230,\n      \"toothbrush\": 60,\n      \"transistor\": 213,\n      \"wood\": 247,\n      \"zipper\": 240\n    },\n    \"test\": {\n      \"bottle\": 83,\n      \"cable\": 150,\n      \"capsule\": 132,\n      \"carpet\": 117,\n      \"grid\": 78,\n      \"hazelnut\": 110,\n      \"leather\": 124,\n      \"metal_nut\": 115,\n      \"pill\": 167,\n      \"screw\": 160,\n      \"tile\": 117,\n      \"toothbrush\": 42,\n      \"transistor\": 100,\n      \"wood\": 79,\n      \"zipper\": 151\n    }\n  },\n  \"evaluation_executed\": false,\n  \"prepared_metadata\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/prepared-public-data/mvtec/meta.json\",\n  \"prepared_metadata_sha256\": \"5a1182211bd9c843ab9d4cb8dcb4bd0818f2821e60c129cb870a96522b46a7f2\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "dataset": "visa",
+      "returncode": 0,
+      "seconds": 1.2506508827209473,
+      "stdout": "{\n  \"dataset\": \"visa\",\n  \"status\": \"verified\",\n  \"files_verified\": 12021,\n  \"file_errors\": 0,\n  \"error_examples\": [],\n  \"roots\": {\n    \"images\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/VisA_pytorch_official/1cls\",\n    \"masks\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/VisA_pytorch_official/1cls\"\n  },\n  \"manifest_sha256\": \"537543a82937ec2a2e7e8181d58b340f1f73058d5f555462bf11fa70284234e5\",\n  \"metadata_sha256\": \"6d6c0339e931cddc41356d70a997cea63ab23a614befdf68936dbfeafaca9e2e\",\n  \"counts\": {\n    \"train\": {\n      \"candle\": 900,\n      \"capsules\": 542,\n      \"cashew\": 450,\n      \"chewinggum\": 453,\n      \"fryum\": 450,\n      \"macaroni1\": 900,\n      \"macaroni2\": 900,\n      \"pcb1\": 904,\n      \"pcb2\": 901,\n      \"pcb3\": 905,\n      \"pcb4\": 904,\n      \"pipe_fryum\": 450\n    },\n    \"test\": {\n      \"candle\": 200,\n      \"capsules\": 160,\n      \"cashew\": 150,\n      \"chewinggum\": 150,\n      \"fryum\": 150,\n      \"macaroni1\": 200,\n      \"macaroni2\": 200,\n      \"pcb1\": 200,\n      \"pcb2\": 200,\n      \"pcb3\": 201,\n      \"pcb4\": 201,\n      \"pipe_fryum\": 150\n    }\n  },\n  \"evaluation_executed\": false,\n  \"prepared_metadata\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/prepared-public-data/visa/meta.json\",\n  \"prepared_metadata_sha256\": \"6ae2518a9cccdaaa339e5e261948b985f231500142465e64994a19dcf56b9bb6\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "dataset": "mpdd",
+      "returncode": 0,
+      "seconds": 7.588871002197266,
+      "stdout": "{\n  \"dataset\": \"mpdd\",\n  \"status\": \"verified\",\n  \"files_verified\": 1628,\n  \"file_errors\": 0,\n  \"error_examples\": [],\n  \"roots\": {\n    \"images\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/MPDD\",\n    \"masks\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/MPDD\"\n  },\n  \"manifest_sha256\": \"b5afbc084ea701bee8b2a6c8e6831d9eb35985664888226184a712b6872b34b3\",\n  \"metadata_sha256\": \"56cb6bc57f2ceab11d6085bb786c56fb9c93e951e4f7c7b8598f97ca9874d7ec\",\n  \"counts\": {\n    \"train\": {\n      \"bracket_black\": 289,\n      \"bracket_brown\": 185,\n      \"bracket_white\": 110,\n      \"connector\": 128,\n      \"metal_plate\": 54,\n      \"tubes\": 122\n    },\n    \"test\": {\n      \"bracket_black\": 79,\n      \"bracket_brown\": 77,\n      \"bracket_white\": 60,\n      \"connector\": 44,\n      \"metal_plate\": 97,\n      \"tubes\": 101\n    }\n  },\n  \"evaluation_executed\": false,\n  \"prepared_metadata\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/prepared-public-data/mpdd/meta.json\",\n  \"prepared_metadata_sha256\": \"db48ff76d0304cd0484c8494b79d3017c23023398afec188005fbdca08e798fb\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "dataset": "btad",
+      "returncode": 0,
+      "seconds": 11.838144302368164,
+      "stdout": "{\n  \"dataset\": \"btad\",\n  \"status\": \"verified\",\n  \"files_verified\": 2830,\n  \"file_errors\": 0,\n  \"error_examples\": [],\n  \"roots\": {\n    \"images\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/btad-DatasetNinja\",\n    \"masks\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/mirror/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/BTAD_official/masks\"\n  },\n  \"manifest_sha256\": \"0117c42eabb06bfe7d43d53e456a02598c583be0561994e017edc4c06558e8cd\",\n  \"metadata_sha256\": \"823cb1ebbe8616c97c99f8ccf93a7c5b705ce8db1d0a7a9c93954d0ae371f895\",\n  \"counts\": {\n    \"train\": {\n      \"01\": 400,\n      \"02\": 399,\n      \"03\": 1000\n    },\n    \"test\": {\n      \"01\": 70,\n      \"02\": 230,\n      \"03\": 441\n    }\n  },\n  \"evaluation_executed\": false,\n  \"prepared_metadata\": \"/mnt/storage/jinyoungkim/ted-reproduce-20261008/prepared-public-data/btad/meta.json\",\n  \"prepared_metadata_sha256\": \"856650db6b7ed7f986337ec26d9ea4d6ef755be7ddf66dbf5d980e95a2a8d7f1\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

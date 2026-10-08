@@ -19,6 +19,13 @@ Acquire datasets under their original terms. The manifests pin the exact bytes
 used in the historical experiments; another conversion of the same dataset may
 have different file hashes. Such a difference is reported, not silently accepted.
 
+The public commands were tested from a fresh GitHub checkout at commit
+`0c7d441afc2640854117b4e475c6af157b9c8a59` against the relocated GPU-server data:
+all 23,091 referenced files passed, with zero errors across the four datasets.
+The [execution report](validation/2026-10-08/public-dataset-validation.json)
+includes input roots, manifest hashes, prepared metadata hashes, counts, and
+exit statuses. This validates dataset preparation, not model accuracy.
+
 ## Verify local data
 
 These commands use only the Python standard library (Python 3.10 or newer).

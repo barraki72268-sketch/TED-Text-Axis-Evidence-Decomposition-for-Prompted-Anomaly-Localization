@@ -39,6 +39,13 @@ map's top-k image score is not silently substituted.
 
 ## Archived research source
 
+The full scope is recorded in [paper-table-scope.json](paper-table-scope.json):
+34 active tables across the paper and supplements, including wrap tables.
+The current 232-recipe inventory covers Table 1 and Tables 17–21. It does not
+stand for all ablations, diagnostic tables, figures, or non-tabular claims;
+those remaining traces and evaluations are required before a complete release.
+All five reported datasets remain in scope.
+
 The complete captured source collection is included as a hash-pinned archive.
 Validate it or extract it into a **new, short path**:
 
