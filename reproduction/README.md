@@ -46,6 +46,14 @@ stand for all ablations, diagnostic tables, figures, or non-tabular claims;
 those remaining traces and evaluations are required before a complete release.
 All five reported datasets remain in scope.
 
+The separate [figure scope](paper-figure-scope.json) records all 12 active
+figures and their 25 original graphic files, with byte hashes and exact source
+filename matches where available. One is a conceptual method diagram; the
+other 11 contain empirical diagnostics or qualitative results whose generating
+data and execution provenance remain required. Preserved PDF hashes do not
+prove these analyses have been reproduced. Non-tabular prose claims still need
+a separate audit.
+
 The complete captured source collection is included as a hash-pinned archive.
 Validate it or extract it into a **new, short path**:
 

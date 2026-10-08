@@ -1,0 +1,324 @@
+{
+  "scope": "All active figure and wrapfigure environments in the 21 hash-pinned paper sources. Original figure hashes preserve identity; they do not validate empirical claims or regenerate plots. Non-tabular prose claims still need separate auditing.",
+  "source_zip_sha256": "215b2ab71f5a4d94d7f9b64fb04224781a49e8459b611aaff2f847fb32c68992",
+  "figures": [
+    {
+      "number_in_source_order": 1,
+      "labels": [
+        "fig:discuss1"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n\\centering\n\\begin{subfigure}[t]{0.49\\linewidth}\n\\centering\n\n\\includegraphics[width=\\linewidth]{figure/camera_ready_fig1.pdf}\n\\caption{Hard-FP competition.}\n\\end{subfigure}\n\\hfill\n\\begin{subfigure}[t]{0.49\\linewidth}\n\\centering\n\\includegraphics[width=\\linewidth]{figure/discussion1_text_axis_signal_main.pdf}\n\\caption{Text-axis response.}\n\\end{subfigure}\n\n\\caption{\n\\textbf{Hard-FP competition and text-axis response.}\n(a) Across adapted CLIP-AD hosts, true defects remain much harder to separate from hard false positives than from generic outside patches.\n(b) Across target datasets, the learned text-axis response is consistently more informative than the orthogonal component, suggesting that the axis should be decomposed rather than discarded.\n}\n\\label{fig:discuss1}",
+      "graphics": [
+        {
+          "path": "figure/camera_ready_fig1.pdf",
+          "bytes": 14501,
+          "sha256": "72989bdee6795251b0d3cd5428423b7db2b27b13f224938e5cd53601b656a4b3",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/discussion1_text_axis_signal_main.pdf",
+          "bytes": 14506,
+          "sha256": "d87a1b34d9ff9faff85755c417e4ece5e4a6b7dea5dba6524bbf7423e1ccae6f",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 2,
+      "labels": [
+        "fig:method"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n    \\centering\n    \n    \\includegraphics[width=0.9\\linewidth]{figure/method_figure_readable_same_size.pdf}\n    \\caption{\n    \\textbf{Overview of \\textsc{TED}.}\n    The host provides patch features($V_{p}$) and normal$(t_n)$/anomaly$(t_a)$ text embeddings that define the host text axis.\n\\textsc{TED} projects query patches and source defect/hard-FP features onto this axis to compute a defect-versus-hard-normal support margin.\nT-TED uses this margin as a train-free local score, while C-TED converts it into a bounded residual anchored to the host score.\n    }\n    \\vspace{-1em}\n    \\label{fig:method}",
+      "graphics": [
+        {
+          "path": "figure/method_figure_readable_same_size.pdf",
+          "bytes": 589683,
+          "sha256": "b28fb607bc32e09e1902c8e5421c32718e97dbdd2c4297003dacfd6210aecd21",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "conceptual_method_diagram",
+      "reproduction_status": "preserved_conceptual_source"
+    },
+    {
+      "number_in_source_order": 3,
+      "labels": [
+        "fig:discuss2"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n\\centering\n\\captionsetup[subfigure]{font=small,skip=2pt,justification=centering}\n\n\\begin{subfigure}[t]{0.32\\textwidth}\n  \\centering\n  \\includegraphics[width=\\linewidth]{figure/axis_entanglement_onaxis_wideslim.pdf}\n  \\caption{On-axis response.}\n\\end{subfigure}\n\\hfill\n\\begin{subfigure}[t]{0.32\\textwidth}\n  \\centering\n  \\includegraphics[width=\\linewidth]{figure/axis_entanglement_residual_wideslim.pdf}\n  \\caption{Orthogonal residual.}\n\\end{subfigure}\n\\hfill\n\\begin{subfigure}[t]{0.32\\textwidth}\n  \\centering\n  \\includegraphics[width=\\linewidth]{figure/axis_entanglement_margin_wideslim.pdf}\n  \\caption{Source-supported margin.}\n\\end{subfigure}\n\n\\vspace{-0.4em}\n\\caption{\n\\textbf{Text-response entanglement and source-supported re-ranking.}\nRaw on-axis scoring strongly overlaps true defects with hard false positives.\nThe orthogonal residual improves defect-vs-hard-FP separation in this case, but weakens separation from generic outside regions.\nThe source-supported margin re-ranks the same responses while preserving strong outside separation, showing that TED decomposes rather than discards the text-guided response.\n}\n\\label{fig:discuss2}",
+      "graphics": [
+        {
+          "path": "figure/axis_entanglement_onaxis_wideslim.pdf",
+          "bytes": 14362,
+          "sha256": "8997b36dd65548791220c395b35c3f245a224a1903fbd4c3f4a2fdb1891b2495",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/axis_entanglement_residual_wideslim.pdf",
+          "bytes": 13648,
+          "sha256": "09b838abc5f33eb12b687958f0b0d707bf997d62bf93ac08a7cb3166e3525bbd",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/axis_entanglement_margin_wideslim.pdf",
+          "bytes": 13653,
+          "sha256": "df6108605be7124745591a1515045cb4d1ab43b24a05296912999dab44558639",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 4,
+      "labels": [
+        "fig:rawclip_hardfp_focus"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=0.92\\linewidth]{figure/rawclip_abnormal_hardfp_focus_twopanel_compact.pdf}\n\n\\caption{\n\\textbf{Patch-level failure of raw prompt scoring.}\nThe left panel shows the raw prompt baseline and the right panel shows \\textsc{TED}.\nThe baseline ranks hard-normal patches close to or above true defects, whereas \\textsc{TED} re-ranks them using source defect and hard-FP support without backbone or prompt adaptation.\nH-FP denotes hard false positive.\n}\n\\label{fig:rawclip_hardfp_focus}",
+      "graphics": [
+        {
+          "path": "figure/rawclip_abnormal_hardfp_focus_twopanel_compact.pdf",
+          "bytes": 16910,
+          "sha256": "bd999fdda64f5deaaf690576341d002a2920c09a9bd3d6f8ae70610e0152eade",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/make_rawclip_focus_bigfont_20260505.py"
+          ]
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 5,
+      "labels": [
+        "fig:mainre"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=0.95\\linewidth]{figure/results_mainfig.pdf}\n\n\\caption{\n\\textbf{Hard-FP decomposition in an adapted host.}\nThe baseline assigns overlapping high scores to true defect and hard-normal patches.\n\\textsc{TED} re-scores the same responses with source defect and hard-FP evidence, reducing overlap and lifting the defect--hard-normal ranking gap.\n}\n\\label{fig:mainre}",
+      "graphics": [
+        {
+          "path": "figure/results_mainfig.pdf",
+          "bytes": 117572,
+          "sha256": "9d27b9cad6ffaee3d70ef58ed187a1f9d8e2a05e6b6d3656400ba3d518ddf687",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 6,
+      "labels": [
+        "fig:adapted_host_recipe_combined"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n\\centering\n\\captionsetup[subfigure]{skip=2pt}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \\begin{subfigure}[t]{0.24\\textwidth}\n  \\centering\n  \\vspace{0pt}\n  \\includegraphics[height=2.8cm]{figure/newfig/adapted_host_main_summary_a_host_avg_20260503_notitle_rowaligned.pdf}\n  \\vspace{-2.5em}\n  \\caption{Host-wise.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.24\\textwidth}\n  \\centering\n  \\vspace{0pt}\n  \\includegraphics[height=2.8cm]{figure/newfig/adapted_host_main_summary_b_metric_avg_20260503_notitle_rowaligned.pdf}\n  \\vspace{-2.5em}\n  \\caption{Metric-wise.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.24\\textwidth}\n  \\centering\n  \\vspace{0pt}\n  \\includegraphics[height=2.8cm]{figure/newfig/adapted_host_main_summary_c_target_avg_20260503_notitle_rowaligned.pdf}\n  \\vspace{-2.5em}\n  \\caption{Target-wise.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.24 \\textwidth}\n  \\centering\n  \\vspace{0pt}\n  \\includegraphics[height=2.8cm]{figure/newfig/adapted_host_main_summary_d_winrate_20260503_notitle_rowaligned.pdf}\n  \\vspace{-2.5em}\n  \\caption{Consistency.}\n  \\end{subfigure}\n\n  \\vspace{0.55em}\n\n\n\\begin{subfigure}[t]{0.28\\textwidth}\n\\centering\n\\vspace{0pt}\n\\includegraphics[height=2.55cm]{figure/layer_recipe_patch_rank_traced_patches_20260504.pdf}\n\\caption{Traced patches.}\n\\end{subfigure}\n\\hfill\n\\begin{subfigure}[t]{0.42\\textwidth}\n\\centering\n\\vspace{0pt}\n\\includegraphics[height=2.55cm]{figure/layer_recipe_patch_rank_patch_margin_20260504.pdf}\n\\caption{Patch-rank margin.}\n\\end{subfigure}\n\\hfill\n\\begin{subfigure}[t]{0.26\\textwidth}\n\\centering\n\\vspace{0pt}\n\\includegraphics[height=2.55cm]{figure/layer_recipe_patch_rank_aggregate_auc_20260504.pdf}\n\\caption{Aggregate separation.}\n\\end{subfigure}\n\n\\caption{\n\\textbf{Adapted-host and recipe-retuning diagnostics.}\n\\textbf{Top}: source-calibrated TED improves local pixel ranking across adapted CLIP-AD hosts; M, V, P, B, and M2 denote MVTec AD , VisA, MPDD, BTAD, and MVTec AD 2, respectively.\n\\textbf{Bottom}: changing and retraining layer recipes shifts the host response, but the same traced defect and hard-FP patches remain competitive under the baseline.\nC-TED increases the patch-rank margin and yields cleaner aggregate separation between defect-supported and hard-normal-supported responses.\n}\n\\label{fig:adapted_host_recipe_combined}",
+      "graphics": [
+        {
+          "path": "figure/newfig/adapted_host_main_summary_a_host_avg_20260503_notitle_rowaligned.pdf",
+          "bytes": 9216,
+          "sha256": "526862962585ff4e9913db2b83a60e68f33663b8f85608d31d6f98a0a99c2033",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/newfig/adapted_host_main_summary_b_metric_avg_20260503_notitle_rowaligned.pdf",
+          "bytes": 12871,
+          "sha256": "760b90b8ec80f2c37c772ce10fda7931913c21c4b1a3affead995bd81c72e94e",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/newfig/adapted_host_main_summary_c_target_avg_20260503_notitle_rowaligned.pdf",
+          "bytes": 12698,
+          "sha256": "3664d8ab8a8168d13e407c7c1d46ea2b573ed525f934625df797d8db6c21dd9c",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/newfig/adapted_host_main_summary_d_winrate_20260503_notitle_rowaligned.pdf",
+          "bytes": 9906,
+          "sha256": "a1918cd482938e7931f04e11a312f9f18b62eb284bc287b20114cad252ccddad",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/layer_recipe_patch_rank_traced_patches_20260504.pdf",
+          "bytes": 45185,
+          "sha256": "81333d2fbb6ad7afff5ed5c7c72f6e5319030fd8396a623266f96469fb3b05a4",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/layer_recipe_patch_rank_patch_margin_20260504.pdf",
+          "bytes": 14802,
+          "sha256": "33e4ec40f8343a14dfd08829dcb64f4dd1b968a0d4fbc306d593fe36a985038d",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/layer_recipe_patch_rank_aggregate_auc_20260504.pdf",
+          "bytes": 14456,
+          "sha256": "0988625d3b3c2b59e5be13e4b8c61986b98b972d65052598450e766ed3027180",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 7,
+      "labels": [
+        "fig:recipe_hardfp_combined"
+      ],
+      "tex_source": "neurips_2026.tex",
+      "tex_sha256": "b9175f01cb195a783feb67da5c0c7b1625c010f4c41caa45fd41d3c0250d22a6",
+      "figure_body_tex": "[t]\n  \\centering\n  \\captionsetup[subfigure]{skip=2pt}\n\n  \n  \\begin{subfigure}[t]{0.38\\textwidth}\n  \\centering\n  \\includegraphics[height=2.95cm]{figure/newfig/recipe_retrain_layerwise_20260503_notitle.pdf}\n  \\caption{Layer retuning.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.30\\textwidth}\n  \\centering\n  \\includegraphics[height=2.95cm]{figure/newfig/recipe_retrain_backbonewise_20260503_notitle.pdf}\n  \\caption{Backbone retuning.}\n  \\end{subfigure}\n  \\hfill\n  \\raisebox{2.5cm}{\n  \\begin{minipage}[t]{0.27\\textwidth}\n  \\centering\n  \\footnotesize\n  \\textbf{Retuning setting}\n  \\vspace{2pt}\n\n  \\scriptsize\n  \\setlength{\\tabcolsep}{1.8pt}\n  \\renewcommand{\\arraystretch}{1.05}\n  \\resizebox{\\linewidth}{!}{\n  \\begin{tabular}{lccc}\n  \\toprule\n  Setting & Retrain & Bank & PRO / AP \\\\\n  \\midrule\n  Fixed swap & -- & \\textbf{V} & $+\\!3.6$ / $+\\!2.8$ \\\\\n  Layer recipe & \\textbf{V} & \\textbf{V} & $+\\!4.7$ / $+\\!5.0$ \\\\\n  Backbone recipe & \\textbf{V} & \\textbf{V} & $+\\!3.8$ / $+\\!2.4$ \\\\\n  \\bottomrule\n  \\end{tabular}\n  }\n\n  \\vspace{1pt}\n  \\scriptsize\n  Gain over baseline; banks are source-only.\n  \\end{minipage}\n  }\n\n  \\vspace{0.15em}\n\n  \n  \\begin{subfigure}[t]{0.35\\textwidth}\n  \\centering\n  \\includegraphics[height=2.90cm]{figure/newfig/ted_wo_vs_w_scatter_capsule_a_without_hardfp.pdf}\n  \\caption{Defect-only support.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.35\\textwidth}\n  \\centering\n  \\includegraphics[height=2.90cm]{figure/newfig/ted_wo_vs_w_scatter_capsule_b_with_hardfp.pdf}\n  \\caption{With hard-FP support.}\n  \\end{subfigure}\n  \\hfill\n  \\begin{subfigure}[t]{0.24\\textwidth}\n  \\centering\n  \\includegraphics[height=2.90cm]{figure/newfig/ted_wo_vs_w_scatter_capsule_c_separation_gain.pdf}\n  \\caption{Separation gain.}\n  \\end{subfigure}\n\n  \\caption{\n  \\textbf{Recipe-consistent retuning and hard-FP support.}\n  \\textbf{Top}: C-TED remains beneficial after changing the feature-layer or backbone recipe, retraining the host when applicable, and rebuilding source banks for the resulting representation.\n  \\textbf{Bottom}: defect-only support leaves defect and hard-normal patches entangled, whereas adding hard-FP support explicitly models the competing hard-normal evidence and produces a cleaner local ranking\n  margin.\n  }\n  \\label{fig:recipe_hardfp_combined}",
+      "graphics": [
+        {
+          "path": "figure/newfig/recipe_retrain_layerwise_20260503_notitle.pdf",
+          "bytes": 16754,
+          "sha256": "13a0f656a2c3c8268ce81e3aa896a399ee24ec8a86cace356ce8787b8e93000d",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/make_recipe_retrain_ab_combined_20260503.py"
+          ]
+        },
+        {
+          "path": "figure/newfig/recipe_retrain_backbonewise_20260503_notitle.pdf",
+          "bytes": 16957,
+          "sha256": "e8ce5f0014c5f7524e3da975604e559f735c63d91101343bab504ef15ab8894d",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/make_recipe_retrain_ab_combined_20260503.py"
+          ]
+        },
+        {
+          "path": "figure/newfig/ted_wo_vs_w_scatter_capsule_a_without_hardfp.pdf",
+          "bytes": 19123,
+          "sha256": "a337a699b0430c0f6de1ddc8a3c561f545c3b603a0be295dbed084a8a1df7c9f",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/newfig/ted_wo_vs_w_scatter_capsule_b_with_hardfp.pdf",
+          "bytes": 23020,
+          "sha256": "3e812438059240edcbfc656cbb91ad7f28acb9cb91d2480152e2460353f88ba1",
+          "source_files_mentioning_exact_filename": []
+        },
+        {
+          "path": "figure/newfig/ted_wo_vs_w_scatter_capsule_c_separation_gain.pdf",
+          "bytes": 16701,
+          "sha256": "6dbce0a903757fa6348b3ec64f272a896d8a8b265643b96e34e1a3a31cf9b219",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 8,
+      "labels": [
+        "fig:supp_source_supervision_control"
+      ],
+      "tex_source": "supp.tex",
+      "tex_sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=1.0\\linewidth]{supp_fig/source_supervision_control_20260504.pdf}\n\\caption{\n\\textbf{Source-supervision controls for C-TED.}\nAll variants use the same source split, source-bank size, residual capacity, and calibration budget.\nCorrect C-TED preserves the defect-versus-hard-FP assignment, while label shuffle and label swap corrupt only the supervision semantics.\n}\n\\label{fig:supp_source_supervision_control}",
+      "graphics": [
+        {
+          "path": "supp_fig/source_supervision_control_20260504.pdf",
+          "bytes": 22350,
+          "sha256": "b056c762f76bcf4ef14472a3a076774488581ee2b6d5c36f224a3b43f10ea92b",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/collect_defense_ready_results_20260504.py"
+          ]
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 9,
+      "labels": [
+        "fig:supp_raw_vlm_support"
+      ],
+      "tex_source": "supp.tex",
+      "tex_sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=1.0\\linewidth]{supp_fig/raw_vlm_support_ablation_rawclip_support_ablation_maponly_20260505.pdf}\n\\caption{\n\\textbf{Raw VLM source-support ablation.}\nRaw prompt scoring is compared with source-supported readouts in frozen VLM backbones.\nText-axis support projects query and source-bank features onto the normal-versus-anomaly text axis, while visual support uses the source banks.\n}\n\\label{fig:supp_raw_vlm_support}",
+      "graphics": [
+        {
+          "path": "supp_fig/raw_vlm_support_ablation_rawclip_support_ablation_maponly_20260505.pdf",
+          "bytes": 24750,
+          "sha256": "4cf4f440a8a0a0cb010410b08d7e8d27594b71ab7659a2738d9bc53079999a76",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 10,
+      "labels": [
+        "fig:supp_raw_vlm_clean_heatmap_recovery"
+      ],
+      "tex_source": "supp.tex",
+      "tex_sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=1.0\\linewidth]{supp_fig/raw_vlm_clean_heatmap_recovery_20260505.pdf}\n\\caption{\n\\textbf{Raw VLM failure and TED recovery.}\nRaw prompt scoring confuses defect evidence with hard-normal saliency, while TED recovers a cleaner local ranking using source-supported evidence.\n}\n\\label{fig:supp_raw_vlm_clean_heatmap_recovery}",
+      "graphics": [
+        {
+          "path": "supp_fig/raw_vlm_clean_heatmap_recovery_20260505.pdf",
+          "bytes": 211911,
+          "sha256": "14b3006dc421b3ea8bf2d30ca95b2282954686793a959fa404d5b952e41d9645",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/make_raw_vlm_clean_heatmap_recovery_20260505.py"
+          ]
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 11,
+      "labels": [
+        "fig:supp_cted_qualitative"
+      ],
+      "tex_source": "supp.tex",
+      "tex_sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11",
+      "figure_body_tex": "[p]\n  \\centering\n  \\includegraphics[\n    width=\\linewidth,\n    height=0.80\\textheight,\n    keepaspectratio\n  ]{figure/cted_five_selected_cases.pdf}\n\\caption{Qualitative comparisons of FAPrompt and C-TED across four target datasets, with ground-truth defects outlined in red and a shared color scale for each Host/C-TED pair.}\n  \\label{fig:supp_cted_qualitative}",
+      "graphics": [
+        {
+          "path": "figure/cted_five_selected_cases.pdf",
+          "bytes": 1809002,
+          "sha256": "77a01534bbbef7f9a41e93985df38b7b77662d373f457475964d9f6b08ec52d9",
+          "source_files_mentioning_exact_filename": []
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    },
+    {
+      "number_in_source_order": 12,
+      "labels": [
+        "fig:direct_failure_conditioned_cases"
+      ],
+      "tex_source": "supp.tex",
+      "tex_sha256": "cf5593f8082ffad6fec9a722144a89d4bb6e04c9350e9f4b8c39fb919b0ace11",
+      "figure_body_tex": "[t]\n\\centering\n\\includegraphics[width=1.0\\linewidth]{supp_fig/direct_failure_conditioned_cases_20260504.pdf}\n\\caption{\n\\textbf{Failure-conditioned class-level cases.}\nRepresentative target classes where C-TED improves localization while also increasing defect-versus-hard-FP AUC and the defect-minus-hard-FP score gap.\n}\n\\label{fig:direct_failure_conditioned_cases}",
+      "graphics": [
+        {
+          "path": "supp_fig/direct_failure_conditioned_cases_20260504.pdf",
+          "bytes": 21725,
+          "sha256": "5cf0ebed862f92202379c9dfe8f2b5ee414a5473a56d6d73268d5f4cba82a176",
+          "source_files_mentioning_exact_filename": [
+            "neurips2026/scripts/make_direct_failure_case_figure_20260504.py"
+          ]
+        }
+      ],
+      "kind": "empirical_diagnostic_or_qualitative_result",
+      "reproduction_status": "data_and_execution_provenance_pending"
+    }
+  ]
+}
