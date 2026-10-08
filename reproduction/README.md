@@ -17,6 +17,7 @@ These commands need only Python 3.10 or newer, without PyTorch:
 ```bash
 python -m reproduction list
 python -m reproduction verify-references
+python -m reproduction verify-execution-recipes
 python -m reproduction list --host BayesPFL
 python -m reproduction compare faprompt-vitl14_336-mvtec2btad-seed0 /path/to/fresh/summary.json
 python -m reproduction aggregate --host AA-CLIP --backbone "ViT-L/14-336" --transfer mvtec2btad --runs /path/to/fresh-runs
@@ -153,6 +154,15 @@ the verifier and archived inputs; they do not execute the GPU benchmark.
 No completed benchmark claim follows from comparing a reference file with
 itself. The final release must include fresh execution records and pass from a
 clean checkout outside the original research workspace.
+
+`execution-recipes.json` preserves the replay arguments for all 232 traced
+main/host recipes and identifies eight archived evaluator versions by hash.
+Its 1,016 explicit filesystem arguments are separate bindings for datasets,
+source config files, output directories, or hash-pinned artifacts. The verifier
+rejects missing recipes and target class/image limits that would turn these
+full-target evaluations into subset checks. These are input contracts; source
+internal paths, implicit backbone loading, and bank-cache behavior still need
+portable runtime preparation before a public evaluation `run` command is ready.
 
 ## Reproduction contracts
 

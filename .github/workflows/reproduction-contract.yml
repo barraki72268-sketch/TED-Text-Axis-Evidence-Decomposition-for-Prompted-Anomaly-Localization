@@ -32,3 +32,5 @@ jobs:
         run: python -m reproduction verify-source
       - name: Verify historical host-checkpoint bindings (weights not downloaded)
         run: python -m reproduction verify-checkpoints
+      - name: Verify traced execution arguments (not a GPU benchmark)
+        run: python -m reproduction verify-execution-recipes
