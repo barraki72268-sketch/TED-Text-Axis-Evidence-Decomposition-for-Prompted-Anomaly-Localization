@@ -1,4 +1,5 @@
 import io
+import hashlib
 import json
 from pathlib import Path
 import tarfile
@@ -7,6 +8,7 @@ import unittest
 
 import test_reproduction_checkpoints as fixtures
 from reproduction.banks import verify_banks
+from reproduction.bank_download import prepare_banks
 
 
 class BankArchiveTests(unittest.TestCase):
@@ -30,3 +32,16 @@ class BankArchiveTests(unittest.TestCase):
                 else:
                     with self.assertRaises(ValueError):
                         verify_banks(root, "host", archive)
+                (root / "host-source-banks-download.json").write_text(json.dumps({
+                    "bytes": archive.stat().st_size, "sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
+                    "revision": "fixture"}))
+                destination = root / ("valid" if valid else "invalid")
+                if valid:
+                    self.assertEqual(prepare_banks(root, "host", destination, archive)["files_verified"], 1)
+                    self.assertEqual((destination / name).read_bytes(), data)
+                    with self.assertRaises(FileExistsError):
+                        prepare_banks(root, "host", destination, archive)
+                else:
+                    with self.assertRaises(ValueError):
+                        prepare_banks(root, "host", destination, archive)
+                    self.assertFalse(destination.exists())

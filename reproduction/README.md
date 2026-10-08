@@ -210,6 +210,22 @@ does not imply a separately mined source bank. Hash-checked, weights-only CPU
 inspection validated the metadata of all 81 candidate bank files involved.
 Historical directory membership still requires execution-log corroboration;
 these bindings are not proof of fresh bank rebuilding or complete GPU replay.
+
+The 92 adapted-host bank objects are published at Hugging Face revision
+`cc95c974cf15ee3df6d38d034daf54fca6f3a3bb`. Download, hash-check, and extract them
+without logging in or importing PyTorch:
+
+```bash
+python -m reproduction prepare-source-banks ./inputs/host-banks --kind host
+```
+
+The command pins the 2,110,003,200-byte tar archive and every member, rejects
+unexpected entries, and writes only to a new destination. An interrupted
+download is retained as `.part`; it is not silently overwritten. Pass
+`--archive /path/to/host-source-banks-20261008.tar` to reuse an existing copy.
+Pass the resulting directory as another `prepare-run --objects` root.
+Raw-bank publication remains pending; `--kind raw` currently fails explicitly.
+
 `raw-source-banks.json` separately binds the 25 main-table frozen-backbone
 recipes to 10 additional bank objects (145,191,112 bytes), using their explicit
 evaluation command arguments. Five of these recipes still require MVTec AD 2

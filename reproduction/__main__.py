@@ -22,6 +22,10 @@ def main() -> int:
     banks = sub.add_parser("verify-source-banks", help="Verify recorded bank bindings and optionally a bank tar archive")
     banks.add_argument("--kind", choices=("host", "raw"), required=True)
     banks.add_argument("--archive", type=Path)
+    prepare_banks = sub.add_parser("prepare-source-banks", help="Download and verify public bank objects into a new directory")
+    prepare_banks.add_argument("destination", type=Path)
+    prepare_banks.add_argument("--kind", choices=("host", "raw"), required=True)
+    prepare_banks.add_argument("--archive", type=Path)
     runtime = sub.add_parser("prepare-run", help="Prepare an isolated Linux runtime for one traced recipe")
     runtime.add_argument("recipe")
     runtime.add_argument("destination", type=Path)
@@ -55,6 +59,10 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "prepare-source-banks":
+        from .bank_download import prepare_banks
+        print(json.dumps(prepare_banks(ROOT, args.kind, args.destination, args.archive), indent=2))
+        return 0
     if args.action == "run-prepared":
         from .run import run_prepared
         result = run_prepared(ROOT, args.workspace, args.require_slurm)
