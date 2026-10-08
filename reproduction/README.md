@@ -224,7 +224,9 @@ unexpected entries, and writes only to a new destination. An interrupted
 download is retained as `.part`; it is not silently overwritten. Pass
 `--archive /path/to/host-source-banks-20261008.tar` to reuse an existing copy.
 Pass the resulting directory as another `prepare-run --objects` root.
-Raw-bank publication remains pending; `--kind raw` currently fails explicitly.
+The 10 raw-backbone bank objects are also published at revision
+`914f6ab0402a0760dfcb2ec824fd3c46a23cc707`; use the same command with
+`--kind raw` and a separate destination such as `./inputs/raw-banks`.
 
 `raw-source-banks.json` separately binds the 25 main-table frozen-backbone
 recipes to 10 additional bank objects (145,191,112 bytes), using their explicit

@@ -110,7 +110,11 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
         checkpoint_dir.mkdir()
         for item in checkpoint_binding["checkpoint_assets"]:
             path = checkpoint_dir / item["checkpoint_filename"]
-            path.symlink_to(objects[item["sha256"]])
+            if path.exists() or path.is_symlink():
+                if not path.is_symlink() or path.resolve() != objects[item["sha256"]]:
+                    raise ValueError(f"Conflicting checkpoint filename: {path.name}")
+            else:
+                path.symlink_to(objects[item["sha256"]])
             mapping[item["archived_path"]] = str(checkpoint_dir if item["role"] == "ckpt_dir" else path)
             for original in all_assets[item["sha256"]]["archived_paths"]:
                 mapping[original] = str(path)
