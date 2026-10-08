@@ -22,6 +22,11 @@ def main() -> int:
     banks = sub.add_parser("verify-source-banks", help="Verify recorded bank bindings and optionally a bank tar archive")
     banks.add_argument("--kind", choices=("host", "raw"), required=True)
     banks.add_argument("--archive", type=Path)
+    runtime = sub.add_parser("prepare-run", help="Prepare an isolated Linux runtime for one traced recipe")
+    runtime.add_argument("recipe")
+    runtime.add_argument("destination", type=Path)
+    runtime.add_argument("--objects", type=Path, action="append", required=True, help="Search roots containing objects/<sha256>; may be repeated")
+    runtime.add_argument("--datasets", type=Path, required=True, help="JSON mapping dataset names to images/masks roots")
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
@@ -47,6 +52,13 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "prepare-run":
+        from .runtime import prepare_run
+        result = prepare_run(ROOT, args.recipe, args.destination, args.objects, args.datasets)
+        print(json.dumps({"recipe": result["recipe"], "status": result["status"],
+                          "verified_objects": len(result["verified_objects"]),
+                          "datasets": list(result["datasets"]), "fresh_gpu_benchmark": False}, indent=2))
+        return 0
     if args.action == "verify-source-banks":
         from .banks import verify_banks
         print(json.dumps(verify_banks(ROOT, args.kind, args.archive), indent=2))
