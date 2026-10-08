@@ -19,6 +19,9 @@ def main() -> int:
     sub.add_parser("verify-references", help="Verify every archived reference's byte hash and metric schema")
     sub.add_parser("verify-source", help="Verify the complete archived research source without executing it")
     sub.add_parser("verify-execution-recipes", help="Check traced arguments, source hashes, and explicit path bindings")
+    banks = sub.add_parser("verify-source-banks", help="Verify recorded bank bindings and optionally a bank tar archive")
+    banks.add_argument("--kind", choices=("host", "raw"), required=True)
+    banks.add_argument("--archive", type=Path)
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
@@ -44,6 +47,10 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "verify-source-banks":
+        from .banks import verify_banks
+        print(json.dumps(verify_banks(ROOT, args.kind, args.archive), indent=2))
+        return 0
     if args.action == "verify-execution-recipes":
         from .execution import verify_execution_recipes
         print(json.dumps(verify_execution_recipes(ROOT), indent=2))

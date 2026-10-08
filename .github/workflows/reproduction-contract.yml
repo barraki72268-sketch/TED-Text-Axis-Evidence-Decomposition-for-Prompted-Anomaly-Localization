@@ -34,3 +34,7 @@ jobs:
         run: python -m reproduction verify-checkpoints
       - name: Verify traced execution arguments (not a GPU benchmark)
         run: python -m reproduction verify-execution-recipes
+      - name: Verify bank catalogs (bank bytes not downloaded)
+        run: |
+          python -m reproduction verify-source-banks --kind host
+          python -m reproduction verify-source-banks --kind raw
