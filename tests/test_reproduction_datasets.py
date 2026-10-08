@@ -40,8 +40,12 @@ class DatasetProtocolTests(unittest.TestCase):
             metadata = json.loads((root / "prepared/meta.json").read_text())
             rows = metadata["test"]["part"]
             self.assertEqual([row["anomaly"] for row in rows], [1, 0])
-            self.assertEqual(rows[0]["img_path"], (images / "defect.bin").as_posix())
-            self.assertEqual(rows[0]["mask_path"], (masks / "defect.bin").as_posix())
+            # Windows TEMP may use an 8.3 alias (RUNNER~1); validate the file
+            # identity instead of assuming one spelling of its absolute path.
+            self.assertTrue(Path(rows[0]["img_path"]).is_absolute())
+            self.assertTrue(Path(rows[0]["mask_path"]).is_absolute())
+            self.assertTrue(Path(rows[0]["img_path"]).samefile(images / "defect.bin"))
+            self.assertTrue(Path(rows[0]["mask_path"]).samefile(masks / "defect.bin"))
             self.assertEqual((protocol / "meta.json").read_bytes(), original)
             with self.assertRaises(FileExistsError):
                 prepare_dataset(protocol, images, masks, root / "prepared")
