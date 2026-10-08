@@ -16,6 +16,7 @@ def main() -> int:
     sub = parser.add_subparsers(dest="action", required=True)
     listing = sub.add_parser("list", help="List the exact archived recipe inventory")
     listing.add_argument("--host")
+    sub.add_parser("verify-references", help="Verify every archived reference's byte hash and metric schema")
     verify = sub.add_parser("compare", help="Compare a fresh summary with its hash-pinned historical reference")
     verify.add_argument("recipe")
     verify.add_argument("actual", type=Path)
@@ -27,6 +28,16 @@ def main() -> int:
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
     recipes = {row["id"]: row for row in json.loads((ROOT / "recipes.json").read_text(encoding="utf-8"))}
+    if args.action == "verify-references":
+        count = 0
+        for recipe in recipes.values():
+            data = (ROOT / "references" / recipe["reference"]).read_bytes()
+            if hashlib.sha256(data).hexdigest() != recipe["reference_sha256"]:
+                raise ValueError(f"Historical reference hash mismatch: {recipe['id']}")
+            count += sum(len(row) for row in extract(json.loads(data), recipe["host"]).values())
+        print(json.dumps({"references_verified": len(recipes), "archived_metric_values": count,
+                          "fresh_gpu_benchmark": False}))
+        return 0
     if args.action == "list":
         for row in recipes.values():
             if args.host is None or row["host"] == args.host:

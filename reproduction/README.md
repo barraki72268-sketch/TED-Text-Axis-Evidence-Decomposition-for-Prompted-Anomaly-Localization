@@ -16,6 +16,7 @@ These commands need only Python 3.10 or newer, without PyTorch:
 
 ```bash
 python -m reproduction list
+python -m reproduction verify-references
 python -m reproduction list --host BayesPFL
 python -m reproduction compare faprompt-vitl14_336-mvtec2btad-seed0 /path/to/fresh/summary.json
 python -m reproduction aggregate --host AA-CLIP --backbone "ViT-L/14-336" --transfer mvtec2btad --runs /path/to/fresh-runs
