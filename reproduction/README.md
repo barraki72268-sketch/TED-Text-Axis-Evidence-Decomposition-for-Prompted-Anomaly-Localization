@@ -37,6 +37,28 @@ rows. Host comparisons use their native score contracts. FAPrompt retains its
 official baseline image score in the archived table aggregation; the corrected
 map's top-k image score is not silently substituted.
 
+## Fresh validation evidence
+
+Fresh BTAD execution evidence is available in
+[`validation/2026-10-08`](validation/2026-10-08/report.json).
+ImageBind on the older RTX 6000 Ada matched all 12 archived Base/T-TED/C-TED
+metrics at two decimal places. The Blackwell run matched 6/12, so that hardware
+configuration is not marked as an exact reproduction. This is one dataset and
+one recipe, not a claim about the full paper. Verify the successful fresh run:
+
+```bash
+python -m reproduction compare rawimagebind_mvtec2btad reproduction/validation/2026-10-08/imagebind-rtx6000ada-summary.json
+```
+
+AA-CLIP H/14 still has four calibrated-metric mismatches on the older GPU.
+Reconstructing the April 28 evaluator from archived edits leaves the same
+deviations; the current and reconstructed evaluators produce identical shared
+calibration-summary fields. Both failed comparisons are retained. Historical
+numerical-environment and source-bank provenance remain under investigation.
+
+The Windows and Linux reference-contract CI checks pass. These checks validate
+the verifier and archived inputs; they do not execute the GPU benchmark.
+
 ## What remains before this is a complete runnable release
 
 - A portable, pinned evaluation environment and path-independent host code.
