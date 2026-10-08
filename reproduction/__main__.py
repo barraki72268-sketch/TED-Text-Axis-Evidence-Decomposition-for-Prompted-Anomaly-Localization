@@ -16,6 +16,10 @@ def main() -> int:
     sub = parser.add_subparsers(dest="action", required=True)
     listing = sub.add_parser("list", help="List the exact archived recipe inventory")
     listing.add_argument("--host")
+    weak = sub.add_parser("compare-weak-source", help="Reassemble the 28-configuration weak-source ablation table")
+    weak_inputs = weak.add_mutually_exclusive_group(required=True)
+    weak_inputs.add_argument("--references", action="store_true", help="Audit archived summaries; does not execute GPU inference")
+    weak_inputs.add_argument("--runs", type=Path, help="Root containing all28 <configuration>/summary.json files")
     sub.add_parser("verify-references", help="Verify every archived reference's byte hash and metric schema")
     sub.add_parser("verify-source", help="Verify the complete archived research source without executing it")
     sub.add_parser("verify-execution-recipes", help="Check traced arguments, source hashes, and explicit path bindings")
@@ -64,6 +68,11 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "compare-weak-source":
+        from .weak_source import compare_weak_source
+        result = compare_weak_source(ROOT, args.runs)
+        print(json.dumps(result, indent=2))
+        return 0 if result["status"] == "matched" else 2 if result["status"] == "incomplete" else 1
     if args.action == "prepare-backbones":
         from .backbone_download import prepare_backbones
         print(json.dumps(prepare_backbones(ROOT, args.destination, args.recipe), indent=2))

@@ -47,6 +47,23 @@ stand for all ablations, diagnostic tables, figures, or non-tabular claims;
 those remaining traces and evaluations are required before a complete release.
 All five reported datasets remain in scope.
 
+The weak-source robustness table now has a separate 28-configuration input
+inventory in `ablations/weak-source.json`, with archived summary hashes,
+preserved-launcher arguments, selected candidate keys, and printed values.
+Its `n=4` (AA-CLIP) and `n=3` (FAPrompt) count transfer settings, not seeds.
+All runs use seed 0. The 24 printed gain cells match reaggregation of these
+historical summaries; this does not establish fresh GPU reproduction.
+
+```bash
+python -m reproduction compare-weak-source --references
+python -m reproduction compare-weak-source --runs /path/to/fresh-weak-source-runs
+```
+
+The latter requires all 28 `<configuration>/summary.json` files and uses each
+host's declared metric units. It reports missing configurations rather than
+averaging an available subset. Full replay, source-bank provenance, and the
+remaining ablation tables are still required.
+
 The separate [figure scope](paper-figure-scope.json) records all 12 active
 figures and their 25 original graphic files, with byte hashes and exact source
 filename matches where available. One is a conceptual method diagram; the
