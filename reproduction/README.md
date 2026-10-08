@@ -164,6 +164,16 @@ full-target evaluations into subset checks. These are input contracts; source
 internal paths, implicit backbone loading, and bank-cache behavior still need
 portable runtime preparation before a public evaluation `run` command is ready.
 
+`backbones.json` records eight exact backbone files, upstream download URLs,
+byte sizes, hashes, and the loader/source evidence for all 232 traced recipes.
+The two H/14 serialization formats are pinned separately. AdaptCLIP B/16+
+uses LAION e31, while AA-CLIP/FAPrompt/BayesPFL/raw CLIP B/16+ use e32;
+substituting one for the other changes the experiment. The catalog also
+retains two differences between printed row labels and actual recorded
+arguments: AdaCLIP's B/16+ row uses OpenAI B/16, and AA-CLIP's OpenAI row uses
+L/14-336 weights at 224-pixel input. These are documented historical settings,
+not silent corrections to the paper or claims of fresh validation.
+
 ## Reproduction contracts
 
 `host-source-banks.json` maps the 207 adapted-host recipes to 92 bank objects
