@@ -84,6 +84,10 @@ nonzero exit. No checkpoint is deserialized by this command. Public download
 locations for this complete set are still being prepared; the existing FAPrompt
 release alone does not supply all 11 files. Original component licenses apply.
 
+A fresh clone at `a5c846b344c3764ea5dc5d2b5957817cc21f54d8` verified the
+actual 11 checkpoint objects with zero errors; the execution report is
+[`public-checkpoint-validation.json`](validation/2026-10-08/public-checkpoint-validation.json).
+
 Dataset input verification and path preparation are documented in
 [DATASETS.md](DATASETS.md). The four currently readable datasets have manifests
 covering 23,091 referenced image/mask files. MVTec AD 2 remains part of the
