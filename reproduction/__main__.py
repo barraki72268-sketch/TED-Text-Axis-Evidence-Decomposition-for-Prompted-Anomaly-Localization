@@ -17,6 +17,9 @@ def main() -> int:
     listing = sub.add_parser("list", help="List the exact archived recipe inventory")
     listing.add_argument("--host")
     sub.add_parser("verify-references", help="Verify every archived reference's byte hash and metric schema")
+    sub.add_parser("verify-source", help="Verify the complete archived research source without executing it")
+    unpack = sub.add_parser("unpack-source", help="Verify and unpack source into a new directory; evaluation paths still need preparation")
+    unpack.add_argument("destination", type=Path)
     verify = sub.add_parser("compare", help="Compare a fresh summary with its hash-pinned historical reference")
     verify.add_argument("recipe")
     verify.add_argument("actual", type=Path)
@@ -27,6 +30,17 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action in {"verify-source", "unpack-source"}:
+        from .source import unpack_source, verify_source
+        archive, manifest = ROOT / "source.zip", ROOT / "source-manifest.json"
+        if args.action == "unpack-source":
+            result = unpack_source(archive, manifest, args.destination)
+        else:
+            metadata = verify_source(archive, manifest)
+            result = {"source_files_verified": len(metadata["files"]),
+                      "archive_sha256": metadata["archive_sha256"], "evaluation_executed": False}
+        print(json.dumps(result, indent=2))
+        return 0
     recipes = {row["id"]: row for row in json.loads((ROOT / "recipes.json").read_text(encoding="utf-8"))}
     if args.action == "verify-references":
         count = 0

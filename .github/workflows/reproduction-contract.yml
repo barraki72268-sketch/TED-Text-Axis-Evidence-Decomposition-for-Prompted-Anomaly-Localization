@@ -3,9 +3,9 @@ name: Reproduction contracts
 on:
   push:
     branches: [main, codex/all-model-reproduction]
-    paths: [reproduction/**, tests/test_reproduction_metrics.py, .gitattributes, .github/workflows/reproduction-contract.yml]
+    paths: [reproduction/**, tests/test_reproduction*.py, .gitattributes, .github/workflows/reproduction-contract.yml]
   pull_request:
-    paths: [reproduction/**, tests/test_reproduction_metrics.py, .gitattributes, .github/workflows/reproduction-contract.yml]
+    paths: [reproduction/**, tests/test_reproduction*.py, .gitattributes, .github/workflows/reproduction-contract.yml]
 
 permissions:
   contents: read
@@ -25,6 +25,8 @@ jobs:
         with:
           python-version: '3.10'
       - name: Check metric units, method coverage, and standard deviations
-        run: python -m unittest discover -s tests -p test_reproduction_metrics.py -v
+        run: python -m unittest discover -s tests -p "test_reproduction*.py" -v
       - name: Verify archived reference integrity (not a GPU benchmark)
         run: python -m reproduction verify-references
+      - name: Verify archived research source (not a GPU benchmark)
+        run: python -m reproduction verify-source

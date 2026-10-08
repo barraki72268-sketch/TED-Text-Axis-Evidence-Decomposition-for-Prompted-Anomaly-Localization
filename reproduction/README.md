@@ -37,6 +37,22 @@ rows. Host comparisons use their native score contracts. FAPrompt retains its
 official baseline image score in the archived table aggregation; the corrected
 map's top-k image score is not silently substituted.
 
+## Archived research source
+
+The complete captured source collection is included as a hash-pinned archive.
+Validate it or extract it into a **new, short path**:
+
+```bash
+python -m reproduction verify-source
+python -m reproduction unpack-source ./ted-source
+```
+
+All 920 file hashes are checked before extraction begins. An existing
+destination is never overwritten. Model checkpoints and dataset images are
+separate artifacts. See [source notices](SOURCE-NOTICES.md) for component
+licenses, historical evaluator versions, and remaining execution preparation.
+This command does not run a reproduction benchmark.
+
 ## Fresh validation evidence
 
 Fresh BTAD execution evidence is available in
