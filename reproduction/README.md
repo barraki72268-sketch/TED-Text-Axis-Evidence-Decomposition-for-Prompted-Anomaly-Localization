@@ -88,9 +88,12 @@ python -m reproduction verify-checkpoints --directory /path/to/checkpoints --rec
 Without `--directory`, only the catalog and its reference bindings are verified.
 With it, files must exist at `objects/<sha256>` beneath that directory. Every
 required byte hash and size is checked, and missing or modified files cause a
-nonzero exit. No checkpoint is deserialized by this command. Public download
-locations for this complete set are still being prepared; the existing FAPrompt
-release alone does not supply all 11 files. Original component licenses apply.
+nonzero exit. No checkpoint is deserialized by this command. The complete
+11-file host-checkpoint archive is now [public on Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility/blob/296e20b15e7716c6d9286ca4ebdb8230dbdff140/HOST-CHECKPOINTS.md).
+`host-checkpoints-download.json` pins its revision, download URL, byte size,
+and SHA-256. Extract into a new directory, then run the byte verifier above.
+Original component licenses apply; this archive does not include source banks,
+backbones, or calibrated TED states for all recipes.
 
 A fresh clone at `a5c846b344c3764ea5dc5d2b5957817cc21f54d8` verified the
 actual 11 checkpoint objects with zero errors; the execution report is
