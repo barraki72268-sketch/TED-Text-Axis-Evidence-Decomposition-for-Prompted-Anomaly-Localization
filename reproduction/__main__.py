@@ -27,6 +27,9 @@ def main() -> int:
     runtime.add_argument("destination", type=Path)
     runtime.add_argument("--objects", type=Path, action="append", required=True, help="Search roots containing objects/<sha256>; may be repeated")
     runtime.add_argument("--datasets", type=Path, required=True, help="JSON mapping dataset names to images/masks roots")
+    run = sub.add_parser("run-prepared", help="Verify and execute a prepared full recipe, retaining comparison evidence")
+    run.add_argument("workspace", type=Path)
+    run.add_argument("--require-slurm", action="store_true", help="Refuse execution outside a Slurm allocation")
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
@@ -52,6 +55,11 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "run-prepared":
+        from .run import run_prepared
+        result = run_prepared(ROOT, args.workspace, args.require_slurm)
+        print(json.dumps(result, indent=2))
+        return 0 if result["status"] == "matched" else 1
     if args.action == "prepare-run":
         from .runtime import prepare_run
         result = prepare_run(ROOT, args.recipe, args.destination, args.objects, args.datasets)

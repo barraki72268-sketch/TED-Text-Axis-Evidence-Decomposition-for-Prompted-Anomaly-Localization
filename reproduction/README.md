@@ -162,7 +162,30 @@ source config files, output directories, or hash-pinned artifacts. The verifier
 rejects missing recipes and target class/image limits that would turn these
 full-target evaluations into subset checks. These are input contracts; source
 internal paths, implicit backbone loading, and bank-cache behavior still need
-portable runtime preparation before a public evaluation `run` command is ready.
+portable runtime preparation. The experimental commands below provide that
+preparation and execution; clean GPU validation across every loader is pending.
+
+```bash
+python -m reproduction prepare-run faprompt-vitl14_336-mvtec2btad-seed0 ./runs/faprompt-btad \
+  --objects ./inputs --datasets ./dataset-roots.json
+# On a Slurm-managed server, execute this inside an allocated GPU job:
+python -m reproduction run-prepared ./runs/faprompt-btad --require-slurm
+```
+
+`dataset-roots.json` maps dataset names to `images` and `masks` absolute paths.
+Each object root contains `objects/<sha256>` files identified by the checkpoint,
+bank, and backbone catalogs. Preparation currently requires Linux and PyTorch;
+it checks the selected artifacts and complete source/target data manifests,
+creates a new source copy, and records path-only bank/source transformations.
+The original inputs are preserved. Automatic acquisition of all input kinds
+and all-loader clean execution are still unfinished.
+
+`run-prepared` rechecks source, input, bank, and dataset bytes before launch,
+retains `execution.log`, `execution.json`, captured calibration artifacts, and
+`comparison.json`, and returns nonzero for execution failure or disagreement
+with the archived per-seed reference. Existing attempts are never overwritten.
+This comparison is separate from printed table aggregation and does not by
+itself certify an entire model, dataset suite, or paper.
 
 `backbones.json` records eight exact backbone files, upstream download URLs,
 byte sizes, hashes, and the loader/source evidence for all 232 traced recipes.
@@ -207,4 +230,4 @@ data access; having their bank files does not resolve that dataset blocker.
 
 Historical JSON files retain original path strings for provenance; those strings
 are not instructions to create directories on a new machine. Portable execution
-configuration is still being assembled.
+configuration is undergoing fresh execution validation.
