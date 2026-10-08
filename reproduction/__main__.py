@@ -20,6 +20,13 @@ def main() -> int:
     sub.add_parser("verify-source", help="Verify the complete archived research source without executing it")
     unpack = sub.add_parser("unpack-source", help="Verify and unpack source into a new directory; evaluation paths still need preparation")
     unpack.add_argument("destination", type=Path)
+    for action in ("validate-dataset", "prepare-dataset"):
+        dataset = sub.add_parser(action, help="Verify recorded image/mask bytes and optionally write portable metadata")
+        dataset.add_argument("dataset", choices=("mvtec", "visa", "mpdd", "btad"))
+        dataset.add_argument("--images", type=Path, required=True)
+        dataset.add_argument("--masks", type=Path)
+        if action == "prepare-dataset":
+            dataset.add_argument("--output", type=Path, required=True)
     verify = sub.add_parser("compare", help="Compare a fresh summary with its hash-pinned historical reference")
     verify.add_argument("recipe")
     verify.add_argument("actual", type=Path)
@@ -30,6 +37,15 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action in {"validate-dataset", "prepare-dataset"}:
+        from .datasets import prepare_dataset, validate_dataset
+        protocol = ROOT / "datasets" / args.dataset
+        if args.action == "prepare-dataset":
+            result = prepare_dataset(protocol, args.images, args.masks, args.output)
+        else:
+            result = validate_dataset(protocol, args.images, args.masks)
+        print(json.dumps(result, indent=2))
+        return 0 if result["file_errors"] == 0 else 1
     if args.action in {"verify-source", "unpack-source"}:
         from .source import unpack_source, verify_source
         archive, manifest = ROOT / "source.zip", ROOT / "source-manifest.json"

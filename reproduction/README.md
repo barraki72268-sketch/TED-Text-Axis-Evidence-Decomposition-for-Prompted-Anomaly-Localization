@@ -55,6 +55,11 @@ This command does not run a reproduction benchmark.
 
 ## Fresh validation evidence
 
+Dataset input verification and path preparation are documented in
+[DATASETS.md](DATASETS.md). The four currently readable datasets have manifests
+covering 23,091 referenced image/mask files. MVTec AD 2 remains part of the
+required scope and is blocked on source-data access.
+
 Fresh BTAD execution evidence is available in
 [`validation/2026-10-08`](validation/2026-10-08/report.json).
 ImageBind on the older RTX 6000 Ada matched all 12 archived Base/T-TED/C-TED
