@@ -1,0 +1,249 @@
+{
+  "per_class": [
+    {
+      "class_name": "01",
+      "num_images": 70,
+      "baseline_official": {
+        "pixel_auc": 0.8804067282347331,
+        "pixel_ap": 0.18823852238315314,
+        "pixel_aupro": 0.6272268891334534,
+        "image_auc": 0.9883381924198251,
+        "image_ap": 0.995565837671101
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.8804067282347331,
+        "pixel_ap": 0.18823852238315314,
+        "pixel_aupro": 0.6272268891334534,
+        "image_auc": 0.999514091350826,
+        "image_ap": 0.999591836734694
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.9397869751164523,
+          "pixel_ap": 0.4229116987062651,
+          "pixel_aupro": 0.677826464176178,
+          "image_auc": 0.9883381924198251,
+          "image_ap": 0.995565837671101
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.9392547939823125,
+          "pixel_ap": 0.4208311809227046,
+          "pixel_aupro": 0.6761389970779419,
+          "image_auc": 0.9883381924198251,
+          "image_ap": 0.995565837671101
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.9387006945633083,
+          "pixel_ap": 0.4186800787345313,
+          "pixel_aupro": 0.5986611843109131,
+          "image_auc": 0.9883381924198251,
+          "image_ap": 0.995565837671101
+        }
+      }
+    },
+    {
+      "class_name": "02",
+      "num_images": 230,
+      "baseline_official": {
+        "pixel_auc": 0.9219352345644589,
+        "pixel_ap": 0.37700079177152734,
+        "pixel_aupro": 0.48037445545196533,
+        "image_auc": 0.8626666666666667,
+        "image_ap": 0.9782407029742018
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.9219352345644589,
+        "pixel_ap": 0.37700079177152734,
+        "pixel_aupro": 0.48037445545196533,
+        "image_auc": 0.7813333333333334,
+        "image_ap": 0.9645061960220265
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.9572059068408966,
+          "pixel_ap": 0.6236090005642649,
+          "pixel_aupro": 0.6289122700691223,
+          "image_auc": 0.8626666666666667,
+          "image_ap": 0.9782407029742018
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.9573238227273619,
+          "pixel_ap": 0.6235405022467482,
+          "pixel_aupro": 0.6223830580711365,
+          "image_auc": 0.8626666666666667,
+          "image_ap": 0.9782407029742018
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.9574206154090023,
+          "pixel_ap": 0.6234227573282176,
+          "pixel_aupro": 0.6155835390090942,
+          "image_auc": 0.8626666666666667,
+          "image_ap": 0.9782407029742018
+        }
+      }
+    },
+    {
+      "class_name": "03",
+      "num_images": 441,
+      "baseline_official": {
+        "pixel_auc": 0.9133497369684996,
+        "pixel_ap": 0.08101340314561968,
+        "pixel_aupro": 0.7020457983016968,
+        "image_auc": 0.8260975609756097,
+        "image_ap": 0.6696409799552472
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.9133497369684996,
+        "pixel_ap": 0.08101340314561968,
+        "pixel_aupro": 0.7020457983016968,
+        "image_auc": 0.8724390243902439,
+        "image_ap": 0.8115896475768707
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.9528274847658705,
+          "pixel_ap": 0.3037745341124185,
+          "pixel_aupro": 0.8217113018035889,
+          "image_auc": 0.8260975609756097,
+          "image_ap": 0.6696409799552472
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.9527715895265881,
+          "pixel_ap": 0.30297106157495846,
+          "pixel_aupro": 0.8207994699478149,
+          "image_auc": 0.8260975609756097,
+          "image_ap": 0.6696409799552472
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.9527097504302476,
+          "pixel_ap": 0.30215384578234905,
+          "pixel_aupro": 0.8199160695075989,
+          "image_auc": 0.8260975609756097,
+          "image_ap": 0.6696409799552472
+        }
+      }
+    }
+  ],
+  "mean": {
+    "baseline_official": {
+      "pixel_auc": 0.9052305665892306,
+      "pixel_ap": 0.2154175724334334,
+      "pixel_aupro": 0.6032157142957052,
+      "image_auc": 0.8923674733540339,
+      "image_ap": 0.8811491735335167
+    },
+    "baseline_maptopk": {
+      "pixel_auc": 0.9052305665892306,
+      "pixel_ap": 0.2154175724334334,
+      "pixel_aupro": 0.6032157142957052,
+      "image_auc": 0.8844288163581345,
+      "image_ap": 0.9252292267778636
+    },
+    "parallel": {
+      "branch_calibrated_alpha_0.5": {
+        "pixel_auc": 0.9499401222410732,
+        "pixel_ap": 0.45009841112764953,
+        "pixel_aupro": 0.7094833453496298,
+        "image_auc": 0.8923674733540339,
+        "image_ap": 0.8811491735335167
+      },
+      "branch_calibrated_alpha_1": {
+        "pixel_auc": 0.9497834020787542,
+        "pixel_ap": 0.4491142482481371,
+        "pixel_aupro": 0.7064405083656311,
+        "image_auc": 0.8923674733540339,
+        "image_ap": 0.8811491735335167
+      },
+      "branch_calibrated_alpha_1.5": {
+        "pixel_auc": 0.9496103534675194,
+        "pixel_ap": 0.44808556061503263,
+        "pixel_aupro": 0.678053597609202,
+        "image_auc": 0.8923674733540339,
+        "image_ap": 0.8811491735335167
+      }
+    }
+  },
+  "preset": "mvtec2btad",
+  "source_dataset": "mvtecad",
+  "target_dataset": "btad",
+  "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+  "target_root": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/BTAD_official",
+  "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/FAPrompt/checkpoints/trained_on_mvtecad/epoch_15.pth",
+  "model_name": "ViT-L/14@336px",
+  "prompt_load_mode": "strict",
+  "prompt_load_info": {
+    "mode": "strict",
+    "adapted": [],
+    "skipped": [],
+    "requested_dpam_layer": 20,
+    "effective_dpam_layer": 20,
+    "max_visual_layers": 24
+  },
+  "bank_protocol": "faprompt_v4_branchscore",
+  "bank": {
+    "num_fp": 4096,
+    "num_defect": 4096,
+    "max_fp_per_class": 512,
+    "max_defect_per_class": 512,
+    "max_fp_total": 4096,
+    "max_defect_total": 4096,
+    "normal_topk_frac": 0.01
+  },
+  "tau": 0.1,
+  "fp_weight": 1.0,
+  "alphas": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "insert_modes": [
+    "branch_calibrated"
+  ],
+  "target_class_name": "",
+  "target_limit_per_class": 0,
+  "features_list": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "sigma": 10,
+  "dap_token_mode": "official_firstk",
+  "aupro_max_step": 50,
+  "ours_image_score_mode": "official",
+  "residual_gate_quantile": 0.9,
+  "residual_gate_temp": 0.25,
+  "rectifier_gate_mode": "support_mass",
+  "rectifier_gate_sharpness": 3.0,
+  "rectifier_direction_mode": "transport",
+  "source_prescore_calibrator": null,
+  "source_branch_calibrators": {
+    "branch1": {
+      "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+      "host_score_source": "faprompt_branch1_score",
+      "subspace_rank": 4,
+      "eta": 0.08687956631183624,
+      "readout_gamma": 0.09327837079763412,
+      "fp_weight": 1.0000009536743164,
+      "train_points_per_class": 1024,
+      "source_pair_rank_accuracy": 0.1962890625,
+      "source_base_pair_rank_accuracy": 0.1962890625,
+      "source_delta_fp_mean": 0.03367864340543747,
+      "source_delta_def_mean": -0.03493144363164902
+    },
+    "branch2": {
+      "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+      "host_score_source": "faprompt_branch2_score",
+      "subspace_rank": 4,
+      "eta": 0.08658178895711899,
+      "readout_gamma": 0.09338219463825226,
+      "fp_weight": 1.0000009536743164,
+      "train_points_per_class": 1024,
+      "source_pair_rank_accuracy": 0.2216796875,
+      "source_base_pair_rank_accuracy": 0.2177734375,
+      "source_delta_fp_mean": 0.02625415474176407,
+      "source_delta_def_mean": -0.03235440328717232
+    }
+  },
+  "source_plugin": null
+}

@@ -1,0 +1,352 @@
+{
+  "summary": {
+    "backbone": "ViT-L-14-336",
+    "pretrained_dataset": "openai",
+    "prompt_mode": "class",
+    "class_name": null,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "image_size": 336,
+    "sigma": 4.0,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "map_activation": "identity",
+    "map_temperature": 1.0,
+    "hybrid_source": "none",
+    "hybrid_weight": 0.0,
+    "image_score_topk": 0.01,
+    "image_fusion_weight": 0.5,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/rawclip_calib_vitl336_mvtec.pt",
+    "bank_cache_meta": {
+      "backbone_name": "ViT-L-14-336",
+      "pretrained_dataset": "openai",
+      "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+      "source_dataset": "mvtec",
+      "heldout_class": null,
+      "image_size": 336,
+      "features_list": [
+        6,
+        12,
+        18,
+        24
+      ],
+      "prompt_mode": "class",
+      "hard_frac": 0.01,
+      "max_good_per_class": 8,
+      "max_defect_per_class": 8,
+      "max_bank_per_layer": 1024,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 128
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 600,
+        "num_defect": 1024
+      }
+    },
+    "enable_calibrator": true,
+    "source_calibrators": {
+      "0": {
+        "eta": 0.17440085113048553,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5369834899902344,
+        "def_host_mean": 0.4675390124320984,
+        "fp_res_mean": -2.5338733196258545,
+        "def_res_mean": 0.18593062460422516
+      },
+      "1": {
+        "eta": 0.17442722618579865,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5396620035171509,
+        "def_host_mean": 0.45836350321769714,
+        "fp_res_mean": -2.6380913257598877,
+        "def_res_mean": 0.4339931905269623
+      },
+      "2": {
+        "eta": 0.1745290607213974,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5246164798736572,
+        "def_host_mean": 0.4307337701320648,
+        "fp_res_mean": -2.3045051097869873,
+        "def_res_mean": 1.0385397672653198
+      },
+      "3": {
+        "eta": 0.17435573041439056,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5463621616363525,
+        "def_host_mean": 0.4736299514770508,
+        "fp_res_mean": -2.7243599891662598,
+        "def_res_mean": 0.6800117492675781
+      }
+    },
+    "calib_anchor": "trainfree",
+    "calib_residual_scale": 1.0,
+    "aupro_max_step": 200,
+    "aupro_backend": "precomputed_region_fast_cpu"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "can",
+      "image_auroc": 0.5054012345679012,
+      "image_ap": 0.5989743050235696,
+      "pixel_auroc": 0.7165199159121488,
+      "pixel_aupro": 0.285392165184021,
+      "pixel_ap": 0.00010203385392207344
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "fabric",
+      "image_auroc": 0.6223905723905725,
+      "image_ap": 0.7057856054698466,
+      "pixel_auroc": 0.561558317940192,
+      "pixel_aupro": 0.10243501514196396,
+      "pixel_ap": 0.00890394945277026
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "fruit_jelly",
+      "image_auroc": 0.7583333333333334,
+      "image_ap": 0.9255241077220115,
+      "pixel_auroc": 0.1504035354960752,
+      "pixel_aupro": 0.06196420639753342,
+      "pixel_ap": 0.005372772665934187
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "rice",
+      "image_auroc": 0.5415343915343915,
+      "image_ap": 0.7556076212838727,
+      "pixel_auroc": 0.14540981105896653,
+      "pixel_aupro": 0.014921671710908413,
+      "pixel_ap": 0.0009544878270430218
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "sheet_metal",
+      "image_auroc": 0.6083333333333333,
+      "image_ap": 0.8673226241396161,
+      "pixel_auroc": 0.26642880228798793,
+      "pixel_aupro": 0.09384934604167938,
+      "pixel_ap": 0.002748457856302534
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "vial",
+      "image_auroc": 0.4672108843537415,
+      "image_ap": 0.7132744769652257,
+      "pixel_auroc": 0.44074766572093893,
+      "pixel_aupro": 0.20050522685050964,
+      "pixel_ap": 0.026466727027927923
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "wallplugs",
+      "image_auroc": 0.38759259259259254,
+      "image_ap": 0.5062282719130683,
+      "pixel_auroc": 0.2026053240050388,
+      "pixel_aupro": 0.20364218950271606,
+      "pixel_ap": 0.0009121788512317466
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "walnuts",
+      "image_auroc": 0.5635185185185185,
+      "image_ap": 0.7296462517446547,
+      "pixel_auroc": 0.166014039228364,
+      "pixel_aupro": 0.08005072921514511,
+      "pixel_ap": 0.0059943809054866645
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.556789357578048,
+      "image_ap": 0.7252954080327332,
+      "pixel_auroc": 0.3312109264562141,
+      "pixel_aupro": 0.13034506875555962,
+      "pixel_ap": 0.006431873555077301
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "can",
+      "image_auroc": 0.504783950617284,
+      "image_ap": 0.5645027431975043,
+      "pixel_auroc": 0.287649017414223,
+      "pixel_aupro": 0.09648680686950684,
+      "pixel_ap": 2.3284223580434537e-05
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "fabric",
+      "image_auroc": 0.7138047138047138,
+      "image_ap": 0.7940308512559315,
+      "pixel_auroc": 0.4612543069942589,
+      "pixel_aupro": 0.3201340436935425,
+      "pixel_ap": 0.0065320933033217125
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "fruit_jelly",
+      "image_auroc": 0.7491666666666668,
+      "image_ap": 0.9241687881035456,
+      "pixel_auroc": 0.8495425161496634,
+      "pixel_aupro": 0.6015307903289795,
+      "pixel_ap": 0.16719743384658822
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "rice",
+      "image_auroc": 0.5661375661375662,
+      "image_ap": 0.7578612679440568,
+      "pixel_auroc": 0.8722885933166801,
+      "pixel_aupro": 0.5359570980072021,
+      "pixel_ap": 0.0493767670154855
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "sheet_metal",
+      "image_auroc": 0.6398148148148148,
+      "image_ap": 0.8765098333332363,
+      "pixel_auroc": 0.741907636162678,
+      "pixel_aupro": 0.1544649600982666,
+      "pixel_ap": 0.0096250345801941
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "vial",
+      "image_auroc": 0.6310204081632653,
+      "image_ap": 0.8606100611242906,
+      "pixel_auroc": 0.5689637286231312,
+      "pixel_aupro": 0.1406208574771881,
+      "pixel_ap": 0.09234307854703698
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "wallplugs",
+      "image_auroc": 0.3575925925925926,
+      "image_ap": 0.4963551882666972,
+      "pixel_auroc": 0.8119164175676384,
+      "pixel_aupro": 0.17901752889156342,
+      "pixel_ap": 0.017475627526961593
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "walnuts",
+      "image_auroc": 0.5129629629629631,
+      "image_ap": 0.6920893667456678,
+      "pixel_auroc": 0.8610040091623614,
+      "pixel_aupro": 0.48909223079681396,
+      "pixel_ap": 0.1654579981862432
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "mean",
+      "image_auroc": 0.5844104594699833,
+      "image_ap": 0.7457660124963663,
+      "pixel_auroc": 0.6818157781738292,
+      "pixel_aupro": 0.3146630395203829,
+      "pixel_ap": 0.06350391465367647
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "can",
+      "image_auroc": 0.504783950617284,
+      "image_ap": 0.5645027431975043,
+      "pixel_auroc": 0.2922156469331709,
+      "pixel_aupro": 0.09829214215278625,
+      "pixel_ap": 2.3536652623901114e-05
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "fabric",
+      "image_auroc": 0.713973063973064,
+      "image_ap": 0.7940777950528753,
+      "pixel_auroc": 0.46138531036081687,
+      "pixel_aupro": 0.3216007351875305,
+      "pixel_ap": 0.006581280016670683
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "fruit_jelly",
+      "image_auroc": 0.7500000000000001,
+      "image_ap": 0.9243339532687107,
+      "pixel_auroc": 0.8490431606486707,
+      "pixel_aupro": 0.6075990200042725,
+      "pixel_ap": 0.16786755827748098
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "rice",
+      "image_auroc": 0.5661375661375662,
+      "image_ap": 0.7578612679440568,
+      "pixel_auroc": 0.8723228905359648,
+      "pixel_aupro": 0.5404325723648071,
+      "pixel_ap": 0.0497889394404469
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "sheet_metal",
+      "image_auroc": 0.6398148148148148,
+      "image_ap": 0.8765098333332363,
+      "pixel_auroc": 0.7416364022185464,
+      "pixel_aupro": 0.15666639804840088,
+      "pixel_ap": 0.009571536394192236
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "vial",
+      "image_auroc": 0.6312925170068028,
+      "image_ap": 0.860840366617754,
+      "pixel_auroc": 0.5680919775676133,
+      "pixel_aupro": 0.13768842816352844,
+      "pixel_ap": 0.0940870409493541
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "wallplugs",
+      "image_auroc": 0.3575925925925926,
+      "image_ap": 0.4963551882666972,
+      "pixel_auroc": 0.8125470097898106,
+      "pixel_aupro": 0.17726022005081177,
+      "pixel_ap": 0.01822784516061808
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "walnuts",
+      "image_auroc": 0.5133333333333334,
+      "image_ap": 0.6922728835958513,
+      "pixel_auroc": 0.8586279647372822,
+      "pixel_aupro": 0.4843839406967163,
+      "pixel_ap": 0.1662340133801479
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.5846159798094321,
+      "image_ap": 0.7458442539095858,
+      "pixel_auroc": 0.6819837953489845,
+      "pixel_aupro": 0.3154904320836067,
+      "pixel_ap": 0.06404771878394185
+    }
+  ]
+}

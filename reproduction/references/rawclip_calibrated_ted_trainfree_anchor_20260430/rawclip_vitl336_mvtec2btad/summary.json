@@ -1,0 +1,217 @@
+{
+  "summary": {
+    "backbone": "ViT-L-14-336",
+    "pretrained_dataset": "openai",
+    "prompt_mode": "class",
+    "class_name": null,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "image_size": 336,
+    "sigma": 4.0,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "map_activation": "identity",
+    "map_temperature": 1.0,
+    "hybrid_source": "none",
+    "hybrid_weight": 0.0,
+    "image_score_topk": 0.01,
+    "image_fusion_weight": 0.5,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/rawclip_calib_vitl336_mvtec.pt",
+    "bank_cache_meta": {
+      "backbone_name": "ViT-L-14-336",
+      "pretrained_dataset": "openai",
+      "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+      "source_dataset": "mvtec",
+      "heldout_class": null,
+      "image_size": 336,
+      "features_list": [
+        6,
+        12,
+        18,
+        24
+      ],
+      "prompt_mode": "class",
+      "hard_frac": 0.01,
+      "max_good_per_class": 8,
+      "max_defect_per_class": 8,
+      "max_bank_per_layer": 1024,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 128
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 600,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 600,
+        "num_defect": 1024
+      }
+    },
+    "enable_calibrator": true,
+    "source_calibrators": {
+      "0": {
+        "eta": 0.17429006099700928,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5369834899902344,
+        "def_host_mean": 0.46707862615585327,
+        "fp_res_mean": -2.5338733196258545,
+        "def_res_mean": 0.20435701310634613
+      },
+      "1": {
+        "eta": 0.17439743876457214,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5396620035171509,
+        "def_host_mean": 0.4582802355289459,
+        "fp_res_mean": -2.6380913257598877,
+        "def_res_mean": 0.436819463968277
+      },
+      "2": {
+        "eta": 0.174610897898674,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5246164798736572,
+        "def_host_mean": 0.4307991564273834,
+        "fp_res_mean": -2.3045051097869873,
+        "def_res_mean": 1.0400817394256592
+      },
+      "3": {
+        "eta": 0.17443780601024628,
+        "num_fp": 720,
+        "num_defect": 3081,
+        "fp_host_mean": 0.5463621616363525,
+        "def_host_mean": 0.47347816824913025,
+        "fp_res_mean": -2.7243599891662598,
+        "def_res_mean": 0.6886094808578491
+      }
+    },
+    "calib_anchor": "trainfree",
+    "calib_residual_scale": 1.0,
+    "aupro_max_step": 200,
+    "aupro_backend": "precomputed_region_fast_cpu"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "01",
+      "image_auroc": 0.6297376093294461,
+      "image_ap": 0.7614002537810856,
+      "pixel_auroc": 0.3264284755053308,
+      "pixel_aupro": 0.0811379924416542,
+      "pixel_ap": 0.021815521356798186
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "02",
+      "image_auroc": 0.7743333333333333,
+      "image_ap": 0.9563192028756164,
+      "pixel_auroc": 0.18563736083599805,
+      "pixel_aupro": 0.01709013059735298,
+      "pixel_ap": 0.030831456984107615
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "03",
+      "image_auroc": 0.5693292682926829,
+      "image_ap": 0.20513404585728673,
+      "pixel_auroc": 0.20586677791880326,
+      "pixel_aupro": 0.012277064844965935,
+      "pixel_ap": 0.0013966953443964498
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.6578000703184874,
+      "image_ap": 0.640951167504663,
+      "pixel_auroc": 0.23931087142004404,
+      "pixel_aupro": 0.03683506262799104,
+      "pixel_ap": 0.01801455789510075
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "01",
+      "image_auroc": 0.8551992225461613,
+      "image_ap": 0.924862690833876,
+      "pixel_auroc": 0.6817001609293307,
+      "pixel_aupro": 0.29839545488357544,
+      "pixel_ap": 0.11417816207955142
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "02",
+      "image_auroc": 0.7563333333333334,
+      "image_ap": 0.9527879923950016,
+      "pixel_auroc": 0.8377601443685374,
+      "pixel_aupro": 0.5659098029136658,
+      "pixel_ap": 0.3119395948076571
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "03",
+      "image_auroc": 0.5265853658536586,
+      "image_ap": 0.22540451581004262,
+      "pixel_auroc": 0.8172208195834274,
+      "pixel_aupro": 0.6584330201148987,
+      "pixel_ap": 0.08952305294201793
+    },
+    {
+      "mode": "parallel_margin",
+      "target_label": "mean",
+      "image_auroc": 0.7127059739110511,
+      "image_ap": 0.70101839967964,
+      "pixel_auroc": 0.7788937082937651,
+      "pixel_aupro": 0.5075794259707133,
+      "pixel_ap": 0.17188026994307548
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "01",
+      "image_auroc": 0.8551992225461613,
+      "image_ap": 0.924862690833876,
+      "pixel_auroc": 0.6796870620039158,
+      "pixel_aupro": 0.30250534415245056,
+      "pixel_ap": 0.1140752048122541
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "02",
+      "image_auroc": 0.7565000000000001,
+      "image_ap": 0.9528205594448099,
+      "pixel_auroc": 0.8334229943755234,
+      "pixel_aupro": 0.5558652877807617,
+      "pixel_ap": 0.30637044107370737
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "03",
+      "image_auroc": 0.5267073170731708,
+      "image_ap": 0.22541688859225767,
+      "pixel_auroc": 0.8134208863781522,
+      "pixel_aupro": 0.6565088629722595,
+      "pixel_ap": 0.0865550173491365
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.7128021798731107,
+      "image_ap": 0.7010333796236479,
+      "pixel_auroc": 0.7755103142525304,
+      "pixel_aupro": 0.5049598316351572,
+      "pixel_ap": 0.169000221078366
+    }
+  ]
+}

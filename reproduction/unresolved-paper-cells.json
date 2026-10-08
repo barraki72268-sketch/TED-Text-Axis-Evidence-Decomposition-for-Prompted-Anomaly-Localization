@@ -1,0 +1,314 @@
+[
+  {
+    "host": "AA-CLIP",
+    "backbone": "ViT-B/16+",
+    "target": "MPDD",
+    "method": "OURS",
+    "metric": "I-AUROC",
+    "paper": {
+      "mean": 48.04,
+      "std": 0.21
+    },
+    "current_aggregate": {
+      "mean": 42.39624302061767,
+      "sample_std": 0.21224272231128746,
+      "population_std": 0.17329545709395902,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 5.6437569793823315
+    },
+    "tex": {
+      "source_file": "tab/aaclip_only.tex",
+      "line": 27,
+      "file_sha256": "a11a8677375699c4fe8da5d2a9cedbc37e9d748d8a11233ef100927a175e79c4"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AA-CLIP",
+    "backbone": "ViT-B/16+",
+    "target": "MPDD",
+    "method": "OURS",
+    "metric": "P-AUROC",
+    "paper": {
+      "mean": 88.98,
+      "std": 0.28
+    },
+    "current_aggregate": {
+      "mean": 73.45166666666667,
+      "sample_std": 0.2776438566061047,
+      "population_std": 0.22669525963447232,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 15.528333333333336
+    },
+    "tex": {
+      "source_file": "tab/aaclip_only.tex",
+      "line": 27,
+      "file_sha256": "a11a8677375699c4fe8da5d2a9cedbc37e9d748d8a11233ef100927a175e79c4"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AA-CLIP",
+    "backbone": "ViT-B/16+",
+    "target": "MPDD",
+    "method": "OURS",
+    "metric": "P-PRO",
+    "paper": {
+      "mean": 65.44,
+      "std": 0.67
+    },
+    "current_aggregate": {
+      "mean": 39.500196827782524,
+      "sample_std": 0.6675116176328763,
+      "population_std": 0.545020953526779,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 25.939803172217474
+    },
+    "tex": {
+      "source_file": "tab/aaclip_only.tex",
+      "line": 27,
+      "file_sha256": "a11a8677375699c4fe8da5d2a9cedbc37e9d748d8a11233ef100927a175e79c4"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AA-CLIP",
+    "backbone": "ViT-B/16+",
+    "target": "MPDD",
+    "method": "OURS",
+    "metric": "P-AP",
+    "paper": {
+      "mean": 12.07,
+      "std": 0.05
+    },
+    "current_aggregate": {
+      "mean": 6.451666666666667,
+      "sample_std": 0.050194067821251694,
+      "population_std": 0.040983284758906405,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 5.618333333333333
+    },
+    "tex": {
+      "source_file": "tab/aaclip_only.tex",
+      "line": 27,
+      "file_sha256": "a11a8677375699c4fe8da5d2a9cedbc37e9d748d8a11233ef100927a175e79c4"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "MVTec",
+    "method": "OURS",
+    "metric": "P-AUROC",
+    "paper": {
+      "mean": 77.23,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 77.19937557968585,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.030624420314154577
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 68,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "MVTec",
+    "method": "OURS",
+    "metric": "P-PRO",
+    "paper": {
+      "mean": 53.27,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 53.19755017757416,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.07244982242584541
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 68,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "MVTec",
+    "method": "OURS",
+    "metric": "P-AP",
+    "paper": {
+      "mean": 18.87,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 18.814194826832388,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.05580517316761302
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 68,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "BTAD",
+    "method": "OURS",
+    "metric": "P-AUROC",
+    "paper": {
+      "mean": 86.8,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 86.5576191308398,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.24238086916020052
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 80,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "BTAD",
+    "method": "OURS",
+    "metric": "P-PRO",
+    "paper": {
+      "mean": 48.28,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 46.95254166920979,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 1.3274583307902077
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 80,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "FAPrompt",
+    "backbone": "ViT-H/14",
+    "target": "BTAD",
+    "method": "OURS",
+    "metric": "P-AP",
+    "paper": {
+      "mean": 22.13,
+      "std": null
+    },
+    "current_aggregate": {
+      "mean": 21.86987394284598,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.26012605715401804
+    },
+    "tex": {
+      "source_file": "tab/FAprompt.tex",
+      "line": 80,
+      "file_sha256": "3d3974f90acf82f1b8e6f8bf2ed3b7c472074ab1a2c1c9139a98e86c00a6cc01"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AdaptCLIP",
+    "backbone": "ViT-L/14-336",
+    "target": "VisA",
+    "method": "OURS",
+    "metric": "I-AUROC",
+    "paper": {
+      "mean": 84.57,
+      "std": 0.0
+    },
+    "current_aggregate": {
+      "mean": 84.5612034201622,
+      "sample_std": 0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.008796579837792251
+    },
+    "tex": {
+      "source_file": "tab/Adaptclip.tex",
+      "line": 65,
+      "file_sha256": "38e49aa0ee4e14a98c437f9bfdbcf4904ca28ae8a11353058effb49cef1f7e74"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AdaptCLIP",
+    "backbone": "ViT-L/14-336",
+    "target": "MPDD",
+    "method": "OURS",
+    "metric": "P-PRO",
+    "paper": {
+      "mean": 88.52,
+      "std": 0.0
+    },
+    "current_aggregate": {
+      "mean": 87.80858019987741,
+      "sample_std": 0.0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": 0.7114198001225844
+    },
+    "tex": {
+      "source_file": "tab/Adaptclip.tex",
+      "line": 69,
+      "file_sha256": "38e49aa0ee4e14a98c437f9bfdbcf4904ca28ae8a11353058effb49cef1f7e74"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  },
+  {
+    "host": "AdaptCLIP",
+    "backbone": "ViT-L/14-336",
+    "target": "BTAD",
+    "method": "OURS",
+    "metric": "P-AUROC",
+    "paper": {
+      "mean": 94.31,
+      "std": 0.0
+    },
+    "current_aggregate": {
+      "mean": 94.3158745765686,
+      "sample_std": 0.0,
+      "population_std": 0.0,
+      "matches_printed_mean": false,
+      "printed_minus_raw": -0.005874576568601242
+    },
+    "tex": {
+      "source_file": "tab/Adaptclip.tex",
+      "line": 73,
+      "file_sha256": "38e49aa0ee4e14a98c437f9bfdbcf4904ca28ae8a11353058effb49cef1f7e74"
+    },
+    "status": "needs historical recipe/assembly trace; original paper unchanged"
+  }
+]

@@ -1,0 +1,501 @@
+{
+  "per_class": [
+    {
+      "class_name": "01",
+      "num_images": 70,
+      "baseline_official": {
+        "pixel_auc": 0.7011742271988015,
+        "pixel_ap": 0.0501641081283122,
+        "pixel_aupro": 0.21904250979423523,
+        "image_auc": 0.9319727891156463,
+        "image_ap": 0.9757497350308434
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.7011742271988015,
+        "pixel_ap": 0.0501641081283122,
+        "pixel_aupro": 0.21904250979423523,
+        "image_auc": 0.239067055393586,
+        "image_ap": 0.553116584296047
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.8113470658885809,
+          "pixel_ap": 0.2871318457611331,
+          "pixel_aupro": 0.3691227436065674,
+          "image_auc": 0.9319727891156463,
+          "image_ap": 0.9757497350308434
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.8058865873459838,
+          "pixel_ap": 0.26474747887023636,
+          "pixel_aupro": 0.33324313163757324,
+          "image_auc": 0.9319727891156463,
+          "image_ap": 0.9757497350308434
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.7994954263497657,
+          "pixel_ap": 0.23871056779363237,
+          "pixel_aupro": 0.3484102785587311,
+          "image_auc": 0.9319727891156463,
+          "image_ap": 0.9757497350308434
+        }
+      }
+    },
+    {
+      "class_name": "02",
+      "num_images": 230,
+      "baseline_official": {
+        "pixel_auc": 0.626214031836134,
+        "pixel_ap": 0.10829325358182298,
+        "pixel_aupro": 0.24801386892795563,
+        "image_auc": 0.582,
+        "image_ap": 0.9234648985493752
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.626214031836134,
+        "pixel_ap": 0.10829325358182298,
+        "pixel_aupro": 0.24801386892795563,
+        "image_auc": 0.48,
+        "image_ap": 0.8815777640415322
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.66772407786016,
+          "pixel_ap": 0.2034687704653671,
+          "pixel_aupro": 0.3432471454143524,
+          "image_auc": 0.582,
+          "image_ap": 0.9234648985493752
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.6665432772682347,
+          "pixel_ap": 0.19869217489484028,
+          "pixel_aupro": 0.2898887097835541,
+          "image_auc": 0.582,
+          "image_ap": 0.9234648985493752
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.6651392810570603,
+          "pixel_ap": 0.1934422767012949,
+          "pixel_aupro": 0.2888031303882599,
+          "image_auc": 0.582,
+          "image_ap": 0.9234648985493752
+        }
+      }
+    },
+    {
+      "class_name": "03",
+      "num_images": 441,
+      "baseline_official": {
+        "pixel_auc": 0.8464073587743005,
+        "pixel_ap": 0.019073249232187537,
+        "pixel_aupro": 0.5621975660324097,
+        "image_auc": 0.8217073170731708,
+        "image_ap": 0.49925334305407365
+      },
+      "baseline_maptopk": {
+        "pixel_auc": 0.8464073587743005,
+        "pixel_ap": 0.019073249232187537,
+        "pixel_aupro": 0.5621975660324097,
+        "image_auc": 0.9535975609756098,
+        "image_ap": 0.7910140299397191
+      },
+      "parallel": {
+        "branch_calibrated_alpha_0.5": {
+          "pixel_auc": 0.9155382033112777,
+          "pixel_ap": 0.09762813016853004,
+          "pixel_aupro": 0.7017621397972107,
+          "image_auc": 0.8217073170731708,
+          "image_ap": 0.49925334305407365
+        },
+        "branch_calibrated_alpha_1": {
+          "pixel_auc": 0.9206304849604431,
+          "pixel_ap": 0.09054341412675278,
+          "pixel_aupro": 0.7027570009231567,
+          "image_auc": 0.8217073170731708,
+          "image_ap": 0.49925334305407365
+        },
+        "branch_calibrated_alpha_1.5": {
+          "pixel_auc": 0.925620331431185,
+          "pixel_ap": 0.08359111886399247,
+          "pixel_aupro": 0.705011248588562,
+          "image_auc": 0.8217073170731708,
+          "image_ap": 0.49925334305407365
+        }
+      }
+    }
+  ],
+  "mean": {
+    "baseline_official": {
+      "pixel_auc": 0.7245985392697453,
+      "pixel_ap": 0.05917687031410757,
+      "pixel_aupro": 0.3430846482515335,
+      "image_auc": 0.7785600353962723,
+      "image_ap": 0.799489325544764
+    },
+    "baseline_maptopk": {
+      "pixel_auc": 0.7245985392697453,
+      "pixel_ap": 0.05917687031410757,
+      "pixel_aupro": 0.3430846482515335,
+      "image_auc": 0.5575548721230653,
+      "image_ap": 0.7419027927590994
+    },
+    "parallel": {
+      "branch_calibrated_alpha_0.5": {
+        "pixel_auc": 0.7982031156866728,
+        "pixel_ap": 0.1960762487983434,
+        "pixel_aupro": 0.47137734293937683,
+        "image_auc": 0.7785600353962723,
+        "image_ap": 0.799489325544764
+      },
+      "branch_calibrated_alpha_1": {
+        "pixel_auc": 0.7976867831915538,
+        "pixel_ap": 0.18466102263060982,
+        "pixel_aupro": 0.44196294744809467,
+        "image_auc": 0.7785600353962723,
+        "image_ap": 0.799489325544764
+      },
+      "branch_calibrated_alpha_1.5": {
+        "pixel_auc": 0.7967516796126702,
+        "pixel_ap": 0.17191465445297327,
+        "pixel_aupro": 0.44740821917851764,
+        "image_auc": 0.7785600353962723,
+        "image_ap": 0.799489325544764
+      }
+    }
+  },
+  "preset": "mvtec2btad",
+  "source_dataset": "mvtecad",
+  "target_dataset": "btad",
+  "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+  "target_root": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/BTAD_official",
+  "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/FAPrompt/checkpoints/trained_on_mvtecad/epoch_15.pth",
+  "model_name": "ViT-B-16-plus-240",
+  "prompt_load_mode": "project_crop",
+  "prompt_load_info": {
+    "mode": "project_crop",
+    "adapted": [
+      {
+        "key": "ctx_pos",
+        "source_shape": [
+          1,
+          1,
+          5,
+          768
+        ],
+        "target_shape": [
+          1,
+          1,
+          5,
+          640
+        ]
+      },
+      {
+        "key": "ctx_neg",
+        "source_shape": [
+          1,
+          10,
+          2,
+          768
+        ],
+        "target_shape": [
+          1,
+          10,
+          2,
+          640
+        ]
+      },
+      {
+        "key": "patch_meta_net.linear1.weight",
+        "source_shape": [
+          480,
+          7680
+        ],
+        "target_shape": [
+          400,
+          6400
+        ]
+      },
+      {
+        "key": "patch_meta_net.linear1.bias",
+        "source_shape": [
+          480
+        ],
+        "target_shape": [
+          400
+        ]
+      },
+      {
+        "key": "patch_meta_net.linear2.weight",
+        "source_shape": [
+          768,
+          480
+        ],
+        "target_shape": [
+          640,
+          400
+        ]
+      },
+      {
+        "key": "patch_meta_net.linear2.bias",
+        "source_shape": [
+          768
+        ],
+        "target_shape": [
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.0",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.1",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.2",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.3",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.4",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.5",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.6",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompts_text.7",
+        "source_shape": [
+          4,
+          768
+        ],
+        "target_shape": [
+          4,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.0.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.1.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.2.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.3.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.4.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.5.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.6.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      },
+      {
+        "key": "compound_prompt_projections.7.weight",
+        "source_shape": [
+          896,
+          768
+        ],
+        "target_shape": [
+          896,
+          640
+        ]
+      }
+    ],
+    "skipped": [
+      "token_prefix_pos",
+      "token_suffix_pos",
+      "token_prefix_neg",
+      "token_suffix_neg"
+    ],
+    "requested_dpam_layer": 10,
+    "effective_dpam_layer": 10,
+    "max_visual_layers": 12
+  },
+  "bank_protocol": "faprompt_v4_branchscore",
+  "bank": {
+    "num_fp": 4096,
+    "num_defect": 4096,
+    "max_fp_per_class": 512,
+    "max_defect_per_class": 512,
+    "max_fp_total": 4096,
+    "max_defect_total": 4096,
+    "normal_topk_frac": 0.01
+  },
+  "tau": 0.1,
+  "fp_weight": 1.0,
+  "alphas": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "insert_modes": [
+    "branch_calibrated"
+  ],
+  "target_class_name": "",
+  "target_limit_per_class": 0,
+  "features_list": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "sigma": 10,
+  "dap_token_mode": "official_firstk",
+  "aupro_max_step": 50,
+  "ours_image_score_mode": "official",
+  "residual_gate_quantile": 0.9,
+  "residual_gate_temp": 0.25,
+  "rectifier_gate_mode": "support_mass",
+  "rectifier_gate_sharpness": 3.0,
+  "rectifier_direction_mode": "transport",
+  "source_prescore_calibrator": null,
+  "source_branch_calibrators": {
+    "branch1": {
+      "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+      "host_score_source": "faprompt_branch1_score",
+      "subspace_rank": 4,
+      "eta": 0.09316129237413406,
+      "readout_gamma": 0.09282994270324707,
+      "fp_weight": 1.0000009536743164,
+      "train_points_per_class": 1024,
+      "source_pair_rank_accuracy": 0.1376953125,
+      "source_base_pair_rank_accuracy": 0.1240234375,
+      "source_delta_fp_mean": -0.04629926756024361,
+      "source_delta_def_mean": 0.04520537704229355
+    },
+    "branch2": {
+      "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+      "host_score_source": "faprompt_branch2_score",
+      "subspace_rank": 4,
+      "eta": 0.09312968701124191,
+      "readout_gamma": 0.09286367148160934,
+      "fp_weight": 1.0000009536743164,
+      "train_points_per_class": 1024,
+      "source_pair_rank_accuracy": 0.123046875,
+      "source_base_pair_rank_accuracy": 0.1103515625,
+      "source_delta_fp_mean": -0.04597038775682449,
+      "source_delta_def_mean": 0.044030193239450455
+    }
+  },
+  "source_plugin": null
+}

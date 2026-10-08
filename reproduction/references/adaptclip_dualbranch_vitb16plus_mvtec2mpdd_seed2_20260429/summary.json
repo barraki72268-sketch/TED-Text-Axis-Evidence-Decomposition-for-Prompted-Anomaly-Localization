@@ -1,0 +1,364 @@
+{
+  "summary": {
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/AdaptCLIP/checkpoints/12_4_128_train_on_mvtec_3adpaters_batch8/epoch_15.pth",
+    "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+    "source_dataset": "mvtec",
+    "target_root": "/mnt/data/MPDD",
+    "target_dataset": "mpdd",
+    "class_name": null,
+    "pretrained_model": "VITB16_PLUS_240",
+    "checkpoint_load_mode": "compatible",
+    "checkpoint_load_info": {
+      "checkpoint_load_mode": "compatible",
+      "textual_learner": {
+        "mode": "compatible",
+        "loaded_keys": 2,
+        "skipped_keys": 6,
+        "missing_keys": 6,
+        "unexpected_keys": 0
+      },
+      "visual_learner": {
+        "mode": "compatible",
+        "loaded_keys": 2,
+        "skipped_keys": 12,
+        "missing_keys": 12,
+        "unexpected_keys": 0
+      }
+    },
+    "features_list": [
+      12
+    ],
+    "image_size": 518,
+    "n_ctx": 12,
+    "sigma": 4.0,
+    "fusion_type": "average_mean",
+    "bank_mining_source": "vl",
+    "tau": 20.0,
+    "fp_weight": 0.3,
+    "corr_alpha": 0.3,
+    "map_activation": "sigmoid",
+    "map_temperature": 1.0,
+    "vl_gate_mode": "host",
+    "vl_gate_quantile": 0.9,
+    "vl_gate_temp": 0.25,
+    "ted_insertion": "dual_branch",
+    "calib_epochs": 0,
+    "calib_lr": 0.02,
+    "calib_max_train_points": 8192,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_eta_init": 0.2,
+    "calib_eta_max": 1.0,
+    "calib_eta_reg": 0.001,
+    "calib_fp_weight_init": 1.0,
+    "calib_learn_fp_weight": false,
+    "calib_hardpair_frac": 0.75,
+    "calib_subspace_rank": 2,
+    "calib_preserve_host_margin_weight": 1.0,
+    "calib_lambda": 0.005,
+    "calib_score_mode": "rankr_density",
+    "calib_apply_mode": "add",
+    "calib_rankr_tau": 0.1,
+    "seed": 2,
+    "max_eval_images": 0,
+    "num_workers": 4,
+    "eval_metrics": [
+      "I-AUROC",
+      "I-AP",
+      "P-AUROC",
+      "P-AP",
+      "P-AUPRO"
+    ],
+    "aupro_max_step": 200,
+    "aupro_expect_fpr": 0.3,
+    "aupro_backend": "fast_threshold_cpu",
+    "bank_stats": {
+      "num_fp": 300,
+      "num_defect": 512
+    },
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/adaptclip_dualbranch_vitb16plus_mvtec_vl_seed2.pt",
+    "bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/AdaptCLIP/checkpoints/12_4_128_train_on_mvtec_3adpaters_batch8/epoch_15.pth",
+      "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        12
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "vl",
+      "bank_feature_source": "vl"
+    },
+    "tl_bank_stats": {
+      "num_fp": 300,
+      "num_defect": 512
+    },
+    "tl_bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/adaptclip_dualbranch_vitb16plus_mvtec_tl_seed2.pt",
+    "tl_bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/AdaptCLIP/checkpoints/12_4_128_train_on_mvtec_3adpaters_batch8/epoch_15.pth",
+      "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        12
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "tl",
+      "bank_feature_source": "tl"
+    },
+    "source_vl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.06347955763339996,
+        0.04282739385962486
+      ],
+      "coord_std": [
+        0.06126447767019272,
+        0.19186443090438843
+      ],
+      "train_points_per_class": 300,
+      "source_pair_rank_accuracy": 0.9233333468437195,
+      "source_base_pair_rank_accuracy": 0.21666666865348816,
+      "source_score_fp_mean": -1.1090450286865234,
+      "source_score_def_mean": 5.166257858276367,
+      "hardpair_frac": 0.75
+    },
+    "source_tl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.0031620976515114307,
+        0.03343760967254639
+      ],
+      "coord_std": [
+        0.03751649335026741,
+        0.16862311959266663
+      ],
+      "train_points_per_class": 300,
+      "source_pair_rank_accuracy": 0.9566667079925537,
+      "source_base_pair_rank_accuracy": 0.15000000596046448,
+      "source_score_fp_mean": -3.883760690689087,
+      "source_score_def_mean": 5.878815174102783,
+      "hardpair_frac": 0.75
+    },
+    "score_definition": {
+      "baseline_txt": "official AdaptCLIP zero-shot baseline",
+      "ted_trainfree_vl": "train-free TED margin inserted at the requested AdaptCLIP local evidence point",
+      "ted_calibrated_vl": "source-calibrated TED score inserted at the requested AdaptCLIP local evidence point"
+    }
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_black",
+      "image_auroc": 0.40625,
+      "image_ap": 0.5173009634017944,
+      "pixel_auroc": 0.39780643582344055,
+      "pixel_ap": 0.0006800355622544885,
+      "pixel_aupro": 0.003409641794860363
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5693816542625427,
+      "image_ap": 0.7461097836494446,
+      "pixel_auroc": 0.6380091309547424,
+      "pixel_ap": 0.0067770350724458694,
+      "pixel_aupro": 0.3239487409591675
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_white",
+      "image_auroc": 0.4833332896232605,
+      "image_ap": 0.5038567781448364,
+      "pixel_auroc": 0.6735238432884216,
+      "pixel_ap": 0.0005829604924656451,
+      "pixel_aupro": 0.13585436344146729
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "connector",
+      "image_auroc": 0.6309524178504944,
+      "image_ap": 0.5142692923545837,
+      "pixel_auroc": 0.7761810421943665,
+      "pixel_ap": 0.0254274420440197,
+      "pixel_aupro": 0.4436028003692627
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_plate",
+      "image_auroc": 0.8716142773628235,
+      "image_ap": 0.9565216302871704,
+      "pixel_auroc": 0.8616815805435181,
+      "pixel_ap": 0.5592613816261292,
+      "pixel_aupro": 0.7311498522758484
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tubes",
+      "image_auroc": 0.6721014380455017,
+      "image_ap": 0.8501838445663452,
+      "pixel_auroc": 0.2502552270889282,
+      "pixel_ap": 0.004875101149082184,
+      "pixel_aupro": 0.015101720578968525
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.6056055128574371,
+      "image_ap": 0.6813737154006958,
+      "pixel_auroc": 0.5995762099822363,
+      "pixel_ap": 0.0996006593243995,
+      "pixel_aupro": 0.2755111865699291
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "bracket_black",
+      "image_auroc": 0.41489359736442566,
+      "image_ap": 0.5197497010231018,
+      "pixel_auroc": 0.39484572410583496,
+      "pixel_ap": 0.0006776652298867702,
+      "pixel_aupro": 0.002348845126107335
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5656108856201172,
+      "image_ap": 0.7339512705802917,
+      "pixel_auroc": 0.6381140351295471,
+      "pixel_ap": 0.006521621719002724,
+      "pixel_aupro": 0.32834288477897644
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "bracket_white",
+      "image_auroc": 0.48222219944000244,
+      "image_ap": 0.5059155821800232,
+      "pixel_auroc": 0.6644691824913025,
+      "pixel_ap": 0.0005346500547602773,
+      "pixel_aupro": 0.12067759782075882
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "connector",
+      "image_auroc": 0.6285713911056519,
+      "image_ap": 0.5034149289131165,
+      "pixel_auroc": 0.7805461883544922,
+      "pixel_ap": 0.025134852156043053,
+      "pixel_aupro": 0.4429662227630615
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "metal_plate",
+      "image_auroc": 0.8726977109909058,
+      "image_ap": 0.9573062658309937,
+      "pixel_auroc": 0.8650339245796204,
+      "pixel_ap": 0.5632744431495667,
+      "pixel_aupro": 0.7343717813491821
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "tubes",
+      "image_auroc": 0.6662138104438782,
+      "image_ap": 0.8483188152313232,
+      "pixel_auroc": 0.24724170565605164,
+      "pixel_ap": 0.004862226080149412,
+      "pixel_aupro": 0.01190484594553709
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "mean",
+      "image_auroc": 0.6050349324941635,
+      "image_ap": 0.6781094272931417,
+      "pixel_auroc": 0.5983751267194748,
+      "pixel_ap": 0.10016757639823481,
+      "pixel_aupro": 0.2734353629639372
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "bracket_black",
+      "image_auroc": 0.41356387734413147,
+      "image_ap": 0.5196099877357483,
+      "pixel_auroc": 0.3994073271751404,
+      "pixel_ap": 0.0006825895397923887,
+      "pixel_aupro": 0.0016751133371144533
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5671191215515137,
+      "image_ap": 0.7344540953636169,
+      "pixel_auroc": 0.639478325843811,
+      "pixel_ap": 0.006493367254734039,
+      "pixel_aupro": 0.3275968134403229
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "bracket_white",
+      "image_auroc": 0.4833332896232605,
+      "image_ap": 0.5062075257301331,
+      "pixel_auroc": 0.6620248556137085,
+      "pixel_ap": 0.000528056058101356,
+      "pixel_aupro": 0.11929458379745483
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "connector",
+      "image_auroc": 0.6309523582458496,
+      "image_ap": 0.5064560770988464,
+      "pixel_auroc": 0.7898651361465454,
+      "pixel_ap": 0.027638329192996025,
+      "pixel_aupro": 0.46048012375831604
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "metal_plate",
+      "image_auroc": 0.8737812042236328,
+      "image_ap": 0.9576019048690796,
+      "pixel_auroc": 0.8644261956214905,
+      "pixel_ap": 0.5610541105270386,
+      "pixel_aupro": 0.7384079694747925
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "tubes",
+      "image_auroc": 0.6666666269302368,
+      "image_ap": 0.8489357829093933,
+      "pixel_auroc": 0.24712155759334564,
+      "pixel_ap": 0.004862403497099876,
+      "pixel_aupro": 0.010882268659770489
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "mean",
+      "image_auroc": 0.6059027463197708,
+      "image_ap": 0.6788775622844696,
+      "pixel_auroc": 0.6003872329990069,
+      "pixel_ap": 0.10020980934496038,
+      "pixel_aupro": 0.27638947874462855
+    }
+  ]
+}

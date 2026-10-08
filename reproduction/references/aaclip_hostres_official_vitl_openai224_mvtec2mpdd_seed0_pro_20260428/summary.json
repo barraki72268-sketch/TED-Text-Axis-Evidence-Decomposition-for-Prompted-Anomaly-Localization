@@ -1,0 +1,442 @@
+{
+  "per_class": [
+    {
+      "class_name": "bracket_black",
+      "num_images": 79,
+      "baseline": {
+        "pixel_auc": 93.87,
+        "pixel_ap": 1.03,
+        "pixel_pro": 77.31748962402344,
+        "image_auc": 36.84,
+        "image_ap": 50.13999999999999
+      },
+      "parallel": {
+        "pixel_auc": 94.71000000000001,
+        "pixel_ap": 2.1399999999999997,
+        "pixel_pro": 80.75859832763672,
+        "image_auc": 57.11436170212767,
+        "image_ap": 63.3684681649451
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 93.53,
+          "pixel_ap": 1.94,
+          "pixel_pro": 77.39302825927734,
+          "image_auc": 48.27127659574468,
+          "image_ap": 57.975980410342565
+        }
+      }
+    },
+    {
+      "class_name": "bracket_brown",
+      "num_images": 77,
+      "baseline": {
+        "pixel_auc": 92.15,
+        "pixel_ap": 3.1199999999999997,
+        "pixel_pro": 69.55934143066406,
+        "image_auc": 50.980000000000004,
+        "image_ap": 67.44
+      },
+      "parallel": {
+        "pixel_auc": 93.65,
+        "pixel_ap": 3.9800000000000004,
+        "pixel_pro": 82.92024230957031,
+        "image_auc": 51.9607843137255,
+        "image_ap": 69.03146467120371
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 94.39999999999999,
+          "pixel_ap": 4.46,
+          "pixel_pro": 80.94104766845703,
+          "image_auc": 50.60331825037707,
+          "image_ap": 68.55636971269797
+        }
+      }
+    },
+    {
+      "class_name": "bracket_white",
+      "num_images": 60,
+      "baseline": {
+        "pixel_auc": 93.5,
+        "pixel_ap": 0.22,
+        "pixel_pro": 80.02012634277344,
+        "image_auc": 60.89,
+        "image_ap": 70.06
+      },
+      "parallel": {
+        "pixel_auc": 93.61,
+        "pixel_ap": 0.27,
+        "pixel_pro": 82.15252685546875,
+        "image_auc": 68.55555555555556,
+        "image_ap": 76.12561841293139
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 93.13,
+          "pixel_ap": 0.22999999999999998,
+          "pixel_pro": 76.91724395751953,
+          "image_auc": 64.55555555555556,
+          "image_ap": 72.71467276855978
+        }
+      }
+    },
+    {
+      "class_name": "connector",
+      "num_images": 44,
+      "baseline": {
+        "pixel_auc": 94.82000000000001,
+        "pixel_ap": 12.08,
+        "pixel_pro": 82.03596496582031,
+        "image_auc": 77.86,
+        "image_ap": 67.5
+      },
+      "parallel": {
+        "pixel_auc": 95.17999999999999,
+        "pixel_ap": 7.61,
+        "pixel_pro": 85.95366668701172,
+        "image_auc": 80.95238095238095,
+        "image_ap": 55.839493528569164
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 95.95,
+          "pixel_ap": 9.1,
+          "pixel_pro": 84.91629791259766,
+          "image_auc": 81.42857142857142,
+          "image_ap": 65.90480895462099
+        }
+      }
+    },
+    {
+      "class_name": "metal_plate",
+      "num_images": 97,
+      "baseline": {
+        "pixel_auc": 96.32,
+        "pixel_ap": 73.41,
+        "pixel_pro": 84.71383666992188,
+        "image_auc": 93.99,
+        "image_ap": 97.94
+      },
+      "parallel": {
+        "pixel_auc": 94.97,
+        "pixel_ap": 57.93000000000001,
+        "pixel_pro": 85.93307495117188,
+        "image_auc": 98.0498374864572,
+        "image_ap": 99.40489913514287
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 96.36,
+          "pixel_ap": 72.92,
+          "pixel_pro": 88.29893493652344,
+          "image_auc": 98.48320693391116,
+          "image_ap": 99.52403809658537
+        }
+      }
+    },
+    {
+      "class_name": "tubes",
+      "num_images": 101,
+      "baseline": {
+        "pixel_auc": 94.26,
+        "pixel_ap": 13.969999999999999,
+        "pixel_pro": 77.39630889892578,
+        "image_auc": 85.46000000000001,
+        "image_ap": 93.37
+      },
+      "parallel": {
+        "pixel_auc": 96.08,
+        "pixel_ap": 26.25,
+        "pixel_pro": 86.97410583496094,
+        "image_auc": 64.71920289855073,
+        "image_ap": 80.08670875231036
+      },
+      "candidates": {
+        "prescore_calibrated_alpha_1": {
+          "pixel_auc": 98.07000000000001,
+          "pixel_ap": 49.230000000000004,
+          "pixel_pro": 91.73495483398438,
+          "image_auc": 85.64311594202898,
+          "image_ap": 93.23477556033593
+        }
+      }
+    }
+  ],
+  "source_plugin_summary": null,
+  "source_prescore_calib_summary": {
+    "source_dataset": "MVTec",
+    "calibration": "source_prescore_feature_rank_no_target",
+    "hardpair_frac": 0.75,
+    "map_calib_epochs": 0,
+    "map_calib_hardfp_mode": "baseline_rank",
+    "map_calib_aggregate_loss": false,
+    "map_calib_preserve_weight": 0.25,
+    "map_calib_preserve_mode": "l1_background",
+    "map_calib_topk_frac": 0.05,
+    "map_calib_learn_layer_beta": false,
+    "map_calib_beta_init": 0.5,
+    "map_calib_beta_reg": 0.0,
+    "nonnegative_alpha": false,
+    "transport_mode": "subspace_tanh",
+    "subspace_rank": 8,
+    "subspace_readout_mode": "host_residual",
+    "preserve_host_margin_weight": 1.0,
+    "output_mode": "host_residual",
+    "layer_alpha": [
+      0.29072105884552,
+      0.2720519006252289,
+      0.2847164571285248,
+      0.28791433572769165
+    ],
+    "layer_beta": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "layer_effective_alpha": [
+      0.29072105884552,
+      0.2720519006252289,
+      0.2847164571285248,
+      0.28791433572769165
+    ],
+    "layer_fp_weight": [
+      1.2795230150222778,
+      0.7601941227912903,
+      0.7558492422103882,
+      0.7979744672775269
+    ],
+    "layer_gate_sharpness": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "layer_transport_w": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "layer_transport_b": [
+      0.0841042548418045,
+      0.2760182321071625,
+      0.3033893406391144,
+      0.34885531663894653
+    ],
+    "layer_transport_direction": [
+      [
+        0.5449510216712952,
+        -0.3319028317928314,
+        0.35341861844062805,
+        0.2987583577632904,
+        -0.3140968084335327,
+        -0.30313584208488464,
+        -0.3492482006549835,
+        0.2572648525238037
+      ],
+      [
+        0.5470660924911499,
+        -0.33998560905456543,
+        -0.35403749346733093,
+        0.35239744186401367,
+        -0.19158680737018585,
+        -0.22885701060295105,
+        -0.35600951313972473,
+        0.3460899293422699
+      ],
+      [
+        0.532779335975647,
+        -0.33091744780540466,
+        -0.3484243154525757,
+        0.2339608371257782,
+        0.3418222963809967,
+        -0.34027156233787537,
+        0.2919103801250458,
+        0.3356541693210602
+      ],
+      [
+        0.5304978489875793,
+        -0.32262393832206726,
+        0.339903324842453,
+        -0.2683824598789215,
+        -0.33371198177337646,
+        0.3411584198474884,
+        0.33223187923431396,
+        0.29797911643981934
+      ]
+    ],
+    "layer_subspace_score_w": [
+      [
+        0.5800750851631165,
+        -0.36012449860572815,
+        -0.35671284794807434,
+        0.17138603329658508,
+        0.3556155264377594,
+        0.3629140257835388,
+        -0.34501755237579346
+      ],
+      [
+        0.6161719560623169,
+        0.3843507170677185,
+        -0.3848571181297302,
+        0.01232451293617487,
+        0.277454137802124,
+        0.3815874457359314,
+        -0.31898248195648193
+      ],
+      [
+        0.623775839805603,
+        0.3914092779159546,
+        -0.27540943026542664,
+        -0.37395337224006653,
+        0.37429872155189514,
+        -0.22561673820018768,
+        -0.2258506864309311
+      ],
+      [
+        0.5823875665664673,
+        -0.359965056180954,
+        0.2788392901420593,
+        0.3073000907897949,
+        -0.35348019003868103,
+        -0.3313896358013153,
+        -0.3525589108467102
+      ]
+    ],
+    "layer_readout_gamma": [
+      0.1681642383337021,
+      0.23347727954387665,
+      0.24412430822849274,
+      0.18232236802577972
+    ],
+    "layer_source_delta_fp_mean": [
+      -0.0017220808658748865,
+      -0.0011352503206580877,
+      0.00018817982345353812,
+      0.0158674456179142
+    ],
+    "layer_source_delta_def_mean": [
+      0.08486371487379074,
+      0.14531509578227997,
+      0.16190499067306519,
+      0.14753049612045288
+    ],
+    "layer_source_base_pair_rank_accuracy": [
+      0.6370165348052979,
+      0.7472375631332397,
+      0.7585635185241699,
+      0.7240331172943115
+    ],
+    "layer_source_pair_rank_accuracy": [
+      0.6527624130249023,
+      0.7676795125007629,
+      0.7870165109634399,
+      0.7392264604568481
+    ]
+  },
+  "mean": {
+    "baseline": {
+      "pixel_auc": 94.15333333333332,
+      "pixel_ap": 17.305,
+      "pixel_pro": 78.50717798868816,
+      "image_auc": 67.67,
+      "image_ap": 74.40833333333333
+    },
+    "parallel": {
+      "pixel_auc": 94.7,
+      "pixel_ap": 16.363333333333333,
+      "pixel_pro": 84.11536916097005,
+      "image_auc": 70.22535381813294,
+      "image_ap": 73.9761087775171
+    },
+    "candidates": {
+      "prescore_calibrated_alpha_1": {
+        "pixel_auc": 95.24000000000001,
+        "pixel_ap": 22.98,
+        "pixel_pro": 83.36691792805989,
+        "image_auc": 71.49750745103148,
+        "image_ap": 76.31844091719044
+      }
+    }
+  },
+  "preset": "mvtec2mpdd",
+  "source_dataset": "MVTec",
+  "target_dataset": "MPDD",
+  "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+  "target_root": "/mnt/data/pilab-kingjinyoung/ADPretrain/datasets/MPDD",
+  "ckpt_dir": "/mnt/data/pilab-kingjinyoung/ADPretrain/results/aaclip_ckpt/mvtec_fullshot",
+  "class_name": null,
+  "model_name": "ViT-L-14-336",
+  "pretrained": "openai",
+  "adapter_load_mode": "strict",
+  "levels": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "vision_width": 1024,
+  "vision_depth": 24,
+  "text_width": 768,
+  "output_dim": 768,
+  "img_size": 224,
+  "tau": 0.1,
+  "fp_weight": 1.0,
+  "alphas": [
+    1.0
+  ],
+  "blend_modes": [
+    "prescore_calibrated"
+  ],
+  "max_fp_per_class": 512,
+  "max_defect_per_class": 512,
+  "normal_topk_frac": 0.01,
+  "defect_topk_frac": 0.25,
+  "candidate_topk_frac": 0.1,
+  "gate_sharpness": 3.0,
+  "candidate_image_mode": "baseline_plus_map_topk",
+  "cal_pro": true,
+  "aupro_max_step": 50,
+  "source_plugin": null,
+  "source_prescore_calibration": {
+    "calibration": "source_prescore_feature_rank_no_target",
+    "training_scope": "once_per_source_host_backbone_run",
+    "feature_names": [
+      "axis_projection",
+      "defect_support",
+      "hardfp_support"
+    ],
+    "prescore_calib_epochs": 20,
+    "prescore_calib_lr": 0.02,
+    "prescore_calib_max_train_points": 8192,
+    "prescore_calib_rank_margin": 0.05,
+    "prescore_calib_rank_temp": 0.05,
+    "prescore_calib_alpha_init": 0.2,
+    "prescore_calib_alpha_max": 1.0,
+    "prescore_calib_alpha_reg": 0.001,
+    "prescore_calib_hardpair_frac": 0.75,
+    "prescore_calib_learn_fp_weight": true,
+    "prescore_calib_learn_gate": false,
+    "prescore_calib_nonnegative_alpha": false,
+    "prescore_calib_transport_mode": "subspace_tanh",
+    "prescore_calib_subspace_rank": 8,
+    "prescore_calib_subspace_readout_mode": "host_residual",
+    "prescore_calib_preserve_host_margin_weight": 1.0,
+    "prescore_calib_output_mode": "host_residual",
+    "prescore_map_calib_epochs": 0,
+    "prescore_map_calib_lr": 0.01,
+    "prescore_map_calib_max_images": 256,
+    "prescore_map_calib_sep_margin": 0.25,
+    "prescore_map_calib_sep_temp": 0.1,
+    "prescore_map_calib_hardfp_mode": "baseline_rank",
+    "prescore_map_calib_aggregate_loss": false,
+    "prescore_map_calib_preserve_weight": 0.25,
+    "prescore_map_calib_preserve_mode": "l1_background",
+    "prescore_map_calib_topk_frac": 0.05,
+    "prescore_map_calib_learn_layer_beta": false,
+    "prescore_map_calib_beta_init": 0.5,
+    "prescore_map_calib_beta_reg": 0.0
+  }
+}
