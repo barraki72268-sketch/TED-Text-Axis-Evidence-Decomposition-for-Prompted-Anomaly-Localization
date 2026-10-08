@@ -197,6 +197,21 @@ arguments: AdaCLIP's B/16+ row uses OpenAI B/16, and AA-CLIP's OpenAI row uses
 L/14-336 weights at 224-pixel input. These are documented historical settings,
 not silent corrections to the paper or claims of fresh validation.
 
+Download a recipe's exact backbone directly from its recorded upstream URL:
+
+```bash
+python -m reproduction prepare-backbones ./inputs/backbone-faprompt \
+  --recipe faprompt-vitl14_336-mvtec2btad-seed0
+# Explicitly download all eight objects, totaling 16.58 GB:
+python -m reproduction prepare-backbones ./inputs/all-backbones --all
+```
+
+Only hash/size-verified downloads become `objects/<sha256>` files. Failed
+downloads retain `.part` files and an error report; existing destinations are
+preserved. No weights are deserialized by this command. Pass the result to
+`prepare-run --objects` alongside checkpoint and bank directories. Network
+availability and actual model loading remain separate from hash validation.
+
 ## Reproduction contracts
 
 `host-source-banks.json` maps the 207 adapted-host recipes to 92 bank objects

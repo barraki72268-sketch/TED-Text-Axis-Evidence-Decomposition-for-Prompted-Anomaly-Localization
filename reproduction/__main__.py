@@ -26,6 +26,11 @@ def main() -> int:
     prepare_banks.add_argument("destination", type=Path)
     prepare_banks.add_argument("--kind", choices=("host", "raw"), required=True)
     prepare_banks.add_argument("--archive", type=Path)
+    backbones = sub.add_parser("prepare-backbones", help="Download exact upstream backbone bytes into a new directory")
+    backbones.add_argument("destination", type=Path)
+    backbone_scope = backbones.add_mutually_exclusive_group(required=True)
+    backbone_scope.add_argument("--recipe")
+    backbone_scope.add_argument("--all", action="store_true", help="Download all eight backbone objects (16.58 GB)")
     runtime = sub.add_parser("prepare-run", help="Prepare an isolated Linux runtime for one traced recipe")
     runtime.add_argument("recipe")
     runtime.add_argument("destination", type=Path)
@@ -59,6 +64,10 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "prepare-backbones":
+        from .backbone_download import prepare_backbones
+        print(json.dumps(prepare_backbones(ROOT, args.destination, args.recipe), indent=2))
+        return 0
     if args.action == "prepare-source-banks":
         from .bank_download import prepare_banks
         print(json.dumps(prepare_banks(ROOT, args.kind, args.destination, args.archive), indent=2))
