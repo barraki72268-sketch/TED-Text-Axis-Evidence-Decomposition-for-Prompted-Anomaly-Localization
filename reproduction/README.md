@@ -130,6 +130,18 @@ clean checkout outside the original research workspace.
 
 ## Reproduction contracts
 
+`host-source-banks.json` maps the 207 adapted-host recipes to 92 bank objects
+(2,109,842,800 bytes). For 139 recipes the bank paths are explicitly recorded
+in archived summaries. For the other 68, entries are clearly labeled as replay
+of the archived cache-selection algorithm against the recorded input inventory.
+All 20 FAPrompt entries found metadata-compatible nominal paths. AA-CLIP found
+eight nominal paths and selected the first sorted compatible cache for 40
+entries. Its compatibility fields omit the seed, so a seed-specific filename
+does not imply a separately mined source bank. Hash-checked, weights-only CPU
+inspection validated the metadata of all 81 candidate bank files involved.
+Historical directory membership still requires execution-log corroboration;
+these bindings are not proof of fresh bank rebuilding or complete GPU replay.
+
 - MVTec AD → VisA/MPDD/BTAD and VisA → MVTec AD are separate protocols.
   The archived BayesPFL MVTec row uses MVTec → MVTec; it must retain that label.
 - Use the paper's recorded seed subset. Missing seeds are not zero-valued runs.
