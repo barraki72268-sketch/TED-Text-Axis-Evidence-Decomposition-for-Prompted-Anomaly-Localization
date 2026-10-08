@@ -7,7 +7,8 @@ FAPrompt artifact is not the complete release.
 ## Available in this working tree
 
 The inventory contains 207 archived adapted-host seed runs and 25 main-table
-frozen-backbone runs. One legacy AA-CLIP launch command still needs recovery.
+frozen-backbone runs. The legacy AA-CLIP launch command has also been recovered;
+its default-seed behavior is being checked by replay.
 The inventory is not a count of fresh successful GPU runs. Additional ablation
 tables remain to be mapped to executable recipes.
 
