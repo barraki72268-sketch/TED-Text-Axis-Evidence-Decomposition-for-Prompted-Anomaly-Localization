@@ -103,6 +103,12 @@ For offline use, pass `--archive /path/to/host-checkpoints-20261008.tar`.
 An interrupted download is retained as `.tar.part` for diagnosis and will not
 be overwritten automatically; move that partial file aside before retrying.
 The command writes `input-verification.json` alongside the prepared objects.
+The public command at commit `a96f309b0f60e4256d7ed5f3cbe488719e92180f`
+completed an anonymous download and preparation of all 11 objects in 38.63
+seconds on the validation server, with zero errors. See the
+[download execution report](validation/2026-10-08/public-checkpoint-download-validation.json).
+An independent [anonymous byte audit](validation/2026-10-08/huggingface-hosts-public-verification.json)
+also checked all 29 manifest files at the pinned Hugging Face revision.
 
 A fresh clone at `a5c846b344c3764ea5dc5d2b5957817cc21f54d8` verified the
 actual 11 checkpoint objects with zero errors; the execution report is
