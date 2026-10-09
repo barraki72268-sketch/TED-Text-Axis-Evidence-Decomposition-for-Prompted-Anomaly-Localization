@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, and two AdaCLIP full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank.",
+  "scope": "Four AA-CLIP, two FAPrompt, and three AdaCLIP full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -281,6 +281,41 @@
         },
         {
           "file": "adaclip-h14-v4/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "adaclip-vitl14openai-mvtec2btad-seed0",
+      "slurm_job_id": "13718",
+      "status": "mismatch",
+      "finished": "2026-10-09T04:20:51.240942+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 3,
+      "reference_sha256": "7e43feba8fa18945238ceda3af6e0c1311ccbac26c2b1565bcb6468599fdee21",
+      "evidence": [
+        {
+          "file": "adaclip-l14openai-v4/execution.json",
+          "sha256": "569ab49f7656166e5a9f1a5fca2947d5c3918c479c7dd5428ee8a9a16e874e81"
+        },
+        {
+          "file": "adaclip-l14openai-v4/comparison.json",
+          "sha256": "e15ebc3da2f4ad9ec24dbaaf28a052249bcf0de255d890e83a3d2547fde2835b"
+        },
+        {
+          "file": "adaclip-l14openai-v4/summary.json",
+          "sha256": "fb620d3702cdbe98af34952f4dfe5f35bda1008edf7bb03353e4035ead7289f6"
+        },
+        {
+          "file": "adaclip-l14openai-v4/environment.json",
           "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
         }
       ]

@@ -311,6 +311,6 @@ confirms a download without authentication from the pinned Hugging Face commit,
 archive SHA-256/size verification, extraction into a new directory, all 933 input
 files verified, and CPU raw-map agreement on three BTAD images in the isolated
 CPU-only environment. The check prohibits network access, fitting and reads
-from both original/previously relocated bundles during inference. Main-archive
-anonymous verification is still running. These checks do not establish full
+from both original/previously relocated bundles during inference. The [main archive client record](../reproduction/validation/a10-20261009/aa-anonymous-main-verification.json)
+passes the same checks for the input-518 main release. These checks do not establish full
 CPU dataset metric parity or reproduction of all paper configurations.

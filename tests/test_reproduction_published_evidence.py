@@ -103,7 +103,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 8)
+        self.assertEqual(len(report['results']), 9)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:

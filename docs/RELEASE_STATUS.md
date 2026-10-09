@@ -52,3 +52,17 @@ differences has not been established.
 Continue with the [quick start](../README.md#quick-start),
 [full reproduction guide](../reproduction/README.md), or
 [scope and provenance notes](REPRODUCIBILITY.md).
+
+### Public AA client verification
+
+Both main L/14-336 seed-0 (input518) and source-limit-1 seed-0 (input224)
+serving archives passed anonymous download, pinned SHA/size verification,
+933-file verification after new-directory extraction, and isolated CPU
+three-image raw-map parity with zero error. See the
+[bound client evidence](../reproduction/validation/a10-20261009/aa-anonymous-evidence.json)
+and [download commands](SERVICE.md#download-a-pinned-public-aa-release).
+These checks do not establish full-dataset CPU metrics or all-model deployment.
+
+AdaCLIP B16/H14/L14 OpenAI v4 fresh full-BTAD evaluations match6/8,4/8,3/8
+archived per-seed metrics respectively. All differences and exact summaries
+are retained in the [fresh A10 report](../reproduction/validation/a10-20261009/report.json).
