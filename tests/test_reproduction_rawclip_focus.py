@@ -29,6 +29,15 @@ class RawclipFocusTests(unittest.TestCase):
         self.assertTrue(all(row['matches_archive_3dp'] for row in comparison['aucs']))
         self.assertTrue(all(row['matches_exact'] for row in comparison['counts']))
         self.assertIn('crowded', manifest['pdf_visual_review']['notes'])
+        binding = manifest['cpu_audit']
+        raw = (ROOT / binding['path']).read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), binding['sha256'])
+        report = json.loads(raw)
+        self.assertTrue(report['evidence_bindings_verified'])
+        self.assertFalse(report['fresh_gpu_execution_verified'])
+        self.assertEqual(report['comparison'], comparison)
+        self.assertEqual(report['status'], 'mismatch')
+        self.assertEqual([row['patches_per_group'] for row in report['compact_plot_sampling']], [50000, 50000])
 
     def test_linux_guard_validation_preserves_empty_results_and_bound_logs(self):
         manifest, _ = read_inputs(ROOT)
