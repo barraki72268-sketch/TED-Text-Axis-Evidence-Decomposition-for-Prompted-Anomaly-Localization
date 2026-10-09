@@ -68,14 +68,15 @@ python -m reproduction compare-weak-source --runs /path/to/fresh-weak-source-run
 
 The latter requires all 28 `<configuration>/summary.json` files and uses each
 host's declared metric units. It reports missing configurations rather than
-averaging an available subset. Full replay, source-bank provenance, and the
+averaging an available subset. Full replay, unresolved bank provenance, and the
 remaining ablation tables are still required.
 `ablations/weak-source-banks.json` binds all 28 configurations to 12 unique
 bank objects (239,998,256 bytes). Twenty bindings come from explicit archived
 cache-log paths; eight come from the loader's nominal filename rule and exact
 weights-only CPU metadata compatibility checks. Log hashes and evidence labels
 are retained. The latter eight do not establish historical cache-hit events.
-Bank publication and fresh mining/replay for this ablation remain pending.
+The 12-object bank archive is public; fresh mining/replay remains pending.
+Acquire it with `python -m reproduction prepare-source-banks ./inputs/weak-banks --kind weak`.
 For each configuration, reported per-class image counts must also match the
 hash-checked dataset test manifest exactly; missing or duplicate classes are
 rejected. All 28 archived summaries pass this check (MVTec AD 1,725 test images,
@@ -177,9 +178,9 @@ the verifier and archived inputs; they do not execute the GPU benchmark.
 
 ## What remains before this is a complete runnable release
 
-- A portable, pinned evaluation environment and path-independent host code.
-- Dataset preparation commands and split/metadata/image manifests.
-- Verified checkpoints, banks, calibrators, and their download manifest.
+- Clean GPU validation of the prepared runtime across every host/backbone loader.
+- Readable MVTec AD 2 inputs and its full protocol; four dataset manifests and preparation commands are available.
+- Fresh source-bank rebuilding and publication of remaining verified calibration states; historical checkpoints/banks are already public.
 - Fresh GPU runs for every required model/backbone/dataset/seed combination.
 - Seed aggregation against printed means and standard deviations.
 - Resolution of the historical provenance differences recorded in

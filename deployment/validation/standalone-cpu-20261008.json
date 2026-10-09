@@ -1,0 +1,63 @@
+{
+  "image_id": "sha256:eeb685b596e44357608121391c5d3430063eaa2dabf7e0ed5bf21dccd5353545",
+  "image_size_bytes": 1448861314,
+  "tests_passed": 20,
+  "tests_skipped_gpu": 1,
+  "offline_parity": {
+    "scope": "standalone CPU image; no network; only model and test-data mounts; one repeated MPDD image",
+    "model": {
+      "host": "FAPrompt",
+      "variant": "C-TED branch_calibrated",
+      "artifact_sha256": "968db05a3cac035ad0e647a23d8468460a915ad87712da0d4bc8028ae588415d",
+      "device": "cpu",
+      "input_size": 518,
+      "model_load_ms": 8723.084341967478,
+      "torch_version": "2.9.1+cpu",
+      "deployment_status": "containerized vendored research bridge"
+    },
+    "requests": [
+      {
+        "roundtrip_ms": 8342.313227942213,
+        "max_abs_error": {
+          "host": 0.0,
+          "cted": 0.0
+        },
+        "image_score": 0.3554651439189911
+      },
+      {
+        "roundtrip_ms": 8485.226770862937,
+        "max_abs_error": {
+          "host": 0.0,
+          "cted": 0.0
+        },
+        "image_score": 0.3554651439189911
+      },
+      {
+        "roundtrip_ms": 8463.488691020757,
+        "max_abs_error": {
+          "host": 0.0,
+          "cted": 0.0
+        },
+        "image_score": 0.3554651439189911
+      }
+    ],
+    "invalid_input_status": 400
+  },
+  "http_benchmark": {
+    "successful": 10,
+    "busy_rejected": 0,
+    "p50_ms": 8179.423529654741,
+    "p95_ms": 8232.106621435378,
+    "successful_requests_per_second": 0.1213916267024153
+  },
+  "concurrent_requests": {
+    "concurrency": 4,
+    "successful": 1,
+    "busy_rejected": 3
+  },
+  "temporary_validation_engine": "stopped after validation",
+  "existing_demo": "preserved on port 18080",
+  "runtime_limit_caveat": "nested validation engine used outer 4 CPU / 12 GiB limits; production compose per-container limits not validated here",
+  "gpu_runtime_validated": false,
+  "aws_deployed": false
+}

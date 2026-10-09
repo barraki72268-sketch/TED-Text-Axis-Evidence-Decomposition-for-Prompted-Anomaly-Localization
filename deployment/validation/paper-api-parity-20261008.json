@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "three BTAD images; historical equations on CPU at batch 1 versus container HTTP API; not full paper batch-4 evaluation",
+  "artifact_sha256": "519e0354a87b2508034d4a85ee9a00c698b0714c52e0e467c57dae9614d62379",
+  "records": [
+    {
+      "image": "01_ko_0000.bmp",
+      "max_abs_error": {
+        "host": 0.0,
+        "cted": 0.0
+      },
+      "request_id": "8e750775b25b4ada8844a87b151ec650",
+      "roundtrip_seconds": 8.40248825890012
+    },
+    {
+      "image": "02_ko_0000.png",
+      "max_abs_error": {
+        "host": 0.0,
+        "cted": 0.0
+      },
+      "request_id": "9fc7d2f4b29543529ad30615b69d6fcf",
+      "roundtrip_seconds": 8.212172430939972
+    },
+    {
+      "image": "03_ko_0000.bmp",
+      "max_abs_error": {
+        "host": 0.0,
+        "cted": 0.0
+      },
+      "request_id": "b23e0fc777d24c4e9b978db3ca4d8152",
+      "roundtrip_seconds": 8.267862666863948
+    }
+  ],
+  "model": {
+    "host": "FAPrompt",
+    "variant": "C-TED branch_calibrated",
+    "artifact_sha256": "519e0354a87b2508034d4a85ee9a00c698b0714c52e0e467c57dae9614d62379",
+    "device": "cpu",
+    "input_size": 518,
+    "model_load_ms": 9060.346423182636,
+    "torch_version": "2.9.1+cu128",
+    "alpha": 0.5,
+    "calibration_source": "captured historical GPU run",
+    "deployment_status": "pilab CPU container; vendored code; host Python runtime"
+  }
+}

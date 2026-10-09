@@ -1,0 +1,40 @@
+name: ted-paper-release
+services:
+  api:
+    image: ted-inspection:host-runtime-20261008
+    user: "1000009:1000009"
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 4
+    mem_limit: 12g
+    pids_limit: 256
+    ports: ["127.0.0.1:${TED_PORT:-18082}:8000"]
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    environment:
+      TED_ARTIFACT: /models/calibrator.pt
+      TED_CHECKPOINT: /models/host.pth
+      TED_RESEARCH_ROOT: /app/vendor/research
+      TED_SAMPLE_IMAGE: /models/demo-sample.png
+      TED_DEVICE: cpu
+      TED_MODEL_VERSION: faprompt-cted-paper-alpha05-20261008
+      TED_RUNTIME_PROFILE: pilab CPU container; host Python runtime
+      FAPROMPT_CACHE_DIR: /models/backbone
+      CUDA_VISIBLE_DEVICES: ""
+    volumes:
+      - ./app:/app:ro
+      - ./models:/models:ro
+      - /mnt/data/envs/patchcore-conda:/mnt/data/envs/patchcore-conda:ro
+    healthcheck:
+      test: [CMD, /mnt/data/envs/patchcore-conda/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready',timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: "2"

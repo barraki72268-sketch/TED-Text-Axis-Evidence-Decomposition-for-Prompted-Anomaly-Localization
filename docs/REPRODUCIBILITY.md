@@ -1,10 +1,67 @@
-# Reproducibility and release notes
+# Reproducibility scope and release status
 
-[← Research overview](../README.md)
+[Research overview](../README.md) · [Executable guide](../reproduction/README.md) · [Service](SERVICE.md)
 
-## Current availability
+Status: **October 9, 2026**.
 
-The [feature-level T-TED scoring core](TTED.md) and [host-specific C-TED calibration/inference cores](CTED.md) are available with tests and synthetic examples. C-TED currently covers AA-CLIP, AdaCLIP, and FAPrompt. Full image-inference/training pipelines, checkpoints, and benchmark evaluation commands are not included yet. The following describes the experimental workflow and planned release contents, not a full benchmark installation guide.
+## What is available
+
+The public package includes the archived research source, hash-pinned historical
+summaries, checkpoint/bank acquisition tools, full-dataset input verification,
+Linux runtime preparation, and fresh-run comparison. Artifact acquisition and
+reference auditing work without PyTorch. Runtime preparation and evaluation
+require Linux and the compatible research dependencies; all-loader clean GPU
+validation is still in progress.
+
+| Release component | Current evidence |
+|---|---|
+| Main/host inventory | 232 configurations: 207 adapted-host seed runs and 25 frozen-backbone runs; eight evaluator source versions pinned |
+| Weak-source ablation | 28 additional seed-0 configurations, 12 bank objects; all 24 printed gain cells match archived-summary aggregation |
+| Host model weights | 11 public hash-verified checkpoint objects |
+| Source evidence banks | 92 adapted-host and 10 frozen-backbone public objects; 12 weak-source banks also published and anonymously verified |
+| Backbones | All 8 upstream files acquired and matched to pinned byte counts and SHA-256 |
+| Dataset manifests | Four full protocols, 23,091 referenced files; MVTec AD 2 still required |
+| Fresh run and service records | Selected full-BTAD GPU replay and FAPrompt CPU/API checks; see the linked records below |
+
+Use [reproduction/README.md](../reproduction/README.md) for runnable commands,
+[DATASETS.md](../reproduction/DATASETS.md) for data roots, and
+[SOURCE-NOTICES.md](../reproduction/SOURCE-NOTICES.md) for upstream components.
+These counts describe recorded or verified inputs, not fully reproduced models.
+
+## What remains
+
+The target is all reported models, backbones, five datasets, seeds, ablations,
+and empirical figures. It is not satisfied by one successful model or dataset.
+
+- **Full GPU replay:** execute every required configuration from a clean checkout and preserve logs, environment, artifacts, and comparisons.
+- **Data access:** obtain readable MVTec AD 2 inputs. The original directory currently denies access to the execution account; no full five-dataset claim is made.
+- **Historical provenance:** resolve the 13 printed-mean differences in [unresolved-paper-cells.json](../reproduction/unresolved-paper-cells.json), plus missing historical seed evidence.
+- **Numerical mismatches:** retain and investigate ImageBind Blackwell and AA-CLIP H/14 differences; do not select parameters to force agreement with target metrics.
+- **Bank rebuilding:** regenerate source-only banks under the traced settings and compare provenance/content; publishing historical banks does not establish fresh rebuilding.
+- **Remaining analyses:** map and rerun the other tables, empirical figures, and prose claims. The [34-table inventory](../reproduction/paper-table-scope.json) and [12-figure inventory](../reproduction/paper-figure-scope.json) define the broader scope. The main 232 recipes cover Table 1 and Tables 17–21; the weak-source table is additional.
+- **Publication and deployment:** publish remaining verified artifacts and validate all-model inference adapters, model selection, and portable Docker execution.
+
+Mismatches and failed attempts remain evidence. They are not dropped from the
+release simply because another configuration reproduces successfully.
+
+## How to interpret the checks
+
+| Evidence | What it establishes | What it does not establish |
+|---|---|---|
+| Hash/catalog verification | Published bytes and bindings match the pinned archive | Fresh inference or agreement with the paper |
+| Archived-summary aggregation | Recorded summaries reproduce the selected printed cells | A new GPU run |
+| Fresh-run comparison | The stated run matches its archived per-seed reference at the stated precision | All printed means/stds, seeds, or hardware |
+| Full target-coverage check | Reported classes and, where available, image counts match the full test manifest | Independent per-image execution proof |
+| API raw-map parity | HTTP output agrees with the stated inference path/input/batch | Whole-dataset metrics or throughput guarantees |
+
+Selected public evidence:
+
+- [Anonymous checkpoint acquisition](../reproduction/validation/2026-10-08/public-checkpoint-download-validation.json).
+- [Full dataset byte verification](../reproduction/validation/2026-10-08/public-dataset-validation.json).
+- [Eight upstream backbones](../reproduction/validation/public-backbone-download-validation.json).
+- [ImageBind BTAD hardware comparison and AA-CLIP mismatch investigation](../reproduction/validation/2026-10-08/report.json).
+- [Weak-source archived table reconstruction](../reproduction/validation/weak-source-archived-table-validation.json).
+- [FAPrompt deployment and API records](SERVICE.md#evidence-and-limits).
 
 ## Experimental workflow
 
@@ -28,30 +85,21 @@ The host is frozen. C-TED uses source defect–Hard-FP pairs with a softplus ran
 | AdaCLIP | 8 | 30 | 2,048 |
 | FAPrompt | 4 | 30 | 2,048 |
 
-These source-point budgets are **not retained-bank sizes**. Host-native recipes, shared-recipe controls, and compatibility variants must be distinguished. In particular, optimizer settings from a shared-recipe audit should not be silently applied to all submitted host-native experiments. The released [C-TED cores and notes](CTED.md) expose parameterization, loss, pair selection, and host interfaces. Exact configuration-to-result mapping remains pending; synthetic example settings are not paper recipes.
+These source-point budgets are **not retained-bank sizes**. Host-native recipes, shared-recipe controls, and compatibility variants must be distinguished. In particular, optimizer settings from a shared-recipe audit should not be silently applied to all submitted host-native experiments. The released [C-TED cores and notes](CTED.md) expose parameterization, loss, pair selection, and host interfaces. The [232 main/host recipes](../reproduction/README.md) and separate 28-configuration weak-source inventory preserve the current mappings. Additional paper analyses remain to be traced; synthetic example settings are not paper recipes.
 
-## Planned implementation release
+## Data and third-party terms
 
-- [x] T-TED feature-level support and margin computation with numerical tests.
-- [x] C-TED calibration and feature-level readout modules for AA-CLIP, AdaCLIP, and FAPrompt.
-- [ ] Host-specific feature/score adapters and source-bank builders.
-- [ ] Explicit source splits, category/image caps, sampling seeds, and bank-size units.
-- [x] Tested core environment documented (Python 3.10.19, PyTorch 2.9.1+cu128).
-- [ ] Full host/benchmark dependency specification.
-- [ ] Checkpoint acquisition instructions and source-calibrated artifacts where redistributable.
-- [ ] Exact commands for primary result tables and labeled diagnostic experiments.
-- [ ] Per-setting metrics and configuration-to-paper mapping.
-- [ ] Visualization scripts with paired color normalization and selection provenance.
-- [ ] License and third-party notice review.
-
-No release date is promised here. This list will be updated as artifacts become available.
-
-## Data and third-party assets
-
-The study uses MVTec AD, VisA, MPDD, BTAD, and the separately labeled MVTec AD 2 diagnostic. Dataset images shown in figures remain subject to their original terms. No dataset archive or third-party checkpoint is redistributed in this documentation release. Obtain data and host weights from their official providers and follow their access conditions.
-
-A software license has not yet been selected. Do not infer an MIT or Apache license from the repository being public. Upstream code, models, and datasets retain their own licenses.
+The study uses MVTec AD, VisA, MPDD, BTAD, and MVTec AD 2. Obtain original
+images from their providers under the applicable terms. Public model weights,
+source-derived banks, and code retain upstream restrictions; this repository
+does not grant a blanket MIT/Apache or commercial license to every component.
+Private conversation history, credentials, and original dataset archives are
+not included in the public release.
 
 ## Reporting a reproduction issue
 
-Once the implementation is released, include the commit, host/checkpoint, source and target datasets, environment, seed, full command, and logs when opening an issue. Avoid uploading private data, credentials, or restricted datasets.
+Include the Git commit, recipe ID, artifact hashes, source/target datasets,
+environment, GPU model, seed, exact command, and execution/comparison records.
+State whether the issue concerns artifact acquisition, full-data execution,
+per-seed agreement, or printed aggregation. Avoid attaching credentials or
+restricted original datasets.

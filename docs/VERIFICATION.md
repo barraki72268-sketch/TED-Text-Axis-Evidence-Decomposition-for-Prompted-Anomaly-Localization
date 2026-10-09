@@ -1,4 +1,6 @@
-# Core verification
+# Historical core and engineering verification
+
+These are dated validation snapshots. See [the current release overview](../README.md#verified-release), [the reproduction guide](../reproduction/README.md), and [the service evidence](SERVICE.md) for later source/artifact publication and container checks. Statements about missing code or deployment below describe their original dates, not current release availability.
 
 ## Private GPU HTTP smoke (October 7, 2026)
 
