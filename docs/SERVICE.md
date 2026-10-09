@@ -503,3 +503,5 @@ and [selector integration](../reproduction/validation/a10-20261009/gateway-image
 record separate checks. Use `deployment/imagebind-captured.pilab.compose.yaml`
 with a pinned host runtime; standalone dependency-image verification remains a
 separate requirement.
+
+The pinned ImageBind client also passes [anonymous full-archive acquisition and three CPU image comparisons](../reproduction/validation/a10-20261009/imagebind-public-client-v1/index.json) from a fresh GitHub clone, new download cache and new extraction directory. All 930 input hashes and all three raw map/score comparisons pass.

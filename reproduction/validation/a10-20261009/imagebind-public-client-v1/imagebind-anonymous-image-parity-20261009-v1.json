@@ -1,0 +1,58 @@
+{
+  "status": "matched",
+  "finished": "2026-10-09T13:18:35.226614+00:00",
+  "device": "cpu",
+  "gpu_used": false,
+  "recipe": "rawimagebind_mvtec2btad",
+  "artifact_sha256": "6bd4c7293855986ae68a598d0d410e70a078fc0de89eb8bf90134e648a1fcb57",
+  "engine_sha256": "1642d062b59cf43025c7502bed5b73159defe7ff715942e9d78c87de44abfdfe",
+  "original_output_source_sha256": "d47b675ce7c9ecfb7ef37a329c466abb2711929e3b178eb0b9c30332621bb401",
+  "original_workspace_reads_denied": true,
+  "network_denied": true,
+  "allowed_http_worker": null,
+  "scope": "Three protocol-fixed BTAD images, one per class; captured engine or pinned loopback HTTP worker compared to the original evaluator AST output block on the same CPU node and terminal captured bank/calibrators. No fitting/mining. Original model/workspace reads and unrelated network connections denied.",
+  "cases": [
+    {
+      "category": "01",
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "map_max_abs_error": {
+        "host_map": 0.0,
+        "tted_map": 0.0,
+        "cted_map": 0.0
+      },
+      "score_abs_error": {
+        "image_score": 0.0,
+        "tted_image_score": 0.0,
+        "cted_image_score": 0.0
+      }
+    },
+    {
+      "category": "02",
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "map_max_abs_error": {
+        "host_map": 0.0,
+        "tted_map": 0.0,
+        "cted_map": 0.0
+      },
+      "score_abs_error": {
+        "image_score": 0.0,
+        "tted_image_score": 0.0,
+        "cted_image_score": 0.0
+      }
+    },
+    {
+      "category": "03",
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "map_max_abs_error": {
+        "host_map": 0.0,
+        "tted_map": 0.0,
+        "cted_map": 0.0
+      },
+      "score_abs_error": {
+        "image_score": 0.0,
+        "tted_image_score": 0.0,
+        "cted_image_score": 0.0
+      }
+    }
+  ]
+}

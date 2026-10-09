@@ -11,6 +11,33 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_imagebind_anonymous_archive_and_cpu_images_bind_pinned_release(self):
+        folder = ROOT / 'validation/a10-20261009/imagebind-public-client-v1'
+        index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        acquired = json.loads((folder / 'imagebind-anonymous-acquisition-20261009-v1.json').read_text(encoding='utf-8'))
+        catalog = json.loads((ROOT / 'imagebind-serving-releases.json').read_text(encoding='utf-8'))
+        record = catalog['releases']['huge-btad']
+        self.assertEqual(acquired['status'], 'verified_serving_inputs')
+        self.assertEqual(acquired['files'], 930)
+        self.assertEqual(acquired['archive_sha256'], record['sha256'])
+        self.assertEqual(acquired['revision'], record['revision'])
+        self.assertIn('without auth headers', acquired['authentication'])
+        parity = json.loads((folder / 'imagebind-anonymous-image-parity-20261009-v1.json').read_text(encoding='utf-8'))
+        self.assertEqual(parity['status'], 'matched')
+        self.assertEqual(parity['artifact_sha256'], record['export_sha256'])
+        self.assertEqual(parity['engine_sha256'], digest_file(ROOT.parent / 'ted/inference/imagebind_engine.py'))
+        self.assertTrue(parity['original_workspace_reads_denied'])
+        self.assertTrue(parity['network_denied'])
+        self.assertFalse(parity['gpu_used'])
+        self.assertEqual({c['category'] for c in parity['cases']}, {'01', '02', '03'})
+        for case in parity['cases']:
+            self.assertEqual(set(case['map_max_abs_error']), {'host_map', 'tted_map', 'cted_map'})
+            self.assertFalse(any(case['map_max_abs_error'].values()))
+            self.assertFalse(any(case['score_abs_error'].values()))
+
     def test_imagebind_public_catalog_binds_anonymous_metadata_and_saved_archive(self):
         folder = ROOT / 'validation/a10-20261009/imagebind-public-v1'
         index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))
