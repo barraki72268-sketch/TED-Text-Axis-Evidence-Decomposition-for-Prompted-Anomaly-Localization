@@ -26,6 +26,15 @@ LOG = logging.getLogger("uvicorn.error")
 
 
 def engine_from_env():
+    family = os.environ.get("TED_ENGINE_FAMILY", "faprompt")
+    if family == "aaclip":
+        from .aaclip_engine import CapturedAAEngine
+        return CapturedAAEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],
+                                workspace=os.environ["TED_RUN_WORKSPACE"],
+                                category=os.environ.get("TED_DEFAULT_CATEGORY") or None,
+                                device=os.environ.get("TED_DEVICE", "cpu"))
+    if family != "faprompt":
+        raise ValueError("Unsupported configured engine family")
     from .engine import FAPromptEngine
     return FAPromptEngine(artifact_path=os.environ["TED_ARTIFACT"],
                          checkpoint_path=os.environ["TED_CHECKPOINT"],
@@ -33,7 +42,7 @@ def engine_from_env():
                          device=os.environ.get("TED_DEVICE", "cpu"))
 
 
-def encode_prediction(engine, body, max_pixels):
+def encode_prediction(engine, body, max_pixels, category=None):
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("error", Image.DecompressionBombWarning)
@@ -47,7 +56,15 @@ def encode_prediction(engine, body, max_pixels):
         raise HTTPException(413, "Image pixel limit exceeded")
     except (UnidentifiedImageError, OSError, ValueError):
         raise HTTPException(400, "Invalid or truncated image")
-    output = engine.predict(image)
+    info = engine.info()
+    if category is not None:
+        if category not in info.get("categories", []) or not callable(getattr(engine, "predict_for_category", None)):
+            raise HTTPException(422, "Unsupported category for this model")
+        output = engine.predict_for_category(image, category)
+    else:
+        if info.get("categories") and info.get("category") is None:
+            raise HTTPException(422, "This model requires a category query parameter")
+        output = engine.predict(image)
     host = np.asarray(output["host_map"], dtype=np.float32)
     cted = np.asarray(output["cted_map"], dtype=np.float32)
     if (host.ndim != 3 or host.shape[0] != 1 or host.shape != cted.shape
@@ -63,13 +80,16 @@ def encode_prediction(engine, body, max_pixels):
         buffer = io.BytesIO()
         Image.fromarray((pixels * 255).astype("uint8")).save(buffer, format="PNG")
         previews[name] = base64.b64encode(buffer.getvalue()).decode("ascii")
-    return dict(image_score=output["image_score"],
-                image_score_policy="unchanged official host score, not a probability",
+    result = dict(image_score=output["image_score"],
+                image_score_policy=output.get("image_score_policy", "unchanged official host score, not a probability"),
                 artifact_sha256=output["artifact_sha256"],
                 map_shape=list(cted.shape), maps_npz_base64=base64.b64encode(raw.getvalue()).decode("ascii"),
                 previews_png_base64=previews,
                 display=dict(percentiles=[2, 99.5], shared_range=[float(low), float(high)]),
                 timing_ms=output["timing_ms"])
+    if "category" in output:
+        result["category"] = output["category"]
+    return result
 
 
 def create_app(engine_factory=None, *, max_body_bytes=20_000_000, max_pixels=25_000_000):
@@ -104,7 +124,7 @@ def create_app(engine_factory=None, *, max_body_bytes=20_000_000, max_pixels=25_
         return app.state.engine.info()
 
     @app.post("/predict")
-    async def predict(request: Request):
+    async def predict(request: Request, category: str | None = None):
         request_id = uuid.uuid4().hex
         started = time.perf_counter()
         status = 500
@@ -122,7 +142,7 @@ def create_app(engine_factory=None, *, max_body_bytes=20_000_000, max_pixels=25_
                 if len(body) + len(chunk) > max_body_bytes:
                     raise HTTPException(413, "Image byte limit exceeded")
                 body.extend(chunk)
-            result = await run_in_threadpool(encode_prediction, app.state.engine, body, max_pixels)
+            result = await run_in_threadpool(encode_prediction, app.state.engine, body, max_pixels, category)
             result["request_id"] = request_id
             # Includes decode/NPZ/PNG encoding, excludes HTTP transport/JSON send.
             result["server_processing_ms"] = (time.perf_counter() - started) * 1000

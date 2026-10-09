@@ -27,6 +27,23 @@ class FakeEngine:
 
 
 class APIContractTests(unittest.TestCase):
+    def test_category_selection_preserves_host_specific_score_policy(self):
+        class CategoryEngine(FakeEngine):
+            def info(self):
+                return dict(super().info(), categories=['01', '02'], category=None)
+            def predict_for_category(self, image, category):
+                return dict(super().predict(image), category=category,
+                            image_score_policy='raw detection score; not dataset-normalized paper metric')
+        with TestClient(create_app(CategoryEngine)) as client:
+            self.assertEqual(client.post('/predict', content=png(), headers={'Content-Type':'image/png'}).status_code, 422)
+            self.assertEqual(client.post('/predict?category=invalid', content=png(), headers={'Content-Type':'image/png'}).status_code, 422)
+            response = client.post('/predict?category=02', content=png(), headers={'Content-Type':'image/png'})
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()['category'], '02')
+            self.assertIn('not dataset-normalized', response.json()['image_score_policy'])
+        with TestClient(create_app(FakeEngine)) as client:
+            self.assertEqual(client.post('/predict?category=02', content=png(), headers={'Content-Type':'image/png'}).status_code, 422)
+
     def test_lifecycle_and_outputs(self):
         calls = []
         def factory():
