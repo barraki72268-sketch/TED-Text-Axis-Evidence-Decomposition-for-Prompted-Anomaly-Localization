@@ -11,6 +11,31 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_anonymous_aa_release_matches_pinned_archive_and_raw_maps(self):
+        folder = ROOT / 'validation/a10-20261009'
+        index = json.loads((folder / 'aa-anonymous-evidence.json').read_text())
+        releases = json.loads((ROOT / 'aa-serving-releases.json').read_text())['releases']
+        for item in index['checks']:
+            for entry in item['files']:
+                self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
+            report = json.loads((folder / item['files'][0]['file']).read_text())
+            pinned = releases[item['release']]
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(report['hf_revision'], pinned['revision'])
+            self.assertEqual(report['sha256'], pinned['sha256'])
+            self.assertEqual(report['bytes'], pinned['bytes'])
+            self.assertTrue(report['authentication'].startswith('none'))
+            self.assertEqual(report['unpack']['files'], pinned['files'])
+            self.assertEqual(report['unpack']['recipe'], pinned['recipe'])
+            parity = json.loads((folder / item['files'][1]['file']).read_text())
+            self.assertEqual(report['parity'], parity)
+            self.assertEqual(parity['status'], 'matched')
+            self.assertEqual(parity['engine']['artifact_sha256'], pinned['export_sha256'])
+            self.assertEqual({r['category'] for r in parity['rows']}, {'01', '02', '03'})
+            for row in parity['rows']:
+                self.assertEqual(row['host_max_abs_error'], 0)
+                self.assertEqual(row['cted_max_abs_error'], 0)
+
     def test_fresh_aa_cpu_environment_and_both_raw_map_checks(self):
         folder = ROOT / 'validation/a10-20261009'
         index = json.loads((folder / 'aa-clean-cpu-evidence.json').read_text())

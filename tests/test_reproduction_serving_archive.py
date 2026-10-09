@@ -6,9 +6,53 @@ import tempfile
 import unittest
 
 from reproduction.serving_archive import pack_aa_bundle, unpack_aa_bundle
+from reproduction.aa_release import prepare_release
 
 
 class ServingArchiveTests(unittest.TestCase):
+    def test_public_download_roundtrip_and_offline_cache_reuse(self):
+        import io
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            record = pack_aa_bundle(self.fixture(root), root / 'release.tar.gz')
+            record['revision'] = 'a' * 40
+            catalog = root / 'catalog.json'
+            catalog.write_text(json.dumps(dict(repository='fixture/release', releases={'fixture': record})))
+            with patch('reproduction.aa_release.urllib.request.urlopen',
+                       return_value=io.BytesIO((root / 'release.tar.gz').read_bytes())) as request:
+                report = prepare_release('fixture', root / 'first', root / 'cache', catalog)
+                self.assertEqual(report['status'], 'verified_serving_inputs')
+                self.assertEqual(request.call_args.args[0],
+                                 'https://huggingface.co/fixture/release/resolve/' + 'a' * 40 + '/release.tar.gz')
+            with patch('reproduction.aa_release.urllib.request.urlopen', side_effect=AssertionError('Network used')):
+                prepare_release('fixture', root / 'second', root / 'cache', catalog)
+                with self.assertRaises(FileExistsError):
+                    prepare_release('fixture', root / 'second', root / 'cache', catalog)
+            cached = root / 'cache' / (record['sha256'] + '.tar.gz')
+            cached.write_bytes(b'corrupted')
+            with self.assertRaisesRegex(ValueError, 'Cached archive'):
+                prepare_release('fixture', root / 'third', root / 'cache', catalog)
+            self.assertFalse((root / 'third').exists())
+
+    def test_incomplete_public_download_is_preserved_and_never_extracted(self):
+        import io
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            record = pack_aa_bundle(self.fixture(root), root / 'release.tar.gz')
+            record['revision'] = 'a' * 40
+            catalog = root / 'catalog.json'
+            catalog.write_text(json.dumps(dict(repository='fixture/release', releases={'fixture': record})))
+            with patch('reproduction.aa_release.urllib.request.urlopen', return_value=io.BytesIO(b'truncated')):
+                with self.assertRaisesRegex(ValueError, 'Downloaded archive'):
+                    prepare_release('fixture', root / 'destination', root / 'cache', catalog)
+            partial = root / 'cache' / (record['sha256'] + '.tar.gz.partial')
+            self.assertEqual(partial.read_bytes(), b'truncated')
+            self.assertFalse((root / 'destination').exists())
+            with self.assertRaises(FileExistsError):
+                prepare_release('fixture', root / 'destination', root / 'cache', catalog)
+
     def fixture(self, root):
         bundle = root / 'bundle'
         bundle.mkdir()

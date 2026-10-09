@@ -178,6 +178,24 @@ python -m reproduction.serving_archive --unpack --record AA_RECIPE.json \
 Use the archive JSON supplied by the release. A passing extraction report
 proves input integrity and execution binding; run inference checks separately.
 
+### Download a pinned public AA release
+
+From a fresh clone, download and verify a complete serving bundle without a
+Hugging Face login or PyTorch installation:
+
+```bash
+python -m reproduction.aa_release main-l336-seed0 ./aa-main-bundle
+# Separate weak-source release:
+python -m reproduction.aa_release source1-seed0 ./aa-source1-bundle
+```
+
+The checked-in release catalog pins the public commit, archive size/SHA-256,
+933-file inventory, recipe and captured-artifact identity. Downloads are cached
+by hash and rechecked before extraction. Interrupted `.partial` files and
+existing destinations are preserved; use a new cache or destination after
+inspecting a failed attempt. The command does not fit or run a model.
+Follow the CPU installation and API instructions below for inference.
+
 ### Fresh AA CPU environment
 
 A new Linux Python 3.10.22 environment with official CPU wheels passed
@@ -285,3 +303,14 @@ only to `127.0.0.1:18085`, and uses the existing host-mounted Python runtime.
 The recorded API parity check ran on commit `c674fa4`; the later `0b5a3b2`
 deployment only fixes hiding inactive category controls. No standalone image
 or public Internet endpoint is claimed.
+
+### Public archive client verification
+
+The [source-limit-1 anonymous client record](../reproduction/validation/a10-20261009/aa-anonymous-weak-verification.json)
+confirms a download without authentication from the pinned Hugging Face commit,
+archive SHA-256/size verification, extraction into a new directory, all 933 input
+files verified, and CPU raw-map agreement on three BTAD images in the isolated
+CPU-only environment. The check prohibits network access, fitting and reads
+from both original/previously relocated bundles during inference. Main-archive
+anonymous verification is still running. These checks do not establish full
+CPU dataset metric parity or reproduction of all paper configurations.
