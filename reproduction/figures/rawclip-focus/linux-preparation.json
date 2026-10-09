@@ -1,0 +1,161 @@
+{
+  "status": "prepared_requires_guarded_slurm_execution",
+  "public_runtime_commit": "65ee20f825c78adb2b2b4849d848fb0893927d71",
+  "gpu_execution": false,
+  "cuda_visible_devices": "",
+  "plan_sha256": "9e9c4ba0e8d272eb4ff07f398db726d522a31a7b3fa67079f0c53973285a6b0a",
+  "archive": {
+    "path": "figures/rawclip-focus/linux-preparation.zip",
+    "bytes": 20962,
+    "sha256": "2206c194e62a8724d36e45aac737c2db36ade1057f501b6568772c4ee2bce719",
+    "members": {
+      "figure4-plan.json": {
+        "bytes": 59829,
+        "sha256": "9e9c4ba0e8d272eb4ff07f398db726d522a31a7b3fa67079f0c53973285a6b0a"
+      },
+      "preparation.log": {
+        "bytes": 178,
+        "sha256": "b2b9a7dc757e57a744002e3b498350187d0fe554fdef2b54b3122a9c55f35b57"
+      }
+    }
+  },
+  "assets": {
+    "bank": {
+      "path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/ef65a78c5ac69efb9b1db1d83197b3782c8ae813ebbd68e4d6cd4f524f00ff4e8",
+      "bytes": 3985651,
+      "sha256": "ef65a78c5ac69efb9b1db1d83197b3782c8ae813ebd68e4d6cd4f524f00ff4e8"
+    },
+    "backbone": {
+      "path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02",
+      "bytes": 934088680,
+      "sha256": "3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02"
+    }
+  },
+  "source": {
+    "source_files": 920,
+    "archive_sha256": "fb9b233733d09ea90fa212417c21bd5c6f6cd34f0c4c815ecb0a341f7a6d222d",
+    "destination": "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/source",
+    "evaluation_executed": false
+  },
+  "datasets": {
+    "mvtec": {
+      "dataset": "mvtec",
+      "status": "verified",
+      "files_verified": 6612,
+      "file_errors": 0,
+      "error_examples": [],
+      "roots": {
+        "images": "/home/jinyoungkim/ted-reproduce-20261009/data/mvtec-images",
+        "masks": "/home/jinyoungkim/ted-reproduce-20261009/data/mvtec-images"
+      },
+      "manifest_sha256": "061348b922755b9daf30d79bd921cf04d96eb4571ec6a15f09e830c9b6a83575",
+      "metadata_sha256": "45b03bd7da85a901ee9018b97362d50e5347420d886f9a859252069ff74f448b",
+      "counts": {
+        "train": {
+          "bottle": 209,
+          "cable": 224,
+          "capsule": 219,
+          "carpet": 280,
+          "grid": 264,
+          "hazelnut": 391,
+          "leather": 245,
+          "metal_nut": 220,
+          "pill": 267,
+          "screw": 320,
+          "tile": 230,
+          "toothbrush": 60,
+          "transistor": 213,
+          "wood": 247,
+          "zipper": 240
+        },
+        "test": {
+          "bottle": 83,
+          "cable": 150,
+          "capsule": 132,
+          "carpet": 117,
+          "grid": 78,
+          "hazelnut": 110,
+          "leather": 124,
+          "metal_nut": 115,
+          "pill": 167,
+          "screw": 160,
+          "tile": 117,
+          "toothbrush": 42,
+          "transistor": 100,
+          "wood": 79,
+          "zipper": 151
+        }
+      },
+      "evaluation_executed": false,
+      "prepared_metadata": "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/data/mvtec/meta.json",
+      "prepared_metadata_sha256": "a990313d0496b802096d93812096c8605d515c4179561f111529b45e2eb8b69e"
+    }
+  },
+  "source_path_change_count": 195,
+  "result_entries": 0,
+  "source_bank_policy": "current_recorded_path_bank_preserved_bytes",
+  "argument_provenance": "Pinned diagnostic summary, recovered bank metadata and original parser defaults; not observed historical argv",
+  "command": [
+    "{python}",
+    "-u",
+    "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/source/neurips2026/scripts/generate_rawclip_aggregated_distribution.py",
+    "--target_root",
+    "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/data/mvtec",
+    "--target_split",
+    "test",
+    "--backbone",
+    "ViT-L-14-336",
+    "--pretrained_dataset",
+    "openai",
+    "--image_size",
+    "336",
+    "--prompt_mode",
+    "class",
+    "--bank_cache_path",
+    "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/bank-cache/recorded-source-bank.pt",
+    "--sigma",
+    "4.0",
+    "--tau",
+    "20.0",
+    "--image_score_topk",
+    "0.01",
+    "--hard_fp_frac",
+    "0.01",
+    "--max_points_per_group",
+    "200000",
+    "--per_image_cap_abnormal",
+    "4096",
+    "--per_image_cap_hard_fp",
+    "4096",
+    "--per_image_cap_other",
+    "4096",
+    "--bins",
+    "220",
+    "--smooth_sigma",
+    "2.0",
+    "--dist_fig_width",
+    "13.5",
+    "--dist_fig_height",
+    "4.6",
+    "--focus_fig_width",
+    "12.8",
+    "--focus_fig_height",
+    "7.2",
+    "--combo_fig_width",
+    "20.0",
+    "--combo_fig_height",
+    "4.8",
+    "--device",
+    "cuda:0",
+    "--seed",
+    "0",
+    "--output_dir",
+    "/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/results",
+    "--features_list",
+    "6",
+    "12",
+    "18",
+    "24"
+  ],
+  "log": "{\"status\": \"prepared_requires_guarded_slurm_execution\", \"gpu_execution\": false, \"plan\": \"/home/jinyoungkim/ted-reproduce-20261009/figure4-collection-20261009/figure4-plan.json\"}\n"
+}

@@ -3,5 +3,7 @@ reproduction/references/** -text
 reproduction/validation/**/*.json -text
 reproduction/validation/**/*.txt -text
 reproduction/datasets/**/*.json -text
+# Figure evidence and preparation reports are also bound by exact byte hashes.
+reproduction/figures/**/*.json -text
 # The deployed gateway evidence binds the exact registry bytes.
 deployment/pilab-model-registry.json -text
