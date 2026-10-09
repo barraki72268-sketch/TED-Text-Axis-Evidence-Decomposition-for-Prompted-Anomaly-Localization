@@ -54,6 +54,7 @@ GPU reproduction of every configuration.
 | AA-CLIP relocated serving bundle | The same three images retain exact raw-map parity after relocation, with original-workspace reads and network connections prohibited | [Relocation evidence](reproduction/validation/a10-20261009/aa-relocation-parity.json) |
 | AA-CLIP pilab Docker worker | Source-limit-1 state: three-image maps and raw scores exactly match same-pilab original equations over HTTP; cross-A10 differences retained | [Container parity](reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json), [A10 difference](reproduction/validation/a10-20261009/aa-pilab-a10-difference.json) |
 | AA-CLIP main pilab Docker worker | Main L/14-336 seed 0, input 518: three-image maps and raw scores exactly match same-pilab original equations over HTTP | [Main container parity](reproduction/validation/a10-20261009/aa-pilab-main-container-local-parity.json) |
+| AA-CLIP public serving archives | Main L/14-336 and source-limit-1 packages include weights, source and fitted state; source-limit-1 anonymous download/new extraction/CPU three-image raw maps verified | [Pinned download command](docs/SERVICE.md#download-a-pinned-public-aa-release), [Client evidence](reproduction/validation/a10-20261009/aa-anonymous-weak-verification.json) |
 | Three-model Docker selector | FAPrompt, AA main, and AA source-limit-1: nine direct-worker/gateway predictions match exactly; browser upload checked | [Gateway guide](docs/SERVICE.md#selecting-the-three-verified-pilab-workers), [Evidence](reproduction/validation/a10-20261009/model-gateway-parity.json) |
 | Weak-source ablation inputs | 28 configurations / 12 public banks; anonymous acquisition verified; all 24 printed gain cells match archived-summary aggregation | [Download check](reproduction/validation/public-weak-bank-download-validation.json), [table check](reproduction/validation/weak-source-archived-table-validation.json) |
 | FAPrompt Docker/API path | Three BTAD images: HTTP raw maps match CPU historical-equation inference exactly | [Service evidence](docs/SERVICE.md) |
@@ -106,6 +107,17 @@ separately under their providers' terms. Prepare full dataset roots using the
 [Linux GPU preparation and execution guide](reproduction/README.md#what-remains-before-this-is-a-complete-runnable-release).
 All-loader validation from a clean environment is ongoing; this is not yet a
 one-command, fully verified reproduction of the entire paper.
+
+For the complete AA serving inputs, use a pinned public release instead:
+
+```bash
+python -m reproduction.aa_release main-l336-seed0 ./aa-main-bundle
+# or: python -m reproduction.aa_release source1-seed0 ./aa-source1-bundle
+```
+
+This verifies and extracts the inputs without PyTorch or a Hugging Face login.
+Follow the [fresh CPU installation and service guide](docs/SERVICE.md#fresh-aa-cpu-environment)
+to run inference. These packages do not contain dataset images.
 
 ### 3. Explore the feature-level cores
 
