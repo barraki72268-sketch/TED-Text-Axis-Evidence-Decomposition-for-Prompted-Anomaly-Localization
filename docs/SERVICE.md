@@ -151,6 +151,21 @@ as `TED_CAPTURED_EXPORT`. The source and original execution evidence remain
 unchanged; the engine binds the selected verified weight to its new local path.
 This packaging step alone does not certify portable inference or Docker deployment.
 
+After relocation and serving checks, a byte-verified bundle can be packaged:
+
+```bash
+python -m reproduction.serving_archive ./bundles/AA_RECIPE ./AA_RECIPE.tar.gz
+```
+
+Use a clean staging copy with generated `__pycache__` directories omitted;
+preserve the original bundle. The archive command rejects unlisted files,
+links, changed weights/source/state, and existing output paths. It verifies
+every decompressed archive member against the bound inventory before returning
+the archive hash. This contains the original weights, exact prepared source,
+run plan, captured bank/calibrator state, and execution evidence; dataset
+images remain outside the archive. Upstream licenses and dataset-derived
+artifact terms continue to apply.
+
 Before promotion, move the bundle to another directory and compare its maps
 against saved original-evaluator maps using
 [`examples.aa_bundle_parity`](../examples/aa_bundle_parity.py). Supply a fixtures
