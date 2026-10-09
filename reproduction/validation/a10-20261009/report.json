@@ -1,7 +1,7 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, five FAPrompt (including B+ seed1), four AdaCLIP, two AdaptCLIP and four BayesPFL full-BTAD configurations; not the whole paper or all ablations. Includes one RawCLIP B+ full-BTAD recipe with all12Base/T-TED/C-TED metrics checked,5/12match; numerical differences retained. RawCLIP H/14 full BTAD also matches all 12 archived metrics at two decimals; numerical deltas remain available. RawCLIP L/14-336 full BTAD also matches all 12 archived metrics at two decimals; exact deltas retained.",
+  "scope": "Four AA-CLIP, five FAPrompt (including B+ seed1), four AdaCLIP, two AdaptCLIP and four BayesPFL full-BTAD configurations; not the whole paper or all ablations. Includes one RawCLIP B+ full-BTAD recipe with all12Base/T-TED/C-TED metrics checked,5/12match; numerical differences retained. RawCLIP H/14 full BTAD also matches all 12 archived metrics at two decimals; numerical deltas remain available. RawCLIP L/14-336 full BTAD also matches all 12 archived metrics at two decimals; exact deltas retained. RawCLIP OpenAI L/14 full BTAD also matches all12 archived metrics at2decimals; captures retained separately from serving verification.",
   "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim. BayesPFL B+ BTAD replay used public runtime95bff4d under job13728; original preparation, execution log and numerical differences are retained. BayesPFL H14 and OpenAI fresh replays each matched 7/8; baseline image AUROC differences and complete execution logs are preserved. BayesPFL L/14-336 terminated successfully but matched 0/8 archived metrics; full preparation/log and all differences are retained. FAPrompt B/16+ seed1 and H/14 seed0 ran under job13735 with public runtime95bff4d; both matched 8/8 archived per-seed values at two decimals. Original logs, numerical deltas and source-bank bindings remain available; no new full printed mean/std claim. FAPrompt OpenAI BTADseed0 finished under13735: evaluator return0,7/8 match; baselineP-PRO53.99167239665985 vs53.99575233459473 crosses the archived two-decimal boundary. Difference preserved; no argument change to fit. RawCLIPB+ under13735 evaluatorreturn0/mismatch5of12; this is a completed evaluation, not a successful full reproduction. RawCLIP H/14 finished under job13735 at08:53:35UTC using runtime95bff4d, evaluator return0/matched12of12. RawCLIP L/14-336 fresh A10 fullpass under13735; its two captured bank/calibrator objects were exported with original hashes and terminal execution bindings. This does not establish a portable inference adapter.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
@@ -820,6 +820,49 @@
         {
           "file": "rawclip-l336-btad-v7/summary.json",
           "sha256": "b2681ab1c243bf5b89110d299fb1b0702939294d5bafca7b6b8ceebea0984f87"
+        }
+      ]
+    },
+    {
+      "recipe": "rawclip_vitl_openai_mvtec2btad",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T09:22:13.464352+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 12,
+      "metrics_matched_2dp": 12,
+      "reference_sha256": "9af4a254fa840b0722d4a4cb015e1693aebd4ba72c4108233e7bfad8ae997993",
+      "evidence": [
+        {
+          "file": "rawclip-openai-btad-v7/comparison.json",
+          "sha256": "569f40a9580d854e4371cbeaf9646a7cf35b5bd8368ad84770a2fd168606bf8c"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/execution.json",
+          "sha256": "c6cd0785af201ecd2f4f05a49393590d1b2b0e27814729422991dbbbc92f36a0"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/execution.log",
+          "sha256": "abf2592fcf270bad0e7768b4dee72ca749fa6b9b4863db6760f4268beaa1c3a9"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/run.json",
+          "sha256": "7e29b72e26d6d61d6278c8cdd8e1ef16574aad7011aae3a8696a463a3c9f67e1"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/summary.json",
+          "sha256": "9ac67820af0ba344fd6e9bf453cff5f5ec594037537a3003f14cb6e4fd45b96e"
         }
       ]
     }

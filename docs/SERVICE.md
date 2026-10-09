@@ -422,7 +422,7 @@ match exactly for every recorded strength. Both variants now also pass fresh-arc
 Docker HTTP comparison on three canonical images at all three recorded strengths,
 with zero map and raw-score error. See the [Docker evidence](../reproduction/validation/a10-20261009/faprompt-images-v3/index.json).
 Both captured workers are now registered. The [seven-worker routing check](../reproduction/validation/a10-20261009/gateway-v2/index.json) passes all33 fixed-image/strength cases with zero map/raw-score error. The H/14 browser upload also displays completed inference, both raw scores, the captured artifact identity and selected alpha1.5.
-The archives and records are public at HF revision `f49bcc6c857606fd7edb1148856157532f6b2271`. Full anonymous fresh acquisition and standalone-image verification remain pending.
+The archives and records are public at HF revision `f49bcc6c857606fd7edb1148856157532f6b2271`. B/16+ now also passes a full anonymous public download, all932 newly extracted inputs and all9 CPU image/strength comparisons; [client evidence](../reproduction/validation/a10-20261009/faprompt-public-client-v1/index.json). H/14 anonymous image comparison and standalone-image verification remain pending.
 
 ```bash
 python -m reproduction.faprompt_release bplus-seed1 NEW_BPLUS_BUNDLE --cache NEW_CACHE

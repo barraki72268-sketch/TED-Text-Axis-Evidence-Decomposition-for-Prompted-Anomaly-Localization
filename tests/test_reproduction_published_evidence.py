@@ -11,6 +11,39 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_bplus_anonymous_public_client_and_images_are_independently_verified(self):
+        folder = ROOT / 'validation/a10-20261009/faprompt-public-client-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertTrue(index['bplus_anonymous_acquisition_verified'])
+        self.assertTrue(index['bplus_image_parity_verified'])
+        self.assertFalse(index['h14_anonymous_image_parity_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']),item['sha256'])
+        acquisition = json.loads((folder / 'bplus-acquisition.json').read_text())
+        self.assertEqual(acquisition['status'],'verified_serving_inputs')
+        self.assertEqual(acquisition['files'],932)
+        self.assertEqual(acquisition['revision'],index['revision'])
+        self.assertEqual(acquisition['authentication'],'none; standard-library HTTPS without auth headers')
+        image = json.loads((folder / 'bplus-image.json').read_text())
+        self.assertEqual(image['status'],'matched')
+        self.assertEqual({(r['category'],r['alpha']) for r in image['rows']},
+                         {(c,a) for c in ['01','02','03'] for a in [.5,1.,1.5]})
+        self.assertTrue(image['original_input_reads_denied'])
+        self.assertTrue(image['denial_self_checks_passed'])
+        self.assertTrue(image['network_denied'])
+        for row in image['rows']:
+            for key in ['host_max_absolute_error','cted_max_absolute_error','host_image_score_error','cted_image_score_error']:
+                self.assertEqual(row[key],0)
+        folder = ROOT / 'validation/a10-20261009/rawclip-openai-capture-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']),item['sha256'])
+        self.assertFalse(index['image_inference_verified'])
+        manifest = json.loads((folder / 'openai/manifest.json').read_text())
+        self.assertEqual(manifest['capture_binding'],'terminal_execution_record')
+        self.assertEqual(len(manifest['captured_state']),2)
+
     def test_faprompt_public_catalog_is_bound_to_anonymous_metadata_and_saved_archives(self):
         folder = ROOT / 'validation/a10-20261009/faprompt-public-v1'
         metadata = json.loads((folder / 'metadata.json').read_text())
@@ -546,7 +579,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 22)
+        self.assertEqual(len(report['results']), 23)
         raw_h14 = next(row for row in report['results'] if row['recipe'] == 'rawclip_vith14_mvtec2btad')
         self.assertEqual(raw_h14['status'], 'matched')
         self.assertEqual(raw_h14['metrics_matched_2dp'], 12)
