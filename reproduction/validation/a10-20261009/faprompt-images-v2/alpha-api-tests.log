@@ -1,0 +1,22 @@
+....TED inference failed; request_id=01333b1a91b3474ea670eeca37262613
+Traceback (most recent call last):
+  File "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/github-adaptclip-docker-20261009/ted/inference/api.py", line 168, in predict
+    result = await run_in_threadpool(encode_prediction, app.state.engine, body, max_pixels, category, alpha)
+  File "/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 2485, in run_sync_in_worker_thread
+    return await future
+  File "/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 976, in run
+    result = context.run(func, *args)
+  File "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/github-adaptclip-docker-20261009/ted/inference/api.py", line 84, in encode_prediction
+    output = engine.predict(image)
+  File "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/github-adaptclip-docker-20261009/tests/test_api.py", line 138, in predict
+    raise RuntimeError("private/checkpoint/path")
+RuntimeError: private/checkpoint/path
+................................
+----------------------------------------------------------------------
+Ran 36 tests in 0.483s
+
+OK

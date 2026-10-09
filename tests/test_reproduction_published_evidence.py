@@ -11,6 +11,35 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_faprompt_seeded_images_and_archive_checks_cover_every_strength(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/faprompt-images-v2'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['docker_http_verified'])
+        self.assertFalse(index['hf_publication_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        with zipfile.ZipFile(folder / 'proof.zip') as archive:
+            for item in index['files']:
+                path = folder / item['file']
+                self.assertEqual(digest_file(path), item['sha256'])
+                self.assertEqual(path.read_bytes(), archive.read(item['archive_member']))
+        for name in ['h14-image.json','bplus-fresh-image.json','bplus-parameter.json']:
+            report = json.loads((folder / name).read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertTrue(report['denial_self_checks_passed'])
+            self.assertEqual({(r['category'], r['alpha']) for r in report['rows']},
+                             {(c,a) for c in ['01','02','03'] for a in [.5,1.,1.5]})
+            for row in report['rows']:
+                for key in ['host_max_absolute_error','cted_max_absolute_error',
+                            'host_image_score_error','cted_image_score_error']:
+                    self.assertEqual(row[key], 0)
+        acquisition = json.loads((folder / 'bplus-unpack.json').read_text())
+        record = json.loads((folder / 'bplus-archive.json').read_text())
+        self.assertEqual(acquisition['status'], 'verified_serving_inputs')
+        self.assertEqual(acquisition['archive_sha256'], record['sha256'])
+        self.assertEqual(acquisition['files'], 932)
+
     def test_faprompt_bplus_images_match_and_h14_failure_is_retained(self):
         import zipfile
         folder = ROOT / 'validation/a10-20261009/faprompt-images-v1'
@@ -413,7 +442,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 19)
+        self.assertEqual(len(report['results']), 20)
         l336_bayes = next(row for row in report['results'] if row['recipe'] == 'bayespfl-vitl336-mvtec2btad-seed0')
         self.assertEqual(l336_bayes['status'], 'mismatch')
         self.assertEqual(l336_bayes['metrics_matched_2dp'], 0)
