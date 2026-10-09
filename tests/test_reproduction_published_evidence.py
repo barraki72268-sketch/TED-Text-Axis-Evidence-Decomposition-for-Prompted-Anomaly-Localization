@@ -11,6 +11,33 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_adaptclip_real_image_parity_keeps_portable_and_docker_gates(self):
+        import zipfile
+        index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())
+        proof = index['image_parity']
+        archive = ROOT / proof['archive']['path']
+        self.assertEqual(digest_file(archive), proof['archive']['sha256'])
+        observed = set()
+        with zipfile.ZipFile(archive) as bundle:
+            for item in proof['reports']:
+                path = ROOT / item['path']
+                self.assertEqual(digest_file(path), item['sha256'])
+                self.assertEqual(bundle.read(path.name), path.read_bytes())
+                report = json.loads(path.read_text())
+                self.assertEqual(report['status'], 'matched')
+                self.assertEqual(report['device'], 'cpu')
+                self.assertFalse(report['model_fitting'])
+                self.assertFalse(report['portable_bundle_verified'])
+                self.assertFalse(report['docker_http_verified'])
+                observed.add(report['engine']['recipe'])
+                self.assertEqual({r['category'] for r in report['rows']}, {'01','02','03'})
+                for row in report['rows']:
+                    self.assertEqual(row['map_shape'], [1,518,518])
+                    for key in ['host_max_absolute_error', 'cted_max_absolute_error',
+                                'host_image_score_error', 'cted_image_score_error']:
+                        self.assertEqual(row[key], 0)
+        self.assertEqual(observed, {entry['recipe'] for entry in index['exports']})
+
     def test_adaptclip_exports_bind_terminal_capture_and_retain_adapter_gate(self):
         import hashlib
         import zipfile
@@ -170,7 +197,12 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 13)
+        self.assertEqual(len(report['results']), 15)
+        for recipe in ['bayespfl-vith14-mvtec2btad-seed0', 'bayespfl-vitl14openai-mvtec2btad-seed0']:
+            rows = [row for row in report['results'] if row['recipe'] == recipe]
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]['status'], 'mismatch')
+            self.assertEqual(rows[0]['metrics_matched_2dp'], 7)
         bayes = [row for row in report['results'] if row['recipe'] == 'bayespfl-vitb_plus-mvtec2btad-seed0']
         self.assertEqual(len(bayes), 1)
         self.assertEqual(bayes[0]['status'], 'mismatch')

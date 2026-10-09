@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Captured evaluator state from two matching full BTAD seed0 replays; original dependencies and host inference adapter still required",
+  "scope": "Two matching full BTAD seed0 replays, frozen captured states and prepared-workspace image engines; portable bundles and deployment remain incomplete",
   "exports": [
     {
       "recipe": "adaptclip-vitl14openai-mvtec2btad-seed0",
@@ -10,7 +10,7 @@
         "bytes": 79583,
         "sha256": "4699ceadf94473b9304d6b69850afb6d2ff48655358e2577b1bf5641f27797d2"
       },
-      "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+      "status": "prepared_workspace_image_parity_passed_portable_and_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -39,7 +39,7 @@
         "bytes": 79567,
         "sha256": "20a825cd5f1748ab4540d48ba885759c907951acda77932441fa2a6613b1512f"
       },
-      "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+      "status": "prepared_workspace_image_parity_passed_portable_and_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -62,7 +62,6 @@
     }
   ],
   "next_gates": [
-    "Image-level inference parity against original evaluator",
     "Relocated dependency/source bundle",
     "Anonymous Hugging Face artifact verification",
     "Docker HTTP parity and model registry integration"
@@ -77,5 +76,26 @@
       "sha256": "12538de78b92a938c3222fecd935e025a33ce2e660703dc3c9d63b69f5f9e6da"
     },
     "scope": "Frozen branch math with synthetic host/token inputs, not full image inference"
+  },
+  "image_parity": {
+    "runtime_commit": "7bced17",
+    "archive": {
+      "path": "validation/a10-20261009/adaptclip-image-parity-20261009-v1.zip",
+      "bytes": 4665,
+      "sha256": "ae99d1fc4c168ec12c76a026af10cc9d17c2a8d02f06020d714d03ff9879e865"
+    },
+    "reports": [
+      {
+        "path": "validation/a10-20261009/adaptclip-openai-image-parity-20261009-v1.json",
+        "bytes": 2309,
+        "sha256": "59517f91a71c2864d032415b73969d9d8494de7bb967d470aa80990533345286"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-l336-image-parity-20261009-v1.json",
+        "bytes": 2301,
+        "sha256": "147843d3f93dbf8d984d8c7060e0fd4a6898fd9e552c0f232bc5885b5fd39f32"
+      }
+    ],
+    "scope": "Three preselected test images per model; same CPU model and original evaluator output block. Not independent GPU image parity or a full-dataset CPU metric replay."
   }
 }

@@ -1,0 +1,387 @@
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/data/mvtec/mvtec",
+    "target_dataset": "btad",
+    "target_data_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/data/btad/BTAD_official",
+    "target_class": "",
+    "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/b222592c36efdc3ad7e397608bc575bf5a750aa9d7e6563c966367101c863bb4",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-H-14.json",
+    "pretrained_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/clip-cache/open_clip_pytorch_model.bin",
+    "image_size": 224,
+    "features_list": [
+      8,
+      16,
+      24,
+      32
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 0,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_135eb9aecf.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/bayespfl-vith14-mvtec2btad-seed0/results",
+    "vision_width": 1280,
+    "text_width": 1024,
+    "embed_dim": 1024,
+    "checkpoint_load_report": {
+      "mode": "compatible",
+      "loaded": 6,
+      "skipped": 125,
+      "missing": 125,
+      "unexpected": 0,
+      "skipped_examples": [
+        {
+          "key": "prompt_context",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_normal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_abnormal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.weight",
+          "checkpoint_shape": [
+            768,
+            512
+          ],
+          "model_shape": [
+            1024,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.bias",
+          "checkpoint_shape": [
+            768
+          ],
+          "model_shape": [
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        }
+      ],
+      "missing_examples": [
+        "prompt_context",
+        "prompt_state_normal",
+        "prompt_state_abnormal",
+        "context_encoder.weight_mean.module.0.weight",
+        "context_encoder.weight_mean.module.0.bias",
+        "context_encoder.weight_mean.module.2.weight",
+        "context_encoder.weight_mean.module.2.bias",
+        "context_encoder.weight_mean.module.4.weight",
+        "context_encoder.weight_mean.module.4.bias",
+        "context_encoder.weight_log_variance.module.0.weight",
+        "context_encoder.weight_log_variance.module.0.bias",
+        "context_encoder.weight_log_variance.module.2.weight"
+      ],
+      "unexpected_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.044428784400224686,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6436706185340881,
+        "def_host_mean": 0.5073959231376648,
+        "fp_res_mean": -2.0523509979248047,
+        "def_res_mean": -0.1213686615228653,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": 0.04443705826997757,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6707119345664978,
+        "def_host_mean": 0.5059508085250854,
+        "fp_res_mean": -1.9878333806991577,
+        "def_res_mean": 0.1496753841638565,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "2": {
+        "eta": 0.04437096044421196,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6387935280799866,
+        "def_host_mean": 0.4856081008911133,
+        "fp_res_mean": -1.9291763305664062,
+        "def_res_mean": 0.16940787434577942,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "3": {
+        "eta": 0.044477786868810654,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6419957876205444,
+        "def_host_mean": 0.5380481481552124,
+        "fp_res_mean": -1.9728612899780273,
+        "def_res_mean": 0.013776556588709354,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "01",
+      "image_auroc": 0.4499514091350826,
+      "pixel_auroc": 0.4602819992930437,
+      "pixel_aupro": 0.127020001411438,
+      "pixel_ap": 0.029522103289546072
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "02",
+      "image_auroc": 0.6303333333333333,
+      "pixel_auroc": 0.46015466778053954,
+      "pixel_aupro": 0.10661879926919937,
+      "pixel_ap": 0.048619517507333565
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "03",
+      "image_auroc": 0.6360975609756098,
+      "pixel_auroc": 0.431167402145716,
+      "pixel_aupro": 0.07054601609706879,
+      "pixel_ap": 0.0016509238146753312
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.572127434481342,
+      "pixel_auroc": 0.4505346897397664,
+      "pixel_aupro": 0.10139493892590205,
+      "pixel_ap": 0.026597514870518323
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "01",
+      "image_auroc": 0.35665694849368323,
+      "pixel_auroc": 0.4579045545988975,
+      "pixel_aupro": 0.1266613006591797,
+      "pixel_ap": 0.02930227743540315
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "02",
+      "image_auroc": 0.5416666666666667,
+      "pixel_auroc": 0.46033890743043626,
+      "pixel_aupro": 0.10896793007850647,
+      "pixel_ap": 0.04866229954515642
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "03",
+      "image_auroc": 0.515670731707317,
+      "pixel_auroc": 0.434749355259402,
+      "pixel_aupro": 0.0771208181977272,
+      "pixel_ap": 0.0016660073024848047
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.471331448955889,
+      "pixel_auroc": 0.4509976057629119,
+      "pixel_aupro": 0.10425001631180446,
+      "pixel_ap": 0.026543528094348123
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "01",
+      "image_auroc": 0.35762876579203107,
+      "pixel_auroc": 0.4592610952578835,
+      "pixel_aupro": 0.1270393282175064,
+      "pixel_ap": 0.029429894221552916
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "02",
+      "image_auroc": 0.5423333333333333,
+      "pixel_auroc": 0.46039934548889655,
+      "pixel_aupro": 0.10793524980545044,
+      "pixel_ap": 0.04866601666860424
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "03",
+      "image_auroc": 0.5165548780487805,
+      "pixel_auroc": 0.4326681137169047,
+      "pixel_aupro": 0.07382261753082275,
+      "pixel_ap": 0.0016573676407822412
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.47217232572471496,
+      "pixel_auroc": 0.4507761848212282,
+      "pixel_aupro": 0.10293239851792653,
+      "pixel_ap": 0.0265844261769798
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "recipe": "bayespfl-vith14-mvtec2btad-seed0",
+  "reference_sha256": "b74f86d575a3d12bf5d1191734a70ec3b37e0eccb1a6bce23d13eedae7ab8797",
+  "target_coverage": {
+    "status": "reported_coverage_matches",
+    "dataset": "btad",
+    "classes_checked": 3,
+    "expected_test_images": 741,
+    "reported_image_counts_checked": false,
+    "per_image_execution_verified": false
+  },
+  "actual_sha256": "763e58f139a94b870777a7640b40d781ed34a7169412b0d1c4086f3befab2ab0",
+  "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
+  "all_match_2dp": false,
+  "cells": [
+    {
+      "method": "Base",
+      "metric": "I-AUROC",
+      "actual": 57.2127434481342,
+      "expected": 46.76143781554433,
+      "delta_pp": 10.451305632589865,
+      "matches_printed_precision": false
+    },
+    {
+      "method": "Base",
+      "metric": "P-AUROC",
+      "actual": 45.05346897397664,
+      "expected": 45.05345355920606,
+      "delta_pp": 1.5414770579980086e-05,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "Base",
+      "metric": "P-PRO",
+      "actual": 10.139493892590206,
+      "expected": 10.139541327953339,
+      "delta_pp": -4.7435363132564135e-05,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "Base",
+      "metric": "P-AP",
+      "actual": 2.659751487051832,
+      "expected": 2.6597493325970833,
+      "delta_pp": 2.15445474882614e-06,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "OURS",
+      "metric": "I-AUROC",
+      "actual": 47.217232572471495,
+      "expected": 47.218248832634096,
+      "delta_pp": -0.0010162601626007017,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "OURS",
+      "metric": "P-AUROC",
+      "actual": 45.07761848212282,
+      "expected": 45.07759710757231,
+      "delta_pp": 2.137455051354209e-05,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "OURS",
+      "metric": "P-PRO",
+      "actual": 10.293239851792652,
+      "expected": 10.293277104695637,
+      "delta_pp": -3.725290298461914e-05,
+      "matches_printed_precision": true
+    },
+    {
+      "method": "OURS",
+      "metric": "P-AP",
+      "actual": 2.65844261769798,
+      "expected": 2.658440597803969,
+      "delta_pp": 2.0198940107185592e-06,
+      "matches_printed_precision": true
+    }
+  ]
+}

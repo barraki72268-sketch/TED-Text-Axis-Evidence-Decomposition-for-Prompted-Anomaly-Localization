@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP, two AdaptCLIP and one BayesPFL full-BTAD seed0 configurations; not the whole paper or all ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim. BayesPFL B+ BTAD replay used public runtime95bff4d under job13728; original preparation, execution log and numerical differences are retained.",
+  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP, two AdaptCLIP and three BayesPFL full-BTAD seed0 configurations; not the whole paper or all ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim. BayesPFL B+ BTAD replay used public runtime95bff4d under job13728; original preparation, execution log and numerical differences are retained. BayesPFL H14 and OpenAI fresh replays each matched 7/8; baseline image AUROC differences and complete execution logs are preserved.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -457,6 +457,76 @@
         {
           "file": "bayespfl-bplus-btad-v5/preparation-and-results.zip",
           "sha256": "ee766e1743922ba5be5931b427cd79c9fa6972d5577f4aa3c1fe76c29de31598"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2btad-seed0",
+      "slurm_job_id": "13728",
+      "status": "mismatch",
+      "finished": "2026-10-09T06:32:31.641289+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 7,
+      "reference_sha256": "b74f86d575a3d12bf5d1191734a70ec3b37e0eccb1a6bce23d13eedae7ab8797",
+      "evidence": [
+        {
+          "file": "bayespfl-h14-btad-v5/comparison.json",
+          "sha256": "a5f2dfef33abdd6cd6fa9e1f73b7f640be4c6d121115f05b288ac5655125928a"
+        },
+        {
+          "file": "bayespfl-h14-btad-v5/execution.json",
+          "sha256": "39d85c126218cdf1f405cd98884d6f1a356c6932f062c7398a8dddf231a69db9"
+        },
+        {
+          "file": "bayespfl-h14-btad-v5/summary.json",
+          "sha256": "763e58f139a94b870777a7640b40d781ed34a7169412b0d1c4086f3befab2ab0"
+        },
+        {
+          "file": "bayespfl-h14-btad-v5/preparation-and-results.zip",
+          "sha256": "8fae0c675c728dfbbb7cf31a6d9b9b268754bcea9e553d6a29af6fd90d054eaf"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitl14openai-mvtec2btad-seed0",
+      "slurm_job_id": "13735",
+      "status": "mismatch",
+      "finished": "2026-10-09T06:57:31.383696+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 7,
+      "reference_sha256": "97eb71f63c14b929459c13d8a45b8ca0c6741ccc5b4770ef6c9659d010e1c0b7",
+      "evidence": [
+        {
+          "file": "bayespfl-openai-btad-v5/comparison.json",
+          "sha256": "01e3a244468def997beb858f5ae963e14e3a1e3928e0a721aa8931398f0ad057"
+        },
+        {
+          "file": "bayespfl-openai-btad-v5/execution.json",
+          "sha256": "194d9504c48e9084a1747f2aa7b87f737171d78e043d54e7793c51d1bb0e422a"
+        },
+        {
+          "file": "bayespfl-openai-btad-v5/summary.json",
+          "sha256": "82d4502ea50f7f6ea7a2c451b60a5731c1715658bb43bb9770b52eafae183cfe"
+        },
+        {
+          "file": "bayespfl-openai-btad-v5/preparation-and-results.zip",
+          "sha256": "8135408023b0268c004c65201dc3f5a822613e48d507ecbc8367b068b33c9d0f"
         }
       ]
     }
