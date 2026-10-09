@@ -11,6 +11,30 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_imagebind_gateway_extension_preserves_prior_registry_and_all_readouts(self):
+        folder = ROOT / 'validation/a10-20261009/gateway-imagebind-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        report = json.loads((folder / 'imagebind-gateway-parity-20261009-v2.json').read_text())
+        self.assertEqual((report['status'], report['models'], report['cases']), ('matched', 1, 3))
+        self.assertEqual(report['registry_sha256'], digest_file(folder / 'imagebind-only.json'))
+        self.assertEqual({r['fixture_category'] for r in report['rows']}, {'01', '02', '03'})
+        for row in report['rows']:
+            self.assertEqual(row['model'], 'imagebind-main')
+            for key in ['host_max_abs_error', 'tted_max_abs_error', 'cted_max_abs_error',
+                        'raw_image_score_abs_error', 'tted_image_score_abs_error', 'cted_image_score_abs_error']:
+                self.assertEqual(row[key], 0)
+        registry = json.loads((folder / 'models.json').read_text())
+        previous = json.loads((folder.parent / 'gateway-v4/models.json').read_text())
+        self.assertEqual(registry['models'][:10], previous['models'])
+        integration = json.loads((folder / 'imagebind-gateway-integration-20261009-v2.json').read_text())
+        self.assertEqual(integration['ready'], {'status': 'ready', 'models': 11})
+        self.assertEqual(integration['gateway_source_sha256'], digest_file(ROOT.parent / 'ted/inference/gateway.py'))
+        self.assertEqual(integration['current_registry'], registry)
+        self.assertFalse(index['whole_paper_reproduced'])
+
     def test_imagebind_docker_http_and_fresh_archive_extraction_preserve_original_readouts(self):
         folder = ROOT / 'validation/a10-20261009/imagebind-pilab-v1'
         index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))

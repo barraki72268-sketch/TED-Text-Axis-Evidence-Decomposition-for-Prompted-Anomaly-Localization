@@ -1,0 +1,109 @@
+{
+  "Name": "/ted-imagebind-api-1",
+  "Image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 3999400,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-09T12:35:54.342436448Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-09T21:35:59.542486519+09:00",
+          "End": "2026-10-09T21:35:59.637211019+09:00",
+          "ExitCode": 1,
+          "Output": "Traceback (most recent call last):\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1348, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1283, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1329, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1278, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1038, in _send_output\n    self.send(msg)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 976, in send\n    self.connect()\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 942, in connect\n    self.sock = self._create_connection(\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 857, in create_connection\n    raise err\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 845, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1377, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1351, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+        },
+        {
+          "Start": "2026-10-09T21:36:04.63796528+09:00",
+          "End": "2026-10-09T21:36:04.73545176+09:00",
+          "ExitCode": 1,
+          "Output": "Traceback (most recent call last):\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1348, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1283, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1329, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1278, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1038, in _send_output\n    self.send(msg)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 976, in send\n    self.connect()\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 942, in connect\n    self.sock = self._create_connection(\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 857, in create_connection\n    raise err\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 845, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1377, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1351, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+        },
+        {
+          "Start": "2026-10-09T21:36:09.736223353+09:00",
+          "End": "2026-10-09T21:36:09.836897528+09:00",
+          "ExitCode": 1,
+          "Output": "Traceback (most recent call last):\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1348, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1283, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1329, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1278, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1038, in _send_output\n    self.send(msg)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 976, in send\n    self.connect()\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 942, in connect\n    self.sock = self._create_connection(\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 857, in create_connection\n    raise err\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 845, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1377, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1351, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+        },
+        {
+          "Start": "2026-10-09T21:36:14.83783338+09:00",
+          "End": "2026-10-09T21:36:14.936837163+09:00",
+          "ExitCode": 1,
+          "Output": "Traceback (most recent call last):\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1348, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1283, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1329, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1278, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 1038, in _send_output\n    self.send(msg)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 976, in send\n    self.connect()\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/http/client.py\", line 942, in connect\n    self.sock = self._create_connection(\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 857, in create_connection\n    raise err\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/socket.py\", line 845, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 519, in open\n    response = self._open(req, data)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 536, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1377, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n  File \"/mnt/data/envs/patchcore-conda/lib/python3.10/urllib/request.py\", line 1351, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+        },
+        {
+          "Start": "2026-10-09T21:36:19.937573458+09:00",
+          "End": "2026-10-09T21:36:20.033868512+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ADPretrain/models/ImageBind/weights/imagebind_huge.pth",
+      "Destination": "/bundle/clip-cache/imagebind_huge.pth",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-imagebind-20261009/app",
+      "Destination": "/app",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-imagebind-20261009/bundle",
+      "Destination": "/bundle",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "ready": {
+    "status": "ready"
+  },
+  "model_info": {
+    "host": "RawImageBind",
+    "backbone": "ImageBind-Huge",
+    "device": "cpu",
+    "image_size": 224,
+    "category": null,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "artifact_sha256": "6bd4c7293855986ae68a598d0d410e70a078fc0de89eb8bf90134e648a1fcb57",
+    "readouts": [
+      "baseline_txt",
+      "parallel_margin",
+      "ted_calibrated"
+    ],
+    "state": "terminal captured source bank/calibrators; no inference-time fitting"
+  }
+}
