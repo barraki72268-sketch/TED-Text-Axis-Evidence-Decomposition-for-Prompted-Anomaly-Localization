@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TED · Model inspection</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#172b3a;background:#f1f5f8}body{max-width:1000px;margin:auto;padding:40px 20px}h1{margin:8px 0;font-size:36px}p{line-height:1.6;color:#506272}.tag{color:#106f67;font-weight:700;letter-spacing:.12em;font-size:12px}.panel{background:white;border:1px solid #d9e3e9;border-radius:16px;padding:24px;margin:24px 0}form{display:grid;gap:16px}label{display:grid;gap:7px;font-weight:600}select,input,button{font:inherit;padding:12px;border:1px solid #bccbd5;border-radius:8px}button{background:#126e66;color:white;border:0;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.maps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}figure{margin:0}figure img{width:100%;height:240px;object-fit:contain;background:#eaf0f3;border-radius:8px}figcaption{margin:10px 0;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#506272;font-size:12px}#message{white-space:pre-wrap}a{color:#106f67}@media(max-width:650px){.maps{grid-template-columns:1fr}h1{font-size:28px}}
+</style></head><body>
+<div class="tag">TED RESEARCH · IMAGE INSPECTION</div><h1>Compare host and C-TED evidence</h1>
+<p>Select a verified worker and inspect an image. Each release has its own evaluation scope; this interface does not certify the entire paper.</p>
+<section class="panel"><form id="form">
+<label>Model release<select id="model" required></select></label>
+<p id="scope"></p>
+<label id="category-label" hidden>Target category<select id="category"></select></label>
+<label>Inspection image · PNG or JPEG, up to 20 MB<input type="file" id="image" accept="image/png,image/jpeg" required></label>
+<button id="submit" disabled>Inspect image</button>
+</form><p id="message" role="status" aria-live="polite">Loading model releases…</p></section>
+<section id="result" class="panel" hidden><div class="maps">
+<figure><img id="input-preview" alt="Submitted image"><figcaption>Input</figcaption></figure>
+<figure><img id="host-preview" alt="Host score map"><figcaption>Host</figcaption></figure>
+<figure><img id="cted-preview" alt="C-TED score map"><figcaption>C-TED</figcaption></figure>
+</div><p>Both score maps share the same display range. Raw scores are model-specific and are not anomaly probabilities.</p>
+<p id="score"></p><a id="download" download="ted-score-maps.npz">Download raw maps (.npz)</a><pre id="identity"></pre></section>
+<script>
+const $=id=>document.getElementById(id);let models=[],previewUrl=null;
+function choose(){const item=models.find(x=>x.id===$('model').value);$('result').hidden=true;$('category').replaceChildren();
+ if(!item)return;$('scope').textContent=item.scope;const categories=item.info?.categories||[];
+ $('category-label').hidden=!categories.length;for(const category of categories){const option=document.createElement('option');option.value=category;option.textContent=category;$('category').append(option)}
+ $('submit').disabled=!item.ready;$('message').textContent=item.ready?'Ready. Upload an image to inspect.':'This model worker is currently unavailable.'}
+$('model').addEventListener('change',choose);
+async function load(){try{const response=await fetch('/models');if(!response.ok)throw Error('Could not load model releases');models=(await response.json()).models;
+ for(const item of models){const option=document.createElement('option');option.value=item.id;option.textContent=item.label+(item.ready?'':' · unavailable');$('model').append(option)}choose();
+ }catch(error){$('message').textContent=error.message}}
+$('form').addEventListener('submit',async event=>{event.preventDefault();const file=$('image').files[0];if(!file)return;
+ if(file.size>20000000){$('message').textContent='Image exceeds the 20 MB limit.';return}
+ $('submit').disabled=true;$('model').disabled=true;$('category').disabled=true;$('result').hidden=true;$('message').textContent='Inspecting image…';const model=$('model').value;const params=new URLSearchParams({model});
+ if(!$('category-label').hidden)params.set('category',$('category').value);
+ try{const response=await fetch('/predict?'+params,{method:'POST',headers:{'Content-Type':file.type},body:file});const result=await response.json();if(!response.ok)throw Error(result.detail||'Inspection failed');
+ if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(file);$('input-preview').src=previewUrl;
+ $('host-preview').src='data:image/png;base64,'+result.previews_png_base64.host;$('cted-preview').src='data:image/png;base64,'+result.previews_png_base64.cted;
+ $('download').href='data:application/octet-stream;base64,'+result.maps_npz_base64;$('score').textContent='Image score: '+result.image_score+' · '+result.image_score_policy;
+ $('identity').textContent='Release: '+model+'\nArtifact SHA-256: '+result.artifact_sha256;$('result').hidden=false;$('message').textContent='Inspection complete.';
+ }catch(error){$('message').textContent=error.message}finally{$('model').disabled=false;$('category').disabled=false;const item=models.find(x=>x.id===$('model').value);$('submit').disabled=!item?.ready}});
+load();
+</script></body></html>
