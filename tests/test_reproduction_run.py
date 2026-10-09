@@ -65,3 +65,25 @@ class PreparedRunTests(unittest.TestCase):
         with patch.dict("os.environ", {}, clear=True):
             with self.assertRaisesRegex(RuntimeError, "Slurm allocation"):
                 run_prepared(Path("."), Path("."), require_slurm=True)
+
+    def test_terminal_record_binds_captured_state_and_rejects_bad_capture_hash(self):
+        for corrupt in (False, True):
+            with self.subTest(corrupt=corrupt), tempfile.TemporaryDirectory() as temp:
+                root, work, summary, _ = self.fixture(Path(temp))
+                def execute(*args, **kwargs):
+                    capture = work / 'results/artifacts'
+                    capture.mkdir(parents=True)
+                    (work / 'results/summary.json').write_text(json.dumps(summary))
+                    data = b'captured-state'
+                    (capture / '001-calibrator.pt').write_bytes(data + (b'changed' if corrupt else b''))
+                    (capture / 'index.json').write_text(json.dumps([dict(function='train_source_calibrators',
+                        file='001-calibrator.pt', sha256=hashlib.sha256(data).hexdigest())]))
+                    return SimpleNamespace(returncode=0)
+                with patch('reproduction.run.subprocess.run', side_effect=execute):
+                    result = run_prepared(root, work)
+                self.assertEqual(result['status'], 'failed' if corrupt else 'matched')
+                if corrupt:
+                    self.assertIn('capture_error', result)
+                else:
+                    self.assertEqual(len(result['captured_files']), 1)
+                    self.assertEqual(result['capture_index_sha256'], hashlib.sha256((work / 'results/artifacts/index.json').read_bytes()).hexdigest())

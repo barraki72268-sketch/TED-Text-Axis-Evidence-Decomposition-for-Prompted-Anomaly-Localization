@@ -95,6 +95,14 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
             execution["status"] = "matched" if comparison["all_match_2dp"] else "mismatch"
     except Exception as error:
         execution.update(status="failed", error=f"{type(error).__name__}: {error}")
+    capture_index = output / "artifacts/index.json"
+    if capture_index.exists():
+        from .captured_export import capture_inventory
+        try:
+            index_sha, entries = capture_inventory(capture_index.parent)
+            execution.update(capture_index_sha256=index_sha, captured_files=entries)
+        except Exception as error:
+            execution.update(status="failed", capture_error=f"{type(error).__name__}: {error}")
     execution["finished"] = datetime.now(timezone.utc).isoformat()
     record.write_text(json.dumps(execution, indent=2) + "\n")
     return execution

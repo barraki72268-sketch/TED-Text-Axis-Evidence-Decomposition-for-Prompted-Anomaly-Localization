@@ -373,3 +373,23 @@ For AA-CLIP, `prepare-backbones --recipe ...` includes the OpenAI L/14-336 file
 required by the evaluator's unconditional startup check, even for B+ and H/14.
 The recipe's selected backbone remains unchanged. A10 dependency installation
 and these path fixes do not establish metric agreement for every recipe.
+
+### Export captured calibration state after a matching replay
+
+```bash
+python -m reproduction export-captured-run ./runs/RECIPE ./exports/RECIPE
+```
+
+This command rechecks the terminal execution, full-target summary, archived
+reference, source hashes, original weight objects, and captured file inventory.
+It copies the fitted evaluator outputs byte for byte and records their hashes;
+it does not fit calibrators, import PyTorch, load images, or execute inference.
+Failed or numerically mismatching runs cannot be exported through this command.
+Original backbone/checkpoint dependencies are listed by hash and must be
+obtained separately. No dataset images are included.
+
+The output is a calibration-state/evidence bundle, **not a ready-to-serve
+model**. A host adapter and per-image inference parity must still be verified.
+New executions bind the capture inventory into their terminal record. For older
+executions, the manifest explicitly says `inventory_verified_at_export_only`;
+this does not retroactively establish a historical capture-index hash.

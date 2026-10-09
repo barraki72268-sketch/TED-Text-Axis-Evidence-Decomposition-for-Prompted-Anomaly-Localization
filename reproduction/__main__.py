@@ -49,6 +49,9 @@ def main() -> int:
     run = sub.add_parser("run-prepared", help="Verify and execute a prepared full recipe, retaining comparison evidence")
     run.add_argument("workspace", type=Path)
     run.add_argument("--require-slurm", action="store_true", help="Refuse execution outside a Slurm allocation")
+    frozen = sub.add_parser("export-captured-run", help="Export fitted state from a matching full run; inference adapter/parity still required")
+    frozen.add_argument("workspace", type=Path)
+    frozen.add_argument("destination", type=Path)
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
@@ -74,6 +77,10 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "export-captured-run":
+        from .captured_export import export_captured_run
+        print(json.dumps(export_captured_run(ROOT, args.workspace, args.destination), indent=2))
+        return 0
     if args.action == "compare-component-ablation":
         from .component_ablation import compare_component_ablation
         result = compare_component_ablation(ROOT, args.runs)
