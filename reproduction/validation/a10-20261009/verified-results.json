@@ -1,0 +1,605 @@
+{
+  "date": "2026-10-09",
+  "hardware": "NVIDIA A10",
+  "scope": "Verified release configurations only: each listed full-target, per-seed execution matches all archived metrics at two decimals. This is a release selection, not an exhaustive run ledger or a claim about all printed means/std, datasets or figures.",
+  "comparison": "Against archived per-seed summaries at two decimals. BTAD configurations report 3 target classes, with expected dataset size 741; new AA-CLIP VisA-to-MVTec configurations report 15 classes and all 1725 test-image counts. Coverage and evaluator count-checking are recorded per result. Independent per-image execution traces are not provided. These checks do not establish all printed means/std.",
+  "results": [
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+      "slurm_job_id": "13712",
+      "status": "matched",
+      "finished": "2026-10-09T01:40:04.177993+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "760f390b0218a506e282aba15f63dc421e2da7be6679b01f538df9daeb79cc28",
+      "evidence": [
+        {
+          "file": "aaclip-weak-source-1/execution.json",
+          "sha256": "319f5c0fca1c4afd2b3cf422c469c319643865dd74d9923fcb46213248535250"
+        },
+        {
+          "file": "aaclip-weak-source-1/comparison.json",
+          "sha256": "682823e7f099cf5504cb7d5d22c580ab058d40c324349d9114882d7662fb620c"
+        },
+        {
+          "file": "aaclip-weak-source-1/summary.json",
+          "sha256": "7b4b05d73519f32e0ac504fb9b01dc41c8fdcd48ce35053f7bde202172dae0ad"
+        },
+        {
+          "file": "aaclip-weak-source-1/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2btad_bank8_seed0",
+      "slurm_job_id": "13715",
+      "status": "matched",
+      "finished": "2026-10-09T02:15:44.941803+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "bda66bb6c305e623b8f7f2c3063bb165665e96b704be1bd1548ca3487ce11cc6",
+      "evidence": [
+        {
+          "file": "faprompt-weak-bank-8/execution.json",
+          "sha256": "3830be3f631d681b9ca5fcc1a4000a848b81cc7edba989870397e09222dcc2bc"
+        },
+        {
+          "file": "faprompt-weak-bank-8/comparison.json",
+          "sha256": "ec22eb8885b629a1c2e450735a35fdeebf8d3289d2f3bcd8ff29891cc3f83b2f"
+        },
+        {
+          "file": "faprompt-weak-bank-8/summary.json",
+          "sha256": "c1ec67ea011c80612fd0a4f6c83a4759e3ebe72591279753f73917d3e0953fea"
+        },
+        {
+          "file": "faprompt-weak-bank-8/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt-vitl14_336-mvtec2btad-seed0",
+      "slurm_job_id": "13715",
+      "status": "matched",
+      "finished": "2026-10-09T02:32:30.326706+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "13c0527ca1f88a279bdcc23bf813c852ab90e3e24a3ccda95e66f2c5a244e930",
+      "evidence": [
+        {
+          "file": "faprompt-main/execution.json",
+          "sha256": "6f68681b4912eb3afe7694721ed30c4458bee4df118af7dfaab3f9fdb1b4ea6b"
+        },
+        {
+          "file": "faprompt-main/comparison.json",
+          "sha256": "40803738b370a5a10a251d6ca8165890fbf04e5b92d334998ab2686c10b872c3"
+        },
+        {
+          "file": "faprompt-main/summary.json",
+          "sha256": "0758fc0c47ac732240133c858a4678be2014e6ea25aed99b05c2eb62e61e69f0"
+        },
+        {
+          "file": "faprompt-main/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip-vitl336-mvtec2btad-seed0",
+      "slurm_job_id": "13715",
+      "status": "matched",
+      "finished": "2026-10-09T02:47:34.556165+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "85c233f682a48071fbe77c068f1320ea5a5d2dbd04dd96d00d97cd9259f2da8e",
+      "evidence": [
+        {
+          "file": "aaclip-l336-main/execution.json",
+          "sha256": "82426380db73605bcaab5b5eec5a41ee33e24b1b24ecfd278c910a44f5b2442c"
+        },
+        {
+          "file": "aaclip-l336-main/comparison.json",
+          "sha256": "54abb558573427c364954a8565f05327c210ec6c47f317bbd81ef47246d55c4e"
+        },
+        {
+          "file": "aaclip-l336-main/summary.json",
+          "sha256": "5372b6ad8146cb4579860daedd567548a2da71b9a57316a6d5bf99eee6125a9a"
+        },
+        {
+          "file": "aaclip-l336-main/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed0",
+      "slurm_job_id": "13728",
+      "status": "matched",
+      "finished": "2026-10-09T05:52:36.139796+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "d34633b363ba946c654406d0eb872c3f96c926257f0e1c68d2e2cb14620b819d",
+      "evidence": [
+        {
+          "file": "adaptclip-openai-btad-v5/comparison.json",
+          "sha256": "a5f04eac779094aceed6b9a773816e6825b84b3b770e24939209baacc3db5031"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/execution.json",
+          "sha256": "505257caf93f3280f99a45f0e014e878b539a03de246c5719af52ed0bbea36fe"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/summary.json",
+          "sha256": "0632bf18b84c8c50567574a7e709df4fb7a736a8a7f381813787ba2a30542d6a"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/preparation-and-results.zip",
+          "sha256": "e879553e89979f551e567e083861b6de298d264b2dea60264f6d7078a5fb972c"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed0",
+      "slurm_job_id": "13728",
+      "status": "matched",
+      "finished": "2026-10-09T06:09:58.900448+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "58dbdb6d05aeed1147db48f05e5a233c0947b12dc7ac43115f2595a8cfa96d39",
+      "evidence": [
+        {
+          "file": "adaptclip-l336-btad-v5/comparison.json",
+          "sha256": "090cf840e881303a1622f399da3aef580a7bbad4c613c6b3855c3babf47d3bd5"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/execution.json",
+          "sha256": "348b1bc80e3fb6dc27941043bbde6a947a8bdde0f34675a11f0674cea2946adc"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/summary.json",
+          "sha256": "7446a1d1788dc0bedaed953c0b42e557a4a74af48c648c42be42508e4808c16e"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/preparation-and-results.zip",
+          "sha256": "2ea10152447f8fd102fffa157af25190c26b56216d1001ebb503fed042291e98"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2btad-seed1",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T07:39:29.751184+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "c584343e3d57b689c724a38c7cf7d453b33752d21d421871b5a041318bcb586a",
+      "evidence": [
+        {
+          "file": "faprompt-bplus-btad-s1-v7/comparison.json",
+          "sha256": "bb8f5faa0dd3fb2fd12b35364ba3c79157cbb367fb2e68533571c82d1ff70b7e"
+        },
+        {
+          "file": "faprompt-bplus-btad-s1-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "faprompt-bplus-btad-s1-v7/execution.json",
+          "sha256": "44c0f62731e530f1c9f85e3c156e03b01947747550c0b2012093d2ea6ca8e576"
+        },
+        {
+          "file": "faprompt-bplus-btad-s1-v7/execution.log",
+          "sha256": "9956658b206c877e0ae80cdd4c9c32620f2004203ca93efa037f5d0325d4bdbd"
+        },
+        {
+          "file": "faprompt-bplus-btad-s1-v7/run.json",
+          "sha256": "55cec7bf6efbb8191b17e195794dc7155184c7d45f1c1a76263fe0c313127576"
+        },
+        {
+          "file": "faprompt-bplus-btad-s1-v7/summary.json",
+          "sha256": "8d6ceba2978e8223dac33f7fa218b801f69c417e6e0798d292cdc0ca247bb7be"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt-vith14-mvtec2btad-seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T07:58:35.556356+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "74ad706217c6f487696f0ae977f3f7ddcb9c939ef5cfe5ced6ba595328e08879",
+      "evidence": [
+        {
+          "file": "faprompt-h14-btad-v7/comparison.json",
+          "sha256": "42656a4154eb36c7ee2d8856b31e711f0a4456775c599ca5c1a651d1f932c0df"
+        },
+        {
+          "file": "faprompt-h14-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "faprompt-h14-btad-v7/execution.json",
+          "sha256": "47bf4a53725d75075442e27a2f0aeda7ca809b3f36f5a9a3458e16ef813a0acf"
+        },
+        {
+          "file": "faprompt-h14-btad-v7/execution.log",
+          "sha256": "98bebf133355e29ce6c1d2df7bbf25fdc81dbe0bd71f18d45af41fb7560a8821"
+        },
+        {
+          "file": "faprompt-h14-btad-v7/run.json",
+          "sha256": "45f87723689a6cdca00ec202f68ef003a463f73b948c2cb8837e497640986821"
+        },
+        {
+          "file": "faprompt-h14-btad-v7/summary.json",
+          "sha256": "e0f814a235c2302bdc827cfeb62efcf17025962539f0e7414001a8e52f3f763a"
+        }
+      ]
+    },
+    {
+      "recipe": "rawclip_vith14_mvtec2btad",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T08:53:35.993299+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 12,
+      "metrics_matched_2dp": 12,
+      "reference_sha256": "f9806d5742dfbd02f68adda7d2e05539e93dd85d66801639bd25c6168b014d13",
+      "evidence": [
+        {
+          "file": "rawclip-h14-btad-v7/comparison.json",
+          "sha256": "24a371a828d1ba08265713fa82417fcae4095bf0adec60ae4f8136ca6deb6c84"
+        },
+        {
+          "file": "rawclip-h14-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "rawclip-h14-btad-v7/execution.json",
+          "sha256": "52a452d0712107e0be2e8bc1ff1348fdf9668c602f83715a73838421799f8b0a"
+        },
+        {
+          "file": "rawclip-h14-btad-v7/execution.log",
+          "sha256": "f1f581c8983844583c6dad0a49db3d5b33058e36c09ac8d6bb871ccdc1e1094a"
+        },
+        {
+          "file": "rawclip-h14-btad-v7/run.json",
+          "sha256": "9c19620d3ed0d38944150d4fd6a95e00f59d4b33c106016bb2c9960d97a5b990"
+        },
+        {
+          "file": "rawclip-h14-btad-v7/summary.json",
+          "sha256": "a5b8b5716d03b79a4aed4f53f69fad64affecb78e5705f7e66897235242cad36"
+        }
+      ]
+    },
+    {
+      "recipe": "rawclip_vitl336_mvtec2btad",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T09:09:42.139560+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 12,
+      "metrics_matched_2dp": 12,
+      "reference_sha256": "1fbe6494fbbb3a23aa443ac08de2d03142ad41059a592b3198017d84c1158052",
+      "evidence": [
+        {
+          "file": "rawclip-l336-btad-v7/comparison.json",
+          "sha256": "75a6f4c871bdcc6a6c1b8733b6b7f52c0e4d1ce7793e47df05fbfaa2e54b3654"
+        },
+        {
+          "file": "rawclip-l336-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "rawclip-l336-btad-v7/execution.json",
+          "sha256": "dbe86f6d19cb5f1383d8f6deb045a15462ea72e253f9072795ab8cd65b8fdfe8"
+        },
+        {
+          "file": "rawclip-l336-btad-v7/execution.log",
+          "sha256": "b75ec2a7a7a3ffa7145db77834638975319452ca08e746d3d668160bc6fe6398"
+        },
+        {
+          "file": "rawclip-l336-btad-v7/run.json",
+          "sha256": "5033b24dc10acbe5486ea6ce32be66d28821d85f3612bbc543e2089576f5c8a9"
+        },
+        {
+          "file": "rawclip-l336-btad-v7/summary.json",
+          "sha256": "b2681ab1c243bf5b89110d299fb1b0702939294d5bafca7b6b8ceebea0984f87"
+        }
+      ]
+    },
+    {
+      "recipe": "rawclip_vitl_openai_mvtec2btad",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T09:22:13.464352+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 12,
+      "metrics_matched_2dp": 12,
+      "reference_sha256": "9af4a254fa840b0722d4a4cb015e1693aebd4ba72c4108233e7bfad8ae997993",
+      "evidence": [
+        {
+          "file": "rawclip-openai-btad-v7/comparison.json",
+          "sha256": "569f40a9580d854e4371cbeaf9646a7cf35b5bd8368ad84770a2fd168606bf8c"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/execution.json",
+          "sha256": "c6cd0785af201ecd2f4f05a49393590d1b2b0e27814729422991dbbbc92f36a0"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/execution.log",
+          "sha256": "abf2592fcf270bad0e7768b4dee72ca749fa6b9b4863db6760f4268beaa1c3a9"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/run.json",
+          "sha256": "7e29b72e26d6d61d6278c8cdd8e1ef16574aad7011aae3a8696a463a3c9f67e1"
+        },
+        {
+          "file": "rawclip-openai-btad-v7/summary.json",
+          "sha256": "9ac67820af0ba344fd6e9bf453cff5f5ec594037537a3003f14cb6e4fd45b96e"
+        }
+      ]
+    },
+    {
+      "recipe": "rawimagebind_mvtec2btad",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T09:49:59.149098+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 12,
+      "metrics_matched_2dp": 12,
+      "reference_sha256": "e083867306277b30fcf7580165782f2edf9388df694cc9242c9a31b7e143839d",
+      "evidence": [
+        {
+          "file": "imagebind-btad-v7/execution.json",
+          "sha256": "d26866908d06661d2e058085b3e0cf5d4f63097d239969cd39565c357582a1ef"
+        },
+        {
+          "file": "imagebind-btad-v7/comparison.json",
+          "sha256": "20e91568376b5cae5b537720384fc8937c06b0b4f49c56ff3ad7125d7f933e9f"
+        },
+        {
+          "file": "imagebind-btad-v7/summary.json",
+          "sha256": "1a60657246b2b4e0ec33625772c4f7da8443c897ad526bab6de39adc0741689b"
+        },
+        {
+          "file": "imagebind-btad-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "imagebind-btad-v7/run.json",
+          "sha256": "e887263622f2da0efbe3bc39c2c763aa4019838957b1a3b9d032cd3cdf77a997"
+        },
+        {
+          "file": "imagebind-btad-v7/execution.log",
+          "sha256": "8c08a9ff43359f54c9ab18ebe2060d2bba60a7ddcae2186fc65b068dcd152505"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_sourcelimit1_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T09:55:19.253134+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "13ac5f1f56e128906192e46eb071ad1318ddc6a8fd3940cca88b90fccae43d89",
+      "evidence": [
+        {
+          "file": "aaclip-mvtec-source-1-v7/execution.json",
+          "sha256": "1215eee7084ac06e8d6c8d716a368b0b8cb0e3aa6e497ec806a700b923e1808d"
+        },
+        {
+          "file": "aaclip-mvtec-source-1-v7/comparison.json",
+          "sha256": "c40abfb1d3e52a3ea598bc62865329b81a621dfcdda2c0b0e99ed1b7b6957491"
+        },
+        {
+          "file": "aaclip-mvtec-source-1-v7/summary.json",
+          "sha256": "c1765c7019c3b226c75a71ae58b922bc80e6c13264438c8ce0e2a5986faa0073"
+        },
+        {
+          "file": "aaclip-mvtec-source-1-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "aaclip-mvtec-source-1-v7/run.json",
+          "sha256": "5ec3d29127c1fce33ad6352e4d6675141726a6620375a21a1c082481d2087254"
+        },
+        {
+          "file": "aaclip-mvtec-source-1-v7/execution.log",
+          "sha256": "91a607e92749cb6139191db740e9bb812ca3301ce2e9cb7b4eec457e74e8f1fe"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_sourcelimit2_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T10:00:35.947805+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "ebfcd3298ae3213838612c2cf9e83fc06c3b670120fa8566d5a1a418adf17654",
+      "evidence": [
+        {
+          "file": "aaclip-mvtec-source-2-v7/execution.json",
+          "sha256": "4b9d0567b80e9a5dfc952d14361fa9533ecc7471a936c2706d2a1e7ddbcc70f4"
+        },
+        {
+          "file": "aaclip-mvtec-source-2-v7/comparison.json",
+          "sha256": "7eb87adb75c58d45ef9b879a1fbee2a05b586cdbab72d1c04f3e9c8758b8a240"
+        },
+        {
+          "file": "aaclip-mvtec-source-2-v7/summary.json",
+          "sha256": "1b050c2aa47d5f1a86fbcaafa533429a3108f543e9f2a74b4cddf77ae0c34ac5"
+        },
+        {
+          "file": "aaclip-mvtec-source-2-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "aaclip-mvtec-source-2-v7/run.json",
+          "sha256": "28d7aee5877acf6682a76a19cf23a249e2fab0fabf71ba9ec3906b50d2f11824"
+        },
+        {
+          "file": "aaclip-mvtec-source-2-v7/execution.log",
+          "sha256": "880b6d20d4be915e23d4422a5640d12c37da503d457749ed9a87dedf1a42f6b8"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_sourcelimit4_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T10:05:54.747528+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "ca957b437d83521d244c27d35ce4204924db2425083382630daa93e3784a275a",
+      "evidence": [
+        {
+          "file": "aaclip-mvtec-source-4-v7/execution.json",
+          "sha256": "bfe88748a4e7938852c8a886d02ba1b2e5faeaa76ca01b1143d224467ef45175"
+        },
+        {
+          "file": "aaclip-mvtec-source-4-v7/comparison.json",
+          "sha256": "6c640615453fcb5c2a96c73b21f231267f098dd0c14f603b705f5d605ef35cb4"
+        },
+        {
+          "file": "aaclip-mvtec-source-4-v7/summary.json",
+          "sha256": "2bc876b7f8fe1788c6ccf0b66f38ce9d7201c272515a43241153c6868d3985b8"
+        },
+        {
+          "file": "aaclip-mvtec-source-4-v7/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        },
+        {
+          "file": "aaclip-mvtec-source-4-v7/run.json",
+          "sha256": "0f588a9a661cb6ee8e61b604534aa3ba5d52e90460d6043bab7271ccf20ea1e6"
+        },
+        {
+          "file": "aaclip-mvtec-source-4-v7/execution.log",
+          "sha256": "297e3bc5210a8b96894f2bf5f9568efaf7b81ccabbf52403a02f9d5fc45623a0"
+        }
+      ]
+    }
+  ]
+}

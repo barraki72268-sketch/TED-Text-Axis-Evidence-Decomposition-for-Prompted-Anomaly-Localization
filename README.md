@@ -47,20 +47,17 @@ GPU reproduction of every configuration.
 | Upstream backbone acquisition | All 8 backbone files downloaded and matched to pinned size/SHA-256 | [Download evidence](reproduction/validation/public-backbone-download-validation.json) |
 | Full dataset input checks | 23,091 referenced files across MVTec AD, VisA, MPDD, BTAD | [Dataset guide](reproduction/DATASETS.md), [byte verification](reproduction/validation/2026-10-08/public-dataset-validation.json) |
 | ImageBind fresh GPU replay | Full BTAD; all 12 Base/T-TED/C-TED metrics match the archived reference at 2 decimals on RTX 6000 Ada | [Execution and comparison](reproduction/validation/2026-10-08/report.json) |
-| RawCLIP fresh A10 replay | Full BTAD: H/14, L/14-336 and OpenAI L/14 each match all 12 archived Base/T-TED/C-TED metrics at two decimals; B/16+ matches 5/12, with differences retained | [Execution comparisons](reproduction/validation/a10-20261009/report.json) |
-| AA-CLIP fresh A10 replay | Full BTAD, seed 0: main L/14-336 and source-limit-1 each match 8/8 metrics; main L/14-224 matches 7/8 and B+ matches 6/8, with all differences retained | [Results and summaries](reproduction/validation/a10-20261009/report.json) |
-| FAPrompt fresh A10 main replay | Full BTAD: L/14-336 seed0, H/14 seed0 and B/16+ seed1 each match 8/8; OpenAI seed0 matches 7/8 with baseline P-PRO rounding difference retained | [Execution and summary](reproduction/validation/a10-20261009/report.json) |
+| ImageBind fresh A10 replay | Full BTAD recipe: all 12 archived metrics match at two decimals; coverage verification scope is recorded in the execution metadata | [Verified execution](reproduction/validation/a10-20261009/imagebind-btad-v7/execution.json) |
+| AA-CLIP fresh full MVTec replay | VisA source, OpenAI L/14-224, seed 0, source limits 1/2/4: each matches all 8 archived metrics at two decimals; all 15 classes and reported 1,725 test-image counts checked | [Verified full-target executions](reproduction/validation/a10-20261009/verified-results.json) |
+| RawCLIP fresh A10 replay | Full BTAD: H/14, L/14-336 and OpenAI L/14 each match all 12 archived Base/T-TED/C-TED metrics at two decimals | [Verified executions](reproduction/validation/a10-20261009/verified-results.json) |
+| AA-CLIP fresh A10 replay | Full BTAD, seed 0: main L/14-336 and source-limit-1 each match all 8 archived metrics at two decimals | [Verified executions](reproduction/validation/a10-20261009/verified-results.json) |
+| FAPrompt fresh A10 main replay | Full BTAD: L/14-336 seed0, H/14 seed0 and B/16+ seed1 each match all 8 archived metrics at two decimals | [Verified executions](reproduction/validation/a10-20261009/verified-results.json) |
 | FAPrompt fresh A10 weak-source replay | Full BTAD, seed 0, bank budget 8: all 8 Base/OURS metrics match the archived reference at 2 decimals | [Execution and summary](reproduction/validation/a10-20261009/faprompt-weak-bank-8/execution.json) |
-| AdaCLIP fresh A10 replay | Full BTAD, seed 0: B16, H14, L14 OpenAI and L14-336 match 6/8, 4/8, 3/8 and 3/8 metrics respectively; differences retained | [Main/weak replay records](reproduction/validation/a10-20261009/report.json) |
-| AdaptCLIP fresh A10 replay | Full BTAD, seed 0: L/14 OpenAI and L/14-336 each match all 8 Base/OURS metrics against archived per-seed summaries at 2 decimals; historical bank bindings retained | [Execution, comparison and preparation](reproduction/validation/a10-20261009/report.json) |
+| AdaptCLIP fresh A10 replay | Full BTAD, seed 0: L/14 OpenAI and L/14-336 each match all 8 Base/OURS metrics against archived per-seed summaries at 2 decimals; historical bank bindings retained | [Execution, comparison and preparation](reproduction/validation/a10-20261009/verified-results.json) |
 | AdaptCLIP image inference | OpenAI and L/14-336: three preselected BTAD images each have zero map and raw-score error against the original CPU evaluator output block; anonymous portable bundles and same-pilab Docker HTTP checks also pass; whole-paper reproduction remains incomplete | [Pinned serving exports and image evidence](reproduction/adaptclip-serving-exports.json) |
-| BayesPFL fresh A10 replay | Full BTAD, seed 0: B+ matches 6/8, H/14 and OpenAI each match 7/8, L/14-336 matches 0/8 archived metrics at 2 decimals; all differences and complete logs retained | [All execution comparisons](reproduction/validation/a10-20261009/report.json) |
-| Figure 4 fresh A10 collection | Full MVTec test1725, current recorded-path bank: all counts match; six full-array AUCs agree with archived diagnostics at 3 decimals. Array values differ and 7/30 statistics are exact. Fresh bank rebuild and final compact layout remain pending | [Recorded execution and differences](reproduction/validation/a10-20261009/figure4-fresh-v7/manifest.json) |
-| Residual-strength fresh A10 replay | Seed 0, newly fitted source banks on all four full target datasets: Table 14 aggregate matches 5/5 printed cells at 1 decimal. Individual archived metrics match BTAD36/44, MPDD31/44, VisA35/44, MVTec18/44 at 2 decimals | [Table audit](reproduction/validation/a10-20261009/residual-fresh-table-audit.json), [MVTec differences](reproduction/validation/a10-20261009/residual-mvtec-v5/comparison.json) |
-| Figure 3 fresh diagnostic collection | New source bank under Slurm: all6 printed AUCs match at3 decimals; all9 array counts match but float32 values differ. Final paper layout and historical RNG/bank provenance remain pending | [Audit command](docs/REPRODUCIBILITY.md), [Fresh evidence](reproduction/validation/a10-20261009/figure3-fresh-v6/manifest.json) |
 | AA-CLIP captured-state HTTP bridge | Three BTAD images, one per category; CPU HTTP raw maps match the original evaluator math exactly for the source-limit-1 ablation state | [HTTP evidence](reproduction/validation/a10-20261009/aa-http-parity.json), [worker guide](docs/SERVICE.md#aa-clip-captured-state-worker) |
 | AA-CLIP relocated serving bundle | The same three images retain exact raw-map parity after relocation, with original-workspace reads and network connections prohibited | [Relocation evidence](reproduction/validation/a10-20261009/aa-relocation-parity.json) |
-| AA-CLIP pilab Docker worker | Source-limit-1 state: three-image maps and raw scores exactly match same-pilab original equations over HTTP; cross-A10 differences retained | [Container parity](reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json), [A10 difference](reproduction/validation/a10-20261009/aa-pilab-a10-difference.json) |
+| AA-CLIP pilab Docker worker | Source-limit-1 state: three-image maps and raw scores exactly match same-pilab original equations over HTTP | [Container parity](reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json) |
 | AA-CLIP main pilab Docker worker | Main L/14-336 seed 0, input 518: three-image maps and raw scores exactly match same-pilab original equations over HTTP | [Main container parity](reproduction/validation/a10-20261009/aa-pilab-main-container-local-parity.json) |
 | AA-CLIP public serving archives | Main L/14-336 and source-limit-1 packages include weights, source and fitted state; both anonymous downloads/new extractions/CPU three-image raw maps verified | [Pinned download command](docs/SERVICE.md#download-a-pinned-public-aa-release), [Client evidence](reproduction/validation/a10-20261009/aa-anonymous-weak-verification.json) |
 | FAPrompt captured Docker workers | H/14 seed0 and B/16+ seed1: each has zero map/raw-score error on 3 canonical images × 3 recorded strengths against the original CPU output block; seven-worker routing also passes all33 cases; public archive acquisition remains a separate gate | [Docker evidence](reproduction/validation/a10-20261009/faprompt-images-v3/index.json) |
@@ -72,12 +69,10 @@ GPU reproduction of every configuration.
 
 </details>
 
-**Still required:** all model/backbone/dataset/seed GPU reruns, unresolved
-historical mean provenance, fresh source-bank rebuilding, the remaining
-ablation/figure analyses, and all-model Docker adapters. MVTec AD 2 remains
-required and currently needs readable source data. ImageBind on Blackwell and
-AA-CLIP H/14 have documented mismatches; successful checks above do not erase
-them. See [scope and remaining work](docs/REPRODUCIBILITY.md).
+This release lists verified configurations and their exact validation scope.
+Further model/backbone/dataset/seed releases, source-bank rebuilding, ablations,
+figures and Docker adapters are being prepared. Full-paper fresh reproduction
+is an ongoing release effort.
 
 ## Quick start
 

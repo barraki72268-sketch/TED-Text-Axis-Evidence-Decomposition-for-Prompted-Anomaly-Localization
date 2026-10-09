@@ -621,6 +621,30 @@ class PublishedEvidenceTests(unittest.TestCase):
         self.assertTrue(runtime['read_only'])
         self.assertEqual(runtime['ports']['8000/tcp'][0]['HostIp'], '127.0.0.1')
 
+    def test_verified_release_matches_archived_references_and_full_target_scope(self):
+        folder = ROOT / 'validation/a10-20261009'
+        report = json.loads((folder / 'verified-results.json').read_text())
+        self.assertEqual(len(report['results']), 15)
+        for row in report['results']:
+            with self.subTest(recipe=row['recipe']):
+                self.assertEqual(row['status'], 'matched')
+                for item in row['evidence']:
+                    self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+                run = (folder / row['evidence'][0]['file']).parent
+                execution = json.loads((run / 'execution.json').read_text())
+                self.assertEqual(digest_file(run / 'summary.json'), execution['comparison']['actual_sha256'])
+                reference, expected = reference_summary(ROOT, row['recipe'])
+                actual = json.loads((run / 'summary.json').read_text())
+                cells = compare(extract(actual, reference['host']), extract(expected, reference['host']))
+                self.assertEqual(cells, execution['comparison']['cells'])
+                self.assertTrue(all(c['matches_printed_precision'] for c in cells))
+                self.assertEqual(len(cells), row['metrics_checked'])
+                if row['target_coverage']['dataset'] == 'mvtec':
+                    self.assertEqual(row['target_coverage']['classes_checked'], 15)
+                    self.assertEqual(row['target_coverage']['expected_test_images'], 1725)
+                    self.assertTrue(row['target_coverage']['reported_image_counts_checked'])
+                self.assertFalse(row['target_coverage']['per_image_execution_verified'])
+
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())

@@ -1,0 +1,36 @@
+{"stage": "aaclip_model_ready", "model_name": "ViT-L-14-336", "pretrained": "openai", "adapter_load_mode": "strict", "levels": [6, 12, 18, 24], "vision_width": 1024, "vision_depth": 24, "text_width": 768, "output_dim": 768, "image_adapter_load": {"loaded": 11, "cropped": 0, "skipped": 0, "missing": 0}, "text_adapter_load": {"loaded": 4, "cropped": 0, "skipped": 0, "missing": 0}}
+[BANK] reuse compatible cache: /home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/aaclip_vitl_openai224_visa2mvtec_sourcelimit2_seed0/source/neurips2026/results/bank_cache/aaclip_visa2mvtec_1cls_visa_fullshot_bs32_4_ours_readme_v4_prescore_segtoken_backboneswap_meta_trainnormal_testanomaly_masktop_fps_v1_ViT-L-14-336:openai_strict_l6-12-18-24_img224_fp512_def512_topk0p01_deftop0p25_src2_seed0.pt
+{"stage": "source_prescore_calibrator_trained", "source_dataset": "VisA", "calibration": "source_prescore_feature_rank_no_target", "hardpair_frac": 0.75, "map_calib_epochs": 0, "map_calib_hardfp_mode": "baseline_rank", "map_calib_aggregate_loss": false, "map_calib_preserve_weight": 0.25, "map_calib_preserve_mode": "l1_background", "map_calib_topk_frac": 0.05, "map_calib_learn_layer_beta": false, "map_calib_beta_init": 0.5, "map_calib_beta_reg": 0.0, "nonnegative_alpha": false, "transport_mode": "subspace_tanh", "subspace_rank": 8, "subspace_readout_mode": "host_residual", "subspace_basis_control": "source", "pair_label_control": "correct", "preserve_host_margin_weight": 1.0, "output_mode": "host_residual", "layer_alpha": [0.17794695496559143, 0.17595209181308746, 0.1732596606016159, 0.2098681628704071], "layer_beta": [1.0, 1.0, 1.0, 1.0], "layer_effective_alpha": [0.17794695496559143, 0.17595209181308746, 0.1732596606016159, 0.2098681628704071], "layer_fp_weight": [1.0143322944641113, 0.9892147183418274, 0.7789062857627869, 0.7686788439750671], "layer_gate_sharpness": [0.0, 0.0, 0.0, 0.0], "layer_transport_w": [null, null, null, null], "layer_transport_b": [0.03633170947432518, 0.31889691948890686, 0.39404019713401794, 0.39607352018356323], "layer_transport_direction": [[0.7261561155319214, -0.3586656153202057, -0.3403409421443939, 0.30949336290359497, -0.16008584201335907, 0.021141231060028076, 0.10449934750795364, 0.3089394271373749], [0.7178437113761902, -0.3654220700263977, -0.2458469271659851, 0.1309492588043213, 0.303478866815567, -0.030766144394874573, -0.29346123337745667, -0.3072673976421356], [0.6433481574058533, -0.35512205958366394, -0.30977123975753784, 0.35870444774627686, 0.03095816634595394, 0.28455477952957153, -0.38194844126701355, 0.0868903324007988], [0.5686374306678772, -0.35881635546684265, 0.3231205344200134, -0.007255323696881533, 0.3019319474697113, -0.35640189051628113, 0.35395359992980957, 0.3161872327327728]], "layer_subspace_score_w": [[0.736717164516449, -0.4272185266017914, -0.13747534155845642, 0.299083411693573, -0.37673893570899963, -0.12822604179382324, -0.08948566764593124], [0.7683659791946411, 0.3833011984825134, 0.2755453288555145, 0.09345979243516922, -0.26302674412727356, 0.32864704728126526, -0.029019571840763092], [0.7649835348129272, 0.40362444519996643, -0.18122881650924683, -0.31334036588668823, -0.17423251271247864, 0.2452157884836197, -0.17428003251552582], [0.750807523727417, -0.39515456557273865, 0.2087913155555725, -0.16897223889827728, 0.26429587602615356, -0.22251729667186737, -0.2977066934108734]], "layer_readout_gamma": [0.2023613154888153, 0.2708270847797394, 0.27951014041900635, 0.28337734937667847], "layer_source_delta_fp_mean": [-0.06348538398742676, -0.04496895521879196, -0.01401203591376543, 0.021833347156643867], "layer_source_delta_def_mean": [0.03402160108089447, 0.10473363101482391, 0.08999944478273392, 0.06802549958229065], "layer_source_base_pair_rank_accuracy": [0.785714328289032, 0.8571429252624512, 0.8214285969734192, 0.6071428656578064], "layer_source_pair_rank_accuracy": [0.8214285969734192, 0.8571429252624512, 0.8214285969734192, 0.6428571939468384]}
+{
+  "baseline": {
+    "pixel_auc": 90.22133333333335,
+    "pixel_ap": 34.51266666666666,
+    "pixel_pro": 78.9357300599416,
+    "image_auc": 84.80466666666668,
+    "image_ap": 92.68733333333333
+  },
+  "parallel": {
+    "pixel_auc": 90.67200000000001,
+    "pixel_ap": 32.705999999999996,
+    "pixel_pro": 81.22309684753418,
+    "image_auc": 75.69049289995537,
+    "image_ap": 88.95145110293532
+  },
+  "candidates": {
+    "prescore_calibrated_alpha_1": {
+      "pixel_auc": 90.0,
+      "pixel_ap": 36.56733333333333,
+      "pixel_pro": 80.73083837827046,
+      "image_auc": 85.10851410160035,
+      "image_ap": 93.00540148740401
+    },
+    "replace_alpha_1": {
+      "pixel_auc": 90.67200000000001,
+      "pixel_ap": 32.705999999999996,
+      "pixel_pro": 81.22309684753418,
+      "image_auc": 75.69049289995537,
+      "image_ap": 88.95145110293532
+    }
+  }
+}
+[OK] wrote /home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/aaclip_vitl_openai224_visa2mvtec_sourcelimit2_seed0/results/summary.json
