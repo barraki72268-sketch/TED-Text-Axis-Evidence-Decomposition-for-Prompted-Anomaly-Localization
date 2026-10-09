@@ -3,14 +3,32 @@ from pathlib import Path
 import unittest
 
 from reproduction.checkpoint_download import digest_file
-from reproduction.metrics import compare, extract
-from reproduction.recipe_lookup import reference_summary
+from reproduction.metrics import compare, extract, extract_recipe
+from reproduction.recipe_lookup import reference_summary, execution_recipe
 
 
 ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_residual_btad_fresh_replay_preserves_all_44_comparisons(self):
+        folder = ROOT / 'validation/a10-20261009/residual-btad-v5'
+        execution = json.loads((folder / 'execution.json').read_text())
+        comparison = json.loads((folder / 'comparison.json').read_text())
+        actual = json.loads((folder / 'summary.json').read_text())
+        recipe = execution_recipe(ROOT, execution['recipe'])
+        reference, expected = reference_summary(ROOT, execution['recipe'])
+        cells = compare(extract_recipe(actual, recipe), extract_recipe(expected, recipe))
+        self.assertEqual(comparison, execution['comparison'])
+        self.assertEqual(cells, comparison['cells'])
+        self.assertEqual(len(cells), 44)
+        self.assertEqual(sum(c['matches_printed_precision'] for c in cells), 36)
+        self.assertEqual(digest_file(folder / 'summary.json'), comparison['actual_sha256'])
+        self.assertEqual(execution['status'], 'mismatch')
+        self.assertEqual(execution['returncode'], 0)
+        self.assertEqual(execution['slurm_job_id'], '13725')
+        self.assertEqual(comparison['target_coverage']['expected_test_images'], 741)
+
     def test_anonymous_aa_release_matches_pinned_archive_and_raw_maps(self):
         folder = ROOT / 'validation/a10-20261009'
         index = json.loads((folder / 'aa-anonymous-evidence.json').read_text())
@@ -103,7 +121,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 9)
+        self.assertEqual(len(report['results']), 10)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:

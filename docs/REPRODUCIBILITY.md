@@ -150,10 +150,14 @@ place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then ru
 `python -m reproduction.residual_strength --runs <runs>`. That assembly checks
 summary content and coverage; inspect matching terminal execution records for
 fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
-all four fresh GPU executions remain pending until actual records prove them.
+BTAD has now completed on A10 under Slurm job13725; the other three transfers
+remain pending until actual terminal records prove them.
 
 All four Linux preparation commands passed on the A10 host with CUDA hidden.
 The [preparation record](../reproduction/validation/a10-20261009/residual-preparation-20261009.json)
 binds the exact run-plan bytes in a SHA-verified ZIP, zero historical bank inputs,
 empty pre-run bank caches and verified weight objects. This is preparation
-evidence; fresh GPU execution and the resulting table are still pending.
+evidence. The [fresh BTAD execution](../reproduction/validation/a10-20261009/residual-btad-v5/execution.json)
+completed successfully but matches only36/44 archived metrics at two decimals.
+All44 comparisons and the complete summary are retained; this is a mismatch,
+not a reproduced Table14. The other transfers and final aggregation are pending.
