@@ -269,13 +269,13 @@ CPU metric parity. Both workers use the same host-runtime profile with separate
 Compose project names; the main project sets `TED_AA_PORT=18084`.
 All-model publication and a standalone container remain required.
 
-### Selecting the five verified pilab workers
+### Selecting the verified pilab workers
 
 The [gateway Compose profile](../deployment/gateway.pilab.compose.yaml) serves
 the model selector on pilab loopback port 18085. Its
 [registry](../deployment/pilab-model-registry.json) pins the artifact identity of
 FAPrompt paper alpha 0.5, AA main L/14-336 seed 0, AA source-limit-1,
-and AdaptCLIP OpenAI L/14 and L/14-336 seed 0.
+AdaptCLIP OpenAI L/14 and L/14-336 seed 0, and captured FAPrompt B/16+ seed1 / H/14 seed0.
 These releases have different evaluation scopes, shown beside the selector.
 Other model families will be added after their serving checks pass.
 
@@ -285,7 +285,7 @@ From your own computer, keep this SSH tunnel open:
 ssh -N -L 18085:127.0.0.1:18085 pilab
 ```
 
-Open `http://127.0.0.1:18085/`, select a model and (for AA) a target category,
+Open `http://127.0.0.1:18085/`, select a model, (for AA) a target category, or (for captured FAPrompt) a recorded strength,
 then upload an actual PNG or JPEG. The interface displays the input, host map,
 C-TED map, raw image score, artifact hash, and downloadable raw maps.
 The image score is not an anomaly probability or the dataset-wide paper metric.
@@ -418,9 +418,11 @@ a package from a terminal matching execution.
 `python -m reproduction.faprompt_capture_parity EXPORT ORIGINAL_SCRIPT --output NEW_REPORT`
 compares the token readout with unchanged original function AST definitions
 using fixed tensors and the real captured bank/calibrators. Both variants
-match exactly for every recorded strength. This is not image/model parity;
-the new packages are not yet added to the Docker selector or published as
-verified serving archives. The [packaging/readout evidence](../reproduction/validation/a10-20261009/faprompt-package-v1/index.json)
+match exactly for every recorded strength. Both variants now also pass fresh-archive CPU image checks and same-pilab
+Docker HTTP comparison on three canonical images at all three recorded strengths,
+with zero map and raw-score error. See the [Docker evidence](../reproduction/validation/a10-20261009/faprompt-images-v3/index.json).
+Their registry entries are prepared; seven-worker routing verification is separate.
+Public Hugging Face acquisition and standalone-image verification remain pending. The [packaging/readout evidence](../reproduction/validation/a10-20261009/faprompt-package-v1/index.json)
 keeps these separate gates explicit. Strength must be explicitly chosen from
 the recorded configuration, and branch identity uses metadata rather than
 capture ordering.

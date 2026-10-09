@@ -11,6 +11,37 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_faprompt_docker_matches_all_canonical_images_and_recorded_strengths(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/faprompt-images-v3'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertTrue(index['docker_http_verified'])
+        self.assertFalse(index['hf_publication_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        with zipfile.ZipFile(folder / 'proof.zip') as archive:
+            for item in index['files']:
+                self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+                self.assertEqual((folder / item['file']).read_bytes(), archive.read(item['archive_member']))
+        for key, port in [('bplus',18088), ('h14',18089)]:
+            report = json.loads((folder / (key + '-http.json')).read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertTrue(report['http_verified'])
+            self.assertTrue(report['original_input_reads_denied'])
+            self.assertTrue(report['denial_self_checks_passed'])
+            self.assertFalse(report['fitting_performed'])
+            self.assertEqual(report['allowed_loopback_http'], f'http://127.0.0.1:{port}')
+            self.assertEqual({(r['category'],r['alpha']) for r in report['rows']},
+                             {(c,a) for c in ['01','02','03'] for a in [.5,1.,1.5]})
+            for row in report['rows']:
+                for metric in ['host_max_absolute_error','cted_max_absolute_error',
+                               'host_image_score_error','cted_image_score_error']:
+                    self.assertEqual(row[metric], 0)
+            container = json.loads((folder / (key + '-container.json')).read_text())
+            self.assertEqual(container['health'], 'healthy')
+            self.assertTrue(container['read_only'])
+            self.assertEqual(container['ports']['8000/tcp'][0]['HostIp'], '127.0.0.1')
+
     def test_faprompt_seeded_images_and_archive_checks_cover_every_strength(self):
         import zipfile
         folder = ROOT / 'validation/a10-20261009/faprompt-images-v2'

@@ -1,0 +1,136 @@
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-faprompt-h14-20261009/bundle/source/neurips2026/FAPrompt/AnomalyCLIP_lib/model_load.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+name ViT-H-14
+text_layer False
+text_layer True
+Initializing class-specific contexts
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+embedding_pos torch.Size([1, 77, 1024])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 10, 77])
+{"category": "01", "alpha": 0.5, "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "01", "alpha": 1.0, "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "01", "alpha": 1.5, "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "02", "alpha": 0.5, "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "02", "alpha": 1.0, "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "02", "alpha": 1.5, "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "03", "alpha": 0.5, "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "03", "alpha": 1.0, "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{"category": "03", "alpha": 1.5, "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d", "host_max_absolute_error": 0.0, "cted_max_absolute_error": 0.0, "host_image_score_error": 0.0, "cted_image_score_error": 0.0}
+{
+  "status": "matched",
+  "started": "2026-10-09T08:52:24.445493+00:00",
+  "rows": [
+    {
+      "category": "01",
+      "alpha": 0.5,
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "01",
+      "alpha": 1.0,
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "01",
+      "alpha": 1.5,
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "02",
+      "alpha": 0.5,
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "02",
+      "alpha": 1.0,
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "02",
+      "alpha": 1.5,
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "03",
+      "alpha": 0.5,
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "03",
+      "alpha": 1.0,
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "03",
+      "alpha": 1.5,
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    }
+  ],
+  "engine": {
+    "host": "FAPrompt",
+    "recipe": "faprompt-vith14-mvtec2btad-seed0",
+    "backbone": "ViT-H/14",
+    "alpha": 0.5,
+    "artifact_sha256": "200f5085094be222857b3663382725fdddc3e1d5584cb4f7a23edae27eb314a8",
+    "device": "cpu",
+    "portable_bundle": true,
+    "deployment_status": "captured-state image bridge; image/HTTP verification separate",
+    "model_load_ms": 27636.16300886497,
+    "alphas": [
+      0.5,
+      1.0,
+      1.5
+    ]
+  },
+  "denial_self_checks_passed": true,
+  "original_input_reads_denied": true,
+  "network_denied": false,
+  "allowed_loopback_http": "http://127.0.0.1:18089",
+  "http_verified": true,
+  "fitting_performed": false,
+  "scope": "First canonical test image/class at every recorded alpha. Original baseline functions plus original branch-calibrated AST block; all original workspace/model inputs and network denied. Not a full-dataset CPU metric replay; HTTP verification only if allowed_loopback_http is explicitly set.",
+  "finished": "2026-10-09T09:00:32.755980+00:00"
+}

@@ -1,0 +1,41 @@
+{
+  "container": "/ted-fap-h14-api-1",
+  "image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "health": "healthy",
+  "user": "1000009:1000009",
+  "read_only": true,
+  "memory": 12884901888,
+  "nano_cpus": 2000000000,
+  "security_opt": [
+    "no-new-privileges:true"
+  ],
+  "ports": {
+    "80/tcp": null,
+    "8000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "18089"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-faprompt-h14-20261009/app",
+      "Destination": "/app",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-faprompt-h14-20261009/bundle",
+      "Destination": "/bundle",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "RW": false
+    }
+  ]
+}
