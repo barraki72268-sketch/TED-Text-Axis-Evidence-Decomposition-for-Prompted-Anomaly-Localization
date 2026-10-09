@@ -42,6 +42,24 @@ def link_runtime_asset(runtime: Path, relative: Path, target: Path) -> dict:
     return {"path": str(path), "target": str(target.resolve()), "sha256": digest_file(target)}
 
 
+def relocate_computed_dataset_roots(text: str, roots: dict[str, Path]) -> str:
+    # These archived constants construct paths from ROOT, so replacing absolute
+    # string literals alone cannot relocate them. Bind only the two known
+    # dataset path expressions; preserve all evaluation settings and code.
+    expressions = {
+        "visa": ('OFFICIAL_VISA_ROOT', 'ROOT / "neurips2026" / "data" / "VisA_pytorch_official" / "1cls"'),
+        "btad": ('BTAD_ROOT', 'ROOT / "neurips2026" / "data" / "BTAD_official"'),
+    }
+    for name, (constant, expression) in expressions.items():
+        if name in roots:
+            pattern = r"(?m)^" + re.escape(constant + " = " + expression) + r"$"
+            replacement = constant + " = Path(" + json.dumps(str(roots[name])) + ")"
+            text, count = re.subn(pattern, lambda _: replacement, text)
+            if count != 1:
+                raise ValueError(f"Archived computed dataset root differs: {constant}")
+    return text
+
+
 def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: list[Path], dataset_config: Path) -> dict:
     if sys.platform != "linux":
         raise RuntimeError("Research runtime preparation currently requires Linux; artifact verification works on Windows too")
@@ -159,6 +177,10 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
         if path.is_file() and path.suffix in {".py", ".json", ".yaml", ".yml", ".sh"}:
             before = path.read_text(encoding="utf-8")
             after = relocate(before)
+            if path.relative_to(runtime).as_posix() == "neurips2026/scripts/common_failure_metrics.py":
+                after = relocate_computed_dataset_roots(after, {
+                    name: Path(item["prepared_metadata"]).parent for name, item in prepared_data.items()
+                })
             if before != after:
                 prior = digest_file(path)
                 path.write_text(after, encoding="utf-8")

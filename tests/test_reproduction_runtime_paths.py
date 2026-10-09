@@ -5,13 +5,27 @@ import tempfile
 import unittest
 
 from reproduction.backbone_download import required_backbone_assets
-from reproduction.runtime import link_runtime_asset
+from reproduction.runtime import link_runtime_asset, relocate_computed_dataset_roots
 
 
 ROOT = Path(__file__).resolve().parents[1] / "reproduction"
 
 
 class RuntimePathTests(unittest.TestCase):
+    def test_computed_dataset_roots_bind_full_prepared_metadata_without_changing_settings(self):
+        text = ('ROOT = Path("/original")\n'
+                'OFFICIAL_VISA_ROOT = ROOT / "neurips2026" / "data" / "VisA_pytorch_official" / "1cls"\n'
+                'BTAD_ROOT = ROOT / "neurips2026" / "data" / "BTAD_official"\n'
+                'batch_size = 4\nsigma = 8\n')
+        bound = relocate_computed_dataset_roots(text, {"visa": Path("/verified/visa"), "btad": Path("/verified/btad")})
+        namespace = {"Path": Path}
+        exec(bound, namespace)
+        self.assertEqual(namespace['OFFICIAL_VISA_ROOT'], Path('/verified/visa'))
+        self.assertEqual(namespace['BTAD_ROOT'], Path('/verified/btad'))
+        self.assertIn('batch_size = 4\nsigma = 8\n', bound)
+        with self.assertRaisesRegex(ValueError, "computed dataset root differs"):
+            relocate_computed_dataset_roots(text.replace('"BTAD_official"', '"different_protocol"'), {"btad": Path('/verified/btad')})
+
     def test_aa_bootstrap_does_not_replace_selected_backbone(self):
         catalog = json.loads((ROOT / "backbones.json").read_text())
         for binding in catalog["bindings"]:
