@@ -17,7 +17,7 @@
     {
       "id": "aaclip-source1-ablation",
       "label": "AA-CLIP · source-limit-1 ablation",
-      "scope": "Weak-source ablation, MVTec → BTAD, seed 0, input 224. This is separate from the main setting; cross-A10 CPU differences are retained.",
+      "scope": "Weak-source ablation, MVTec → BTAD, seed 0, input 224. Full-BTAD archived metrics and same-pilab original-code Docker parity verified for this ablation state.",
       "url": "http://127.0.0.1:18083",
       "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5"
     },
@@ -48,6 +48,13 @@
       "scope": "MVTec → BTAD, seed 0: full-BTAD matches 8/8 archived per-seed metrics; pilab Docker original-code parity checked on 3 images × 3 recorded strengths. No whole-paper claim.",
       "url": "http://127.0.0.1:18089",
       "artifact_sha256": "200f5085094be222857b3663382725fdddc3e1d5584cb4f7a23edae27eb314a8"
+    },
+    {
+      "id": "rawclip-openai-main",
+      "label": "RawCLIP · L/14 OpenAI · Base / T-TED / C-TED",
+      "scope": "MVTec → BTAD, seed 0, input 224. Full-BTAD replay matches all 12 archived metrics; three fixed-image Docker HTTP checks exactly preserve all three raw maps and image scores. Select the target category explicitly.",
+      "url": "http://127.0.0.1:18090",
+      "artifact_sha256": "d1b619823f1ca7e55cf10e7f3536f4c2108a73b74e67369bf079912d69efc452"
     }
   ]
 }

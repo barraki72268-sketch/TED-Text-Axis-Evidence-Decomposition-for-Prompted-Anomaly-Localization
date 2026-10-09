@@ -52,16 +52,28 @@ def run(registry_path,images_root,gateway):
                         or headers.get('X-TED-Model',headers.get('x-ted-model'))!=model['id']):
                     raise ValueError('Routed prediction identity differs')
                 with np.load(io.BytesIO(base64.b64decode(actual['maps_npz_base64'])),allow_pickle=False) as a, np.load(io.BytesIO(base64.b64decode(expected['maps_npz_base64'])),allow_pickle=False) as e:
+                    if set(a.files) != set(e.files):
+                        raise ValueError('Gateway changed readout availability')
                     if a['host'].shape!=e['host'].shape or a['cted'].shape!=e['cted'].shape:
                         raise ValueError('Gateway changed map shape')
                     row=dict(model=model['id'],fixture_category=category,image_sha256=binding['sha256'],
                         artifact_sha256=actual['artifact_sha256'],host_max_abs_error=float(np.max(np.abs(a['host']-e['host']))),
                         cted_max_abs_error=float(np.max(np.abs(a['cted']-e['cted']))),
                         raw_image_score_abs_error=abs(actual['image_score']-expected['image_score']))
+                    if 'tted' in e.files:
+                        if a['tted'].shape != e['tted'].shape:
+                            raise ValueError('Gateway changed train-free map shape')
+                        row['tted_max_abs_error'] = float(np.max(np.abs(a['tted']-e['tted'])))
                 if ('cted_image_score' in expected)!=('cted_image_score' in actual):
                     raise ValueError('Gateway changed corrected-score availability')
                 if 'cted_image_score' in expected:
                     row['cted_image_score_abs_error']=abs(actual['cted_image_score']-expected['cted_image_score'])
+                if ('tted_image_score' in expected) != ('tted_image_score' in actual):
+                    raise ValueError('Gateway changed train-free score availability')
+                if 'tted_image_score' in expected:
+                    row['tted_image_score_abs_error']=abs(actual['tted_image_score']-expected['tted_image_score'])
+                if info.get('categories') and (expected.get('category') != category or actual.get('category') != category):
+                    raise ValueError('Gateway changed requested category')
                 if alpha is not None:
                     if expected.get('alpha') != alpha or actual.get('alpha') != alpha:
                         raise ValueError('Gateway changed requested strength')
@@ -76,7 +88,7 @@ def run(registry_path,images_root,gateway):
         return 200
     unknown=rejected(gateway+'/predict?model=not-registered')
     missing=rejected(gateway+'/predict?model=aaclip-l336-main')
-    passed=all(r[k]==0 for r in rows for k in ['host_max_abs_error','cted_max_abs_error','raw_image_score_abs_error']) and all(r.get('cted_image_score_abs_error',0)==0 for r in rows) and unknown==404 and missing==422
+    passed=all(r[k]==0 for r in rows for k in ['host_max_abs_error','cted_max_abs_error','raw_image_score_abs_error']) and all(r.get(k,0)==0 for r in rows for k in ['cted_image_score_abs_error','tted_max_abs_error','tted_image_score_abs_error']) and unknown==404 and missing==422
     return dict(status='matched' if passed else 'mismatch',models=len(registry),cases=len(rows),rows=rows,
         unknown_model_status=unknown,missing_aa_category_status=missing,registry_sha256=digest_file(registry_path),
         scope='Every registered worker on three fixed canonical BTAD images and every advertised strength; direct-versus-gateway raw maps and scores. Not full-dataset metric reproduction or standalone-image verification.')

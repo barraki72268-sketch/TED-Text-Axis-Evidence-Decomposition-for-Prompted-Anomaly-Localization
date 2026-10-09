@@ -1,0 +1,40 @@
+{
+  "name": "/ted-raw-openai-api-1",
+  "image": "ted-inspection:host-runtime-20261008",
+  "user": "1000009:1000009",
+  "state": "running",
+  "health": "healthy",
+  "cpu": 2000000000,
+  "memory": 12884901888,
+  "read_only": true,
+  "ports": {
+    "80/tcp": null,
+    "8000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "18090"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "destination": "/bundle",
+      "read_write": false
+    },
+    {
+      "destination": "/mnt/data/envs/patchcore-conda",
+      "read_write": false
+    },
+    {
+      "destination": "/app",
+      "read_write": false
+    }
+  ],
+  "environment": {
+    "TED_RUN_WORKSPACE": "/bundle",
+    "CUDA_VISIBLE_DEVICES": "",
+    "TED_ENGINE_FAMILY": "rawclip",
+    "TED_DEVICE": "cpu",
+    "TED_CAPTURED_EXPORT": "/bundle/export"
+  }
+}

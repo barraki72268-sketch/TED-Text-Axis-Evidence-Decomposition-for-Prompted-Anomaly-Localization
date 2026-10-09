@@ -1,25 +1,40 @@
 """Verify a relocated captured RawCLIP bundle against its original output block."""
 import argparse
 import ast
+import base64
 from datetime import datetime, timezone
 import json
+import io
 from pathlib import Path
 import socket
 import sys
 from types import SimpleNamespace
+from urllib.parse import urlencode, urlsplit
+import urllib.request
 from .checkpoint_download import digest_file
 from .datasets import load_protocol
 
-def run(workspace, images_root):
+def run(workspace, images_root, http_url=None):
+    import numpy as np
     import torch
     from PIL import Image
     from ted.inference.rawclip_engine import CapturedRawCLIPEngine
     plan=json.loads((workspace/'run.json').read_text())
     original=Path(plan['cwd']).parent.resolve()
     objects={Path(e['path']).resolve() for e in plan['verified_objects']}
+    allowed=None
+    if http_url is not None:
+        parsed=urlsplit(http_url)
+        if (parsed.scheme!='http' or parsed.hostname!='127.0.0.1' or parsed.username or parsed.password
+                or parsed.path not in {'','/'} or parsed.query or parsed.fragment):
+            raise ValueError('Expected a pinned loopback worker URL')
+        allowed=('127.0.0.1',parsed.port or 80)
+        http_url=http_url.rstrip('/')
     def guard(event,args):
-        if event in {'socket.connect','socket.getaddrinfo'}:
+        if event=='socket.connect' and (allowed is None or args[1]!=allowed):
             raise PermissionError('Network access denied')
+        if event=='socket.getaddrinfo' and (allowed is None or (args[0],args[1])!=allowed):
+            raise PermissionError('Network resolution denied')
         if event=='open' and isinstance(args[0],(str,bytes)):
             p=Path(args[0].decode() if isinstance(args[0],bytes) else args[0]).resolve()
             if p==original or original in p.parents or p in objects:
@@ -66,13 +81,28 @@ def run(workspace, images_root):
             raise ValueError('Canonical image bytes changed')
         with Image.open(image_path) as im:
             image=im.convert('RGB')
-        actual=e.predict(image,category=category)
+        if http_url is None:
+            actual=e.predict(image,category=category)
+        else:
+            body=io.BytesIO()
+            image.save(body,format='PNG')
+            request=urllib.request.Request(http_url+'/predict?'+urlencode({'category':category}),data=body.getvalue(),headers={'Content-Type':'image/png'})
+            opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+            with opener.open(request,timeout=180) as response:
+                actual=json.load(response)
+            if actual.get('category')!=category or actual.get('artifact_sha256')!=e.artifact_sha256:
+                raise ValueError('HTTP worker changed category or artifact identity')
+            with np.load(io.BytesIO(base64.b64decode(actual['maps_npz_base64'])),allow_pickle=False) as maps:
+                if set(maps.files)!={'host','tted','cted'}:
+                    raise ValueError('HTTP response lost a RawCLIP readout')
+                for name in maps.files:
+                    actual[name+'_map']=maps[name].copy()
         with torch.inference_mode():
             env=dict(e.host.__dict__,args=SimpleNamespace(**e.summary),backbone=e.backbone,
                 image=e.transform(image).unsqueeze(0),cls_name=category,features_list=e.summary['features_list'],
                 fp_banks=e.fp,def_banks=e.defect,source_calibrators=e.calibrators,image_size=e.summary['image_size'])
             exec(block,env)
-        maps={k:float((actual[k]-env[v]).abs().max()) for k,v in [('host_map','baseline_map'),('tted_map','parallel_map'),('cted_map','calibrated_map')]}
+        maps={k:float(np.max(np.abs(np.asarray(actual[k])-np.asarray(env[v])))) for k,v in [('host_map','baseline_map'),('tted_map','parallel_map'),('cted_map','calibrated_map')]}
         scores={k:abs(actual[k]-env[v]) for k,v in [('image_score','baseline_img_score'),('tted_image_score','ours_img_score'),('cted_image_score','calibrated_img_score')]}
         rows.append(dict(category=category,image_sha256=binding['sha256'],map_max_abs_error=maps,score_abs_error=scores))
         print(json.dumps(rows[-1]),flush=True)
@@ -80,8 +110,9 @@ def run(workspace, images_root):
         finished=datetime.now(timezone.utc).isoformat(),device='cpu',gpu_used=False,
         recipe=plan['recipe'],artifact_sha256=e.artifact_sha256,
         engine_sha256=digest_file(Path(sys.modules[CapturedRawCLIPEngine.__module__].__file__)),
-        original_output_source_sha256=digest_file(script),original_workspace_reads_denied=True,network_denied=True,
-        scope='Three protocol-fixed BTAD images, one per class; separate engine equations compared to the original evaluator AST output block using the same CPU backbone and terminal captured bank/calibrators. No fitting/mining. Original model/workspace reads and network connections denied. HTTP/container parity is a separate check.',cases=rows)
+        original_output_source_sha256=digest_file(script),original_workspace_reads_denied=True,network_denied=http_url is None,
+        allowed_http_worker=http_url,
+        scope='Three protocol-fixed BTAD images, one per class; captured engine or pinned loopback HTTP worker compared to the original evaluator AST output block on the same CPU node and terminal captured bank/calibrators. No fitting/mining. Original model/workspace reads and unrelated network connections denied.',cases=rows)
 
 def main():
     import torch
@@ -89,9 +120,10 @@ def main():
     parser.add_argument('workspace',type=Path)
     parser.add_argument('images_root',type=Path)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--http-url')
     args=parser.parse_args()
     torch.set_num_threads(2)
-    result=run(args.workspace.resolve(),args.images_root.resolve())
+    result=run(args.workspace.resolve(),args.images_root.resolve(),args.http_url)
     args.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print('TERMINAL',result['status'],flush=True)
     return 0 if result['status']=='matched' else 1

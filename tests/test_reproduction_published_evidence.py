@@ -674,6 +674,30 @@ class PublishedEvidenceTests(unittest.TestCase):
             for entry in export['captured_state']:
                 self.assertIn({k: entry[k] for k in ['function', 'file', 'sha256']}, execution['captured_files'])
 
+    def test_rawclip_pilab_docker_preserves_all_three_readouts_on_canonical_images(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-pilab-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        for entry in index['files']:
+            self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
+        for mode in ['relocated', 'http']:
+            report = json.loads((folder / f'rawclip-openai-pilab-{mode}-parity-20261009-v1.json').read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertTrue(report['original_workspace_reads_denied'])
+            self.assertFalse(report['gpu_used'])
+            self.assertEqual(len(report['cases']), 3)
+            for row in report['cases']:
+                self.assertEqual(set(row['map_max_abs_error']), {'host_map', 'tted_map', 'cted_map'})
+                self.assertTrue(all(e == 0 for e in row['map_max_abs_error'].values()))
+                self.assertTrue(all(e == 0 for e in row['score_abs_error'].values()))
+            if mode == 'http':
+                self.assertEqual(report['allowed_http_worker'], 'http://127.0.0.1:18090')
+        container = json.loads((folder / 'container.json').read_text())
+        self.assertEqual(container['health'], 'healthy')
+        self.assertTrue(container['read_only'])
+        self.assertEqual(container['ports']['8000/tcp'][0]['HostIp'], '127.0.0.1')
+        self.assertEqual(container['environment']['TED_ENGINE_FAMILY'], 'rawclip')
+        self.assertEqual(container['environment']['CUDA_VISIBLE_DEVICES'], '')
+
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
