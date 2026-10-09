@@ -208,3 +208,20 @@ hash were not recorded in that JSON, and training data cannot be inferred from
 the checkpoint folder name. These gaps remain explicit in the plan. A guarded
 Slurm runner, fresh collection and comparison with the original arrays are still
 required before claiming fresh Figure 3 reproduction.
+
+After preparation, CPU validation is available without running a model:
+
+```bash
+python -m reproduction.axis_run ./runs/figure3 --validate-only
+```
+
+Inside a valid GPU Slurm allocation, omit `--validate-only` to collect. The runner
+checks the job is RUNNING, GPU resources are allocated, the current host belongs
+to that job and GPUs are visible. It revalidates source, assets, full dataset
+bytes, metadata, command arguments and empty output/bank directories before
+launch. The worker records initial Python/NumPy/Torch RNG states without choosing
+a seed or claiming the historical RNG state. Success/failure, logs, all nine
+array comparisons and six AUC annotations are retained. Array equality and AUC
+agreement are reported separately; a generated PDF alone proves neither.
+The collector also creates its own diagnostic PDF and PNG. Final printed layout
+provenance remains pending even if the numeric comparisons pass.

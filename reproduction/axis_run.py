@@ -124,6 +124,14 @@ def validate_prepared(root: Path, workspace: Path) -> dict:
 def compare_arrays(root: Path, fresh: dict) -> dict:
     import numpy as np
     manifest, prior, _ = read_inputs(root)
+    expected_summary = prior['summary']
+    for key in ['source_dataset','target_dataset','target_mode','target_class',
+                'hard_frac','tau','max_normal_eval_images','max_anomaly_eval_images']:
+        if fresh['summary'][key] != expected_summary[key]:
+            raise ValueError('Fresh Figure 3 diagnostic setting differs: ' + key)
+    for key, value in expected_summary['bank_cache_meta'].items():
+        if key not in {'checkpoint_path', 'source_root'} and fresh['summary']['bank_cache_meta'][key] != value:
+            raise ValueError('Fresh Figure 3 source-bank setting differs: ' + key)
     if set(fresh['groups']) != set(prior['groups']):
         raise ValueError('Fresh Figure 3 group coverage differs')
     arrays = []
@@ -166,7 +174,12 @@ def run(root: Path, workspace: Path) -> dict:
         command = [sys.executable, str(root / 'axis_worker.py'), plan['command'][2],
                    str(workspace / 'figure3-initial-rng.json'), *plan['command'][3:]]
         with (workspace / 'figure3-execution.log').open('x') as log:
-            result = subprocess.run(command, cwd=plan['cwd'], stdout=log, stderr=subprocess.STDOUT)
+            environment = dict(os.environ, ANOMALYCLIP_CACHE_DIR=str(workspace / 'clip-cache'),
+                               MPLCONFIGDIR=str(workspace / 'mpl-cache'))
+            execution['environment_path_overrides'] = {key: environment[key] for key in
+                                                       ['ANOMALYCLIP_CACHE_DIR', 'MPLCONFIGDIR']}
+            result = subprocess.run(command, cwd=plan['cwd'], env=environment,
+                                    stdout=log, stderr=subprocess.STDOUT)
         execution.update(returncode=result.returncode, status='failed' if result.returncode else 'completed')
         if result.returncode == 0:
             fresh_path = workspace / 'results/axis_entanglement_mvtec2visa.json'
