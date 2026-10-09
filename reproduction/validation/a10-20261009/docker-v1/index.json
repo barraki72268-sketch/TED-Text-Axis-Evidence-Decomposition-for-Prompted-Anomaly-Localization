@@ -1,0 +1,116 @@
+{
+  "status": "matched",
+  "worker_app_commit": "799f667",
+  "gateway_app_commit": "af7bdcc",
+  "archive": {
+    "path": "validation/a10-20261009/docker-v1/proof.zip",
+    "sha256": "c17ea4f0d78fce5d21d2390f34d076b77dc3c8e5c6c2b9a0567e27f997854d71"
+  },
+  "files": [
+    {
+      "path": "validation/a10-20261009/docker-v1/gateway-v1.json",
+      "sha256": "005a373f852dbe4f65ce78196b38d5583dc4281fae6d62d923188ca8bb11662d",
+      "bytes": 195,
+      "archive_member": "gateway-five-parity-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/gateway-v1.log",
+      "sha256": "005a373f852dbe4f65ce78196b38d5583dc4281fae6d62d923188ca8bb11662d",
+      "bytes": 195,
+      "archive_member": "gateway-five-parity-20261009-v1.log"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/gateway-v2.json",
+      "sha256": "2ac2c1ae292b1e8929ecda0e7cbe59f01b0fe94d114483e9369c9bd3210837a4",
+      "bytes": 6338,
+      "archive_member": "gateway-five-parity-20261009-v2.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/gateway-v2.log",
+      "sha256": "1888e75b39f29e5476c25be858a02a368ae676d2a8e2a92e0889c121089f8ff6",
+      "bytes": 11327,
+      "archive_member": "gateway-five-parity-20261009-v2.log"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/runtime.json",
+      "sha256": "3a2371d0aaa05fde5a6ad0763a1ee15dd4031ca5352cc5de7f64303bc379a1ba",
+      "bytes": 8348,
+      "archive_member": "docker-five-runtime-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/tests.log",
+      "sha256": "1b3c7d1e92de66713709eb746d19065becad10b22fa18fc08f354c6ca1ef9a80",
+      "bytes": 123,
+      "archive_member": "gateway-five-tests-20261009-v1.log"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/openai-http.json",
+      "sha256": "dfb542eb4efb72ba526524f46de360be565bf75155957e3fda5a379da47888de",
+      "bytes": 2307,
+      "archive_member": "adaptclip-openai-http-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/openai-http.log",
+      "sha256": "cf58eca39e09f7a7fde6f9b9eba5ef0a0a0d25b918a6e9b39cd040aea0223316",
+      "bytes": 3229,
+      "archive_member": "adaptclip-openai-http-20261009-v1.log"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/openai-docker-inputs.json",
+      "sha256": "f1783b328366e1309102f3e6f3ab7cfe7bd50cc29773ddc91e4d28310b560054",
+      "bytes": 301,
+      "archive_member": "adaptclip-openai-docker-inputs-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/l336-http.json",
+      "sha256": "c9240a5adb72a7cd28eec066abcd39842c094d4fd3b7480c66a4a439c6f52b3f",
+      "bytes": 2299,
+      "archive_member": "adaptclip-l336-http-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/l336-http.log",
+      "sha256": "1add798c478ed9963d3f07a76f4fae9fd24d782674553a9373a0156c8627ec65",
+      "bytes": 3121,
+      "archive_member": "adaptclip-l336-http-20261009-v1.log"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/l336-docker-inputs.json",
+      "sha256": "64c3a5a12d5f2185bfda1ed92a819ec819c7a4055e77ec7ed7ddcde2bde0a7f1",
+      "bytes": 296,
+      "archive_member": "adaptclip-l336-docker-inputs-20261009-v1.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/models.json",
+      "sha256": "9aea03cf4007cece6e0193e7943425a4e698dd70256a10e207e52562adc9a083",
+      "bytes": 2097,
+      "archive_member": "models.json"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/gateway-compose.yaml",
+      "sha256": "2e0bd0e073d57a0b2598da3d6444edbd73905adbb4c7992ac84b7bc3bc99c91c",
+      "bytes": 1229,
+      "archive_member": "gateway-compose.yaml"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/openai-compose.yaml",
+      "sha256": "e55da2f393a90b93b35180325d22c82610e713edb79890c317056909cca3f914",
+      "bytes": 1509,
+      "archive_member": "openai-compose.yaml"
+    },
+    {
+      "path": "validation/a10-20261009/docker-v1/l336-compose.yaml",
+      "sha256": "e55da2f393a90b93b35180325d22c82610e713edb79890c317056909cca3f914",
+      "bytes": 1509,
+      "archive_member": "l336-compose.yaml"
+    }
+  ],
+  "scope": "Two AdaptCLIP direct Docker HTTP original-math comparisons, three canonical images each; five-worker gateway routing, 15 fixed-image comparisons. Host-mounted CPU runtime, not standalone images or whole-paper metric completion.",
+  "standalone_image_verified": false,
+  "whole_paper_reproduced": false,
+  "browser_validation": {
+    "model": "adaptclip-l336-main",
+    "status": "inspection_complete",
+    "host_image_score": 0.45021602511405945,
+    "cted_image_score": 0.43536368012428284
+  }
+}

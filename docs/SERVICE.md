@@ -269,12 +269,13 @@ CPU metric parity. Both workers use the same host-runtime profile with separate
 Compose project names; the main project sets `TED_AA_PORT=18084`.
 All-model publication and a standalone container remain required.
 
-### Selecting the three verified pilab workers
+### Selecting the five verified pilab workers
 
 The [gateway Compose profile](../deployment/gateway.pilab.compose.yaml) serves
 the model selector on pilab loopback port 18085. Its
 [registry](../deployment/pilab-model-registry.json) pins the artifact identity of
-FAPrompt paper alpha 0.5, AA main L/14-336 seed 0, and AA source-limit-1.
+FAPrompt paper alpha 0.5, AA main L/14-336 seed 0, AA source-limit-1,
+and AdaptCLIP OpenAI L/14 and L/14-336 seed 0.
 These releases have different evaluation scopes, shown beside the selector.
 Other model families will be added after their serving checks pass.
 
@@ -291,11 +292,15 @@ The image score is not an anomaly probability or the dataset-wide paper metric.
 
 The [nine-case gateway check](../reproduction/validation/a10-20261009/model-gateway-parity.json)
 compares direct-worker and gateway HTTP predictions on three BTAD images for
-each of the three registered releases. Both maps and raw image scores have
+each of the three previously registered releases. Both maps and raw image scores have
 zero error in all nine cases. Missing AA categories return 422; unknown models
 return 404. Contract tests also check artifact mismatches, upload limits,
 unavailable workers, and independent per-worker admission.
 The actual browser upload and AA main result display were checked separately.
+The newer [five-worker check](../reproduction/validation/a10-20261009/docker-v1/index.json)
+compares 15 direct-worker/gateway requests with zero error, including both
+AdaptCLIP raw image scores. The old nine-case registry/proof stays preserved.
+The AdaptCLIP L/14-336 browser upload also displays both raw image scores.
 This verifies service routing; it does not extend any full-dataset reproduction claim.
 
 The gateway uses Linux host networking to reach loopback-only workers, binds
@@ -387,4 +392,14 @@ python -m uvicorn ted.inference.api:app --host 127.0.0.1 --port 18086 --workers 
 The response preserves `image_score` and separately returns `cted_image_score`.
 Both are raw evaluator scores, not calibrated probabilities. Anonymous public
 archive acquisition, pilab Docker HTTP parity and registry integration are
-separate gates; this worker is not yet in the deployed selector.
+separate gates. Both AdaptCLIP variants now pass same-pilab Docker HTTP
+checks against the original output block on three canonical images each and
+are deployed at loopback ports 18086/18087 in the selector. The profile uses
+the existing host-mounted Python runtime; standalone-image validation is pending.
+
+The [Docker profile](../deployment/adaptclip.pilab.compose.yaml) takes a fresh
+verified public bundle and an application archive in a new deployment directory.
+Direct HTTP checks use `python -m reproduction.adaptclip_http_parity`;
+model routing checks use `python -m reproduction.gateway_http_parity`.
+Both write new reports and retain failures. See the
+[Docker evidence index](../reproduction/validation/a10-20261009/docker-v1/index.json).

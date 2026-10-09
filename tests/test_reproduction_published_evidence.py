@@ -11,6 +11,45 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_five_worker_docker_evidence_preserves_maps_and_corrected_scores(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/docker-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['standalone_image_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(digest_file(ROOT / index['archive']['path']), index['archive']['sha256'])
+        with zipfile.ZipFile(ROOT / index['archive']['path']) as archive:
+            for item in index['files']:
+                path = ROOT / item['path']
+                self.assertEqual(digest_file(path), item['sha256'])
+                self.assertEqual(path.read_bytes(), archive.read(item['archive_member']))
+        self.assertEqual((folder / 'models.json').read_bytes(),
+                         (ROOT.parent / 'deployment/pilab-model-registry.json').read_bytes())
+        report = json.loads((folder / 'gateway-v2.json').read_text())
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual(report['cases'], 15)
+        self.assertEqual(report['registry_sha256'], digest_file(folder / 'models.json'))
+        registry = json.loads((folder / 'models.json').read_text())['models']
+        releases = {m['id']: m['artifact_sha256'] for m in registry}
+        self.assertEqual({(r['model'], r['fixture_category']) for r in report['rows']},
+                         {(m, c) for m in releases for c in ['01', '02', '03']})
+        for row in report['rows']:
+            self.assertEqual(row['artifact_sha256'], releases[row['model']])
+            for key in ['host_max_abs_error', 'cted_max_abs_error', 'raw_image_score_abs_error']:
+                self.assertEqual(row[key], 0)
+            if row['model'].startswith('adaptclip-'):
+                self.assertEqual(row['cted_image_score_abs_error'], 0)
+        self.assertEqual(report['unknown_model_status'], 404)
+        self.assertEqual(report['missing_aa_category_status'], 422)
+        for variant in ['openai', 'l336']:
+            direct = json.loads((folder / (variant + '-http.json')).read_text())
+            self.assertEqual(direct['status'], 'matched')
+            self.assertEqual({r['category'] for r in direct['rows']}, {'01', '02', '03'})
+            for row in direct['rows']:
+                for key in ['host_max_absolute_error', 'cted_max_absolute_error',
+                            'host_image_score_error', 'cted_image_score_error']:
+                    self.assertEqual(row[key], 0)
+
     def test_pilab_adaptclip_cpu_proof_does_not_claim_container_verification(self):
         import zipfile
         index=json.loads((ROOT/'adaptclip-serving-exports.json').read_text())
@@ -309,7 +348,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 16)
+        self.assertEqual(len(report['results']), 18)
         l336_bayes = next(row for row in report['results'] if row['recipe'] == 'bayespfl-vitl336-mvtec2btad-seed0')
         self.assertEqual(l336_bayes['status'], 'mismatch')
         self.assertEqual(l336_bayes['metrics_matched_2dp'], 0)

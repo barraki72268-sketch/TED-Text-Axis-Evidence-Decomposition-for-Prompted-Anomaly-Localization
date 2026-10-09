@@ -1,0 +1,280 @@
+{
+  "app_commit": "af7bdcc",
+  "containers": [
+    {
+      "name": "ted-adaptclip-openai-api-1",
+      "id": "1262e8357da3b0fbdcb2ee5e8a60f1d5425a7f6816f81f2beb0e8995a02ad3cc",
+      "image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3807997,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-09T07:51:16.275451195Z",
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-10-09T16:57:53.428936843+09:00",
+              "End": "2026-10-09T16:57:53.524383991+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:58:23.525504826+09:00",
+              "End": "2026-10-09T16:58:23.623015956+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:58:53.624216352+09:00",
+              "End": "2026-10-09T16:58:53.724900567+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:59:23.726013767+09:00",
+              "End": "2026-10-09T16:59:23.826771822+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:59:53.827795683+09:00",
+              "End": "2026-10-09T16:59:53.93014802+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      },
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-adaptclip-openai-20261009/app",
+          "Destination": "/app",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-adaptclip-openai-20261009/bundle",
+          "Destination": "/bundle",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/envs/patchcore-conda",
+          "Destination": "/mnt/data/envs/patchcore-conda",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "cpu_nano": 2000000000,
+      "memory": 12884901888,
+      "readonly": true,
+      "network": "ted-adaptclip-openai_default",
+      "portbindings": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18086"
+          }
+        ]
+      },
+      "security": [
+        "no-new-privileges:true"
+      ],
+      "capdrop": [
+        "ALL"
+      ]
+    },
+    {
+      "name": "ted-adaptclip-l336-api-1",
+      "id": "0a40737ba0eb06af0adcde257938e31bc9e78dc1b650418be1110b44bfcb7db3",
+      "image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3808418,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-09T07:51:28.365602587Z",
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-10-09T16:58:05.572189052+09:00",
+              "End": "2026-10-09T16:58:05.681632211+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:58:35.682844896+09:00",
+              "End": "2026-10-09T16:58:35.788755679+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:59:05.790145045+09:00",
+              "End": "2026-10-09T16:59:05.886685154+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:59:35.887528127+09:00",
+              "End": "2026-10-09T16:59:35.982732404+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T17:00:05.98368683+09:00",
+              "End": "2026-10-09T17:00:06.086181977+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      },
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-adaptclip-l336-20261009/bundle",
+          "Destination": "/bundle",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/envs/patchcore-conda",
+          "Destination": "/mnt/data/envs/patchcore-conda",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-adaptclip-l336-20261009/app",
+          "Destination": "/app",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "cpu_nano": 2000000000,
+      "memory": 12884901888,
+      "readonly": true,
+      "network": "ted-adaptclip-l336_default",
+      "portbindings": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18087"
+          }
+        ]
+      },
+      "security": [
+        "no-new-privileges:true"
+      ],
+      "capdrop": [
+        "ALL"
+      ]
+    },
+    {
+      "name": "ted-model-gateway-gateway-1",
+      "id": "9b3b9e3036f28bd37e4177e22ab18cace3865dab1b00a73965847253118bd11f",
+      "image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 3812814,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-09T07:59:15.00152773Z",
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-10-09T16:59:20.146732473+09:00",
+              "End": "2026-10-09T16:59:20.267115779+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T16:59:50.26818544+09:00",
+              "End": "2026-10-09T16:59:50.377330768+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-10-09T17:00:20.378037564+09:00",
+              "End": "2026-10-09T17:00:20.507364992+09:00",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      },
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-adaptclip-20261009/app",
+          "Destination": "/app",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-adaptclip-20261009/models.json",
+          "Destination": "/config/models.json",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        },
+        {
+          "Type": "bind",
+          "Source": "/mnt/data/envs/patchcore-conda",
+          "Destination": "/mnt/data/envs/patchcore-conda",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "cpu_nano": 1000000000,
+      "memory": 536870912,
+      "readonly": true,
+      "network": "host",
+      "portbindings": {},
+      "security": [
+        "no-new-privileges:true"
+      ],
+      "capdrop": [
+        "ALL"
+      ]
+    }
+  ]
+}
