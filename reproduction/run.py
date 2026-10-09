@@ -49,6 +49,9 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
                 required = Path((bank or artifact)["path"])
             if Path(actual).resolve() != required.resolve():
                 raise ValueError(f"Prepared path binding differs: {expected}")
+            if (recipe['host'] == 'BayesPFL' and binding.get('argument') == '--checkpoint_path'
+                    and Path(actual).name != Path(binding['archived_path']).name):
+                raise ValueError('BayesPFL checkpoint filename changes the archived evaluation stage')
     output = Path(plan["argv"][plan["argv"].index("--save_dir") + 1])
     if output.resolve() != workspace / "results" or output.exists() or (workspace / "execution.json").exists():
         raise FileExistsError("Result destination must be new; preserve previous attempts")

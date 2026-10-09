@@ -5,13 +5,30 @@ import tempfile
 import unittest
 
 from reproduction.backbone_download import required_backbone_assets
-from reproduction.runtime import link_runtime_asset, relocate_computed_dataset_roots
+from reproduction.runtime import link_runtime_asset, relocate_computed_dataset_roots, preserve_checkpoint_basename
 
 
 ROOT = Path(__file__).resolve().parents[1] / "reproduction"
 
 
 class RuntimePathTests(unittest.TestCase):
+    @unittest.skipIf(os.name == 'nt', 'POSIX asset links are exercised by Linux CI')
+    def test_bayes_checkpoint_relocation_preserves_filename_derived_stage_and_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            original = root / 'sha-named-object'
+            original.write_bytes(b'verified checkpoint')
+            relocated = preserve_checkpoint_basename(root / 'run', original, '/original/epoch_post_15_1.pth')
+            # This is the archived evaluator's stage expression, not a chosen setting.
+            stage = lambda p: int(Path(p).stem.split('_')[-1]) if 'epoch_post' in str(p) else 2
+            self.assertEqual(stage(original), 2)
+            self.assertEqual(stage(relocated), 1)
+            self.assertEqual(relocated.read_bytes(), original.read_bytes())
+            changed = root / 'other-object'
+            changed.write_bytes(b'different checkpoint')
+            with self.assertRaisesRegex(ValueError, 'Conflicting'):
+                preserve_checkpoint_basename(root / 'run', changed, '/original/epoch_post_15_1.pth')
+
     def test_computed_dataset_roots_bind_full_prepared_metadata_without_changing_settings(self):
         text = ('ROOT = Path("/original")\n'
                 'OFFICIAL_VISA_ROOT = ROOT / "neurips2026" / "data" / "VisA_pytorch_official" / "1cls"\n'

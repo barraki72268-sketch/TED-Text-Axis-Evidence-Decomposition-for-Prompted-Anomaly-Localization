@@ -60,6 +60,15 @@ def relocate_computed_dataset_roots(text: str, roots: dict[str, Path]) -> str:
     return text
 
 
+def preserve_checkpoint_basename(destination: Path, target: Path, archived_path: str) -> Path:
+    """Keep filename-derived evaluator settings while retaining verified bytes."""
+    name = Path(archived_path).name
+    if not name or name in {'.', '..'} or '\\' in name or ':' in name:
+        raise ValueError('Invalid archived checkpoint filename')
+    link_runtime_asset(destination, Path('checkpoints') / name, target)
+    return destination / 'checkpoints' / name
+
+
 def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: list[Path], dataset_config: Path) -> dict:
     if sys.platform != "linux":
         raise RuntimeError("Research runtime preparation currently requires Linux; artifact verification works on Windows too")
@@ -224,6 +233,10 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
             value = backbone_path
         else:
             value = objects[binding["sha256"]]
+        if recipe['host'] == 'BayesPFL' and binding.get('argument') == '--checkpoint_path':
+            # The preserved evaluator derives stage from epoch_post_*_<stage>.
+            # A SHA-named object silently changes that stage to its fallback.
+            value = preserve_checkpoint_basename(destination, value, binding['archived_path'])
         argv.append(str(value))
     environment = {"PYTHONNOUSERSITE": "1", "PYTHONDONTWRITEBYTECODE": "1", "HF_HOME": str(destination / "hf-cache"),
                    "HF_HUB_OFFLINE": "1", "FAPROMPT_CACHE_DIR": str(clip_cache), "ANOMALYCLIP_CACHE_DIR": str(clip_cache),
