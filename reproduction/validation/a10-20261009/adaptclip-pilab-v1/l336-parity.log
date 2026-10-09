@@ -1,0 +1,80 @@
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/adaptclip-public-bundles/l336-seed0/source/neurips2026/AdaptCLIP/adaptcliplib/adaptclip.py:3: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+name ViT-L/14@336px
+Initializing class-specific contexts
+embedding_pos torch.Size([1, 77, 768])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 1, 77])
+{
+  "status": "matched",
+  "started": "2026-10-09T07:40:56.950865+00:00",
+  "device": "cpu",
+  "engine": {
+    "host": "AdaptCLIP",
+    "recipe": "adaptclip-vitl336-mvtec2btad-seed0",
+    "backbone": "ViT-L/14-336",
+    "input_size": 518,
+    "device": "cpu",
+    "artifact_sha256": "96b1a02d786a43e60104f3d6608fd89da26c9d4489302d70e864017ed2b562e1",
+    "model_load_ms": 30530.530394986272,
+    "portable_bundle": true,
+    "deployment_status": "image bridge; container parity pending"
+  },
+  "scope": "First recorded test image of each class, same CPU model versus original baseline functions and original calibrated-output AST block. Not a full-dataset metric replay or independent GPU image parity.",
+  "model_fitting": false,
+  "rows": [
+    {
+      "category": "01",
+      "image": "test/img/01_ko_0000.bmp",
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "decoded_rgb_sha256": "70502558e1a6bf81beec30133df252d35258c6a811fb53923b6734aa8e1d1c1c",
+      "map_shape": [
+        1,
+        518,
+        518
+      ],
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "02",
+      "image": "test/img/02_ko_0000.png",
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "decoded_rgb_sha256": "15c0e50869aa4f6b20fcfd369a8a5703cf66dcb012480ac554174166194defeb",
+      "map_shape": [
+        1,
+        518,
+        518
+      ],
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    },
+    {
+      "category": "03",
+      "image": "test/img/03_ko_0000.bmp",
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "decoded_rgb_sha256": "b5a8845de47b883e7e1876338d99c880aa45c28e27126cd85c664ce804b475d6",
+      "map_shape": [
+        1,
+        518,
+        518
+      ],
+      "host_max_absolute_error": 0.0,
+      "cted_max_absolute_error": 0.0,
+      "host_image_score_error": 0.0,
+      "cted_image_score_error": 0.0
+    }
+  ],
+  "portable_bundle_verified": true,
+  "original_workspace_model_reads_and_network_denied": true,
+  "fixture_metadata_read_exception": false,
+  "denial_self_checks_passed": true,
+  "anonymous_download_verified": false,
+  "docker_http_verified": false,
+  "finished": "2026-10-09T07:42:26.486098+00:00"
+}

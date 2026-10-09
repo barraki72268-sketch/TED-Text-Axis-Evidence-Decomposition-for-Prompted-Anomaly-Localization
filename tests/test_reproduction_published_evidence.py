@@ -11,6 +11,38 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_pilab_adaptclip_cpu_proof_does_not_claim_container_verification(self):
+        import zipfile
+        index=json.loads((ROOT/'adaptclip-serving-exports.json').read_text())
+        proof=index['pilab_cpu_validation']
+        self.assertFalse(proof['deployment_ready'])
+        self.assertFalse(proof['docker_http_verified'])
+        self.assertFalse(proof['standalone_image_verified'])
+        archive=ROOT/proof['archive']['path']
+        self.assertEqual(digest_file(archive),proof['archive']['sha256'])
+        with zipfile.ZipFile(archive) as bundle:
+            for entry in proof['files']:
+                path=ROOT/entry['path']
+                self.assertEqual(digest_file(path),entry['sha256'])
+                self.assertEqual(path.read_bytes(),bundle.read(entry['archive_member']))
+        catalog=json.loads((ROOT/'adaptclip-serving-releases.json').read_text())
+        for variant in ['openai','l336']:
+            acquisition=json.loads((archive.parent/(variant+'-acquisition.json')).read_text())
+            parity=json.loads((archive.parent/(variant+'-parity.json')).read_text())
+            record=catalog['releases'][variant+'-seed0']
+            self.assertEqual(acquisition['status'],'verified_serving_inputs')
+            self.assertEqual(acquisition['archive_sha256'],record['sha256'])
+            self.assertEqual(parity['engine']['artifact_sha256'],record['export_sha256'])
+            self.assertEqual(parity['status'],'matched')
+            self.assertEqual(parity['device'],'cpu')
+            self.assertTrue(parity['denial_self_checks_passed'])
+            self.assertFalse(parity['fixture_metadata_read_exception'])
+            self.assertEqual(len(parity['rows']),3)
+            for row in parity['rows']:
+                for key in ['host_max_absolute_error','cted_max_absolute_error',
+                            'host_image_score_error','cted_image_score_error']:
+                    self.assertEqual(row[key],0)
+
     def test_public_adaptclip_acquisition_and_inference_bind_pinned_archives(self):
         import zipfile
         index=json.loads((ROOT/'adaptclip-serving-exports.json').read_text())
