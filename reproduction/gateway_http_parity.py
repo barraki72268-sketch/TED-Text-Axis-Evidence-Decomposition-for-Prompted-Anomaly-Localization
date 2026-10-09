@@ -42,24 +42,32 @@ def run(registry_path,images_root,gateway):
             with Image.open(path) as image:
                 buffer=io.BytesIO();image.convert('RGB').save(buffer,format='PNG')
             body=buffer.getvalue();params={'category':category} if info.get('categories') else {}
-            expected,_=request(model['url']+'/predict'+('?' + urlencode(params) if params else ''),body)
-            actual,headers=request(gateway+'/predict?'+urlencode(dict(params,model=model['id'])),body)
-            if (actual['artifact_sha256']!=expected['artifact_sha256'] or actual['artifact_sha256']!=model['artifact_sha256']
-                    or headers.get('X-TED-Model',headers.get('x-ted-model'))!=model['id']):
-                raise ValueError('Routed prediction identity differs')
-            with np.load(io.BytesIO(base64.b64decode(actual['maps_npz_base64'])),allow_pickle=False) as a, np.load(io.BytesIO(base64.b64decode(expected['maps_npz_base64'])),allow_pickle=False) as e:
-                if a['host'].shape!=e['host'].shape or a['cted'].shape!=e['cted'].shape:
-                    raise ValueError('Gateway changed map shape')
-                row=dict(model=model['id'],fixture_category=category,image_sha256=binding['sha256'],
-                    artifact_sha256=actual['artifact_sha256'],host_max_abs_error=float(np.max(np.abs(a['host']-e['host']))),
-                    cted_max_abs_error=float(np.max(np.abs(a['cted']-e['cted']))),
-                    raw_image_score_abs_error=abs(actual['image_score']-expected['image_score']))
-            if ('cted_image_score' in expected)!=('cted_image_score' in actual):
-                raise ValueError('Gateway changed corrected-score availability')
-            if 'cted_image_score' in expected:
-                row['cted_image_score_abs_error']=abs(actual['cted_image_score']-expected['cted_image_score'])
-            rows.append(row)
-            print(json.dumps(row),flush=True)
+            for alpha in info.get('alphas', [None]):
+                params = {'category': category} if info.get('categories') else {}
+                if alpha is not None:
+                    params['alpha'] = alpha
+                expected,_=request(model['url']+'/predict'+('?' + urlencode(params) if params else ''),body)
+                actual,headers=request(gateway+'/predict?'+urlencode(dict(params,model=model['id'])),body)
+                if (actual['artifact_sha256']!=expected['artifact_sha256'] or actual['artifact_sha256']!=model['artifact_sha256']
+                        or headers.get('X-TED-Model',headers.get('x-ted-model'))!=model['id']):
+                    raise ValueError('Routed prediction identity differs')
+                with np.load(io.BytesIO(base64.b64decode(actual['maps_npz_base64'])),allow_pickle=False) as a, np.load(io.BytesIO(base64.b64decode(expected['maps_npz_base64'])),allow_pickle=False) as e:
+                    if a['host'].shape!=e['host'].shape or a['cted'].shape!=e['cted'].shape:
+                        raise ValueError('Gateway changed map shape')
+                    row=dict(model=model['id'],fixture_category=category,image_sha256=binding['sha256'],
+                        artifact_sha256=actual['artifact_sha256'],host_max_abs_error=float(np.max(np.abs(a['host']-e['host']))),
+                        cted_max_abs_error=float(np.max(np.abs(a['cted']-e['cted']))),
+                        raw_image_score_abs_error=abs(actual['image_score']-expected['image_score']))
+                if ('cted_image_score' in expected)!=('cted_image_score' in actual):
+                    raise ValueError('Gateway changed corrected-score availability')
+                if 'cted_image_score' in expected:
+                    row['cted_image_score_abs_error']=abs(actual['cted_image_score']-expected['cted_image_score'])
+                if alpha is not None:
+                    if expected.get('alpha') != alpha or actual.get('alpha') != alpha:
+                        raise ValueError('Gateway changed requested strength')
+                    row['alpha'] = alpha
+                rows.append(row)
+                print(json.dumps(row),flush=True)
     def rejected(url):
         try:
             request(url,body)
@@ -71,7 +79,7 @@ def run(registry_path,images_root,gateway):
     passed=all(r[k]==0 for r in rows for k in ['host_max_abs_error','cted_max_abs_error','raw_image_score_abs_error']) and all(r.get('cted_image_score_abs_error',0)==0 for r in rows) and unknown==404 and missing==422
     return dict(status='matched' if passed else 'mismatch',models=len(registry),cases=len(rows),rows=rows,
         unknown_model_status=unknown,missing_aa_category_status=missing,registry_sha256=digest_file(registry_path),
-        scope='Every registered worker on three fixed canonical BTAD images; direct-versus-gateway raw maps and scores. Not full-dataset metric reproduction or standalone-image verification.')
+        scope='Every registered worker on three fixed canonical BTAD images and every advertised strength; direct-versus-gateway raw maps and scores. Not full-dataset metric reproduction or standalone-image verification.')
 
 
 def main():

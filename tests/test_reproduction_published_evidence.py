@@ -117,8 +117,8 @@ class PublishedEvidenceTests(unittest.TestCase):
                 path = ROOT / item['path']
                 self.assertEqual(digest_file(path), item['sha256'])
                 self.assertEqual(path.read_bytes(), archive.read(item['archive_member']))
-        self.assertEqual((folder / 'models.json').read_bytes(),
-                         (ROOT.parent / 'deployment/pilab-model-registry.json').read_bytes())
+        # This proof binds the historical five-worker snapshot, not future registries.
+        self.assertEqual(len(json.loads((folder / 'models.json').read_text())['models']), 5)
         report = json.loads((folder / 'gateway-v2.json').read_text())
         self.assertEqual(report['status'], 'matched')
         self.assertEqual(report['cases'], 15)
@@ -442,7 +442,10 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 20)
+        self.assertEqual(len(report['results']), 21)
+        raw_h14 = next(row for row in report['results'] if row['recipe'] == 'rawclip_vith14_mvtec2btad')
+        self.assertEqual(raw_h14['status'], 'matched')
+        self.assertEqual(raw_h14['metrics_matched_2dp'], 12)
         l336_bayes = next(row for row in report['results'] if row['recipe'] == 'bayespfl-vitl336-mvtec2btad-seed0')
         self.assertEqual(l336_bayes['status'], 'mismatch')
         self.assertEqual(l336_bayes['metrics_matched_2dp'], 0)
