@@ -11,6 +11,34 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_faprompt_packaging_retains_passing_runs_and_branch_identity(self):
+        folder = ROOT / 'validation/a10-20261009/faprompt-package-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['inference_parity_verified'])
+        self.assertFalse(index['docker_http_verified'])
+        self.assertFalse(index['hf_publication_verified'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        for variant in ['h14', 'bplus']:
+            bundle = json.loads((folder / (variant + '-bundle.json')).read_text())
+            manifest = folder / variant / 'manifest.json'
+            self.assertEqual(digest_file(manifest), bundle['export_sha256'])
+            self.assertFalse(bundle['fitting_performed'])
+            self.assertEqual(len(bundle['files']), 923)
+            execution = json.loads((folder / variant / 'execution.json').read_text())
+            self.assertEqual(execution['status'], 'matched')
+            self.assertTrue(execution['comparison']['all_match_2dp'])
+            branches = json.loads((folder / (variant + '-branches.json')).read_text())
+            self.assertEqual(branches['export_sha256'], bundle['export_sha256'])
+            self.assertFalse(branches['inference_parity_verified'])
+            self.assertEqual({b['branch'] for b in branches['branches']}, {'branch1', 'branch2'})
+            summary = json.loads((folder / variant / 'summary.json').read_text())
+            for branch in branches['branches']:
+                self.assertTrue(branch['basis_finite'])
+                self.assertEqual(branch['basis_shape'][1], 4)
+                self.assertEqual(branch['summary_metadata'],
+                                 summary['source_branch_calibrators'][branch['branch']])
+
     def test_five_worker_docker_evidence_preserves_maps_and_corrected_scores(self):
         import zipfile
         folder = ROOT / 'validation/a10-20261009/docker-v1'

@@ -1,0 +1,58 @@
+{
+  "recipe": "faprompt-vitb16plus-mvtec2btad-seed1",
+  "export_sha256": "d32ddfa5acf02c095833b6ffbc3f702b6b5d0a193bff85bac1e61b0983daa5b4",
+  "branches": [
+    {
+      "branch": "branch1",
+      "sha256": "94b3a846e236e025185f0b81db30f00cf869299162943444932f40bc0acd99f7",
+      "summary_metadata": {
+        "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+        "host_score_source": "faprompt_branch1_score",
+        "subspace_rank": 4,
+        "eta": 0.09315239638090134,
+        "readout_gamma": 0.09285447746515274,
+        "fp_weight": 1.0000009536743164,
+        "train_points_per_class": 1024,
+        "source_pair_rank_accuracy": 0.1396484375,
+        "source_base_pair_rank_accuracy": 0.1279296875,
+        "source_delta_fp_mean": -0.04587835073471069,
+        "source_delta_def_mean": 0.04484855756163597,
+        "subspace_basis_control": "source",
+        "pair_label_control": "correct"
+      },
+      "basis_shape": [
+        640,
+        4
+      ],
+      "basis_finite": true
+    },
+    {
+      "branch": "branch2",
+      "sha256": "e452bb3b2b0fc3d3d1a3d1b3716a2bec8350d312ad7095f932ddcdb9b5687713",
+      "summary_metadata": {
+        "calibration": "source_calibrated_host_residual_subspace_rank_no_target",
+        "host_score_source": "faprompt_branch2_score",
+        "subspace_rank": 4,
+        "eta": 0.09311235696077347,
+        "readout_gamma": 0.09291507303714752,
+        "fp_weight": 1.0000009536743164,
+        "train_points_per_class": 1024,
+        "source_pair_rank_accuracy": 0.1220703125,
+        "source_base_pair_rank_accuracy": 0.1064453125,
+        "source_delta_fp_mean": -0.04533453285694122,
+        "source_delta_def_mean": 0.045240793377161026,
+        "subspace_basis_control": "source",
+        "pair_label_control": "correct"
+      },
+      "basis_shape": [
+        640,
+        4
+      ],
+      "basis_finite": true
+    }
+  ],
+  "branch_binding": "host_score_source and all recorded summary metadata; not capture ordering",
+  "status": "captured_branches_bound_to_full_run_summary",
+  "fitting_performed": false,
+  "inference_parity_verified": false
+}

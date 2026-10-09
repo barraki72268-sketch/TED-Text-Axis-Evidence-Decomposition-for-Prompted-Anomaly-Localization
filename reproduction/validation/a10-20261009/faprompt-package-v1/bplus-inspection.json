@@ -1,0 +1,185 @@
+{
+  "recipe": "faprompt-vitb16plus-mvtec2btad-seed1",
+  "host": "FAPrompt",
+  "export_sha256": "d32ddfa5acf02c095833b6ffbc3f702b6b5d0a193bff85bac1e61b0983daa5b4",
+  "rows": [
+    {
+      "function": "get_or_collect_source_banks",
+      "sha256": "58732eccdb8ad6267462dce3bb7979d35a5bf7803acdf3f3c165b455fd5f8e7a",
+      "keys": [
+        "fp",
+        "defect",
+        "fp_score",
+        "defect_score",
+        "fp_branch1_score",
+        "defect_branch1_score",
+        "fp_branch2_score",
+        "defect_branch2_score",
+        "source_class_names",
+        "fp_by_class",
+        "defect_by_class",
+        "fp_score_by_class",
+        "defect_score_by_class",
+        "fp_branch1_score_by_class",
+        "defect_branch1_score_by_class",
+        "fp_branch2_score_by_class",
+        "defect_branch2_score_by_class",
+        "axis",
+        "protocol_version",
+        "source_root",
+        "max_fp_per_class",
+        "max_defect_per_class",
+        "max_fp_total",
+        "max_defect_total",
+        "normal_topk_frac",
+        "features_list",
+        "image_size",
+        "dap_token_mode",
+        "dpam_layer",
+        "model_name",
+        "prompt_load_mode",
+        "num_fp",
+        "num_defect"
+      ],
+      "tensors": {
+        "fp": {
+          "shape": [
+            4096,
+            640
+          ],
+          "finite": true
+        },
+        "defect": {
+          "shape": [
+            4096,
+            640
+          ],
+          "finite": true
+        },
+        "fp_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "defect_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "fp_branch1_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "defect_branch1_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "fp_branch2_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "defect_branch2_score": {
+          "shape": [
+            4096
+          ],
+          "finite": true
+        },
+        "axis": {
+          "shape": [
+            640
+          ],
+          "finite": true
+        }
+      },
+      "meta": null
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "sha256": "94b3a846e236e025185f0b81db30f00cf869299162943444932f40bc0acd99f7",
+      "keys": [
+        "calibration",
+        "transport_mode",
+        "eta",
+        "alpha",
+        "effective_alpha",
+        "transport_direction",
+        "transport_b",
+        "subspace_score_w",
+        "subspace_readout_mode",
+        "readout_gamma",
+        "preserve_host_margin_weight",
+        "basis",
+        "subspace_rank",
+        "fp_weight",
+        "train_points_per_class",
+        "source_pair_rank_accuracy",
+        "source_base_pair_rank_accuracy",
+        "source_delta_fp_mean",
+        "source_delta_def_mean",
+        "hardpair_frac",
+        "host_score_source",
+        "subspace_basis_control",
+        "pair_label_control"
+      ],
+      "tensors": {
+        "basis": {
+          "shape": [
+            640,
+            4
+          ],
+          "finite": true
+        }
+      },
+      "meta": null
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "sha256": "e452bb3b2b0fc3d3d1a3d1b3716a2bec8350d312ad7095f932ddcdb9b5687713",
+      "keys": [
+        "calibration",
+        "transport_mode",
+        "eta",
+        "alpha",
+        "effective_alpha",
+        "transport_direction",
+        "transport_b",
+        "subspace_score_w",
+        "subspace_readout_mode",
+        "readout_gamma",
+        "preserve_host_margin_weight",
+        "basis",
+        "subspace_rank",
+        "fp_weight",
+        "train_points_per_class",
+        "source_pair_rank_accuracy",
+        "source_base_pair_rank_accuracy",
+        "source_delta_fp_mean",
+        "source_delta_def_mean",
+        "hardpair_frac",
+        "host_score_source",
+        "subspace_basis_control",
+        "pair_label_control"
+      ],
+      "tensors": {
+        "basis": {
+          "shape": [
+            640,
+            4
+          ],
+          "finite": true
+        }
+      },
+      "meta": null
+    }
+  ],
+  "status": "safe_cpu_capture_inspected",
+  "inference_parity_verified": false
+}
