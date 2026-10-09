@@ -1,0 +1,102 @@
+{
+  "Name": "/ted-raw-l336-api-1",
+  "Image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 3933495,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-09T11:28:58.937979372Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-09T20:36:40.900180679+09:00",
+          "End": "2026-10-09T20:36:41.001707876+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:37:11.002976322+09:00",
+          "End": "2026-10-09T20:37:11.107631879+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:37:41.108848895+09:00",
+          "End": "2026-10-09T20:37:41.205042121+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:38:11.206370091+09:00",
+          "End": "2026-10-09T20:38:11.312971368+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:38:41.313754877+09:00",
+          "End": "2026-10-09T20:38:41.417766683+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-rawclip-l336-20261009/app",
+      "Destination": "/app",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-rawclip-l336-20261009/bundle",
+      "Destination": "/bundle",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "ready": {
+    "status": "ready"
+  },
+  "model-info": {
+    "host": "RawCLIP",
+    "backbone": "ViT-L-14-336",
+    "device": "cpu",
+    "image_size": 336,
+    "category": null,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "artifact_sha256": "57df21603cfab51b92a6f18c499b566a721dbe203d11dc940515c4d660d35428",
+    "readouts": [
+      "baseline_txt",
+      "parallel_margin",
+      "ted_calibrated"
+    ],
+    "state": "terminal captured source bank/calibrators; no inference-time fitting"
+  },
+  "git_commit": "13130ab890ea6626c5de0bef41c554ed0d72a9b1"
+}

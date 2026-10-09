@@ -11,6 +11,24 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_rawclip_h14_l336_http_preserves_original_maps_scores_and_input_bindings(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-pilab-v2'
+        index = json.loads((folder / 'index.json').read_text())
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        for model in ['h14','l336']:
+            report = json.loads((folder / (model+'-http.json')).read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(len(report['cases']), 3)
+            for case in report['cases']:
+                self.assertEqual(set(case['map_max_abs_error']), {'host_map','tted_map','cted_map'})
+                self.assertFalse(any(case['map_max_abs_error'].values()))
+                self.assertFalse(any(case['score_abs_error'].values()))
+            inputs = json.loads((folder / (model+'-inputs.json')).read_text())
+            self.assertEqual(inputs['files'], 930)
+            self.assertTrue(inputs['backbone_hardlink_verified'])
+            self.assertFalse(inputs['fitting_performed'])
+
     def test_rawclip_anonymous_acquisition_and_image_readouts_are_verified(self):
         folder = ROOT / 'validation/a10-20261009/rawclip-public-client-v1'
         index = json.loads((folder / 'index.json').read_text())
