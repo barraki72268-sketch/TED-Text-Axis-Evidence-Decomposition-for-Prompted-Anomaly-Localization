@@ -293,3 +293,24 @@ group and a single RNG whose state advances during earlier horizontal plotting
 before the compact two-panel output. Replaying only that final function with a
 reset RNG would change its samples. Numerical recalculation, original source-bank
 provenance, fresh GPU collection and final layout rerender remain pending.
+
+Figure4's archival numeric audit is now runnable without a model:
+
+```bash
+python -m reproduction.rawclip_focus --output figure4-archival-audit.json
+```
+
+Using the pinned pure AUC function and the six saved float32 arrays, all six
+stored pairwise AUCs recalculate exactly. NumPy1.25.0 reproduces20/30 summary
+statistics exactly;10 percentile values differ. Its CLI therefore exits1 and
+preserves those differences. A separate, isolated NumPy2.2.6 diagnostic run
+reproduces30/30 statistics and6/6 AUCs exactly. Both reports are retained. This
+runtime comparison does not prove which NumPy version ran historically and
+does not replace the declared model-evaluation environment.
+
+The command also follows the original plotter's RNG draw order to report compact
+plot samples (50000 patches per group). Those sampled AUCs differ from the
+full200000-patch aggregate AUCs and were not printed on the final graphic;
+they must not be substituted for the stored full-array results. Historical
+bank/command provenance, fresh full-target collection and final layout replay
+remain pending.

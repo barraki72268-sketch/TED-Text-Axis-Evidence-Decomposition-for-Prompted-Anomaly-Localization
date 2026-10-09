@@ -1,0 +1,109 @@
+{
+  "path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/rawclip_vitl_visa_multilayer.pt",
+  "bytes": 3985651,
+  "sha256": "ef65a78c5ac69efb9b1db1d83197b3782c8ae813ebd68e4d6cd4f524f00ff4e8",
+  "cache_meta": {
+    "backbone_name": "ViT-L-14-336",
+    "pretrained_dataset": "openai",
+    "source_root": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/VisA_pytorch_official/1cls",
+    "source_dataset": "visa",
+    "heldout_class": null,
+    "image_size": 336,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "prompt_mode": "class",
+    "hard_frac": 0.01,
+    "max_good_per_class": 2,
+    "max_defect_per_class": 4,
+    "max_bank_per_layer": 512,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 64
+  },
+  "bank_stats": {
+    "0": {
+      "num_fp": 120,
+      "num_defect": 123
+    },
+    "1": {
+      "num_fp": 120,
+      "num_defect": 123
+    },
+    "2": {
+      "num_fp": 120,
+      "num_defect": 123
+    },
+    "3": {
+      "num_fp": 120,
+      "num_defect": 123
+    }
+  },
+  "tensors": {
+    "fp_banks": {
+      "0": {
+        "shape": [
+          120,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "1": {
+        "shape": [
+          120,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "2": {
+        "shape": [
+          120,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "3": {
+        "shape": [
+          120,
+          1024
+        ],
+        "dtype": "torch.float32"
+      }
+    },
+    "def_banks": {
+      "0": {
+        "shape": [
+          123,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "1": {
+        "shape": [
+          123,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "2": {
+        "shape": [
+          123,
+          1024
+        ],
+        "dtype": "torch.float32"
+      },
+      "3": {
+        "shape": [
+          123,
+          1024
+        ],
+        "dtype": "torch.float32"
+      }
+    }
+  },
+  "identity_scope": "Current bytes at recorded summary path; historical hash was not recorded in summary.",
+  "publication_status": "not yet public",
+  "observed": "2026-10-09"
+}

@@ -39,6 +39,20 @@ jobs:
           assert report['status'] == 'mismatch'
           Path('figure3-fresh-audit.json').write_text(json.dumps(report, indent=2))
           PY
+      - name: Audit Figure 4 archived AUCs and preserve NumPy1.25 percentile differences
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from reproduction.rawclip_focus import audit
+          report = audit(Path('reproduction'))
+          assert len(report['statistics']) == 30
+          assert sum(row['matches_exact'] for row in report['statistics']) == 20
+          assert len(report['aucs']) == 6
+          assert all(row['matches_exact'] for row in report['aucs'])
+          assert report['status'] == 'mismatch'
+          Path('figure4-archival-audit.json').write_text(json.dumps(report, indent=2))
+          PY
   inference-contracts:
     runs-on: ubuntu-latest
     timeout-minutes: 10

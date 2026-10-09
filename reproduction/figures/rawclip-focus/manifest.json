@@ -1,7 +1,7 @@
 {
   "figure": 4,
   "label": "fig:rawclip_hardfp_focus",
-  "scope": "Original archived patch-score arrays, summary and byte-identical final paper PDF located; fresh collection, numerical audit and layout rerender not yet performed",
+  "scope": "Archived arrays and submitted PDF bound; NumPy1.25 six AUCs and20/30stats exact; isolated NumPy2.2.6 gives30/30stats exact. Historical runtime and fresh replay remain pending.",
   "archive": {
     "path": "figures/rawclip-focus/archived-input.zip",
     "bytes": 4196012,
@@ -81,8 +81,29 @@
   "unresolved": [
     "Historical collector argv and RNG provenance",
     "Original bank metadata/bytes and source calibration settings",
-    "Recalculate array summaries/AUC from pinned original pure functions",
     "Replay full target collection under valid Slurm",
-    "Reproduce final plot layout from archival arrays"
-  ]
+    "Reproduce final plot layout from archival arrays",
+    "10 percentile values differ under NumPy1.25; trace historical dtype/version/interpolation without choosing runtime to fit"
+  ],
+  "public_cpu_audit": {
+    "path": "figures/rawclip-focus/cpu-audit-numpy125.json",
+    "bytes": 7184,
+    "sha256": "b7036b2d75ecfa60ac738059046f1d5102cca76798980bbdab9fac159a0422d4",
+    "runtime_commit": "4e97966df593ac2ea832af5493f94c8828900e62",
+    "result": "six_auc_exact;20/30stats_exact;10percentile_values_differ"
+  },
+  "numpy2_diagnostic_audit": {
+    "path": "figures/rawclip-focus/cpu-audit-numpy226-diagnostic.json",
+    "bytes": 7346,
+    "sha256": "c9b4900ad19d40d2c6a34237ced086d9b41f298d7a66b1ceccd3bfd9e71bb770",
+    "runtime_commit": "4e97966df593ac2ea832af5493f94c8828900e62",
+    "scope": "Isolated NumPy2.2.6 diagnostic comparison; not evidence that this was the historical environment or a replacement for the declared evaluation runtime.",
+    "result": "30/30stats and6/6AUCexact; does not prove historical NumPy version"
+  },
+  "current_original_bank_trace": {
+    "path": "figures/rawclip-focus/current-original-bank-trace.json",
+    "bytes": 2220,
+    "sha256": "bab4803e1f1a8580237c7851184957e97207e5885654e1c27ff61fb608e9175d",
+    "scope": "Current original recorded bank located and CPU metadata inspected; historical bank hash still not recorded. Not yet publicly acquired or freshly rebuilt."
+  }
 }
