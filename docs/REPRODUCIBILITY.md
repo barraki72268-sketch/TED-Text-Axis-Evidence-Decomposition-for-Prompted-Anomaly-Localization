@@ -187,3 +187,24 @@ The public command passed in a separate Linux Git worktree at commitc1ef6d5,
 using an isolated Python3.10 CPU environment with NumPy1.25.0 and sklearn1.7.2.
 The [bound CPU report](../reproduction/validation/a10-20261009/figure3-public-cpu-audit.json)
 records every calculation and keeps fresh collection and layout status pending.
+
+
+Figure 3 fresh collection has a separate Linux preparation command:
+
+```bash
+CUDA_VISIBLE_DEVICES='' python -m reproduction.axis_collection ./runs/figure3 \
+  --checkpoint ./epoch_15.pth --backbone ./ViT-L-14-336px.pt \
+  --datasets ./dataset-roots.json
+```
+
+Preparation verifies the current traced checkpoint and backbone bytes, all
+MVTec/VisA dataset files and the source archive; records path-only relocation;
+and creates an empty cache for a fresh source-only bank. It does not run a GPU,
+create a PDF or submit a job. Checkpoint public acquisition is still pending.
+The resulting command is reconstructed from the diagnostic JSON and original
+parser/model defaults, not a recovered historical command. The historical bank
+is missing at its recorded path. Original RNG state and historical checkpoint
+hash were not recorded in that JSON, and training data cannot be inferred from
+the checkpoint folder name. These gaps remain explicit in the plan. A guarded
+Slurm runner, fresh collection and comparison with the original arrays are still
+required before claiming fresh Figure 3 reproduction.

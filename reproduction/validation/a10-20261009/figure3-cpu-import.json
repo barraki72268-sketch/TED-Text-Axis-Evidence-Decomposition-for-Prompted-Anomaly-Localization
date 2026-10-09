@@ -1,0 +1,22 @@
+{
+  "scope": "Collector import and VisA metadata construction only; no model construction/inference or PDF creation",
+  "public_runtime_commit": "3968b95a2c1515050600eb21f7b483129142836f",
+  "attempts": [
+    {
+      "file": "figure3-cpu-import-20261009.log",
+      "environment": "aa-public-cpu-env",
+      "returncode": 1,
+      "cuda_visible_devices": "",
+      "sha256": "2b88fed226567764e51e59385fab281d0c05bbf3ca9499fa89ed99483d6e312a",
+      "log": "Traceback (most recent call last):\n  File \"<stdin>\", line 3, in <module>\n  File \"/home/jinyoungkim/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py\", line 289, in run_path\n    return _run_module_code(code, init_globals, run_name,\n  File \"/home/jinyoungkim/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py\", line 96, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/home/jinyoungkim/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/home/jinyoungkim/ted-reproduce-20261009/figure3-collection-20261009/source/neurips2026/scripts/generate_anomalyclip_axis_entanglement_figure.py\", line 9, in <module>\n    import matplotlib\nModuleNotFoundError: No module named 'matplotlib'\n"
+    },
+    {
+      "file": "figure3-cpu-import-20261009-v2.log",
+      "environment": "runtime-env",
+      "returncode": 0,
+      "cuda_visible_devices": "",
+      "sha256": "44a32161a902192cad76f37b3945a44173ffbcc01efe091b0fce6becf2038cd9",
+      "log": "DATASET_LEN 2162\nTORCH 2.9.1+cu128 CUDA_AVAILABLE False MATPLOTLIB 3.10.7\nCPU_IMPORT_OK\n"
+    }
+  ]
+}
