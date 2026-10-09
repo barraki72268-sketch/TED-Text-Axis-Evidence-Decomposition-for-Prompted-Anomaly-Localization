@@ -17,6 +17,15 @@ class PublishedEvidenceTests(unittest.TestCase):
         self.assertFalse(index['inference_parity_verified'])
         self.assertFalse(index['docker_http_verified'])
         self.assertFalse(index['hf_publication_verified'])
+        for variant in ['h14', 'bplus']:
+            readout = json.loads((folder / (variant + '-readout.json')).read_text())
+            self.assertEqual(readout['status'], 'matched_within_declared_tolerance')
+            self.assertFalse(readout['image_inference_verified'])
+            self.assertFalse(readout['fitting_performed'])
+            summary = json.loads((folder / variant / 'summary.json').read_text())
+            self.assertEqual([r['alpha'] for r in readout['rows']], summary['alphas'])
+            for row in readout['rows']:
+                self.assertEqual(row['max_absolute_error'], 0)
         for item in index['files']:
             self.assertEqual(digest_file(folder / item['file']), item['sha256'])
         for variant in ['h14', 'bplus']:
@@ -376,7 +385,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 18)
+        self.assertEqual(len(report['results']), 19)
         l336_bayes = next(row for row in report['results'] if row['recipe'] == 'bayespfl-vitl336-mvtec2btad-seed0')
         self.assertEqual(l336_bayes['status'], 'mismatch')
         self.assertEqual(l336_bayes['metrics_matched_2dp'], 0)

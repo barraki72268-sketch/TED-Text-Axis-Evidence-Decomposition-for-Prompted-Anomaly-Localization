@@ -105,11 +105,33 @@
       "file": "bplus-branches.json",
       "sha256": "244fb4812d2b02e675c1f4b020c1ac2bfe2ca7d76221ceef53851f111b14e4de",
       "bytes": 2126
+    },
+    {
+      "file": "h14-readout.json",
+      "sha256": "4b8500c0a34234e1f5345eb3b0229d6d6e9fcd836e20160579210718ea0d6a0a",
+      "bytes": 1051
+    },
+    {
+      "file": "h14-readout.log",
+      "sha256": "4b8500c0a34234e1f5345eb3b0229d6d6e9fcd836e20160579210718ea0d6a0a",
+      "bytes": 1051
+    },
+    {
+      "file": "bplus-readout.json",
+      "sha256": "a77b239ee8b1fe4af1a76832d310e90b8b07f084451465ba691f955db11c3eb8",
+      "bytes": 1055
+    },
+    {
+      "file": "bplus-readout.log",
+      "sha256": "a77b239ee8b1fe4af1a76832d310e90b8b07f084451465ba691f955db11c3eb8",
+      "bytes": 1055
     }
   ],
   "scope": "H14 BTAD seed0 and B/16+ BTAD seed1: captured fitted state safely inspected on CPU, source/weights copied and checked without fitting. Tensor objects and original weights are not included in this public metadata evidence.",
   "inference_parity_verified": false,
   "docker_http_verified": false,
   "hf_publication_verified": false,
-  "branch_binding": "Both captures bound by host_score_source and every recorded summary metadata field, independent of capture ordering."
+  "branch_binding": "Both captures bound by host_score_source and every recorded summary metadata field, independent of capture ordering.",
+  "token_readout_equations_verified": true,
+  "token_readout_scope": "Fixed synthetic normalized tokens/scores with real captured banks/calibrators; all recorded strengths checked independently against original AST functions. Image inference still unverified."
 }

@@ -13,6 +13,9 @@ def read(path):
 
 class CapturedFAPromptReadout:
     def __init__(self, export_directory, *, alpha, device='cpu', bank_chunk=2048):
+        if torch.device(device).type == 'cuda':
+            from reproduction.axis_run import require_live_gpu_allocation
+            require_live_gpu_allocation()
         exported = Path(export_directory).resolve()
         manifest = read(exported / 'manifest.json')
         if manifest.get('host') != 'FAPrompt' or manifest.get('schema_version') != 1:

@@ -403,3 +403,24 @@ Direct HTTP checks use `python -m reproduction.adaptclip_http_parity`;
 model routing checks use `python -m reproduction.gateway_http_parity`.
 Both write new reports and retain failures. See the
 [Docker evidence index](../reproduction/validation/a10-20261009/docker-v1/index.json).
+
+
+### Additional FAPrompt captured-state packages
+
+The H/14 BTAD seed-0 and B/16+ BTAD seed-1 executions each match 8/8
+archived per-seed metrics at two decimals. Their packages retain the actual
+captured bank and fitted branch states, together with exact prepared source
+and pinned weights. This does not use the earlier engineering export that
+fits fresh calibrators. Each package has 923 source/weight inputs verified.
+
+`python -m reproduction.faprompt_serving_bundle RUN NEW_BUNDLE` creates
+a package from a terminal matching execution.
+`python -m reproduction.faprompt_capture_parity EXPORT ORIGINAL_SCRIPT --output NEW_REPORT`
+compares the token readout with unchanged original function AST definitions
+using fixed tensors and the real captured bank/calibrators. Both variants
+match exactly for every recorded strength. This is not image/model parity;
+the new packages are not yet added to the Docker selector or published as
+verified serving archives. The [packaging/readout evidence](../reproduction/validation/a10-20261009/faprompt-package-v1/index.json)
+keeps these separate gates explicit. Strength must be explicitly chosen from
+the recorded configuration, and branch identity uses metadata rather than
+capture ordering.
