@@ -27,6 +27,21 @@ class FakeEngine:
 
 
 class APIContractTests(unittest.TestCase):
+    def test_corrected_score_is_preserved_and_nonfinite_score_is_rejected(self):
+        class CorrectedEngine(FakeEngine):
+            def predict(self, image):
+                return dict(super().predict(image), cted_image_score=0.75)
+        with TestClient(create_app(CorrectedEngine)) as client:
+            result = client.post('/predict', content=png(), headers={'Content-Type':'image/png'}).json()
+            self.assertEqual(result['image_score'], 0.4)
+            self.assertEqual(result['cted_image_score'], 0.75)
+        class NonfiniteEngine(FakeEngine):
+            def predict(self, image):
+                return dict(super().predict(image), cted_image_score=float('nan'))
+        from ted.inference.api import encode_prediction
+        with self.assertRaisesRegex(RuntimeError, 'corrected image score'):
+            encode_prediction(NonfiniteEngine(), png(), 25_000_000)
+
     def test_category_selection_preserves_host_specific_score_policy(self):
         class CategoryEngine(FakeEngine):
             def info(self):

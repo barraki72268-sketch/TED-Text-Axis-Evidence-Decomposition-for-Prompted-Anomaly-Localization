@@ -27,6 +27,11 @@ LOG = logging.getLogger("uvicorn.error")
 
 def engine_from_env():
     family = os.environ.get("TED_ENGINE_FAMILY", "faprompt")
+    if family == "adaptclip":
+        from .adaptclip_engine import CapturedAdaptCLIPEngine
+        return CapturedAdaptCLIPEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],
+                                      workspace=os.environ["TED_RUN_WORKSPACE"],
+                                      device=os.environ.get("TED_DEVICE", "cpu"))
     if family == "aaclip":
         from .aaclip_engine import CapturedAAEngine
         return CapturedAAEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],
@@ -71,6 +76,8 @@ def encode_prediction(engine, body, max_pixels, category=None):
             or not np.isfinite(host).all() or not np.isfinite(cted).all()
             or not math.isfinite(output["image_score"])):
         raise RuntimeError("Invalid model output")
+    if "cted_image_score" in output and not math.isfinite(output["cted_image_score"]):
+        raise RuntimeError("Invalid corrected image score")
     raw = io.BytesIO()
     np.savez_compressed(raw, host=host, cted=cted)
     low, high = np.percentile(np.concatenate([host.ravel(), cted.ravel()]), [2, 99.5])
@@ -89,6 +96,8 @@ def encode_prediction(engine, body, max_pixels, category=None):
                 timing_ms=output["timing_ms"])
     if "category" in output:
         result["category"] = output["category"]
+    if "cted_image_score" in output:
+        result["cted_image_score"] = float(output["cted_image_score"])
     return result
 
 
