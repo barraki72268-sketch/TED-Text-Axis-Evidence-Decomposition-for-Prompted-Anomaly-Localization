@@ -11,7 +11,7 @@ Full-paper reproduction and all-model deployment remain in progress.
 | Research inputs | 920 source files, 11 host checkpoint objects, 92 host banks, 10 frozen-backbone banks, and 12 weak-source banks | [Acquisition guide](../reproduction/README.md) |
 | Execution recipes | 232 main/host configurations and 28 weak-source configurations; availability does not imply all reruns have passed | [Recipe guide](../reproduction/README.md) |
 | ImageBind replay | Full BTAD: all 12 metrics match the archived reference at 2 decimals on RTX 6000 Ada | [Evidence](../reproduction/validation/2026-10-08/report.json) |
-| Fresh A10 replay | AA-CLIP source-limit-1 and FAPrompt bank-budget-8, full BTAD, seed 0: each matches 8/8 metrics | [Evidence](../reproduction/validation/a10-20261009/report.json) |
+| Fresh A10 replay | AA-CLIP and FAPrompt main L/14-336 configurations, plus AA source-limit-1 and FAP bank-budget-8, full BTAD, seed 0: each matches 8/8 metrics | [Evidence](../reproduction/validation/a10-20261009/report.json) |
 | Image inference | FAPrompt Docker/API checks and AA-CLIP captured-state CPU HTTP checks, with three-image raw-map parity for each stated artifact | [Service guide](SERVICE.md) |
 | Feature-level code | T-TED and C-TED cores, numerical parity checks, and synthetic examples | [T-TED](TTED.md), [C-TED](CTED.md) |
 
@@ -38,7 +38,7 @@ differences has not been established.
 | Datasets | MVTec AD, VisA, MPDD, and BTAD inputs verified; MVTec AD 2 still needs readable source data |
 | Hugging Face | Original source, checkpoints, and banks are public; all-model serving bundles remain in progress |
 | pilab Docker | FAPrompt CPU service path verified; its recorded deployment uses a host-mounted Python runtime |
-| AA-CLIP worker | CPU HTTP parity verified for one weak-source configuration; portable Docker deployment remains in progress |
+| AA-CLIP worker | CPU HTTP and relocated-bundle map parity verified for one weak-source configuration; pilab Docker validation remains in progress |
 | Complete release | All model/backbone/dataset/seed runs, remaining ablations and figures, fresh bank rebuilding, and all-model deployment remain required |
 
 Continue with the [quick start](../README.md#quick-start),

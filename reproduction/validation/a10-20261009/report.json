@@ -1,7 +1,7 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Three AA-CLIP and one FAPrompt full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
+  "scope": "Four AA-CLIP and two FAPrompt full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
   "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0.",
   "comparison": "Against archived per-seed summaries at two decimals. Per-class reported coverage checks 3 classes / 741 test images; independent per-image execution trace is not provided.",
   "results": [
@@ -141,6 +141,76 @@
         },
         {
           "file": "faprompt-weak-bank-8/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt-vitl14_336-mvtec2btad-seed0",
+      "slurm_job_id": "13715",
+      "status": "matched",
+      "finished": "2026-10-09T02:32:30.326706+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "13c0527ca1f88a279bdcc23bf813c852ab90e3e24a3ccda95e66f2c5a244e930",
+      "evidence": [
+        {
+          "file": "faprompt-main/execution.json",
+          "sha256": "6f68681b4912eb3afe7694721ed30c4458bee4df118af7dfaab3f9fdb1b4ea6b"
+        },
+        {
+          "file": "faprompt-main/comparison.json",
+          "sha256": "40803738b370a5a10a251d6ca8165890fbf04e5b92d334998ab2686c10b872c3"
+        },
+        {
+          "file": "faprompt-main/summary.json",
+          "sha256": "0758fc0c47ac732240133c858a4678be2014e6ea25aed99b05c2eb62e61e69f0"
+        },
+        {
+          "file": "faprompt-main/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip-vitl336-mvtec2btad-seed0",
+      "slurm_job_id": "13715",
+      "status": "matched",
+      "finished": "2026-10-09T02:47:34.556165+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "85c233f682a48071fbe77c068f1320ea5a5d2dbd04dd96d00d97cd9259f2da8e",
+      "evidence": [
+        {
+          "file": "aaclip-l336-main/execution.json",
+          "sha256": "82426380db73605bcaab5b5eec5a41ee33e24b1b24ecfd278c910a44f5b2442c"
+        },
+        {
+          "file": "aaclip-l336-main/comparison.json",
+          "sha256": "54abb558573427c364954a8565f05327c210ec6c47f317bbd81ef47246d55c4e"
+        },
+        {
+          "file": "aaclip-l336-main/summary.json",
+          "sha256": "5372b6ad8146cb4579860daedd567548a2da71b9a57316a6d5bf99eee6125a9a"
+        },
+        {
+          "file": "aaclip-l336-main/environment.json",
           "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
         }
       ]

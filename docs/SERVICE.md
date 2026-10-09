@@ -166,3 +166,9 @@ CUDA_VISIBLE_DEVICES='' python -m examples.aa_bundle_parity \
 The checker prohibits network connections and calibration fitting during
 engine loading and prediction. A matching report proves only the named image
 maps. A real container run and all-model service selection remain separate gates.
+
+The [October 9 relocation check](../reproduction/validation/a10-20261009/aa-relocation-parity.json)
+passed on CPU for three BTAD images using the source-limit-1 bundle: both raw
+maps had zero maximum absolute error for every image. Original-workspace reads,
+network connections, and calibration fitting were prohibited during loading and
+inference. This does not establish parity for the newly replayed main configuration.
