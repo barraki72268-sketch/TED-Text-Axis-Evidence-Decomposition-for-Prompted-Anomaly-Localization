@@ -39,6 +39,7 @@ class CapturedExportTests(unittest.TestCase):
             work, artifact = self.fixture(base)
             result = export_captured_run(ROOT, work, base / 'export')
             self.assertEqual(result['capture_binding'], 'terminal_execution_record')
+            self.assertEqual(len(result['prepared_source_files']), 920)
             self.assertIn('requires_inference_parity', result['status'])
             self.assertEqual((base / 'export' / result['captured_state'][0]['object_path']).read_bytes(), artifact.read_bytes())
             self.assertFalse((base / 'export/source').exists())

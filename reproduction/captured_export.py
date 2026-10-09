@@ -55,9 +55,12 @@ def export_captured_run(root: Path, workspace: Path, destination: Path) -> dict:
         raise ValueError('Recomputed metrics or summary bytes differ from recorded passing execution')
     coverage = validate_coverage(root, reference, summary)
     changes = {r['path']: r['after_sha256'] for r in plan['source_path_changes']}
+    prepared_source = []
     for entry in read(root / 'source-manifest.json')['files']:
-        if digest_file(workspace / 'source' / entry['path']) != changes.get(entry['path'], entry['sha256']):
+        expected_sha = changes.get(entry['path'], entry['sha256'])
+        if digest_file(workspace / 'source' / entry['path']) != expected_sha:
             raise ValueError('Evaluator source changed after evaluation')
+        prepared_source.append({'path': entry['path'], 'sha256': expected_sha})
     dependencies = []
     for item in plan['verified_objects']:
         if digest_file(Path(item['path'])) != item['sha256']:
@@ -94,6 +97,7 @@ def export_captured_run(root: Path, workspace: Path, destination: Path) -> dict:
         status='captured_state_exported_requires_inference_parity_and_host_adapter',
         numerical_arguments=recipe['argv'], target_coverage=coverage,
         reference_sha256=reference['reference_sha256'], original_model_inputs=dependencies,
+        prepared_source_files=prepared_source,
         captured_state=exported, evidence=evidence,
         capture_binding='terminal_execution_record' if bound else 'inventory_verified_at_export_only',
         limitations=['No fitting, image loading, GPU work, or pickle deserialization occurs during export.',
