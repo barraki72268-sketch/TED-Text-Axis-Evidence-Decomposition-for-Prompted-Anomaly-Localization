@@ -130,10 +130,20 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 11)
+        self.assertEqual(len(report['results']), 12)
         adaptclip = [row for row in report['results'] if row['recipe'] == 'adaptclip-vitl14openai-mvtec2btad-seed0']
         self.assertEqual(len(adaptclip), 1)
         self.assertEqual(adaptclip[0]['metrics_matched_2dp'], 8)
+        l336 = [row for row in report['results'] if row['recipe'] == 'adaptclip-vitl336-mvtec2btad-seed0']
+        self.assertEqual(len(l336), 1)
+        self.assertEqual(l336[0]['metrics_matched_2dp'], 8)
+        import hashlib
+        import zipfile
+        with zipfile.ZipFile(folder / 'adaptclip-l336-btad-v5/preparation-and-results.zip') as archive:
+            execution = json.loads(archive.read('execution.json'))
+            self.assertEqual(hashlib.sha256(archive.read('run.json')).hexdigest(), execution['plan_sha256'])
+            self.assertEqual(archive.read('results/summary.json'), (folder / 'adaptclip-l336-btad-v5/summary.json').read_bytes())
+            self.assertTrue(archive.read('execution.log'))
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:

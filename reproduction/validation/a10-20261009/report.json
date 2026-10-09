@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP and one AdaptCLIP full-BTAD seed0 configuration; not the whole paper or all ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim.",
+  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP and two AdaptCLIP full-BTAD seed0 configurations; not the whole paper or all ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -387,6 +387,41 @@
         {
           "file": "adaptclip-openai-btad-v5/preparation-and-results.zip",
           "sha256": "e879553e89979f551e567e083861b6de298d264b2dea60264f6d7078a5fb972c"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed0",
+      "slurm_job_id": "13728",
+      "status": "matched",
+      "finished": "2026-10-09T06:09:58.900448+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "58dbdb6d05aeed1147db48f05e5a233c0947b12dc7ac43115f2595a8cfa96d39",
+      "evidence": [
+        {
+          "file": "adaptclip-l336-btad-v5/comparison.json",
+          "sha256": "090cf840e881303a1622f399da3aef580a7bbad4c613c6b3855c3babf47d3bd5"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/execution.json",
+          "sha256": "348b1bc80e3fb6dc27941043bbde6a947a8bdde0f34675a11f0674cea2946adc"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/summary.json",
+          "sha256": "7446a1d1788dc0bedaed953c0b42e557a4a74af48c648c42be42508e4808c16e"
+        },
+        {
+          "file": "adaptclip-l336-btad-v5/preparation-and-results.zip",
+          "sha256": "2ea10152447f8fd102fffa157af25190c26b56216d1001ebb503fed042291e98"
         }
       ]
     }

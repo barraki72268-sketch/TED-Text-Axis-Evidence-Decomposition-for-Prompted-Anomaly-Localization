@@ -1,0 +1,301 @@
+{
+  "summary": {
+    "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+    "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/data/mvtec/mvtec",
+    "source_dataset": "mvtec",
+    "target_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/data/btad/BTAD_official",
+    "target_dataset": "btad",
+    "class_name": null,
+    "pretrained_model": "ViT-L/14@336px",
+    "checkpoint_load_mode": "strict",
+    "checkpoint_load_info": {
+      "checkpoint_load_mode": "strict",
+      "textual_learner": {
+        "mode": "strict",
+        "loaded_keys": 8,
+        "skipped_keys": 0,
+        "missing_keys": 0,
+        "unexpected_keys": 0
+      },
+      "visual_learner": {
+        "mode": "strict",
+        "loaded_keys": 14,
+        "skipped_keys": 0,
+        "missing_keys": 0,
+        "unexpected_keys": 0
+      }
+    },
+    "features_list": [
+      24
+    ],
+    "image_size": 518,
+    "n_ctx": 12,
+    "sigma": 4.0,
+    "fusion_type": "average_mean",
+    "bank_mining_source": "vl",
+    "tau": 20.0,
+    "fp_weight": 0.3,
+    "corr_alpha": 0.3,
+    "map_activation": "sigmoid",
+    "map_temperature": 1.0,
+    "trainfree_score_mode": "axis",
+    "vl_gate_mode": "host",
+    "vl_gate_quantile": 0.9,
+    "vl_gate_temp": 0.25,
+    "ted_insertion": "dual_branch",
+    "calib_epochs": 0,
+    "calib_lr": 0.02,
+    "calib_max_train_points": 8192,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_eta_init": 0.2,
+    "calib_eta_max": 1.0,
+    "calib_eta_reg": 0.001,
+    "calib_fp_weight_init": 1.0,
+    "calib_learn_fp_weight": false,
+    "calib_hardpair_frac": 0.75,
+    "calib_subspace_rank": 2,
+    "calib_preserve_host_margin_weight": 1.0,
+    "calib_lambda": 0.005,
+    "calib_pair_label_control": "correct",
+    "calib_score_mode": "rankr_density",
+    "calib_apply_mode": "add",
+    "calib_rankr_tau": 0.1,
+    "plugin_epochs": 0,
+    "plugin_lr": 0.02,
+    "plugin_max_train_points": 2048,
+    "plugin_hardpair_frac": 0.0,
+    "plugin_alpha": 0.5,
+    "plugin_loss": "bce",
+    "plugin_feature_space": "axis",
+    "plugin_hidden_dim": 32,
+    "plugin_rank_margin": 0.05,
+    "plugin_rank_temp": 0.05,
+    "seed": 0,
+    "max_eval_images": 0,
+    "num_workers": 4,
+    "eval_metrics": [
+      "I-AUROC",
+      "I-AP",
+      "P-AUROC",
+      "P-AP",
+      "P-AUPRO"
+    ],
+    "aupro_max_step": 200,
+    "aupro_expect_fpr": 0.3,
+    "report_group_separability": false,
+    "separability_hard_frac": 0.01,
+    "aupro_backend": "fast_threshold_cpu",
+    "bank_stats": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "bank_cache_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/source/neurips2026/results/bank_cache/adaptclip_dualbranch_vitl336_mvtec_vl_seed0.pt",
+    "bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+      "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/data/mvtec/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        24
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "vl",
+      "bank_feature_source": "vl"
+    },
+    "tl_bank_stats": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "tl_bank_cache_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/source/neurips2026/results/bank_cache/adaptclip_dualbranch_vitl336_mvtec_tl_seed0.pt",
+    "tl_bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+      "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl336-mvtec2btad-seed0/data/mvtec/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        24
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "tl",
+      "bank_feature_source": "tl"
+    },
+    "source_vl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.1788559854030609,
+        0.10602229833602905
+      ],
+      "coord_std": [
+        0.759073793888092,
+        0.15037822723388672
+      ],
+      "train_points_per_class": 390,
+      "source_pair_rank_accuracy": 0.9589743614196777,
+      "source_base_pair_rank_accuracy": 0.40512821078300476,
+      "source_score_fp_mean": -1.569327712059021,
+      "source_score_def_mean": 3.4550647735595703,
+      "hardpair_frac": 0.75
+    },
+    "source_tl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.008348939940333366,
+        0.018370717763900757
+      ],
+      "coord_std": [
+        0.08645622432231903,
+        0.1873781681060791
+      ],
+      "train_points_per_class": 390,
+      "source_pair_rank_accuracy": 0.8589743971824646,
+      "source_base_pair_rank_accuracy": 0.25128206610679626,
+      "source_score_fp_mean": -1.0272221565246582,
+      "source_score_def_mean": 1.5973906517028809,
+      "hardpair_frac": 0.75
+    },
+    "source_vl_scalar_plugin": {},
+    "source_tl_scalar_plugin": {},
+    "score_definition": {
+      "baseline_txt": "official AdaptCLIP zero-shot baseline",
+      "ted_trainfree_vl": "train-free TED margin inserted at the requested AdaptCLIP local evidence point",
+      "scalar_replace_vl": "source-only scalar readout used directly at the requested AdaptCLIP local evidence point",
+      "scalar_residual_vl": "source-only scalar readout inserted as a host-anchored residual at the requested AdaptCLIP local evidence point",
+      "ted_calibrated_vl": "source-calibrated TED score inserted at the requested AdaptCLIP local evidence point"
+    }
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "01",
+      "image_auroc": 0.9611273407936096,
+      "image_ap": 0.9856925010681152,
+      "pixel_auroc": 0.9334794282913208,
+      "pixel_ap": 0.5109211802482605,
+      "pixel_aupro": 0.6935939788818359
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "02",
+      "image_auroc": 0.8106666207313538,
+      "image_ap": 0.968999445438385,
+      "pixel_auroc": 0.9344614744186401,
+      "pixel_ap": 0.604709267616272,
+      "pixel_aupro": 0.5893158316612244
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "03",
+      "image_auroc": 0.9593293070793152,
+      "image_ap": 0.810089647769928,
+      "pixel_auroc": 0.9472991228103638,
+      "pixel_ap": 0.13817821443080902,
+      "pixel_aupro": 0.8235519528388977
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.9103744228680929,
+      "image_ap": 0.9215938647588094,
+      "pixel_auroc": 0.9384133418401083,
+      "pixel_ap": 0.41793622076511383,
+      "pixel_aupro": 0.7021539211273193
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "01",
+      "image_auroc": 0.9591836333274841,
+      "image_ap": 0.9848427176475525,
+      "pixel_auroc": 0.9388200044631958,
+      "pixel_ap": 0.5156042575836182,
+      "pixel_aupro": 0.7000600099563599
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "02",
+      "image_auroc": 0.8074999451637268,
+      "image_ap": 0.9684101343154907,
+      "pixel_auroc": 0.940165102481842,
+      "pixel_ap": 0.6173423528671265,
+      "pixel_aupro": 0.5920568108558655
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "03",
+      "image_auroc": 0.9576219320297241,
+      "image_ap": 0.8065821528434753,
+      "pixel_auroc": 0.9503620862960815,
+      "pixel_ap": 0.1393512487411499,
+      "pixel_aupro": 0.8247469663619995
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "mean",
+      "image_auroc": 0.9081018368403116,
+      "image_ap": 0.9199450016021729,
+      "pixel_auroc": 0.9431157310803732,
+      "pixel_ap": 0.42409928639729816,
+      "pixel_aupro": 0.7056212623914083
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "01",
+      "image_auroc": 0.9582118391990662,
+      "image_ap": 0.9843625426292419,
+      "pixel_auroc": 0.9393428564071655,
+      "pixel_ap": 0.5168493390083313,
+      "pixel_aupro": 0.7035612463951111
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "02",
+      "image_auroc": 0.8071666359901428,
+      "image_ap": 0.9683674573898315,
+      "pixel_auroc": 0.9399804472923279,
+      "pixel_ap": 0.6165248155593872,
+      "pixel_aupro": 0.5919401049613953
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "03",
+      "image_auroc": 0.9579268097877502,
+      "image_ap": 0.8068240880966187,
+      "pixel_auroc": 0.9501528739929199,
+      "pixel_ap": 0.138558492064476,
+      "pixel_aupro": 0.8243463039398193
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "mean",
+      "image_auroc": 0.9077684283256531,
+      "image_ap": 0.9198513627052307,
+      "pixel_auroc": 0.9431587258974711,
+      "pixel_ap": 0.4239775488773982,
+      "pixel_aupro": 0.7066158850987753
+    }
+  ]
+}
