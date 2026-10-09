@@ -1,0 +1,94 @@
+{
+  "table_label": "tab:supp_residual_strength_boundary",
+  "input": "archived_references",
+  "fresh_gpu_execution_verified": false,
+  "aggregation": "Unweighted mean across four AA-CLIP seed0 transfers; each deltaLoc=(deltaPRO+deltaAP)/2, native AA metrics in percentage points.",
+  "status": "matched",
+  "cells": [
+    {
+      "alpha": 0,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.0,
+      "printed": "+0.0",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 0.25,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.3140168987909937,
+      "printed": "+0.3",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 0.5,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.28642402044932247,
+      "printed": "+0.3",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 1,
+      "transfers": 4,
+      "actual_delta_loc_pp": -0.03916468842824372,
+      "printed": "-0.0",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 2,
+      "transfers": 4,
+      "actual_delta_loc_pp": -5.241969102223714,
+      "printed": "-5.2",
+      "matches_1dp": true
+    }
+  ],
+  "evidence": [
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_strength_seed0",
+      "summary_sha256": "37ed3e29f2cb414ea00b5b44e85991c3138e2bb50e431d5ab962a5bbc8329d13",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2visa_strength_seed0",
+      "summary_sha256": "ed9b2975fb3b27b7a71a311aa67d35cf8a57321baeb450c24cc9830df1808afa",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+      "summary_sha256": "5101394b3d27ac7d71db744162bf32f6a54a9fc434c23cda64ad495114fb3050",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_strength_seed0",
+      "summary_sha256": "86541cbbb3b7d004af4425883eb8fa796be8b96fc11dbc55e041f7ce70b166db",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    }
+  ]
+}

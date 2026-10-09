@@ -96,6 +96,23 @@ does not grant a blanket MIT/Apache or commercial license to every component.
 Private conversation history, credentials, and original dataset archives are
 not included in the public release.
 
+## Residual-strength archival audit
+
+The residual-strength boundary table now has a separate archival audit:
+
+```bash
+python -m reproduction.residual_strength --references
+```
+
+All five printed cells are reconstructed from four AA-CLIP seed-0 transfer
+summaries with full reported target coverage. Every alpha is retained,
+including the decrease at alpha 2; no alpha is selected for deployment by this
+audit. The launcher command is reconstructed from its archived source, not
+proof of the historical process argv. Fresh replay and bank provenance for
+these four configurations remain required. `--runs DIRECTORY` instead checks
+all four supplied summaries and rejects missing transfers or partial targets;
+summary files alone do not prove fresh GPU execution.
+
 ## Reporting a reproduction issue
 
 Include the Git commit, recipe ID, artifact hashes, source/target datasets,
