@@ -11,6 +11,35 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_rawclip_h14_l336_anonymous_archives_preserve_every_original_readout(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-public-client-v2'
+        index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        catalog = json.loads((ROOT / 'rawclip-serving-releases.json').read_text(encoding='utf-8'))
+        for model in ['h14', 'l336']:
+            prefix = 'rawclip-' + model + '-anonymous-'
+            acquired = json.loads((folder / (prefix + 'acquisition-20261009-v2.json')).read_text(encoding='utf-8'))
+            record = catalog['releases'][model]
+            self.assertEqual(acquired['status'], 'verified_serving_inputs')
+            self.assertEqual(acquired['files'], 930)
+            self.assertEqual(acquired['revision'], record['revision'])
+            self.assertEqual(acquired['archive_sha256'], record['sha256'])
+            self.assertIn('without auth headers', acquired['authentication'])
+            report = json.loads((folder / (prefix + 'image-parity-20261009-v2.json')).read_text(encoding='utf-8'))
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(report['artifact_sha256'], record['export_sha256'])
+            self.assertEqual(report['engine_sha256'], digest_file(ROOT.parent / 'ted/inference/rawclip_engine.py'))
+            self.assertTrue(report['original_workspace_reads_denied'])
+            self.assertTrue(report['network_denied'])
+            self.assertFalse(report['gpu_used'])
+            self.assertEqual({c['category'] for c in report['cases']}, {'01', '02', '03'})
+            for case in report['cases']:
+                self.assertEqual(set(case['map_max_abs_error']), {'host_map', 'tted_map', 'cted_map'})
+                self.assertFalse(any(case['map_max_abs_error'].values()))
+                self.assertFalse(any(case['score_abs_error'].values()))
+
     def test_imagebind_gateway_extension_preserves_prior_registry_and_all_readouts(self):
         folder = ROOT / 'validation/a10-20261009/gateway-imagebind-v1'
         index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))

@@ -18,6 +18,7 @@ The [ImageBind gateway integration](../reproduction/validation/a10-20261009/gate
 adds three direct-versus-gateway cases with zero map and score error. The gateway
 reports 11 ready models; its source and the previous ten registry entries are
 unchanged. The 42-case and three-case checks are separate runs.
+The H/14 and L/14-336 RawCLIP packages also pass [fresh anonymous download and CPU replay](../reproduction/validation/a10-20261009/rawclip-public-client-v2/index.json): 930 verified extracted inputs and three exact original-code image cases each.
 These are eleven configurations
 across five model families; the release does not claim every paper model is deployed.
 
