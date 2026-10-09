@@ -1,5 +1,4 @@
 from pathlib import Path
-import os
 import shutil
 import tempfile
 import unittest
@@ -26,7 +25,7 @@ class MainTextAggregateTests(unittest.TestCase):
             root = Path(temporary)
             directory = root / 'ablations/main-text-aggregates'
             shutil.copytree(ROOT / 'ablations/main-text-aggregates', directory)
-            os.link(ROOT / 'source.zip', root / 'source.zip')
+            shutil.copyfile(ROOT / 'source.zip', root / 'source.zip')
             path = directory / 'failure_conditioned_gain_20260504.csv'
             path.write_bytes(path.read_bytes().replace(b'Low', b'Mid', 1))
             with self.assertRaisesRegex(ValueError, 'hash/size mismatch'):
