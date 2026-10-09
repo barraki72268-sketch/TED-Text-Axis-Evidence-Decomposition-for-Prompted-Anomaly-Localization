@@ -202,7 +202,19 @@ CUDA_VISIBLE_DEVICES='' python -m reproduction.axis_collection ./runs/figure3 \
 Preparation verifies the current traced checkpoint and backbone bytes, all
 MVTec/VisA dataset files and the source archive; records path-only relocation;
 and creates an empty cache for a fresh source-only bank. It does not run a GPU,
-create a PDF or submit a job. Checkpoint public acquisition is still pending.
+create a PDF or submit a job. The checkpoint is now publicly available at pinned
+Hugging Face revisionb84c0603f3aa66b258169adbe6b6c657faed0c25:
+
+```bash
+hf download KIMJINYOUNG/TED-reproducibility anomalyclip-figure3-epoch15.pth \
+  --revision b84c0603f3aa66b258169adbe6b6c657faed0c25 --local-dir ./figure3-checkpoint
+```
+
+Pass the downloaded file to `--checkpoint`. Its size22631975 and
+SHA-256415c5dcb52668b8c33fb9c1a351c686d632b919df5b384d63fa9ce7a2338ced4
+are verified by preparation. An anonymous download of checkpoint and its two
+provenance documents matched all original bytes; this is acquisition evidence,
+not fresh inference or proof of the historical training dataset.
 The resulting command is reconstructed from the diagnostic JSON and original
 parser/model defaults, not a recovered historical command. The historical bank
 is missing at its recorded path. Original RNG state and historical checkpoint

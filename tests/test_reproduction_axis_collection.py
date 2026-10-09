@@ -14,6 +14,20 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class AxisCollectionTests(unittest.TestCase):
+    def test_anonymous_checkpoint_download_matches_pinned_input_identity(self):
+        manifest, _, _ = read_inputs(ROOT)
+        checkpoint = manifest['fresh_collection']['checkpoint']
+        report = json.loads((ROOT / 'validation/a10-20261009/figure3-public-checkpoint-verification.json').read_text())
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual(report['hf_revision'], checkpoint['public_acquisition']['revision'])
+        self.assertTrue(report['authentication'].startswith('none'))
+        self.assertEqual(len(report['files']), 3)
+        self.assertTrue(all(row['matches_original'] for row in report['files']))
+        weights = next(row for row in report['files'] if row['file'].endswith('.pth'))
+        self.assertEqual(weights['sha256'], checkpoint['sha256'])
+        self.assertEqual(weights['bytes'], checkpoint['bytes'])
+        self.assertEqual(weights['url'], checkpoint['public_acquisition']['url'])
+
     def test_linux_preparation_preserves_source_except_recorded_paths_and_numeric_arguments(self):
         manifest, data, _ = read_inputs(ROOT)
         report = json.loads((ROOT / 'validation/a10-20261009/figure3-linux-preparation.json').read_text())
