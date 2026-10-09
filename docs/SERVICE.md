@@ -135,3 +135,34 @@ stopped afterwards. AA deployment on pilab Docker and model selection remain
 required; the existing pilab release is still the FAPrompt service described
 above. The checked service dependency overlay is recorded
 [here](../reproduction/validation/a10-20261009/aa-api-extra.freeze.txt).
+
+### Preparing an AA serving bundle
+
+The new builder copies the exact prepared source, original run plan, selected
+backbone, adapter checkpoints, and captured calibration state from a passing
+AA execution. It rechecks the original metrics, coverage, and byte hashes.
+It includes no dataset images and does not fit new state.
+
+```bash
+python -m reproduction build-aa-serving-bundle ./runs/AA_RECIPE ./bundles/AA_RECIPE
+```
+
+The engine accepts the bundle as `TED_RUN_WORKSPACE` and its `export/` directory
+as `TED_CAPTURED_EXPORT`. The source and original execution evidence remain
+unchanged; the engine binds the selected verified weight to its new local path.
+This packaging step alone does not certify portable inference or Docker deployment.
+
+Before promotion, move the bundle to another directory and compare its maps
+against saved original-evaluator maps using
+[`examples.aa_bundle_parity`](../examples/aa_bundle_parity.py). Supply a fixtures
+JSON as documented in that module and forbid reads from the original workspace:
+
+```bash
+CUDA_VISIBLE_DEVICES='' python -m examples.aa_bundle_parity \
+  ./relocated/AA_RECIPE ./fixtures.json ./relocation-report.json \
+  --forbid-read-root /absolute/path/to/original/workspace
+```
+
+The checker prohibits network connections and calibration fitting during
+engine loading and prediction. A matching report proves only the named image
+maps. A real container run and all-model service selection remain separate gates.
