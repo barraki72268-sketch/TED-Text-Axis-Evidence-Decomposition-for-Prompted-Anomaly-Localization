@@ -1,0 +1,75 @@
+{
+  "status": "matched",
+  "implementation_commit": "852758d",
+  "device": "cpu",
+  "images": 3,
+  "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+  "scope": "Three BTAD images, one per class; AA source-limit-1 ablation state only. Not a full-paper result or full-service deployment.",
+  "reference": "Two image forwards through the same initialized trusted AA host; independent composition of original evaluator math versus the captured-state bridge.",
+  "fit_guard": "Optimizer construction and evaluator train_* functions were prohibited during this check.",
+  "image_score_policy": "Raw detection-token score only; dataset-wide normalization/map fusion used by paper metrics is not a per-request probability.",
+  "torch": "2.9.1+cu128",
+  "numpy": "2.2.6",
+  "engine": {
+    "host": "AA-CLIP",
+    "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+    "scope": "weak-source-ablation",
+    "backbone": "ViT-L/14-336",
+    "input_size": 224,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "category": "01",
+    "device": "cpu",
+    "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5",
+    "model_load_ms": 26348.688683006912,
+    "deployment_status": "experimental captured-state research bridge"
+  },
+  "rows": [
+    {
+      "category": "01",
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "expected_image_score": 0.5000974535942078,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "maps_file": "01-maps.npz"
+    },
+    {
+      "category": "02",
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "expected_image_score": 0.5438123941421509,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "maps_file": "02-maps.npz"
+    },
+    {
+      "category": "03",
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "expected_image_score": 0.5437228083610535,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "maps_file": "03-maps.npz"
+    }
+  ],
+  "elapsed_seconds": 30.60713367909193
+}

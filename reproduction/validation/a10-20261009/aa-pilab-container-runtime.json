@@ -1,0 +1,40 @@
+{
+  "observed_utc": "2026-10-09T03:17:14.030752+00:00",
+  "image_id": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "image": "ted-inspection:host-runtime-20261008",
+  "state": "running",
+  "health": "healthy",
+  "read_only": true,
+  "memory_limit": 12884901888,
+  "nano_cpus": 4000000000,
+  "cap_drop": [
+    "ALL"
+  ],
+  "security_opt": [
+    "no-new-privileges:true"
+  ],
+  "ports": {
+    "80/tcp": null,
+    "8000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "18083"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "destination": "/app",
+      "read_write": false
+    },
+    {
+      "destination": "/bundle",
+      "read_write": false
+    },
+    {
+      "destination": "/mnt/data/envs/patchcore-conda",
+      "read_write": false
+    }
+  ],
+  "scope": "AA weak-source-limit1 worker; host-mounted Python runtime, not standalone image or full model deployment"
+}

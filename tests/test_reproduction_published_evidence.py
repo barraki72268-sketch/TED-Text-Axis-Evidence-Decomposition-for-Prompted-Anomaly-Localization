@@ -11,6 +11,28 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_aa_serving_evidence_retains_cross_host_difference_and_local_parity(self):
+        folder = ROOT / 'validation/a10-20261009'
+        index = json.loads((folder / 'aa-serving-evidence.json').read_text())
+        for entry in index['files']:
+            self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
+        for name in ['aa-main-engine-parity.json', 'aa-main-relocation-parity.json',
+                     'aa-pilab-original-math.json', 'aa-pilab-container-local-parity.json']:
+            report = json.loads((folder / name).read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual({r['category'] for r in report['rows']}, {'01', '02', '03'})
+            for row in report['rows']:
+                self.assertEqual(row['host_max_abs_error'], 0)
+                self.assertEqual(row['cted_max_abs_error'], 0)
+                if 'raw_image_score_abs_error' in row:
+                    self.assertEqual(row['raw_image_score_abs_error'], 0)
+        difference = json.loads((folder / 'aa-pilab-a10-difference.json').read_text())
+        self.assertEqual(difference['status'], 'mismatch')
+        self.assertGreater(max(r['host_max_abs_error'] for r in difference['rows']), 0)
+        runtime = json.loads((folder / 'aa-pilab-container-runtime.json').read_text())
+        self.assertTrue(runtime['read_only'])
+        self.assertEqual(runtime['ports']['8000/tcp'][0]['HostIp'], '127.0.0.1')
+
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())

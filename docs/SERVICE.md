@@ -130,10 +130,9 @@ normalization and map fusion, so this score is not a per-request reproduction
 of that metric or an anomaly probability. Prediction performs no source-bank
 mining or calibration fitting.
 
-The dated HTTP check used a temporary CPU worker on the A10 node and was
-stopped afterwards. AA deployment on pilab Docker and model selection remain
-required; the existing pilab release is still the FAPrompt service described
-above. The checked service dependency overlay is recorded
+The initial HTTP check used a temporary CPU worker on the A10 node and was
+stopped afterwards. The later pilab Docker checks are recorded below; all-model
+selection remains required. The initial service dependency overlay is recorded
 [here](../reproduction/validation/a10-20261009/aa-api-extra.freeze.txt).
 
 ### Preparing an AA serving bundle
@@ -172,3 +171,23 @@ passed on CPU for three BTAD images using the source-limit-1 bundle: both raw
 maps had zero maximum absolute error for every image. Original-workspace reads,
 network connections, and calibration fitting were prohibited during loading and
 inference. This does not establish parity for the newly replayed main configuration.
+
+### pilab AA Docker checks (October 9)
+
+An isolated AA source-limit-1 worker was started on pilab loopback port 18083
+using the [host-runtime Compose profile](../deployment/aa-captured.pilab.compose.yaml).
+The dated [container record](../reproduction/validation/a10-20261009/aa-pilab-container-runtime.json)
+identifies the image, read-only mounts, resource limits, and observed healthy state.
+Readiness at that time does not guarantee future availability.
+
+Two comparisons are retained:
+
+- [A10 CPU versus pilab Docker](../reproduction/validation/a10-20261009/aa-pilab-a10-difference.json): strict zero-error comparison failed, with maximum host-map difference approximately 0.000103. The cause has not been isolated.
+- [Same-pilab original equations versus Docker HTTP](../reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json): all three images have zero raw-map and raw image-score error. The [independent original-equation check](../reproduction/validation/a10-20261009/aa-pilab-original-math.json) is also retained. Missing and unknown categories return 422.
+
+The main L/14-336 seed-0 configuration separately passed
+[CPU original-equation parity](../reproduction/validation/a10-20261009/aa-main-engine-parity.json)
+and [offline relocation parity](../reproduction/validation/a10-20261009/aa-main-relocation-parity.json)
+on three images at its recorded input size of 518. Its pilab promotion requires
+its own container check; the weak-source worker does not stand in for that check.
+All-model selection, all-model publication, and a standalone container remain required.

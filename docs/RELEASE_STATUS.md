@@ -38,7 +38,7 @@ differences has not been established.
 | Datasets | MVTec AD, VisA, MPDD, and BTAD inputs verified; MVTec AD 2 still needs readable source data |
 | Hugging Face | Original source, checkpoints, and banks are public; all-model serving bundles remain in progress |
 | pilab Docker | FAPrompt CPU service path verified; its recorded deployment uses a host-mounted Python runtime |
-| AA-CLIP worker | CPU HTTP and relocated-bundle map parity verified for one weak-source configuration; pilab Docker validation remains in progress |
+| AA-CLIP worker | Weak-source CPU Docker HTTP matches same-pilab original equations on three images; the A10 comparison retains a small difference. Main L/14-336 CPU/relocation checks passed; its pilab container check remains in progress |
 | Complete release | All model/backbone/dataset/seed runs, remaining ablations and figures, fresh bank rebuilding, and all-model deployment remain required |
 
 Continue with the [quick start](../README.md#quick-start),
