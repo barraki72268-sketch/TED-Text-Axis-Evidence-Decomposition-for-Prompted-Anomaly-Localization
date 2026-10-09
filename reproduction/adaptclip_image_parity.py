@@ -26,14 +26,16 @@ def original_output_block(script: Path):
     return compile(ast.Module(body=blocks, type_ignores=[]), str(script), 'exec')
 
 
-def run(exported: Path, workspace: Path) -> dict:
+def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None) -> dict:
     import numpy as np
     from PIL import Image
     import torch
     from ted.inference.adaptclip_engine import CapturedAdaptCLIPEngine
 
     engine = CapturedAdaptCLIPEngine(export_directory=exported, workspace=workspace, device='cpu')
-    plan = json.loads((workspace / 'run.json').read_text())
+    plan = json.loads(((fixture_workspace or workspace) / 'run.json').read_text())
+    if digest_file((fixture_workspace or workspace) / 'run.json') != digest_file(workspace / 'run.json'):
+        raise ValueError('Fixture workspace must share the exact original plan')
     dataset = engine.summary['target_dataset']
     prepared = plan['datasets'][dataset]
     metadata_path = Path(prepared['prepared_metadata'])
@@ -102,12 +104,14 @@ def main() -> int:
     parser.add_argument('export_directory', type=Path)
     parser.add_argument('workspace', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--fixture-workspace', type=Path, help='Original dataset metadata for a portable bundle test; never used by the engine')
     args = parser.parse_args()
     report = {'status': 'running', 'started': datetime.now(timezone.utc).isoformat()}
     with args.output.open('x', encoding='utf-8') as stream:
         json.dump(report, stream, indent=2)
     try:
-        report.update(run(args.export_directory.resolve(), args.workspace.resolve()))
+        report.update(run(args.export_directory.resolve(), args.workspace.resolve(),
+                          args.fixture_workspace.resolve() if args.fixture_workspace else None))
     except Exception as error:
         report.update(status='failed', error=f'{type(error).__name__}: {error}')
     report['finished'] = datetime.now(timezone.utc).isoformat()

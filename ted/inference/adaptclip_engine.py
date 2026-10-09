@@ -3,6 +3,7 @@
 This stage requires the prepared research checkout. Portable bundles and
 container/HTTP parity are separate gates; no datasets or fitting are used here.
 """
+import ast
 import importlib.util
 import json
 from pathlib import Path
@@ -19,6 +20,32 @@ from .adaptclip import CapturedAdaptDensityReadout
 
 def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
+
+
+def load_relocated_module(name, script, source, *, register=False):
+    """Change only the one top-level ROOT path in verified source in memory."""
+    tree = ast.parse(script.read_bytes(), filename=str(script))
+    roots = [node for node in tree.body if isinstance(node, ast.Assign)
+             and any(isinstance(target, ast.Name) and target.id == 'ROOT' for target in node.targets)]
+    if len(roots) != 1:
+        raise ValueError('Expected exactly one upstream ROOT binding')
+    value = roots[0].value
+    if (not isinstance(value, ast.Call) or not isinstance(value.func, ast.Name)
+            or value.func.id != 'Path' or len(value.args) != 1 or value.keywords
+            or not isinstance(value.args[0], ast.Constant) or not isinstance(value.args[0].value, str)):
+        raise ValueError('Unexpected upstream ROOT expression')
+    value.args[0].value = str(source)
+    spec = importlib.util.spec_from_file_location(name, script)
+    module = importlib.util.module_from_spec(spec)
+    if register:
+        sys.modules[name] = module
+    try:
+        exec(compile(tree, str(script), 'exec'), module.__dict__)
+    except BaseException:
+        if register:
+            sys.modules.pop(name, None)
+        raise
+    return module
 
 
 class CapturedAdaptCLIPEngine:
@@ -48,6 +75,20 @@ class CapturedAdaptCLIPEngine:
         if plan['recipe'] != manifest['recipe'] or execution['recipe'] != manifest['recipe']:
             raise ValueError('Captured AdaptCLIP recipe identity differs')
         summary = read(exported / 'summary.json')['summary']
+        portable = workspace / 'serving-bundle.json'
+        if portable.exists():
+            bundle = read(portable)
+            if (bundle.get('schema_version') != 1 or bundle.get('host') != 'AdaptCLIP'
+                    or bundle.get('recipe') != manifest['recipe']
+                    or bundle.get('export_sha256') != digest_file(manifest_path)
+                    or bundle.get('original_plan_sha256') != execution['plan_sha256']):
+                raise ValueError('Portable bundle does not bind the passing AdaptCLIP execution')
+            for entry in bundle['files']:
+                relative = Path(entry['path'])
+                if (relative.is_absolute() or '..' in relative.parts
+                        or digest_file(workspace / relative) != entry['sha256']
+                        or (workspace / relative).stat().st_size != entry['bytes']):
+                    raise ValueError('Portable AdaptCLIP input changed')
         catalog = Path(__file__).resolve().parents[2] / 'reproduction'
         recipe = execution_recipe(catalog, manifest['recipe'])
         if recipe['host'] != 'AdaptCLIP':
@@ -55,7 +96,8 @@ class CapturedAdaptCLIPEngine:
         dependencies = {entry['sha256'] for entry in manifest['original_model_inputs']}
         binding = next(row for row in read(catalog / 'host-checkpoints.json')['bindings'] if row['recipe'] == recipe['id'])
         checkpoint_hashes = {entry['sha256'] for entry in binding['checkpoint_assets'] if entry['role'] == 'checkpoint_path'}
-        checkpoint = Path(summary['checkpoint_path'])
+        checkpoint = (workspace / 'checkpoints/epoch_15.pth' if portable.exists()
+                      else Path(summary['checkpoint_path']))
         if len(checkpoint_hashes) != 1 or digest_file(checkpoint) not in checkpoint_hashes or not checkpoint_hashes <= dependencies:
             raise ValueError('AdaptCLIP adapter checkpoint binding differs')
         backbones = read(catalog / 'backbones.json')
@@ -70,9 +112,14 @@ class CapturedAdaptCLIPEngine:
             if filename and source not in Path(filename).resolve().parents:
                 raise RuntimeError('AdaptCLIP requires an isolated host worker process')
         script = source / 'neurips2026/scripts/official_parallel_test_adaptclip_vlrefine.py'
-        spec = importlib.util.spec_from_file_location('ted_captured_adaptclip_host', script)
-        self.host = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(self.host)
+        if portable.exists():
+            for name in ['official_parallel_test_adaptclip', 'analyze_adaptclip_vl_score_forms']:
+                load_relocated_module(name, script.with_name(name + '.py'), source, register=True)
+            self.host = load_relocated_module('ted_captured_adaptclip_host', script, source)
+        else:
+            spec = importlib.util.spec_from_file_location('ted_captured_adaptclip_host', script)
+            self.host = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(self.host)
         import adaptcliplib.model_load as model_load
         # Preserve the loader's named-model architecture choice. Redirect only
         # its official download to the already hash-verified local object.
@@ -85,6 +132,10 @@ class CapturedAdaptCLIPEngine:
                 return str(weight)
             model_load._download = pinned_download
             model_load.download_pretrained_from_hf = pinned_download
+        elif portable.exists():
+            if Path(pretrained).name != backbone['filename']:
+                raise ValueError('Portable AdaptCLIP pretrained filename differs')
+            pretrained = str(weight)
         elif Path(pretrained).resolve() != weight.resolve():
             raise ValueError('Prepared AdaptCLIP pretrained path differs from verified weight')
         self.device = torch.device(device)
@@ -121,6 +172,7 @@ class CapturedAdaptCLIPEngine:
         from tools import get_transform
         self.transform, _ = get_transform(image_size=summary['image_size'])
         self.summary, self.manifest = summary, manifest
+        self.portable = portable.exists()
         self.artifact_sha256 = digest_file(manifest_path)
         self._lock = threading.Lock()
         self._sync()
@@ -134,7 +186,8 @@ class CapturedAdaptCLIPEngine:
         return dict(host='AdaptCLIP', recipe=self.manifest['recipe'], backbone=self.manifest['backbone'],
                     input_size=self.summary['image_size'], device=str(self.device),
                     artifact_sha256=self.artifact_sha256, model_load_ms=self.model_load_ms,
-                    deployment_status='prepared-workspace research bridge; container parity pending')
+                    portable_bundle=self.portable,
+                    deployment_status='image bridge; container parity pending')
 
     @torch.inference_mode()
     def predict(self, image):
