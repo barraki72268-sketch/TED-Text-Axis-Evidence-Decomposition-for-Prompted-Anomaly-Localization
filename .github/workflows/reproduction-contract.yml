@@ -31,6 +31,8 @@ jobs:
         run: python -m unittest discover -s tests -p "test_inference.py" -v
       - name: Check API category selection, map encoding, limits, and concurrency
         run: python -m unittest discover -s tests -p "test_api.py" -v
+      - name: Check model gateway selection, artifact identity, and admission
+        run: python -m unittest discover -s tests -p "test_gateway.py" -v
   reference-integrity:
     strategy:
       matrix:

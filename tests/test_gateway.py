@@ -1,6 +1,9 @@
 import json
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 
 from fastapi.testclient import TestClient
@@ -10,6 +13,28 @@ from ted.inference.gateway import create_app, load_registry
 
 
 class GatewayTests(unittest.TestCase):
+    def test_busy_worker_rejects_duplicate_without_blocking_other_models(self):
+        entered, release = threading.Event(), threading.Event()
+        async def handler(request):
+            sha = ('a' if request.url.host == 'aa' else 'b') * 64
+            if request.url.path == '/predict' and request.url.host == 'aa':
+                entered.set()
+                await asyncio.to_thread(release.wait, 5)
+            return httpx.Response(200, json=dict(artifact_sha256=sha))
+        with self.fixture(handler) as client, ThreadPoolExecutor() as pool:
+            def predict(model):
+                return client.post('/predict?model=' + model, content=b'image', headers={'Content-Type': 'image/png'})
+            future = pool.submit(predict, 'aa')
+            try:
+                self.assertTrue(entered.wait(3))
+                busy = predict('aa')
+                self.assertEqual(busy.status_code, 503)
+                self.assertEqual(busy.headers['Retry-After'], '1')
+                self.assertEqual(predict('fap').status_code, 200)
+            finally:
+                release.set()
+            self.assertEqual(future.result(timeout=3).status_code, 200)
+
     def fixture(self, handler, limit=20_000_000):
         registry = {n: dict(id=n, label=n, scope='test-only', url='http://' + n,
                           artifact_sha256=sha * 64) for n, sha in [('aa', 'a'), ('fap', 'b')]}
