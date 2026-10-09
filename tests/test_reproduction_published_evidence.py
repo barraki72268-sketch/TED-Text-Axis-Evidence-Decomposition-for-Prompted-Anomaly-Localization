@@ -11,6 +11,47 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_adaptclip_fresh_archive_parity_binds_every_proof_file(self):
+        import zipfile
+        index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())
+        proof = index['portable_validation']
+        self.assertFalse(proof['deployment_ready'])
+        self.assertFalse(proof['anonymous_download_verified'])
+        self.assertFalse(proof['docker_http_verified'])
+        archive = ROOT / proof['archive']['path']
+        self.assertEqual(digest_file(archive), proof['archive']['sha256'])
+        with zipfile.ZipFile(archive) as source:
+            for binding in proof['files']:
+                path = ROOT / binding['path']
+                self.assertEqual(path.stat().st_size, binding['bytes'])
+                self.assertEqual(digest_file(path), binding['sha256'])
+                self.assertEqual(source.read(path.name), path.read_bytes())
+        folder = archive.parent
+        for variant in ['openai','l336']:
+            report = json.loads((folder / ('adaptclip-'+variant+'-unpacked-parity-20261009-v1.json')).read_text())
+            record = json.loads((folder / ('adaptclip-'+variant+'-archive-20261009-v1.json')).read_text())
+            unpacked = json.loads((folder / ('adaptclip-'+variant+'-unpack-20261009-v1.json')).read_text())
+            manifest = json.loads((folder / (variant+'-serving-bundle.json')).read_text())
+            self.assertEqual(record['files'],931)
+            self.assertEqual(record['host'],'AdaptCLIP')
+            self.assertEqual(record['sha256'],unpacked['archive_sha256'])
+            self.assertEqual(record['export_sha256'],report['engine']['artifact_sha256'])
+            self.assertEqual(record['export_sha256'],manifest['export_sha256'])
+            self.assertEqual(sum(e['path'].startswith('source/') for e in manifest['files']),920)
+            self.assertEqual(report['status'],'matched')
+            self.assertTrue(report['engine']['portable_bundle'])
+            self.assertTrue(report['portable_bundle_verified'])
+            self.assertTrue(report['original_workspace_model_reads_and_network_denied'])
+            self.assertTrue(report['fixture_metadata_read_exception'])
+            self.assertFalse(report['model_fitting'])
+            self.assertFalse(report['anonymous_download_verified'])
+            self.assertFalse(report['docker_http_verified'])
+            self.assertEqual({r['category'] for r in report['rows']},{'01','02','03'})
+            for row in report['rows']:
+                for key in ['host_max_absolute_error','cted_max_absolute_error',
+                            'host_image_score_error','cted_image_score_error']:
+                    self.assertEqual(row[key],0)
+
     def test_adaptclip_real_image_parity_keeps_portable_and_docker_gates(self):
         import zipfile
         index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())

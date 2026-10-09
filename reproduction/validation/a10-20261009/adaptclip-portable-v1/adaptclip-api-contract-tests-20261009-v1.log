@@ -1,0 +1,17 @@
+E..
+======================================================================
+ERROR: test_api (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_api
+Traceback (most recent call last):
+  File "/home/jinyoungkim/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/jinyoungkim/ted-reproduce-20261009/github-adaptclip-api-20261009/tests/test_api.py", line 7, in <module>
+    from fastapi.testclient import TestClient
+ModuleNotFoundError: No module named 'fastapi'
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=1)

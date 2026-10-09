@@ -314,3 +314,54 @@ CPU-only environment. The check prohibits network access, fitting and reads
 from both original/previously relocated bundles during inference. The [main archive client record](../reproduction/validation/a10-20261009/aa-anonymous-main-verification.json)
 passes the same checks for the input-518 main release. These checks do not establish full
 CPU dataset metric parity or reproduction of all paper configurations.
+
+### AdaptCLIP captured-state worker
+
+The OpenAI L/14 and L/14-336 BTAD seed-0 recipes each match all eight archived
+per-seed metrics at two decimals. Their prepared-workspace engines also match
+the original CPU evaluator's host/C-TED maps and both raw image scores on the
+first recorded test image of each BTAD class. See the
+[export and image evidence index](../reproduction/adaptclip-serving-exports.json).
+This does not establish all seeds, five datasets, or the paper's printed means
+and standard deviations.
+
+From a passing prepared workspace, create a new bundle:
+
+```bash
+python -m reproduction.adaptclip_serving_bundle RUN_WORKSPACE NEW_BUNDLE
+python -m reproduction.serving_archive NEW_BUNDLE NEW_ARCHIVE.tar.gz --host AdaptCLIP
+```
+
+The bundle preserves the 920 research source files, checkpoint, backbone,
+terminal evaluation evidence, and captured VL/TL calibrators. It includes no
+dataset images. The engine changes only source ROOT, checkpoint and backbone
+paths in memory. It retains the named L/14-336 loader's architecture choice,
+image preprocessing, numerical arguments and scoring equations.
+
+To check a fresh extraction against the original output block:
+
+```bash
+CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 \
+python -m reproduction.adaptclip_image_parity NEW_BUNDLE/export NEW_BUNDLE \
+  --fixture-workspace RUN_WORKSPACE --deny-original-inputs \
+  --output NEW_PARITY_REPORT.json
+```
+
+The check denies network access and original workspace/model input reads during
+inference. Original fixture metadata is an explicit exception; test images stay
+outside the bundle and are checked against the full dataset input manifest.
+Run each model in its own process because upstream imports use shared names.
+
+For an experimental loopback HTTP worker with the pinned research dependencies:
+
+```bash
+TED_ENGINE_FAMILY=adaptclip TED_DEVICE=cpu \
+TED_CAPTURED_EXPORT=NEW_BUNDLE/export TED_RUN_WORKSPACE=NEW_BUNDLE \
+CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 \
+python -m uvicorn ted.inference.api:app --host 127.0.0.1 --port 18086 --workers 1
+```
+
+The response preserves `image_score` and separately returns `cted_image_score`.
+Both are raw evaluator scores, not calibrated probabilities. Anonymous public
+archive acquisition, pilab Docker HTTP parity and registry integration are
+separate gates; this worker is not yet in the deployed selector.

@@ -10,7 +10,7 @@
         "bytes": 79583,
         "sha256": "4699ceadf94473b9304d6b69850afb6d2ff48655358e2577b1bf5641f27797d2"
       },
-      "status": "prepared_workspace_image_parity_passed_portable_and_docker_pending",
+      "status": "fresh_archive_extraction_image_parity_passed_hf_and_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -39,7 +39,7 @@
         "bytes": 79567,
         "sha256": "20a825cd5f1748ab4540d48ba885759c907951acda77932441fa2a6613b1512f"
       },
-      "status": "prepared_workspace_image_parity_passed_portable_and_docker_pending",
+      "status": "fresh_archive_extraction_image_parity_passed_hf_and_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -62,9 +62,9 @@
     }
   ],
   "next_gates": [
-    "Relocated dependency/source bundle",
-    "Anonymous Hugging Face artifact verification",
-    "Docker HTTP parity and model registry integration"
+    "Anonymous Hugging Face archive acquisition and fresh-extraction inference verification",
+    "Pilab Docker HTTP parity and model registry integration",
+    "Standalone dependency/runtime image verification"
   ],
   "readout_validation": {
     "path": "validation/a10-20261009/adaptclip-readout-validation.json",
@@ -97,5 +97,115 @@
       }
     ],
     "scope": "Three preselected test images per model; same CPU model and original evaluator output block. Not independent GPU image parity or a full-dataset CPU metric replay."
+  },
+  "portable_validation": {
+    "runtime_commit": "3368dcfcd334d9963bc16cef20937b0befbda236",
+    "archive": {
+      "path": "validation/a10-20261009/adaptclip-portable-v1/evidence.zip",
+      "bytes": 113390,
+      "sha256": "203ff8c51d04be0b1ced14ebf59a4827b248670780f71809e155d40a244329e7"
+    },
+    "files": [
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-relocated-parity-20261009-v1.json",
+        "bytes": 2315,
+        "sha256": "e2de54a6ac5c1ea8d0d0c4ee539e91426bb999f1e485656afde39f3e94eaca76"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-relocated-parity-20261009-v1.log",
+        "bytes": 2580,
+        "sha256": "4205d64bdfb6c621c6ae8323b2d5d966a26674893800e4f5769f02ed7efc9dcc"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-unpacked-parity-20261009-v1.json",
+        "bytes": 2459,
+        "sha256": "45af10987f851fa80acdf0316783753b9571d84013ae73637f000917e6b1de76"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-unpacked-parity-20261009-v1.log",
+        "bytes": 2737,
+        "sha256": "e88455c16bfa551eca06142de1ea06e74c7c421b6f821e06ad8305731f0ce574"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-archive-20261009-v1.json",
+        "bytes": 456,
+        "sha256": "4eeaacb15866f9ed6e6f442735dd1896173e7fa1d7207c67c9dfa75928494040"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-openai-unpack-20261009-v1.json",
+        "bytes": 301,
+        "sha256": "f1783b328366e1309102f3e6f3ab7cfe7bd50cc29773ddc91e4d28310b560054"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/openai-serving-bundle.json",
+        "bytes": 183644,
+        "sha256": "fcbaeff9855cd84896feaebc1d42eee020ca1acc23ffdee9438927d810f81e22"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-relocated-parity-20261009-v1.json",
+        "bytes": 2306,
+        "sha256": "4dc08fb1953171272da6d6a6199a314bb84c97369fa07c0cbadd10ff06b394c9"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-relocated-parity-20261009-v1.log",
+        "bytes": 2472,
+        "sha256": "f102e23077a6476ca320f1424c1c4fc3012cbefd13e4558b523d9918383d112d"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-unpacked-parity-20261009-v1.json",
+        "bytes": 2451,
+        "sha256": "f0cac093cd7bd039f188c9adc3abef42e46035fc0233adc52b1e5830607afa41"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-unpacked-parity-20261009-v1.log",
+        "bytes": 2617,
+        "sha256": "5bf60056e69fceff7f967d14b558d88781f9d8e116ecb96ca6faeeb3760d8bcb"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-archive-20261009-v1.json",
+        "bytes": 449,
+        "sha256": "34ac516738c7b83888b31775b1a273f118139247555cc1c8a90cd0c42b3431c4"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-l336-unpack-20261009-v1.json",
+        "bytes": 296,
+        "sha256": "64c3a5a12d5f2185bfda1ed92a819ec819c7a4055e77ec7ed7ddcde2bde0a7f1"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/l336-serving-bundle.json",
+        "bytes": 183645,
+        "sha256": "ea1025fb98d55fa69ec07b905a8ce30a29c33d865af332b5c3dda42cde68909d"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-path-relocation-tests-20261009.log",
+        "bytes": 100,
+        "sha256": "6f283ee6225d2cef4c0127d95456a6f954c45141c92b97dd89016cb1c630e8f4"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-api-contract-tests-20261009-v1.log",
+        "bytes": 788,
+        "sha256": "a43d48d37c685c53f2f11e6b5edac61ba175977a5f9e76beecbfd551a4a1af54"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-api-contract-tests-20261009-v2.log",
+        "bytes": 1726,
+        "sha256": "f3829a1dc0ac40bb8559557ab22029508515b59ab91f48c52891bfdb57944877"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-portable-v1/adaptclip-archive-build-20261009-v1.log",
+        "bytes": 1454,
+        "sha256": "55c31a2ca55f95885944103799702e559d6b8a819a27582d51ff4c15d5b242a0"
+      }
+    ],
+    "scope": "Exact original source, checkpoint, backbone and captured state packaged; newly extracted archives match original CPU evaluator maps and raw scores on three preselected BTAD images each. Original workspace/model reads and networking prohibited, except fixture metadata.",
+    "tests": {
+      "path_relocation": 2,
+      "api_and_relocation": 8,
+      "metadata_local": 16
+    },
+    "failed_api_attempt_preserved": "v1 lacked fastapi in runtime-env; v2 passed using existing api-extra dependency directory, without changing GPU runtime.",
+    "anonymous_download_verified": false,
+    "docker_http_verified": false,
+    "deployment_ready": false
   }
 }
