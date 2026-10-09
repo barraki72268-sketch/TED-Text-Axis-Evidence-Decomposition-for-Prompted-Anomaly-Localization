@@ -13,6 +13,30 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class RawclipFocusTests(unittest.TestCase):
+    def test_linux_guard_validation_preserves_empty_results_and_bound_logs(self):
+        manifest, _ = read_inputs(ROOT)
+        binding = manifest['guarded_runner_validation']
+        raw = (ROOT / binding['path']).read_bytes()
+        self.assertEqual(len(raw), binding['bytes'])
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), binding['sha256'])
+        report = json.loads(raw)
+        self.assertFalse(report['gpu_execution'])
+        self.assertFalse(report['execution_record_created'])
+        self.assertEqual(report['result_entries'], 0)
+        self.assertEqual(report['plan_sha256'], json.loads((ROOT / 'figures/rawclip-focus/linux-preparation.json').read_text())['plan_sha256'])
+        self.assertEqual(report['bank_sha256_after'], manifest['public_bank']['sha256'])
+        self.assertEqual(report['tests_returncode'], 0)
+        self.assertEqual(report['validation_returncode'], 0)
+        self.assertEqual(report['outside_allocation_returncode'], 1)
+        archive = binding['archive']
+        self.assertEqual(hashlib.sha256((ROOT / archive['path']).read_bytes()).hexdigest(), archive['sha256'])
+        with zipfile.ZipFile(ROOT / archive['path']) as bundle:
+            self.assertEqual(bundle.read('validation.json'), raw)
+            for name, expected in report['logs'].items():
+                content = bundle.read(name)
+                self.assertEqual(len(content), expected['bytes'])
+                self.assertEqual(hashlib.sha256(content).hexdigest(), expected['sha256'])
+
     def test_linux_preparation_binds_inputs_and_keeps_original_numeric_parser_defaults(self):
         manifest, _ = read_inputs(ROOT)
         binding = manifest['linux_preparation']
