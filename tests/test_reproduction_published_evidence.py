@@ -90,7 +90,7 @@ class PublishedEvidenceTests(unittest.TestCase):
         report = json.loads((folder / index['file']).read_text())
         registry_path = ROOT.parent / 'deployment/pilab-model-registry.json'
         self.assertEqual(digest_file(registry_path), report['registry_sha256'])
-        registry = json.loads(registry_path.read_text())
+        registry = json.loads(registry_path.read_text(encoding='utf-8'))
         releases = {m['id']: m['artifact_sha256'] for m in registry['models']}
         self.assertEqual(report['status'], 'matched')
         self.assertEqual(report['cases'], 9)
@@ -130,7 +130,10 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 10)
+        self.assertEqual(len(report['results']), 11)
+        adaptclip = [row for row in report['results'] if row['recipe'] == 'adaptclip-vitl14openai-mvtec2btad-seed0']
+        self.assertEqual(len(adaptclip), 1)
+        self.assertEqual(adaptclip[0]['metrics_matched_2dp'], 8)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:
