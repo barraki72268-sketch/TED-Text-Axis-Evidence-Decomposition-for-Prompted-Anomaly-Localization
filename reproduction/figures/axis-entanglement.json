@@ -73,5 +73,105 @@
     "path": "validation/a10-20261009/figure3-public-cpu-audit.json",
     "sha256": "22e6d2e35cfdede34b8638314348024c231b5bd5b6ea4ac698183869ea8846db",
     "runtime_commit": "c1ef6d5dd39efa42b5772cf00d78e9d040328aec"
+  },
+  "fresh_collection": {
+    "status": "preparation_supported_execution_pending",
+    "scope": "Reconstructed AnomalyCLIP VisA capsules diagnostic collection; not a main-table model recipe",
+    "historical_argv": "not recovered",
+    "historical_seed": "not recorded; original collector main has no seed argument or explicit RNG initialization",
+    "checkpoint": {
+      "path": "neurips2026/AnomalyCLIP/checkpoints/9_12_4_multiscale_visa/epoch_15.pth",
+      "bytes": 22631975,
+      "sha256": "415c5dcb52668b8c33fb9c1a351c686d632b919df5b384d63fa9ce7a2338ced4",
+      "identity_scope": "Current original-path bytes observed on pilab; archival JSON records path but not historical hash",
+      "public_acquisition": "pending",
+      "training_data_provenance": "not proven by checkpoint folder name"
+    },
+    "backbone": {
+      "id": "openai_vit_l14_336",
+      "sha256": "3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02",
+      "bytes": 934088680,
+      "filename": "ViT-L-14-336px.pt",
+      "url": "https://openaipublic.azureedge.net/clip/models/3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02/ViT-L-14-336px.pt",
+      "object_path": "objects/3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02",
+      "archived_paths": [
+        "/mnt/data/hf-cache/anomalyclip/ViT-L-14-336px.pt",
+        "/mnt/data/pilab-kingjinyoung/ADPretrain/AA-CLIP/model/ViT-L-14-336px.pt",
+        "/mnt/data/pilab-kingjinyoung/ADPretrain/FAPrompt/.cache/clip/ViT-L-14-336px.pt",
+        "/mnt/data/pilab-kingjinyoung/ted-docker-build/model-bundle/backbone/ViT-L-14-336px.pt"
+      ]
+    },
+    "model_helper": {
+      "path": "neurips2026/scripts/probe_anomalyclip_fp_text_decomposition.py",
+      "sha256": "4f33fad50a18d86e8efd46e525d9fc48e7f3223b971478e3c4ffc5c3306cb10c",
+      "model": "ViT-L/14@336px",
+      "dpam_layer": 20,
+      "depth": 9,
+      "n_ctx": 12,
+      "t_n_ctx": 4,
+      "parameter_provenance": "build_model and collector parser defaults; checkpoint prompt shapes agree, historical explicit argv unknown"
+    },
+    "observed_summary": {
+      "source_dataset": "mvtec",
+      "target_dataset": "visa",
+      "target_mode": "test",
+      "target_class": "capsules",
+      "checkpoint_path": "neurips2026/AnomalyCLIP/checkpoints/9_12_4_multiscale_visa/epoch_15.pth",
+      "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/anomalyclip_mvtec_full_epoch15_multiscale_visa.pt",
+      "bank_cache_meta": {
+        "checkpoint_path": "neurips2026/AnomalyCLIP/checkpoints/9_12_4_multiscale_visa/epoch_15.pth",
+        "source_root": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+        "source_dataset": "mvtec",
+        "heldout_class": null,
+        "image_size": 518,
+        "features_list": [
+          6,
+          12,
+          18,
+          24
+        ],
+        "hard_frac": 0.01,
+        "max_good_per_class": 2,
+        "max_defect_per_class": 4,
+        "max_bank_per_layer": 512,
+        "max_fp_per_image": 64,
+        "max_defect_per_image": 64
+      },
+      "bank_stats": {
+        "0": {
+          "num_fp": 390,
+          "num_defect": 512
+        },
+        "1": {
+          "num_fp": 390,
+          "num_defect": 512
+        },
+        "2": {
+          "num_fp": 390,
+          "num_defect": 512
+        },
+        "3": {
+          "num_fp": 390,
+          "num_defect": 512
+        }
+      },
+      "hard_frac": 0.01,
+      "tau": 20.0,
+      "max_normal_eval_images": 24,
+      "max_anomaly_eval_images": 24
+    },
+    "historical_bank": {
+      "path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/anomalyclip_mvtec_full_epoch15_multiscale_visa.pt",
+      "exists_at_original_path": false,
+      "observed": "2026-10-09",
+      "replacement_policy": "Rebuild source-only in a new empty cache; never substitute another bank"
+    },
+    "unresolved": [
+      "Historical argv and RNG state",
+      "Historical checkpoint hash not stored in archived diagnostic JSON",
+      "Historical bank bytes missing at recorded original path",
+      "Fresh GPU collection and array comparison",
+      "Final printed PDF style trace"
+    ]
   }
 }
