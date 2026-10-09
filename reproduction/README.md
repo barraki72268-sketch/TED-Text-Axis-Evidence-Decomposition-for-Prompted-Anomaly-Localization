@@ -70,6 +70,12 @@ The latter requires all 28 `<configuration>/summary.json` files and uses each
 host's declared metric units. It reports missing configurations rather than
 averaging an available subset. Full replay, source-bank provenance, and the
 remaining ablation tables are still required.
+`ablations/weak-source-banks.json` binds all 28 configurations to 12 unique
+bank objects (239,998,256 bytes). Twenty bindings come from explicit archived
+cache-log paths; eight come from the loader's nominal filename rule and exact
+weights-only CPU metadata compatibility checks. Log hashes and evidence labels
+are retained. The latter eight do not establish historical cache-hit events.
+Bank publication and fresh mining/replay for this ablation remain pending.
 For each configuration, reported per-class image counts must also match the
 hash-checked dataset test manifest exactly; missing or duplicate classes are
 rejected. All 28 archived summaries pass this check (MVTec AD 1,725 test images,
