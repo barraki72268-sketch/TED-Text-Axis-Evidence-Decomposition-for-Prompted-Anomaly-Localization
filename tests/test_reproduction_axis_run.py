@@ -1,4 +1,6 @@
 import os
+import json
+import hashlib
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
@@ -8,6 +10,17 @@ from reproduction.axis_run import require_live_gpu_allocation, run
 
 
 class AxisRunTests(unittest.TestCase):
+    def test_linux_cpu_validation_leaves_model_and_bank_execution_pending(self):
+        root = Path(__file__).resolve().parents[1] / 'reproduction/validation/a10-20261009'
+        report = json.loads((root / 'figure3-guard-validation.json').read_text())
+        plan = json.loads((root / 'figure3-linux-preparation.json').read_text())
+        self.assertEqual(report['plan_sha256'], plan['plan_sha256'])
+        self.assertEqual(hashlib.sha256(report['log'].encode()).hexdigest(), report['log_sha256'])
+        self.assertEqual(json.loads(report['log']), {'status':'validated','gpu_execution':False})
+        self.assertEqual(report['bank_entries'], 0)
+        self.assertEqual(report['result_entries'], 0)
+        self.assertFalse(report['execution_record_exists'])
+
     def test_refuse_environment_without_allocated_visible_gpu_before_reading_workspace(self):
         for env in [{}, {'SLURM_JOB_ID':'123', 'CUDA_VISIBLE_DEVICES':''},
                     {'SLURM_JOB_ID':'123', 'CUDA_VISIBLE_DEVICES':'-1'}]:
