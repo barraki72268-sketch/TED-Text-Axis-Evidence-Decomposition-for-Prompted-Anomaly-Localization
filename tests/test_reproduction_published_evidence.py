@@ -26,11 +26,11 @@ class PublishedEvidenceTests(unittest.TestCase):
                 path=ROOT/entry['path']
                 self.assertEqual(digest_file(path),entry['sha256'])
                 if path.name!='public-metadata-verification.json':
-                    self.assertEqual(path.read_bytes(),bundle.read(path.name))
+                    self.assertEqual(path.read_bytes(),bundle.read(entry.get('archive_member',path.name)))
         for variant in ['openai','l336']:
             record=catalog['releases'][variant+'-seed0']
-            acquired=json.loads((archive.parent/('adaptclip-'+variant+'-anonymous-acquisition-20261009-v1.json')).read_text())
-            parity=json.loads((archive.parent/('adaptclip-'+variant+'-anonymous-parity-20261009-v1.json')).read_text())
+            acquired=json.loads((archive.parent/(variant+'-acquisition.json')).read_text())
+            parity=json.loads((archive.parent/(variant+'-parity.json')).read_text())
             self.assertEqual(acquired['status'],'verified_serving_inputs')
             self.assertEqual(acquired['files'],931)
             self.assertEqual(acquired['archive_sha256'],record['sha256'])
