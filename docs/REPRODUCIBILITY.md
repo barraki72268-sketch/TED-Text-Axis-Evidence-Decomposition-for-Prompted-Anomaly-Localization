@@ -322,3 +322,24 @@ but does not supply independent per-image count traces. The original preparation
 plan, source-bank bindings and full result are preserved. This is one configuration;
 it does not establish all-backbone, all-seed agreement with every printed mean/std
 or a fresh source-bank rebuild. AdaptCLIP inference deployment remains pending.
+
+The Figure4 recorded-path bank is now publicly downloadable at pinned revision
+`7336ad053d3db8d06efdd5302a3dc8b33b2b9222`, with metadata and acquisition proof:
+
+```bash
+hf download KIMJINYOUNG/TED-reproducibility rawclip-figure4-visa-source-bank.pt \
+  --revision 7336ad053d3db8d06efdd5302a3dc8b33b2b9222 --local-dir ./figure4-bank
+CUDA_VISIBLE_DEVICES='' python -m reproduction.rawclip_focus_collection ./runs/figure4 \
+  --bank ./figure4-bank/rawclip-figure4-visa-source-bank.pt \
+  --backbone ./ViT-L-14-336px.pt --datasets ./dataset-roots.json
+```
+
+Preparation is Linux-only and creates no model inference or PDF. It verifies the
+bank trace and unchanged bank bytes, official backbone bytes, all MVTec target
+inputs and the archived source; relocates path strings only; and records an
+explicit collector command. Numeric arguments come from the summary, bank
+metadata and original parser defaults, rather than observed historical argv.
+It preserves this bank unchanged and makes no fresh source-bank rebuild claim.
+A guarded Slurm runner, output/RNG recording and a separate source-bank rebuild
+are required next. The original collector produces four diagnostic PDFs; its
+output is separate from the final paper's compact two-panel style.
