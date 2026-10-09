@@ -188,6 +188,12 @@ Two comparisons are retained:
 The main L/14-336 seed-0 configuration separately passed
 [CPU original-equation parity](../reproduction/validation/a10-20261009/aa-main-engine-parity.json)
 and [offline relocation parity](../reproduction/validation/a10-20261009/aa-main-relocation-parity.json)
-on three images at its recorded input size of 518. Its pilab promotion requires
-its own container check; the weak-source worker does not stand in for that check.
+on three images at its recorded input size of 518. Its separate pilab worker on
+loopback port 18084 then passed [Docker HTTP parity](../reproduction/validation/a10-20261009/aa-pilab-main-container-local-parity.json)
+against the [same-pilab original equations](../reproduction/validation/a10-20261009/aa-pilab-main-original-math.json):
+both raw maps and the raw detection-token score match exactly on all three images.
+The [main worker runtime record](../reproduction/validation/a10-20261009/aa-pilab-main-container-runtime.json)
+identifies its image and mounts. Neither worker check establishes full-dataset
+CPU metric parity. Both workers use the same host-runtime profile with separate
+Compose project names; the main project sets `TED_AA_PORT=18084`.
 All-model selection, all-model publication, and a standalone container remain required.

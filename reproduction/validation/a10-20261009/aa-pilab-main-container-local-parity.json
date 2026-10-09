@@ -1,0 +1,49 @@
+{
+  "status": "matched",
+  "scope": "Same-pilab original evaluator equations versus CPU Docker HTTP raw maps and raw image scores for three BTAD images; A10 difference retained separately, AA main L/14-336 seed0 state only; not whole-paper, standalone-image, or full-dataset CPU verification",
+  "model_info": {
+    "host": "AA-CLIP",
+    "recipe": "aaclip-vitl336-mvtec2btad-seed0",
+    "scope": "main-or-host",
+    "backbone": "ViT-L/14-336",
+    "input_size": 518,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "category": null,
+    "device": "cpu",
+    "artifact_sha256": "58954532ae2ab2097e33b2a46f80011f0412339b098dc95d336bd1d09627fb55",
+    "model_load_ms": 27688.812961336225,
+    "deployment_status": "experimental captured-state research bridge"
+  },
+  "rows": [
+    {
+      "category": "01",
+      "image_sha256": "5af832b891d9983dcc2533958e4b3e3f89d4f6a251949bc418c567a79da2f6e1",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "http_round_trip_ms": 5612.428616266698
+    },
+    {
+      "category": "02",
+      "image_sha256": "462420442b55e40f3a613fd14b6cc4b1ed75a8d3561f1227971da22566f2815a",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "http_round_trip_ms": 5374.887438956648
+    },
+    {
+      "category": "03",
+      "image_sha256": "96671015d7b3a0ccab871ca1a7c2e5337852a6cef84b4f0d388747d76409772d",
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "raw_image_score_abs_error": 0.0,
+      "http_round_trip_ms": 5528.864830266684
+    }
+  ],
+  "missing_category_status": 422,
+  "unknown_category_status": 422
+}

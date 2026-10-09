@@ -17,7 +17,8 @@ class PublishedEvidenceTests(unittest.TestCase):
         for entry in index['files']:
             self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
         for name in ['aa-main-engine-parity.json', 'aa-main-relocation-parity.json',
-                     'aa-pilab-original-math.json', 'aa-pilab-container-local-parity.json']:
+                     'aa-pilab-original-math.json', 'aa-pilab-container-local-parity.json',
+                     'aa-pilab-main-original-math.json', 'aa-pilab-main-container-local-parity.json']:
             report = json.loads((folder / name).read_text())
             self.assertEqual(report['status'], 'matched')
             self.assertEqual({r['category'] for r in report['rows']}, {'01', '02', '03'})
