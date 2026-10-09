@@ -30,9 +30,9 @@ or [serving and download guide](https://github.com/barraki72268-sketch/TED-Text-
 
 Seven model/configuration workers have passed their documented image-inference
 and routing checks. Full reproduction across all five datasets, backbones,
-seeds, ablations and figures is still in progress. Published records distinguish
-matching metrics, numerical differences and blocked inputs; artifact availability
-alone does not establish reproduction. The sections below retain the earlier
+seeds, ablations and figures is still in progress. New releases list verified
+configurations with their exact model, dataset, seed and metric scope; artifact
+availability alone does not establish reproduction. The sections below retain the earlier
 main-branch implementation scope; use the active release guides for current commands.
 
 ## News
