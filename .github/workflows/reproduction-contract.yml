@@ -25,6 +25,20 @@ jobs:
         run: python -m pip install numpy==1.25.0 scikit-learn==1.7.2
       - name: Recompute six archived Figure 3 annotations (not fresh model inference)
         run: python -m reproduction.axis_figure --references --output figure3-audit.json
+      - name: Audit published fresh arrays and preserve their exact mismatch (no GPU inference)
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from reproduction.axis_fresh import audit
+          report = audit(Path('reproduction'))
+          assert report['evidence_bindings_verified']
+          assert len(report['rows']) == 6
+          assert report['comparison']['all_annotations_match_3dp']
+          assert not report['comparison']['all_arrays_exact']
+          assert report['status'] == 'mismatch'
+          Path('figure3-fresh-audit.json').write_text(json.dumps(report, indent=2))
+          PY
   inference-contracts:
     runs-on: ubuntu-latest
     timeout-minutes: 10
