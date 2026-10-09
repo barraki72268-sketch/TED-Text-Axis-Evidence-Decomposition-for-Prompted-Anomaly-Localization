@@ -11,6 +11,34 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_faprompt_bplus_images_match_and_h14_failure_is_retained(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/faprompt-images-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['docker_http_verified'])
+        self.assertFalse(index['hf_publication_verified'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        with zipfile.ZipFile(folder / 'proof.zip') as archive:
+            for item in index['files']:
+                path = folder / item['file']
+                self.assertEqual(digest_file(path), item['sha256'])
+                self.assertEqual(path.read_bytes(), archive.read(item['archive_member']))
+        report = json.loads((folder / 'bplus-image-parity-v3.json').read_text())
+        self.assertEqual(report['status'], 'matched')
+        self.assertTrue(report['denial_self_checks_passed'])
+        self.assertTrue(report['original_input_reads_denied'])
+        self.assertTrue(report['network_denied'])
+        self.assertFalse(report['fitting_performed'])
+        self.assertEqual({(r['category'], r['alpha']) for r in report['rows']},
+                         {(c, a) for c in ['01','02','03'] for a in [.5,1.,1.5]})
+        for row in report['rows']:
+            for key in ['host_max_absolute_error','cted_max_absolute_error',
+                        'host_image_score_error','cted_image_score_error']:
+                self.assertEqual(row[key], 0)
+        failed = json.loads((folder / 'h14-image-parity-v1.json').read_text())
+        self.assertEqual(failed['status'], 'failed')
+        self.assertIn('Tensor-likes are not close', failed['error'])
+
     def test_faprompt_packaging_retains_passing_runs_and_branch_identity(self):
         folder = ROOT / 'validation/a10-20261009/faprompt-package-v1'
         index = json.loads((folder / 'index.json').read_text())

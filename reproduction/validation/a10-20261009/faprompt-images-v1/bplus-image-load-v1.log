@@ -1,0 +1,19 @@
+name ViT-B-16-plus-240
+text_layer False
+text_layer True
+Initializing class-specific contexts
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+single_para torch.Size([4, 640])
+embedding_pos torch.Size([1, 77, 640])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 10, 77])
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "/home/jinyoungkim/ted-reproduce-20261009/github-faprompt-serving-20261009/ted/inference/faprompt_captured_engine.py", line 86, in __init__
+    self.transform,_=self.host.get_transform(SimpleNamespace(image_size=summary['bank']['image_size']))
+KeyError: 'image_size'

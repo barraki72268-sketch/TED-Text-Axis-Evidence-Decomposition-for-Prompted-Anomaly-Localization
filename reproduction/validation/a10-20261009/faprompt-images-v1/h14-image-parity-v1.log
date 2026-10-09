@@ -1,0 +1,20 @@
+name ViT-H-14
+text_layer False
+text_layer True
+Initializing class-specific contexts
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+single_para torch.Size([4, 1024])
+embedding_pos torch.Size([1, 77, 1024])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 10, 77])
+{
+  "status": "failed",
+  "started": "2026-10-09T08:29:04.857662+00:00",
+  "error": "AssertionError: Tensor-likes are not close!\n\nMismatched elements: 1023 / 1024 (99.9%)\nGreatest absolute difference: 0.05267168581485748 at index (553,) (up to 1e-05 allowed)\nGreatest relative difference: 143.17916870117188 at index (93,) (up to 1e-05 allowed)",
+  "finished": "2026-10-09T08:29:35.037579+00:00"
+}
