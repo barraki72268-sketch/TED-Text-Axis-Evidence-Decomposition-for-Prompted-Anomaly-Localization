@@ -11,6 +11,21 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_imagebind_public_catalog_binds_anonymous_metadata_and_saved_archive(self):
+        folder = ROOT / 'validation/a10-20261009/imagebind-public-v1'
+        index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))
+        catalog = json.loads((ROOT / 'imagebind-serving-releases.json').read_text(encoding='utf-8'))
+        record = catalog['releases']['huge-btad']
+        self.assertEqual(record['revision'], index['revision'])
+        self.assertEqual(record['host'], 'RawImageBind')
+        self.assertEqual(record['files'], 930)
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+            self.assertIn('/resolve/' + record['revision'] + '/', item['url'])
+        original = json.loads((folder / 'imagebind-archive-20261009-v1.json').read_text(encoding='utf-8'))
+        self.assertEqual(original, {k: v for k, v in record.items() if k != 'revision'})
+        self.assertFalse(index['whole_paper_reproduced'])
+
     def test_rawclip_h14_l336_anonymous_archives_preserve_every_original_readout(self):
         folder = ROOT / 'validation/a10-20261009/rawclip-public-client-v2'
         index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))

@@ -485,3 +485,21 @@ comparisons have [passed](../reproduction/validation/a10-20261009/rawclip-public
 ```bash
 python -m reproduction.rawclip_release openai-l14 NEW_RAWCLIP_BUNDLE --cache NEW_CACHE
 ```
+
+## Captured ImageBind public package
+
+Download the original Huge backbone, exact prepared source, source bank and
+captured calibrators from the immutable public release:
+
+```bash
+python -m reproduction.imagebind_release huge-btad ./imagebind-bundle --cache ./imagebind-download-cache
+```
+
+The client needs no login or PyTorch to verify the archive and all 930 extracted
+inputs. The package includes no dataset images and does not fit calibrators at
+serving time. [Public metadata](../reproduction/validation/a10-20261009/imagebind-public-v1/index.json),
+[original-code Docker comparisons](../reproduction/validation/a10-20261009/imagebind-pilab-v1/index.json)
+and [selector integration](../reproduction/validation/a10-20261009/gateway-imagebind-v1/index.json)
+record separate checks. Use `deployment/imagebind-captured.pilab.compose.yaml`
+with a pinned host runtime; standalone dependency-image verification remains a
+separate requirement.
