@@ -11,6 +11,7 @@ from .datasets import validate_dataset
 from .metrics import compare, extract
 from .coverage import validate_coverage
 from .runtime import read_json
+from .recipe_lookup import execution_recipe, reference_summary
 
 
 def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> dict:
@@ -19,7 +20,7 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
         raise RuntimeError("Run this command inside a Slurm allocation")
     plan_path = workspace / "run.json"
     plan = read_json(plan_path)
-    recipe = next(r for r in read_json(root / "execution-recipes.json")["recipes"] if r["id"] == plan["recipe"])
+    recipe = execution_recipe(root, plan["recipe"])
     if Path(plan["evaluator"]).resolve() != workspace / "source" / recipe["evaluator"]["path"]:
         raise ValueError("Prepared evaluator path mismatch")
     if Path(plan["cwd"]).resolve() != workspace / "source":
@@ -77,12 +78,9 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
             result = subprocess.run([sys.executable, str(root / "evaluate.py"), str(plan_path)], cwd=plan["cwd"], env=environment, stdout=log, stderr=subprocess.STDOUT)
         execution.update(returncode=result.returncode, status="failed" if result.returncode else "completed")
         if result.returncode == 0:
-            reference = next(r for r in read_json(root / "recipes.json") if r["id"] == plan["recipe"])
-            reference_path = root / "references" / reference["reference"]
-            if digest_file(reference_path) != reference["reference_sha256"]:
-                raise ValueError("Historical reference hash mismatch")
+            reference, expected_summary = reference_summary(root, plan["recipe"])
             cells = compare(extract(read_json(output / "summary.json"), reference["host"]),
-                            extract(read_json(reference_path), reference["host"]))
+                            extract(expected_summary, reference["host"]))
             comparison = {"recipe": plan["recipe"], "reference_sha256": reference["reference_sha256"],
                           "target_coverage": validate_coverage(root, reference, read_json(output / "summary.json")),
                           "actual_sha256": digest_file(output / "summary.json"),

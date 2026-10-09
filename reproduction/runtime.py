@@ -12,6 +12,7 @@ from .checkpoint_download import digest_file
 from .datasets import prepare_dataset
 from .execution import verify_execution_recipes
 from .source import unpack_source
+from .recipe_lookup import execution_recipe
 
 ORIGINAL = "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP"
 DATA_ROOTS = {
@@ -35,8 +36,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
     if destination.exists():
         raise FileExistsError(f"Run workspace must be new: {destination}")
     verify_execution_recipes(root)
-    recipes = {r["id"]: r for r in read_json(root / "execution-recipes.json")["recipes"]}
-    recipe = recipes[recipe_id]
+    recipe = execution_recipe(root, recipe_id)
+    dependency_id = recipe.get("dependency_recipe", recipe_id)
     source_name, target_name = recipe["transfer"].split("2", 1)
     if source_name not in DATA_ROOTS or target_name not in DATA_ROOTS:
         raise ValueError("This dataset protocol is not yet published; MVTec AD 2 remains required")
@@ -44,14 +45,14 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
     for name in {source_name, target_name}:
         if name not in datasets:
             raise ValueError(f"Missing dataset roots for {name}")
-    kind = "raw" if recipe["host"] in {"RawCLIP", "RawImageBind"} else "host"
+    kind = recipe.get("bank_kind") or ("raw" if recipe["host"] in {"RawCLIP", "RawImageBind"} else "host")
     bank_catalog = read_json(root / f"{kind}-source-banks.json")
     bank_binding = next(r for r in bank_catalog["bindings"] if r["recipe"] == recipe_id)
     backbone_catalog = read_json(root / "backbones.json")
-    backbone_binding = next(r for r in backbone_catalog["bindings"] if r["recipe"] == recipe_id)
+    backbone_binding = next(r for r in backbone_catalog["bindings"] if r["recipe"] == dependency_id)
     backbone = next(a for a in backbone_catalog["artifacts"] if a["sha256"] == backbone_binding["sha256"])
     checkpoint_catalog = read_json(root / "host-checkpoints.json")
-    checkpoint_binding = next((r for r in checkpoint_catalog["bindings"] if r["recipe"] == recipe_id), None)
+    checkpoint_binding = next((r for r in checkpoint_catalog["bindings"] if r["recipe"] == dependency_id), None)
     all_assets = {a["sha256"]: a for catalog in (bank_catalog, backbone_catalog, checkpoint_catalog) for a in catalog["artifacts"]}
     needed = {backbone["sha256"]} | {a["sha256"] for a in bank_binding["source_bank_assets"]}
     if checkpoint_binding:

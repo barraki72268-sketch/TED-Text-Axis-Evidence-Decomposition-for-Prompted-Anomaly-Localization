@@ -12,6 +12,22 @@ from reproduction.bank_download import prepare_banks
 
 
 class BankArchiveTests(unittest.TestCase):
+    def test_weak_source_coverage_is_independent_of_main_recipes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            catalog, _ = fixtures.CheckpointTests().fixture(root)
+            for row in catalog["bindings"]:
+                row["source_bank_assets"] = row.pop("checkpoint_assets")
+            (root / "weak-source-banks.json").write_text(json.dumps(catalog))
+            (root / "ablations").mkdir()
+            recipes = json.loads((root / "recipes.json").read_text())
+            (root / "ablations/weak-source.json").write_text(json.dumps({"recipes": recipes}))
+            (root / "recipes.json").write_text("[]")
+            self.assertEqual(verify_banks(root, "weak")["recipes_bound"], len(recipes))
+            (root / "ablations/weak-source.json").write_text(json.dumps({"recipes": recipes + [dict(recipes[0], id="missing-budget")]}))
+            with self.assertRaisesRegex(ValueError, "coverage mismatch"):
+                verify_banks(root, "weak")
+
     def test_modified_or_unexpected_bank_member_is_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

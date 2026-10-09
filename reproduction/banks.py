@@ -7,8 +7,14 @@ import tarfile
 
 
 def verify_banks(root: Path, kind: str, archive: Path | None = None) -> dict:
+    if kind not in {"host", "raw", "weak"}:
+        raise ValueError("Unknown bank catalog kind")
     catalog = json.loads((root / f"{kind}-source-banks.json").read_text(encoding="utf-8"))
-    recipes = {r["id"]: r for r in json.loads((root / "recipes.json").read_text(encoding="utf-8"))}
+    if kind == "weak":
+        inventory = json.loads((root / "ablations" / "weak-source.json").read_text(encoding="utf-8"))["recipes"]
+    else:
+        inventory = json.loads((root / "recipes.json").read_text(encoding="utf-8"))
+    recipes = {r["id"]: r for r in inventory}
     assets = {}
     for asset in catalog["artifacts"]:
         digest = asset["sha256"]
@@ -31,7 +37,7 @@ def verify_banks(root: Path, kind: str, archive: Path | None = None) -> dict:
                 raise ValueError("Bank path/hash binding mismatch")
             used.add(item["sha256"])
     raw_hosts = {"RawCLIP", "RawImageBind"}
-    required = {r["id"] for r in recipes.values() if (r["host"] in raw_hosts) == (kind == "raw")}
+    required = {r["id"] for r in recipes.values() if kind == "weak" or (r["host"] in raw_hosts) == (kind == "raw")}
     if seen != required or used != set(assets):
         raise ValueError("Bank catalog coverage mismatch")
     verified = 0

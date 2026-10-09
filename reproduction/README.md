@@ -254,6 +254,29 @@ availability and actual model loading remain separate from hash validation.
 
 ## Reproduction contracts
 
+The weak-source ablation is a separate set of 28 configurations; it does not
+replace any of the 232 main/host configurations. Its historical bank catalog
+contains 12 objects. Verify the archive without PyTorch:
+
+```bash
+python -m reproduction verify-source-banks --kind weak --archive weak-source-banks-20261009.tar
+```
+
+`prepare-run` and `run-prepared` also accept the exact configuration IDs in
+`ablations/weak-source.json`, for example
+`aaclip_vitl_openai224_visa2mvtec_sourcelimit1_seed0`. Supply the weak-bank
+objects alongside the existing checkpoint/backbone objects and the full
+dataset roots. The configuration keeps all reconstructed launcher arguments
+except its relocated result directory, and binds host checkpoints/backbones
+through the matching host, transfer, seed, and L/14-336 dependency recipe.
+This records reconstructed launcher provenance; it does not establish the
+exact historical process arguments. Twenty bank bindings have explicit cache
+logs, while eight have nominal-path/metadata compatibility evidence only.
+Each fresh execution compares against its hash-pinned historical summary and
+checks full target coverage. Fresh execution of all 28 and bank rebuilding
+remain required. After collecting the summaries, `compare-weak-source --runs`
+checks the complete printed ablation table.
+
 `host-source-banks.json` maps the 207 adapted-host recipes to 92 bank objects
 (2,109,842,800 bytes). For 139 recipes the bank paths are explicitly recorded
 in archived summaries. For the other 68, entries are clearly labeled as replay
