@@ -1,0 +1,70 @@
+{
+  "status": "matched",
+  "implementation_commit": "cdaa577",
+  "transport": "HTTP to a real uvicorn worker on loopback, one worker",
+  "device": "cpu",
+  "images": 3,
+  "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+  "engine": {
+    "host": "AA-CLIP",
+    "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+    "scope": "weak-source-ablation",
+    "backbone": "ViT-L/14-336",
+    "input_size": 224,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "category": null,
+    "device": "cpu",
+    "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5",
+    "model_load_ms": 19108.72631240636,
+    "deployment_status": "experimental captured-state research bridge"
+  },
+  "rows": [
+    {
+      "category": "01",
+      "status": 200,
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5"
+    },
+    {
+      "category": "02",
+      "status": 200,
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5"
+    },
+    {
+      "category": "03",
+      "status": 200,
+      "host_max_abs_error": 0.0,
+      "cted_max_abs_error": 0.0,
+      "maps_shape": [
+        1,
+        224,
+        224
+      ],
+      "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5"
+    }
+  ],
+  "rejected_categories": {
+    "/predict": 422,
+    "/predict?category=unknown": 422
+  },
+  "scope": "Three BTAD images, one per category, AA source-limit-1 ablation only; not full-paper/API accuracy equivalence or Docker deployment.",
+  "reference": "Raw HTTP maps versus original evaluator math saved by the independent CPU composition check.",
+  "image_score_policy": "Raw AA detection score, not a probability or the dataset-normalized/map-fused paper image metric."
+}

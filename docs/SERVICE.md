@@ -81,3 +81,57 @@ continue to apply; see [source notices](../reproduction/SOURCE-NOTICES.md).
 All-model adapters and selection, standalone installation of the paper-aligned
 release, versioned promotion/rollback verification, and broader performance
 validation remain required. AWS deployment has not been completed.
+
+## AA-CLIP captured-state worker
+
+An experimental AA-CLIP worker now reads fitted state from
+`reproduction export-captured-run`. The validated setting is the
+`aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0` ablation, using a 224-pixel
+input with the recorded OpenAI L/14-336 weights. This is not the default AA
+paper setting or a replacement for completing the full model matrix.
+
+The [CPU image check](../reproduction/validation/a10-20261009/aa-engine-parity.json)
+compares two forwards through the same initialized trusted host, composing the
+original evaluator functions independently of the bridge. The
+[real HTTP check](../reproduction/validation/a10-20261009/aa-http-parity.json)
+checks three images, one per BTAD category, with zero raw-map differences.
+Neither check establishes full-dataset CPU/GPU metric equivalence.
+
+Use a Linux prepared workspace whose full evaluation matched its archived
+reference, and export it with the current CLI. The export must include
+`prepared_source_files`; earlier exports without those bindings need a new
+export directory. Keep each upstream host in its own worker process, because
+the archived projects use overlapping module names.
+
+With the evaluation dependencies and
+[`deployment/requirements-api.txt`](../deployment/requirements-api.txt)
+installed in a separate service environment:
+
+```bash
+python -m reproduction export-captured-run ./runs/AA_RECIPE ./exports/AA_RECIPE
+export TED_ENGINE_FAMILY=aaclip
+export TED_CAPTURED_EXPORT="$PWD/exports/AA_RECIPE"
+export TED_RUN_WORKSPACE="$PWD/runs/AA_RECIPE"
+export TED_DEVICE=cpu
+python -m uvicorn ted.inference.api:create_app --factory --workers 1 \
+  --host 127.0.0.1 --port 18083
+```
+
+```bash
+curl --fail http://127.0.0.1:18083/model-info
+curl --fail -X POST 'http://127.0.0.1:18083/predict?category=01' \
+  -H 'Content-Type: image/png' --data-binary @inspection.png
+```
+
+The category must come from `/model-info` (`01`, `02`, `03` in this check).
+Missing/unknown categories return 422. `image_score` is the raw AA detection
+token score. The paper's image metrics additionally use dataset-wide
+normalization and map fusion, so this score is not a per-request reproduction
+of that metric or an anomaly probability. Prediction performs no source-bank
+mining or calibration fitting.
+
+The dated HTTP check used a temporary CPU worker on the A10 node and was
+stopped afterwards. AA deployment on pilab Docker and model selection remain
+required; the existing pilab release is still the FAPrompt service described
+above. The checked service dependency overlay is recorded
+[here](../reproduction/validation/a10-20261009/aa-api-extra.freeze.txt).

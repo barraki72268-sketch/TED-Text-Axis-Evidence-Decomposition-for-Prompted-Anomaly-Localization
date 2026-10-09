@@ -3,14 +3,34 @@ name: Reproduction contracts
 on:
   push:
     branches: [main, codex/all-model-reproduction]
-    paths: [reproduction/**, tests/test_reproduction*.py, .gitattributes, .github/workflows/reproduction-contract.yml]
+    paths: [reproduction/**, ted/inference/**, ted/cted/**, tests/test_reproduction*.py, tests/test_aaclip_inference.py, tests/test_inference.py, tests/test_api.py, deployment/requirements-api.txt, .gitattributes, .github/workflows/reproduction-contract.yml]
   pull_request:
-    paths: [reproduction/**, tests/test_reproduction*.py, .gitattributes, .github/workflows/reproduction-contract.yml]
+    paths: [reproduction/**, ted/inference/**, ted/cted/**, tests/test_reproduction*.py, tests/test_aaclip_inference.py, tests/test_inference.py, tests/test_api.py, deployment/requirements-api.txt, .gitattributes, .github/workflows/reproduction-contract.yml]
 
 permissions:
   contents: read
 
 jobs:
+  inference-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.10'
+      - name: Install CPU readout and HTTP contract dependencies
+        run: |
+          python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==1.25.0 pillow==12.0.0 -r deployment/requirements-api.txt
+      - name: Compare AA readout against archived evaluator functions
+        run: python -m unittest discover -s tests -p "test_aaclip_inference.py" -v
+      - name: Check FAPrompt frozen readout contracts
+        run: python -m unittest discover -s tests -p "test_inference.py" -v
+      - name: Check API category selection, map encoding, limits, and concurrency
+        run: python -m unittest discover -s tests -p "test_api.py" -v
   reference-integrity:
     strategy:
       matrix:
