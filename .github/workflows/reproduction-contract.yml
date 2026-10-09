@@ -55,6 +55,22 @@ jobs:
           assert report['status'] == 'mismatch'
           Path('figure4-archival-audit.json').write_text(json.dumps(report, indent=2))
           PY
+      - name: Audit full-target Figure 4 fresh arrays and preserve mismatches
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from reproduction.rawclip_focus_fresh import audit
+          report = audit(Path('reproduction'))
+          comparison = report['comparison']
+          assert report['evidence_bindings_verified']
+          assert not report['fresh_gpu_execution_verified']
+          assert comparison['fresh_summary_independently_verified']
+          assert all(row['matches_archive_3dp'] for row in comparison['aucs'])
+          assert not any(row['exact_match'] for row in comparison['arrays'])
+          assert report['status'] == 'mismatch'
+          Path('figure4-fresh-audit.json').write_text(json.dumps(report, indent=2))
+          PY
   inference-contracts:
     runs-on: ubuntu-latest
     timeout-minutes: 10

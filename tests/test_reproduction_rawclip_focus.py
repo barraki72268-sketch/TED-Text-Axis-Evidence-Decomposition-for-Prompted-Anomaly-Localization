@@ -13,6 +13,23 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class RawclipFocusTests(unittest.TestCase):
+    def test_full_fresh_collection_preserves_counts_aucs_and_numeric_differences(self):
+        from reproduction.rawclip_focus_fresh import read_evidence
+        manifest, payload = read_evidence(ROOT)
+        execution = json.loads(payload['figure4-execution.json'])
+        comparison = execution['comparison']
+        self.assertEqual(execution['status'], 'mismatch')
+        self.assertEqual(execution['allocation']['job_id'], '13735')
+        self.assertTrue(comparison['fresh_summary_independently_verified'])
+        self.assertEqual(len(comparison['arrays']), 6)
+        self.assertTrue(all(row['actual_count'] == 200000 for row in comparison['arrays']))
+        self.assertFalse(any(row['exact_match'] for row in comparison['arrays']))
+        self.assertEqual(sum(row['matches_archive_exact'] for row in comparison['statistics']), 7)
+        self.assertEqual(len(comparison['aucs']), 6)
+        self.assertTrue(all(row['matches_archive_3dp'] for row in comparison['aucs']))
+        self.assertTrue(all(row['matches_exact'] for row in comparison['counts']))
+        self.assertIn('crowded', manifest['pdf_visual_review']['notes'])
+
     def test_linux_guard_validation_preserves_empty_results_and_bound_logs(self):
         manifest, _ = read_inputs(ROOT)
         binding = manifest['guarded_runner_validation']
