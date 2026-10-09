@@ -33,6 +33,7 @@ def main() -> int:
     prepare_banks.add_argument("--archive", type=Path)
     backbones = sub.add_parser("prepare-backbones", help="Download exact upstream backbone bytes into a new directory")
     backbones.add_argument("destination", type=Path)
+    backbones.add_argument("--resume", action="store_true", help="Recheck completed objects and resume partial downloads; preserve previous reports")
     backbone_scope = backbones.add_mutually_exclusive_group(required=True)
     backbone_scope.add_argument("--recipe")
     backbone_scope.add_argument("--all", action="store_true", help="Download all eight backbone objects (16.58 GB)")
@@ -76,7 +77,7 @@ def main() -> int:
         return 0 if result["status"] == "matched" else 2 if result["status"] == "incomplete" else 1
     if args.action == "prepare-backbones":
         from .backbone_download import prepare_backbones
-        print(json.dumps(prepare_backbones(ROOT, args.destination, args.recipe), indent=2))
+        print(json.dumps(prepare_backbones(ROOT, args.destination, args.recipe, args.resume), indent=2))
         return 0
     if args.action == "prepare-source-banks":
         from .bank_download import prepare_banks

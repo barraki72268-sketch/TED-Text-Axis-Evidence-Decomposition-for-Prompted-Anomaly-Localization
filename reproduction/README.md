@@ -239,11 +239,16 @@ python -m reproduction prepare-backbones ./inputs/backbone-faprompt \
   --recipe faprompt-vitl14_336-mvtec2btad-seed0
 # Explicitly download all eight objects, totaling 16.58 GB:
 python -m reproduction prepare-backbones ./inputs/all-backbones --all
+# Resume a failed download in the same directory:
+python -m reproduction prepare-backbones ./inputs/all-backbones --all --resume
 ```
 
 Only hash/size-verified downloads become `objects/<sha256>` files. Failed
 downloads retain `.part` files and an error report; existing destinations are
-preserved. No weights are deserialized by this command. Pass the result to
+preserved by default. Explicit `--resume` rehashes completed objects, preserves
+previous reports in `verification-history/`, and appends partial downloads only
+when the server honors the exact byte range. Full size and SHA-256 must still
+match before promotion. No weights are deserialized by this command. Pass the result to
 `prepare-run --objects` alongside checkpoint and bank directories. Network
 availability and actual model loading remain separate from hash validation.
 
