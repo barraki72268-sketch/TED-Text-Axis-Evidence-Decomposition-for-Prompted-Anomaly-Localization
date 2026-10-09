@@ -20,6 +20,10 @@ It contrasts source defect evidence with source hard false-positive evidence
 along a frozen host's normal-to-anomaly text axis.
 
 Research code, historical checkpoints, and source banks are available.
+[Download the saved checkpoints and banks](docs/ARTIFACTS.md): 11 host-weight
+objects and 114 source-bank objects are already public, with original-path,
+recipe and SHA-256 bindings. Reusing these saved inputs does not require waiting
+for the remaining fresh evaluations.
 **Full-paper fresh reproduction and all-model deployment are in progress.**
 The paper's reported results, archival verification, fresh GPU runs, and
 service checks are identified separately below.
@@ -58,6 +62,7 @@ GPU reproduction of every configuration.
 | Ten-worker model selector | All 42 fixed-image/recorded-strength cases preserve direct-worker maps and raw scores, including all three RawCLIP backbones' T-TED maps and scores; invalid model and missing AA category are rejected | [Routing evidence](reproduction/validation/a10-20261009/gateway-v4/index.json) |
 | AA-CLIP fresh A10 replay | Full BTAD, seed 0: main L/14-336 and source-limit-1 each match all 8 archived metrics at two decimals | [Verified executions](reproduction/validation/a10-20261009/verified-results.json) |
 | FAPrompt fresh A10 main replay | Full BTAD: L/14-336 seed0, H/14 seed0 and B/16+ seed1 each match all 8 archived metrics at two decimals | [Verified executions](reproduction/validation/a10-20261009/verified-results.json) |
+| Additional full-target weak-source replay | AA-CLIP BTAD source-limit 2/4 and FAPrompt VisA bank 8/16: each matches all 8 archived metrics at two decimals; full reported class and image counts verified | [22 verified configurations](reproduction/validation/a10-20261009/verified-results.json) |
 | FAPrompt fresh A10 weak-source replay | Full BTAD, seed 0, bank budget 8: all 8 Base/OURS metrics match the archived reference at 2 decimals | [Execution and summary](reproduction/validation/a10-20261009/faprompt-weak-bank-8/execution.json) |
 | AdaptCLIP fresh A10 replay | Full BTAD, seed 0: L/14 OpenAI and L/14-336 each match all 8 Base/OURS metrics against archived per-seed summaries at 2 decimals; historical bank bindings retained | [Execution, comparison and preparation](reproduction/validation/a10-20261009/verified-results.json) |
 | AdaptCLIP image inference | OpenAI and L/14-336: three preselected BTAD images each have zero map and raw-score error against the original CPU evaluator output block; anonymous portable bundles and same-pilab Docker HTTP checks also pass; whole-paper reproduction remains incomplete | [Pinned serving exports and image evidence](reproduction/adaptclip-serving-exports.json) |

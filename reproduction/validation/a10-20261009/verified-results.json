@@ -729,6 +729,162 @@
           "sha256": "132103696839aa3fed5a594f3849a7e7aed8fbcee44023a1a01c8a0ce119c961"
         }
       ]
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit2_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T10:49:39.479290+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "27d55b80672c935b21137c11756870db72f9cfc054e6d58ec40531cf148a6a03",
+      "evidence": [
+        {
+          "file": "aaclip-btad-source-2-v7/comparison.json",
+          "sha256": "a97e442ac2a60d8e4d9ea4b9e1d4a754c57ed664cec9ae642ee643906ce1dbf2"
+        },
+        {
+          "file": "aaclip-btad-source-2-v7/execution.json",
+          "sha256": "24017f6b567d62efe3e17a7d5ca0e74612cb296ff65cd3824cb4ae68c461f85c"
+        },
+        {
+          "file": "aaclip-btad-source-2-v7/execution.log",
+          "sha256": "1d25a6d407264a37bc8490f820a9c2ef08315af7b65646fd127ecd43600d1fe7"
+        },
+        {
+          "file": "aaclip-btad-source-2-v7/run.json",
+          "sha256": "2367ae8c16b40a5c3dd7c63a8e4ca16c8c609fb11a37c4b909b9693a7cc8e02a"
+        },
+        {
+          "file": "aaclip-btad-source-2-v7/summary.json",
+          "sha256": "80be7ed03cd3a5fb47c7b53557f60425a0104442dc04ffda2f3ca4033b5c965d"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit4_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T10:52:40.114716+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "f74fecd31556f17390632c48cb740ebb2454d7534b6a82e6c38fa1878d29736b",
+      "evidence": [
+        {
+          "file": "aaclip-btad-source-4-v7/comparison.json",
+          "sha256": "2b8bb13b264b77b378dbd57a0fce48b369b2c68161c2b39a1bd853f9050352ca"
+        },
+        {
+          "file": "aaclip-btad-source-4-v7/execution.json",
+          "sha256": "81b4b7cdf2e80a97f8c4367df475ce02a61d79f9bfff5076f726025d498e26f3"
+        },
+        {
+          "file": "aaclip-btad-source-4-v7/execution.log",
+          "sha256": "193f78e0337ad786ef99ed22d621334c4d6f8a150da45a803905814374805ff0"
+        },
+        {
+          "file": "aaclip-btad-source-4-v7/run.json",
+          "sha256": "ae02191c96bea965a67fcc74829cb519eba3cc41897c329348f1507fbe933362"
+        },
+        {
+          "file": "aaclip-btad-source-4-v7/summary.json",
+          "sha256": "ec5a0fde5af6c298ecc06673b234f14e3bea684d6d7e5d548315d9032062edab"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2visa_bank8_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T11:34:35.594059+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "edd27b670d05b0810126dcf96bc0983e2b2cc47de262c3b57681fe673215c2cc",
+      "evidence": [
+        {
+          "file": "faprompt-visa-bank-8-v7/comparison.json",
+          "sha256": "3f092670a09d6cc93099b0aa30721b6155775a2e74fe085b69c07621e4537dc6"
+        },
+        {
+          "file": "faprompt-visa-bank-8-v7/execution.json",
+          "sha256": "7619afc5f4f9b12f565cd718b83b7ed641bf54aa936cae1bdf04d19374a8c208"
+        },
+        {
+          "file": "faprompt-visa-bank-8-v7/execution.log",
+          "sha256": "32294b3804ee91ddb895e0e178df40a00a5336e745cb5f3645c27e6d7ecd7581"
+        },
+        {
+          "file": "faprompt-visa-bank-8-v7/run.json",
+          "sha256": "34e44a1471a2b87f6ef63636f7f125b3db4311aeaad97f21317f624c2fd1e269"
+        },
+        {
+          "file": "faprompt-visa-bank-8-v7/summary.json",
+          "sha256": "b78336b4026fed10237883d58c8128e65202bcd62d2742d22772b652accdb494"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2visa_bank16_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T12:13:37.952301+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "14d2c151d79c7b0a2e1bf94cc9dda432e21b5aee39bd18fdba8ecf7e2c3c5d9b",
+      "evidence": [
+        {
+          "file": "faprompt-visa-bank-16-v7/comparison.json",
+          "sha256": "1ddaadcd28b6e69474f9ac52062f929b8cf41416ba85a0ecfaeb2c36a3f0488e"
+        },
+        {
+          "file": "faprompt-visa-bank-16-v7/execution.json",
+          "sha256": "3df064c01a4a86a9090ec541b0b6acfeab4907890b929d35af5fecdfdd503359"
+        },
+        {
+          "file": "faprompt-visa-bank-16-v7/execution.log",
+          "sha256": "1a2a1de1258ee82d6d1067ee73eb092635b12aebf8f8b3452151cd2c1eb46976"
+        },
+        {
+          "file": "faprompt-visa-bank-16-v7/run.json",
+          "sha256": "9e851fad79a72fb11682f525e332497cc0c3f1c7e3862f48efd472edd5a23050"
+        },
+        {
+          "file": "faprompt-visa-bank-16-v7/summary.json",
+          "sha256": "5e6e68c0b69b2142cce35137c4f54e68479e5d7b4b8d91e9ad22634e9ffa43d8"
+        }
+      ]
     }
   ]
 }
