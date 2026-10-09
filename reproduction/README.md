@@ -63,6 +63,11 @@ The latter requires all 28 `<configuration>/summary.json` files and uses each
 host's declared metric units. It reports missing configurations rather than
 averaging an available subset. Full replay, source-bank provenance, and the
 remaining ablation tables are still required.
+For each configuration, reported per-class image counts must also match the
+hash-checked dataset test manifest exactly; missing or duplicate classes are
+rejected. All 28 archived summaries pass this check (MVTec AD 1,725 test images,
+VisA 2,162, MPDD 458, BTAD 741). These are checks of summary declarations, not
+independent proof that a fresh process evaluated every image.
 
 The separate [figure scope](paper-figure-scope.json) records all 12 active
 figures and their 25 original graphic files, with byte hashes and exact source

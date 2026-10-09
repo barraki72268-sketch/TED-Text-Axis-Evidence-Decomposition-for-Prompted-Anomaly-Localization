@@ -34,3 +34,8 @@ class WeakSourceTests(unittest.TestCase):
             report = compare_weak_source(ROOT, output)
             self.assertEqual(report["status"], "mismatch")
             self.assertFalse(report["fresh_gpu_execution_verified"])
+            # Aggregate metrics alone cannot certify complete target coverage.
+            data["per_class"].pop()
+            target.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, "full test split"):
+                compare_weak_source(ROOT, output)
