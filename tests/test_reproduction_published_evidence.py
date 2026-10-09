@@ -15,6 +15,19 @@ class PublishedEvidenceTests(unittest.TestCase):
         import hashlib
         import zipfile
         index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())
+        binding = index['readout_validation']
+        raw = (ROOT / binding['path']).read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), binding['sha256'])
+        proof = json.loads(raw)
+        self.assertEqual(proof['tests'], 2)
+        self.assertEqual(proof['device'], 'cpu')
+        self.assertFalse(proof['full_image_inference_verified'])
+        self.assertFalse(proof['deployment_ready'])
+        self.assertEqual(digest_file(ROOT / binding['archive']['path']), binding['archive']['sha256'])
+        with zipfile.ZipFile(ROOT / binding['archive']['path']) as archive:
+            self.assertEqual(archive.read('validation.json'), raw)
+            log = archive.read(proof['log']['file'])
+            self.assertEqual(hashlib.sha256(log).hexdigest(), proof['log']['sha256'])
         self.assertEqual(len(index['exports']), 2)
         for entry in index['exports']:
             self.assertFalse(entry['deployment_ready'])

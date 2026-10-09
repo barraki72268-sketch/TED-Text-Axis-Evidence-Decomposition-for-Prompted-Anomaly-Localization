@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "runtime_commit": "f6873e0cd432550bcfa42beb4bbffcfee5953a8d",
+  "device": "cpu",
+  "cuda_visible_devices": "",
+  "tests": 2,
+  "scope": "Captured two real passing recipes and synthetic patch/host inputs; exact equality against original evaluator AST output block. Not image encoding parity or Docker deployment.",
+  "recipes": [
+    "adaptclip-vitl14openai-mvtec2btad-seed0",
+    "adaptclip-vitl336-mvtec2btad-seed0"
+  ],
+  "output_size": 518,
+  "basis_dimension": 768,
+  "new_training": false,
+  "full_image_inference_verified": false,
+  "deployment_ready": false,
+  "log": {
+    "file": "adaptclip-readout-tests-20261009-v1.log",
+    "bytes": 350,
+    "sha256": "ea2eb938733202945954d697b68dce57de60da296dacd68c350d7a7465c66b57"
+  },
+  "versions": {
+    "torch": "2.9.1+cu128",
+    "numpy": "1.25.0",
+    "scipy": "1.14.0"
+  }
+}
