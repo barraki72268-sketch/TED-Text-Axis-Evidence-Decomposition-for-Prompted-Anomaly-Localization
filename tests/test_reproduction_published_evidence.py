@@ -11,6 +11,33 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_adaptclip_exports_bind_terminal_capture_and_retain_adapter_gate(self):
+        import hashlib
+        import zipfile
+        index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())
+        self.assertEqual(len(index['exports']), 2)
+        for entry in index['exports']:
+            self.assertFalse(entry['deployment_ready'])
+            binding = entry['archive']
+            path = ROOT / binding['path']
+            self.assertEqual(path.stat().st_size, binding['bytes'])
+            self.assertEqual(digest_file(path), binding['sha256'])
+            with zipfile.ZipFile(path) as bundle:
+                manifest = json.loads(bundle.read('manifest.json'))
+                execution = json.loads(bundle.read('execution.json'))
+                self.assertEqual(manifest['recipe'], entry['recipe'])
+                self.assertEqual(manifest['capture_binding'], 'terminal_execution_record')
+                self.assertEqual(execution['status'], 'matched')
+                self.assertEqual(len(manifest['prepared_source_files']), 920)
+                self.assertEqual(manifest['captured_state'], entry['calibrators'])
+                self.assertEqual(len(manifest['captured_state']), 2)
+                for item in manifest['captured_state']:
+                    raw = bundle.read(item['object_path'])
+                    self.assertEqual(hashlib.sha256(raw).hexdigest(), item['sha256'])
+                    self.assertEqual(len(raw), item['bytes'])
+                for item in manifest['evidence']:
+                    self.assertEqual(hashlib.sha256(bundle.read(item['file'])).hexdigest(), item['sha256'])
+
     def test_residual_btad_fresh_replay_preserves_all_44_comparisons(self):
         self.check_residual_replay('btad', 36, 741)
 

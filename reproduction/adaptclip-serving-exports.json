@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "scope": "Captured evaluator state from two matching full BTAD seed0 replays; original dependencies and host inference adapter still required",
+  "exports": [
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed0",
+      "host": "AdaptCLIP",
+      "archive": {
+        "path": "validation/a10-20261009/adaptclip-openai-btad-20261009-export.zip",
+        "bytes": 79583,
+        "sha256": "4699ceadf94473b9304d6b69850afb6d2ff48655358e2577b1bf5641f27797d2"
+      },
+      "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+      "capture_binding": "terminal_execution_record",
+      "calibrators": [
+        {
+          "function": "build_vl_rankr_density_calibrator",
+          "file": "000-build_vl_rankr_density_calibrator.pt",
+          "sha256": "1533a6ae7e2c5fe00b28208be0537c7de0da13c0151f8272d9e68f521748b8aa",
+          "object_path": "objects/1533a6ae7e2c5fe00b28208be0537c7de0da13c0151f8272d9e68f521748b8aa",
+          "bytes": 16367
+        },
+        {
+          "function": "build_vl_rankr_density_calibrator",
+          "file": "001-build_vl_rankr_density_calibrator.pt",
+          "sha256": "dc46762cb998c043c17cfc068776f510f36e572ee2c4cf4945b1d699e04b277e",
+          "object_path": "objects/dc46762cb998c043c17cfc068776f510f36e572ee2c4cf4945b1d699e04b277e",
+          "bytes": 16367
+        }
+      ],
+      "passing_execution_sha256": "505257caf93f3280f99a45f0e014e878b539a03de246c5719af52ed0bbea36fe",
+      "deployment_ready": false
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed0",
+      "host": "AdaptCLIP",
+      "archive": {
+        "path": "validation/a10-20261009/adaptclip-l336-btad-20261009-export.zip",
+        "bytes": 79567,
+        "sha256": "20a825cd5f1748ab4540d48ba885759c907951acda77932441fa2a6613b1512f"
+      },
+      "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+      "capture_binding": "terminal_execution_record",
+      "calibrators": [
+        {
+          "function": "build_vl_rankr_density_calibrator",
+          "file": "000-build_vl_rankr_density_calibrator.pt",
+          "sha256": "55b27211ace9a4346ea3d9403da7e385b62bbb048c66e7717db25d6d8f7657fd",
+          "object_path": "objects/55b27211ace9a4346ea3d9403da7e385b62bbb048c66e7717db25d6d8f7657fd",
+          "bytes": 16367
+        },
+        {
+          "function": "build_vl_rankr_density_calibrator",
+          "file": "001-build_vl_rankr_density_calibrator.pt",
+          "sha256": "6b28e969ce82fa88ff52e416c57f5f6c4eef06fc0eaeb3b8d26a63276a652b6a",
+          "object_path": "objects/6b28e969ce82fa88ff52e416c57f5f6c4eef06fc0eaeb3b8d26a63276a652b6a",
+          "bytes": 16367
+        }
+      ],
+      "passing_execution_sha256": "348b1bc80e3fb6dc27941043bbde6a947a8bdde0f34675a11f0674cea2946adc",
+      "deployment_ready": false
+    }
+  ],
+  "next_gates": [
+    "Image-level inference parity against original evaluator",
+    "Relocated dependency/source bundle",
+    "Anonymous Hugging Face artifact verification",
+    "Docker HTTP parity and model registry integration"
+  ]
+}
