@@ -266,3 +266,20 @@ from offline records. The evidence includes the original collector PDF/PNG;
 visual review found its overall title overlaps panel headings, so final paper
 layout reproduction remains pending. Original outputs are retained without
 silently fixing the historical collector.
+
+The newly mined Figure3 source bank and its settings are public at pinned
+Hugging Face revisionc4585aa468e88aa849d2bcf6fd935907d83ed39f:
+
+```bash
+hf download KIMJINYOUNG/TED-reproducibility anomalyclip-figure3-fresh-source-bank.pt \
+  --revision c4585aa468e88aa849d2bcf6fd935907d83ed39f --local-dir ./figure3-fresh-bank
+```
+
+The bank is11087961 bytes, SHA-256
+`32bcf7bd7215663918d23e11760c08254fb468414e833c9111b7d3a3e83c4fcb`.
+All four layers contain390 hard-FP and512 defect vectors of dimension768,
+float32. The bank, provenance JSON, explanation and updated72-entry inventory
+passed an independent anonymous byte-for-byte download check. This verification
+covers four downloaded files, not every artifact in the inventory. Fresh
+reproduction continues to rebuild its own source bank; the published bank is
+available for inspection and does not replace the missing historical bank.
