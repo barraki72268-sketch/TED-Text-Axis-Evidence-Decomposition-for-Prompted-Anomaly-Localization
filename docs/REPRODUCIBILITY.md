@@ -161,3 +161,21 @@ evidence. The [fresh BTAD execution](../reproduction/validation/a10-20261009/res
 completed successfully but matches only36/44 archived metrics at two decimals.
 All44 comparisons and the complete summary are retained; this is a mismatch,
 not a reproduced Table14. The other transfers and final aggregation are pending.
+
+Figure 3 has an independent CPU audit of its archived VisA capsules diagnostic
+arrays. After installing NumPy1.25.0 and scikit-learn1.7.2 in Python3.10, run:
+
+```bash
+python -m reproduction.axis_figure --references --output figure3-audit.json
+```
+
+The command verifies the archive and individual input hashes, then executes only
+the two pure AUC functions from each hash-pinned original source member. It checks
+all six PDF annotations at three decimals and all six collector AUCs against the
+stored panel summary. The collector subsamples to100000 points and handles ties
+with sklearn; the wideslim plotter uses full groups and stable ranks without tie
+averaging. Their exact differences are retained, rather than substituted.
+This is an archival array audit of a diagnostic subset, not fresh model inference
+or a whole-dataset evaluation. Fresh feature collection and the final PDF style
+provenance remain pending. The archive contains derived arrays only; source
+dataset terms still apply. Existing audit output files are never overwritten.

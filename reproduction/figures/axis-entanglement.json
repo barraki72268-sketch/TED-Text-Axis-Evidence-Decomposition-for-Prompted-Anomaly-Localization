@@ -1,0 +1,72 @@
+{
+  "scope": "Figure 3 archived VisA capsules diagnostic arrays and six printed AUC annotations only; no fresh model collection or final PDF layout claim",
+  "archive": {
+    "path": "figures/axis-entanglement-archived-input.zip",
+    "bytes": 7666208,
+    "sha256": "dd2979ad7dd3dc04c9ed7cfc87e1160025bf56355fbed75fcc39e7d0788e0679",
+    "members": {
+      "axis_entanglement_mvtec2visa.json": {
+        "bytes": 23612579,
+        "sha256": "a6a484fa5a1ac66a74612c6c1c8b83c7e8f9e761b4888e11441bd8365bee7930"
+      },
+      "figure3-axis-data-trace-20261009.json": {
+        "bytes": 5088,
+        "sha256": "40cbab2375c142c5a99a21d9ffda5ef0cdee787df16b8c5bc29ddd65036119c6"
+      }
+    }
+  },
+  "collector": {
+    "path": "neurips2026/scripts/generate_anomalyclip_axis_entanglement_figure.py",
+    "sha256": "5ceaadab77209ce1f4064614862e102beff99305e7a2a74ba2b5618fe585f233",
+    "contract": "Original NumPy subsampling to100000 points per group with seeds0/1 and sklearn roc_auc_score; tie-aware"
+  },
+  "plotter": {
+    "path": "neurips2026/scripts/make_axis_entanglement_wideslim_20260505.py",
+    "sha256": "3125d0b026da8286662ccf7791f58f14d8a041d41362fb2cfc7d65be62bb7103",
+    "contract": "Original wideslim full-group stable rank calculation without tie averaging; different exact values retained"
+  },
+  "original_paper_graphics": [
+    {
+      "path": "figure/axis_entanglement_onaxis_wideslim.pdf",
+      "bytes": 14362,
+      "sha256": "8997b36dd65548791220c395b35c3f245a224a1903fbd4c3f4a2fdb1891b2495",
+      "source_files_mentioning_exact_filename": []
+    },
+    {
+      "path": "figure/axis_entanglement_residual_wideslim.pdf",
+      "bytes": 13648,
+      "sha256": "09b838abc5f33eb12b687958f0b0d707bf997d62bf93ac08a7cb3166e3525bbd",
+      "source_files_mentioning_exact_filename": []
+    },
+    {
+      "path": "figure/axis_entanglement_margin_wideslim.pdf",
+      "bytes": 13653,
+      "sha256": "df6108605be7124745591a1515045cb4d1ab43b24a05296912999dab44558639",
+      "source_files_mentioning_exact_filename": []
+    }
+  ],
+  "panels": [
+    {
+      "group_prefix": "coeff",
+      "stored_panel": "Raw On-Axis Coefficient",
+      "printed_inside_vs_hard_fp": 0.302,
+      "printed_inside_vs_outside": 0.938,
+      "pdf": "figure/axis_entanglement_onaxis_wideslim.pdf"
+    },
+    {
+      "group_prefix": "perp",
+      "stored_panel": "Orthogonal Residual Score",
+      "printed_inside_vs_hard_fp": 0.81,
+      "printed_inside_vs_outside": 0.889,
+      "pdf": "figure/axis_entanglement_residual_wideslim.pdf"
+    },
+    {
+      "group_prefix": "parallel",
+      "stored_panel": "Decomposition Margin $r_{\\parallel}$",
+      "printed_inside_vs_hard_fp": 0.725,
+      "printed_inside_vs_outside": 0.978,
+      "pdf": "figure/axis_entanglement_margin_wideslim.pdf"
+    }
+  ],
+  "dataset_terms": "Derived diagnostic arrays contain no original images. VisA and MVTec retain their original terms; this archive grants no additional dataset rights."
+}
