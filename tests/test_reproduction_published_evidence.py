@@ -83,6 +83,29 @@ class PublishedEvidenceTests(unittest.TestCase):
         original = json.loads((folder / 'rawclip-openai-archive-20261009-v1.json').read_text())
         self.assertEqual(original, {k:v for k,v in record.items() if k != 'revision'})
 
+    def test_ten_worker_gateway_covers_each_registered_model_and_all42_cases(self):
+        folder = ROOT / 'validation/a10-20261009/gateway-v4'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['whole_paper_reproduced'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        report = json.loads((folder / 'gateway.json').read_text())
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual((report['models'], report['cases'], len(report['rows'])), (10, 42, 42))
+        self.assertEqual(digest_file(folder / 'models.json'), report['registry_sha256'])
+        registry = json.loads((folder / 'models.json').read_text())
+        self.assertEqual({r['model'] for r in report['rows']}, {r['id'] for r in registry['models']})
+        self.assertEqual(report['unknown_model_status'], 404)
+        self.assertEqual(report['missing_aa_category_status'], 422)
+        for row in report['rows']:
+            for key in ['host_max_abs_error', 'cted_max_abs_error', 'raw_image_score_abs_error']:
+                self.assertEqual(row[key], 0)
+            if row['model'].startswith('rawclip-'):
+                self.assertEqual(row['cted_image_score_abs_error'], 0)
+                self.assertEqual(row['tted_max_abs_error'], 0)
+                self.assertEqual(row['tted_image_score_abs_error'], 0)
+
     def test_eight_worker_gateway_preserves_all_readouts_and_recorded_strengths(self):
         folder = ROOT / 'validation/a10-20261009/gateway-v3'
         index = json.loads((folder / 'index.json').read_text())

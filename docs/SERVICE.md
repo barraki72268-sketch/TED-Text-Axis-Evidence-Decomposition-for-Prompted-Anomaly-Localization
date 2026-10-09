@@ -9,8 +9,8 @@ Ten pilab worker configurations are available through the
 captured FAPrompt B/16+ seed1 and H/14 seed0, AA-CLIP main L/14-336 and
 source-limit-1, AdaptCLIP OpenAI L/14 and L/14-336, and captured RawCLIP
 OpenAI L/14, H/14 and L/14-336.
-The [eight-worker gateway validation](../reproduction/validation/a10-20261009/gateway-v3/index.json)
-covers 36 recorded model/image/strength cases. RawCLIP separately passes three
+The [ten-worker gateway validation](../reproduction/validation/a10-20261009/gateway-v4/index.json)
+covers all 42 recorded model/image/strength cases. RawCLIP separately passes three
 original-code Docker HTTP comparisons for all three readouts. Each worker's
 download and inference scope is documented below. H/14 and L/14-336 each also pass
 [three original-code Docker HTTP comparisons](../reproduction/validation/a10-20261009/rawclip-pilab-v2/index.json).
