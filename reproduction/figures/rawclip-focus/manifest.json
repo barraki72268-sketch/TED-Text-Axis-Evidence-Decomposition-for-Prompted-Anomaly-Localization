@@ -116,7 +116,13 @@
       "path": "figures/rawclip-focus/public-bank-verification.json",
       "sha256": "d8d51a8ea575ce1935bf2053e121e7bc20f88d99fd85133c99367a0db0878c0b"
     },
-    "scope": "Four full downloads verified; does not establish historical bank identity, fresh inference or all75artifactverification."
+    "scope": "Four full downloads verified; does not establish historical bank identity, fresh inference or all75artifactverification.",
+    "document_correction": {
+      "revision": "9201843a86dd28d0cdc2ad76e5c625a4f4799e90",
+      "verification": "figures/rawclip-focus/public-bank-document-correction-verification.json",
+      "sha256": "1e4a4360b59f3573255723145b68c67b3d537c8bc0e4f34790fb9a02b875f981",
+      "reason": "Explanatory Markdown had a duplicated checksum character; binary and JSON were already correct. Initial revision and proof retained."
+    }
   },
   "linux_preparation": {
     "path": "figures/rawclip-focus/linux-preparation.json",

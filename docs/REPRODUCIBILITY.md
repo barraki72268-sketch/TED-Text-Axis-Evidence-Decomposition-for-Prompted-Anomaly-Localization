@@ -343,3 +343,18 @@ It preserves this bank unchanged and makes no fresh source-bank rebuild claim.
 A guarded Slurm runner, output/RNG recording and a separate source-bank rebuild
 are required next. The original collector produces four diagnostic PDFs; its
 output is separate from the final paper's compact two-panel style.
+
+Figure4 preparation passed in a separate Linux checkout at commit65ee20f,
+with CUDA hidden: all6612 MVTec input files,920 source files and the bank/backbone
+bytes verified;195 source files received path-only relocations; output entries
+remained zero. The complete plan and log are in the bound preparation ZIP.
+The original bank and parser default0 seed are preserved; historical command
+provenance and a fresh bank rebuild remain separate requirements.
+
+The latest Figure4 explanatory document uses revision
+`9201843a86dd28d0cdc2ad76e5c625a4f4799e90`. A duplicated character in its human-readable
+checksum was corrected to the64-character digest already verified in the binary
+and JSON. Both publication revisions and acquisition reports are retained;
+all four files were anonymously re-downloaded after correction. Windows checkouts
+now preserve figure-evidence JSON bytes so platform line-ending conversion does
+not invalidate hash-bound audit/preparation reports.
