@@ -1,0 +1,51 @@
+Browser tab: 6, Title: "TED · Model inspection", URL: "http://127.0.0.1:18085/".
+0 AXWebArea TED · Model inspection, URL: 127.0.0.1:18085/
+	1 text TED RESEARCH · IMAGE INSPECTION
+	2 heading Compare host and C-TED evidence, Value: 1
+		3 text Compare host and C-TED evidence
+	4 text Select a verified worker and inspect an image. Each release has its own evaluation scope; this interface does not certify the entire paper.
+	5 container
+		6 container form
+			7 container
+				8 text Model release
+				9 pop up button (collapsed, settable) Model release, Value: FAPrompt · H/14 · captured seed 0, ID: model, Secondary Actions: Expand
+					10 menu
+						11 FAPrompt · L/14-336 · C-TED alpha 0.5
+						12 AA-CLIP · L/14-336 · main seed 0
+						13 AA-CLIP · source-limit-1 ablation
+						14 AdaptCLIP · L/14 OpenAI · main seed 0
+						15 AdaptCLIP · L/14-336 · main seed 0
+						16 FAPrompt · B/16+ · captured seed 1
+						17 (selected) FAPrompt · H/14 · captured seed 0
+			18 text MVTec → BTAD, seed 0: full-BTAD matches 8/8 archived per-seed metrics; pilab Docker original-code parity checked on 3 images × 3 recorded strengths. No whole-paper claim.
+			19 container alpha-label
+				20 text C-TED strength · recorded settings
+				21 pop up button (collapsed, settable) C-TED strength · recorded settings, Value: 1.5, ID: alpha, Secondary Actions: Expand
+					22 menu
+						23 0.5
+						24 1
+						25 (selected) 1.5
+			26 container
+				27 text Inspection image · PNG or JPEG, up to 20 MB
+				28 button Inspection image · PNG or JPEG, up to 20 MB, ID: image
+			29 button Inspect image, ID: submit
+		30 text Inspection complete.
+	31 container result
+		32 container
+			33 image Description: Submitted image, ID: input-preview
+			34 text Input
+		35 container
+			36 image Description: Host score map, ID: host-preview
+			37 text Host
+		38 container
+			39 image Description: C-TED score map, ID: cted-preview
+			40 text C-TED
+		41 text Both score maps share the same display range. Raw scores are model-specific and are not anomaly probabilities.
+		42 text Host image score: 0.5897992849349976 · C-TED image score: 0.5897992849349976 · recorded official FAPrompt image score for both host and C-TED; corrected map uses explicit recorded alpha
+		43 link Description: Download raw maps (.npz), ID: download
+			44 text Download raw maps (.npz)
+		45 text Release: faprompt-h14-captured
+Artifact SHA-256: 200f5085094be222857b3663382725fdddc3e1d5584cb4f7a23edae27eb314a8
+C-TED strength: 1.5
+
+The focused UI element is 0 AXWebArea TED · Model inspection, URL: 127.0.0.1:18085/

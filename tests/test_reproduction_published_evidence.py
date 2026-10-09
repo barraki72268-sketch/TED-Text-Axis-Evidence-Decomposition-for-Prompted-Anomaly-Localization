@@ -11,6 +11,61 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_faprompt_public_catalog_is_bound_to_anonymous_metadata_and_saved_archives(self):
+        folder = ROOT / 'validation/a10-20261009/faprompt-public-v1'
+        metadata = json.loads((folder / 'metadata.json').read_text())
+        self.assertFalse(metadata['archives_fully_downloaded_and_verified'])
+        self.assertEqual(len(metadata['files']),4)
+        for item in metadata['files']:
+            self.assertEqual(digest_file(folder / item['file']),item['sha256'])
+            self.assertEqual(item['authentication'],'none')
+            self.assertIn('/resolve/' + metadata['revision'] + '/',item['url'])
+        catalog = json.loads((ROOT / 'faprompt-serving-releases.json').read_text())
+        self.assertEqual(catalog['repository'],'KIMJINYOUNG/TED-reproducibility')
+        for key,variant in [('bplus-seed1','bplus'),('h14-seed0','h14')]:
+            published = dict(catalog['releases'][key])
+            self.assertEqual(published.pop('revision'),metadata['revision'])
+            archived = json.loads((ROOT / ('validation/a10-20261009/faprompt-images-v2/' + variant + '-archive.json')).read_text())
+            self.assertEqual(published,archived)
+            self.assertEqual(published['files'],932)
+            self.assertEqual(published['host'],'FAPrompt')
+        browser = ROOT / 'validation/a10-20261009/gateway-v2'
+        record = json.loads((browser / 'index.json').read_text())['browser_validation']
+        self.assertEqual(digest_file(browser / record['file']),record['sha256'])
+        text = (browser / record['file']).read_text(encoding='utf-8')
+        self.assertIn('Inspection complete.',text)
+        self.assertIn('C-TED strength: 1.5',text)
+        self.assertIn('Release: faprompt-h14-captured',text)
+
+    def test_seven_worker_gateway_proof_covers_every_recorded_strength(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/gateway-v2'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['standalone_image_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        with zipfile.ZipFile(folder / 'proof.zip') as archive:
+            for item in index['files']:
+                self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+                self.assertEqual((folder / item['file']).read_bytes(), archive.read(item['archive_member']))
+        registry = json.loads((folder / 'models.json').read_text())['models']
+        report = json.loads((folder / 'gateway.json').read_text())
+        self.assertEqual(report['registry_sha256'], digest_file(folder / 'models.json'))
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual(report['cases'], 33)
+        self.assertEqual(report['models'], 7)
+        expected = {(m['id'],c,a) for m in registry for c in ['01','02','03']
+                    for a in ([.5,1.,1.5] if m['id'].endswith('-captured') else [None])}
+        self.assertEqual({(r['model'],r['fixture_category'],r.get('alpha')) for r in report['rows']}, expected)
+        artifacts = {m['id']:m['artifact_sha256'] for m in registry}
+        for row in report['rows']:
+            self.assertEqual(row['artifact_sha256'],artifacts[row['model']])
+            for key in ['host_max_abs_error','cted_max_abs_error','raw_image_score_abs_error']:
+                self.assertEqual(row[key],0)
+            self.assertEqual(row.get('cted_image_score_abs_error',0),0)
+        self.assertEqual(report['unknown_model_status'],404)
+        self.assertEqual(report['missing_aa_category_status'],422)
+
     def test_rawclip_captured_exports_retain_terminal_bindings_without_serving_claim(self):
         folder = ROOT / 'validation/a10-20261009/rawclip-captures-v1'
         index = json.loads((folder / 'index.json').read_text())

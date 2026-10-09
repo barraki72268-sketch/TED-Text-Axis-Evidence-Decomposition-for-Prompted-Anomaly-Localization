@@ -1,0 +1,53 @@
+{
+  "models": [
+    {
+      "id": "faprompt-l336-paper",
+      "label": "FAPrompt · L/14-336 · C-TED alpha 0.5",
+      "scope": "MVTec-source paper-aligned artifact; BTAD HTTP parity checked. Full paper reproduction remains in progress.",
+      "url": "http://127.0.0.1:18080",
+      "artifact_sha256": "519e0354a87b2508034d4a85ee9a00c698b0714c52e0e467c57dae9614d62379"
+    },
+    {
+      "id": "aaclip-l336-main",
+      "label": "AA-CLIP · L/14-336 · main seed 0",
+      "scope": "MVTec → BTAD, main seed 0, input 518. A10 full-BTAD metrics match 8/8 archived seed values; pilab Docker parity checked on 3 images.",
+      "url": "http://127.0.0.1:18084",
+      "artifact_sha256": "58954532ae2ab2097e33b2a46f80011f0412339b098dc95d336bd1d09627fb55"
+    },
+    {
+      "id": "aaclip-source1-ablation",
+      "label": "AA-CLIP · source-limit-1 ablation",
+      "scope": "Weak-source ablation, MVTec → BTAD, seed 0, input 224. This is separate from the main setting; cross-A10 CPU differences are retained.",
+      "url": "http://127.0.0.1:18083",
+      "artifact_sha256": "e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5"
+    },
+    {
+      "id": "adaptclip-openai-main",
+      "label": "AdaptCLIP · L/14 OpenAI · main seed 0",
+      "scope": "MVTec → BTAD, main seed 0, input 518. Full-BTAD metrics match 8/8 archived seed values; pilab Docker original-code parity checked on 3 fixed images. Full paper reproduction remains in progress.",
+      "url": "http://127.0.0.1:18086",
+      "artifact_sha256": "77cbe94263566daba2d98f2b16e37bd499d8fe85d406c97a394e3460bcbce446"
+    },
+    {
+      "id": "adaptclip-l336-main",
+      "label": "AdaptCLIP · L/14-336 · main seed 0",
+      "scope": "MVTec → BTAD, main seed 0, input 518. Full-BTAD metrics match 8/8 archived seed values; pilab Docker original-code parity checked on 3 fixed images. Full paper reproduction remains in progress.",
+      "url": "http://127.0.0.1:18087",
+      "artifact_sha256": "96b1a02d786a43e60104f3d6608fd89da26c9d4489302d70e864017ed2b562e1"
+    },
+    {
+      "id": "faprompt-bplus-captured",
+      "label": "FAPrompt · B/16+ · captured seed 1",
+      "scope": "MVTec → BTAD, seed 1: full-BTAD matches 8/8 archived per-seed metrics; pilab Docker original-code parity checked on 3 images × 3 recorded strengths. No whole-paper claim.",
+      "url": "http://127.0.0.1:18088",
+      "artifact_sha256": "d32ddfa5acf02c095833b6ffbc3f702b6b5d0a193bff85bac1e61b0983daa5b4"
+    },
+    {
+      "id": "faprompt-h14-captured",
+      "label": "FAPrompt · H/14 · captured seed 0",
+      "scope": "MVTec → BTAD, seed 0: full-BTAD matches 8/8 archived per-seed metrics; pilab Docker original-code parity checked on 3 images × 3 recorded strengths. No whole-paper claim.",
+      "url": "http://127.0.0.1:18089",
+      "artifact_sha256": "200f5085094be222857b3663382725fdddc3e1d5584cb4f7a23edae27eb314a8"
+    }
+  ]
+}

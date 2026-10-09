@@ -1,0 +1,33 @@
+{
+  "container": "/ted-model-gateway-gateway-1",
+  "image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "health": "healthy",
+  "user": "1000009:1000009",
+  "read_only": true,
+  "network_mode": "host",
+  "memory": 536870912,
+  "nano_cpus": 1000000000,
+  "security_opt": [
+    "no-new-privileges:true"
+  ],
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-faprompt-20261009/app",
+      "Destination": "/app",
+      "RW": false
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-faprompt-20261009/models.json",
+      "Destination": "/config/models.json",
+      "RW": false
+    }
+  ]
+}

@@ -421,8 +421,15 @@ using fixed tensors and the real captured bank/calibrators. Both variants
 match exactly for every recorded strength. Both variants now also pass fresh-archive CPU image checks and same-pilab
 Docker HTTP comparison on three canonical images at all three recorded strengths,
 with zero map and raw-score error. See the [Docker evidence](../reproduction/validation/a10-20261009/faprompt-images-v3/index.json).
-Their registry entries are prepared; seven-worker routing verification is separate.
-Public Hugging Face acquisition and standalone-image verification remain pending. The [packaging/readout evidence](../reproduction/validation/a10-20261009/faprompt-package-v1/index.json)
+Both captured workers are now registered. The [seven-worker routing check](../reproduction/validation/a10-20261009/gateway-v2/index.json) passes all33 fixed-image/strength cases with zero map/raw-score error. The H/14 browser upload also displays completed inference, both raw scores, the captured artifact identity and selected alpha1.5.
+The archives and records are public at HF revision `f49bcc6c857606fd7edb1148856157532f6b2271`. Full anonymous fresh acquisition and standalone-image verification remain pending.
+
+```bash
+python -m reproduction.faprompt_release bplus-seed1 NEW_BPLUS_BUNDLE --cache NEW_CACHE
+python -m reproduction.faprompt_release h14-seed0 NEW_H14_BUNDLE --cache NEW_CACHE
+```
+
+The public client needs no login and checks archive size/SHA, all932 extracted inputs and terminal state bindings. Use a new destination; it preserves rejected or interrupted downloads. The [packaging/readout evidence](../reproduction/validation/a10-20261009/faprompt-package-v1/index.json)
 keeps these separate gates explicit. Strength must be explicitly chosen from
 the recorded configuration, and branch identity uses metadata rather than
 capture ordering.
