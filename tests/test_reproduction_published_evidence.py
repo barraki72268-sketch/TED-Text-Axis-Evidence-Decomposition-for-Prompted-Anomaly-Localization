@@ -11,6 +11,22 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_public_updated_model_card_and_proofs_match_immutable_hf_bytes(self):
+        folder = ROOT / 'validation/a10-20261009/hf-card-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(index['manifest_entries'],90)
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']),item['sha256'])
+            self.assertEqual(item['authentication'],'none')
+            self.assertIn('/resolve/' + index['revision'] + '/',item['url'])
+        for key,source in [('bplus','faprompt-public-client-v1'),('h14','faprompt-public-client-v2')]:
+            for kind,name in [('acquisition','anonymous-acquisition'),('image','anonymous-image-parity')]:
+                self.assertEqual((folder / ('faprompt-' + key + '-' + name + '.json')).read_bytes(),
+                                 (folder.parent / source / (key + '-' + kind + '.json')).read_bytes())
+        self.assertEqual((folder / 'seven-worker-gateway-parity.json').read_bytes(),
+                         (folder.parent / 'gateway-v2/gateway.json').read_bytes())
+
     def test_h14_anonymous_acquisition_and_every_image_strength_are_verified(self):
         import zipfile
         folder = ROOT / 'validation/a10-20261009/faprompt-public-client-v2'
