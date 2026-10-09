@@ -8,6 +8,7 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2609.39033">Paper / OpenReview</a> ·
+  <a href="https://huggingface.co/KIMJINYOUNG/TED-reproducibility">Models & artifacts (Hugging Face)</a> ·
   <a href="#method">Method</a> ·
   <a href="#results">Results</a> ·
   <a href="#qualitative-results">Visualizations</a> ·
@@ -17,6 +18,22 @@
 
 Official repository for **TED**, a post-hoc local scoring method for prompted anomaly localization.
 The paper experiments are complete; public code packaging and reproduction checks are proceeding in stages.
+
+## Public artifacts and current reproduction release
+
+[**Download checkpoints, source banks and verified serving bundles on Hugging Face**](https://huggingface.co/KIMJINYOUNG/TED-reproducibility).
+
+The latest execution records, pinned download clients, Docker worker guides and
+model selector are on the [**active reproduction branch**](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/codex/all-model-reproduction).
+Start with its [reproduction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/codex/all-model-reproduction/reproduction/README.md)
+or [serving and download guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/codex/all-model-reproduction/docs/SERVICE.md).
+
+Seven model/configuration workers have passed their documented image-inference
+and routing checks. Full reproduction across all five datasets, backbones,
+seeds, ablations and figures is still in progress. Published records distinguish
+matching metrics, numerical differences and blocked inputs; artifact availability
+alone does not establish reproduction. The sections below retain the earlier
+main-branch implementation scope; use the active release guides for current commands.
 
 ## News
 
