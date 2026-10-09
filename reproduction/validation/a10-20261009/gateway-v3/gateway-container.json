@@ -1,0 +1,79 @@
+{
+  "Name": "/ted-model-gateway-gateway-1",
+  "Image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 3902072,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-09T10:53:04.24805333Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-09T20:09:13.079098065+09:00",
+          "End": "2026-10-09T20:09:13.199511399+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:09:43.200048834+09:00",
+          "End": "2026-10-09T20:09:43.317445778+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:10:13.31785223+09:00",
+          "End": "2026-10-09T20:10:13.423291263+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:10:43.424418657+09:00",
+          "End": "2026-10-09T20:10:43.532678706+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T20:11:13.533353123+09:00",
+          "End": "2026-10-09T20:11:13.647205203+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-rawclip-20261009/app",
+      "Destination": "/app",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-gateway-rawclip-20261009/models.json",
+      "Destination": "/config/models.json",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ]
+}

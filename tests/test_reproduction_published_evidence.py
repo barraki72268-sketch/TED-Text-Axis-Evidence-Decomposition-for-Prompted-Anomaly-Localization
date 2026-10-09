@@ -11,6 +11,43 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_rawclip_public_catalog_binds_verified_metadata_to_immutable_revision(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-public-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        catalog = json.loads((ROOT / 'rawclip-serving-releases.json').read_text())
+        record = catalog['releases']['openai-l14']
+        self.assertEqual(record['host'], 'RawCLIP')
+        self.assertEqual(record['revision'], index['revision'])
+        self.assertEqual(record['files'], 930)
+        self.assertFalse(index['whole_paper_reproduced'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+            self.assertIn('/resolve/' + record['revision'] + '/', item['url'])
+        original = json.loads((folder / 'rawclip-openai-archive-20261009-v1.json').read_text())
+        self.assertEqual(original, {k:v for k,v in record.items() if k != 'revision'})
+
+    def test_eight_worker_gateway_preserves_all_readouts_and_recorded_strengths(self):
+        folder = ROOT / 'validation/a10-20261009/gateway-v3'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertFalse(index['whole_paper_reproduced'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        report = json.loads((folder / 'gateway.json').read_text())
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual((report['models'], report['cases'], len(report['rows'])), (8, 36, 36))
+        self.assertEqual(digest_file(folder / 'models.json'), report['registry_sha256'])
+        self.assertEqual(report['unknown_model_status'], 404)
+        self.assertEqual(report['missing_aa_category_status'], 422)
+        raw = [r for r in report['rows'] if r['model'] == 'rawclip-openai-main']
+        self.assertEqual(len(raw), 3)
+        for row in report['rows']:
+            for key in ['host_max_abs_error', 'cted_max_abs_error', 'raw_image_score_abs_error']:
+                self.assertEqual(row[key], 0)
+        for row in raw:
+            self.assertEqual(row['tted_max_abs_error'], 0)
+            self.assertEqual(row['tted_image_score_abs_error'], 0)
+
     def test_public_updated_model_card_and_proofs_match_immutable_hf_bytes(self):
         folder = ROOT / 'validation/a10-20261009/hf-card-v1'
         index = json.loads((folder / 'index.json').read_text())

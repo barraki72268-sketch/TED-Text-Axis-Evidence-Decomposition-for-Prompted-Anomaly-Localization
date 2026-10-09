@@ -1,0 +1,37 @@
+# Linux pilab profile; fixed loopback workers, host Python runtime.
+name: ted-model-gateway
+services:
+  gateway:
+    image: ted-inspection:host-runtime-20261008
+    user: "${TED_UID:-1000009}:${TED_GID:-1000009}"
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 1
+    mem_limit: 512m
+    pids_limit: 128
+    network_mode: host
+    tmpfs: ["/tmp:size=32m,mode=1777"]
+    command: [-m, uvicorn, "ted.inference.gateway:create_app", --factory, --host, 127.0.0.1, --port, "18085", --workers, "1"]
+    environment:
+      TED_MODEL_REGISTRY: /config/models.json
+      PYTHONPATH: /app
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - ./app:/app:ro
+      - ./models.json:/config/models.json:ro
+      - /mnt/data/envs/patchcore-conda:/mnt/data/envs/patchcore-conda:ro
+    healthcheck:
+      test: [CMD, /mnt/data/envs/patchcore-conda/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18085/ready',timeout=8)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: "2"
