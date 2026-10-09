@@ -6,6 +6,11 @@ import json
 from pathlib import Path
 import sys
 
+if __package__:
+    from .import_paths import isolated_paths
+else:
+    from import_paths import isolated_paths
+
 import numpy as np
 import torch
 
@@ -22,8 +27,9 @@ def main():
         "python": sys.version, "torch": torch.__version__, "numpy": np.__version__,
         "cuda": torch.version.cuda, "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
     }, indent=2))
-    sys.path.insert(0, str(script.parent))
-    sys.path.insert(1, plan["cwd"])
+    # Direct script execution adds reproduction/ to sys.path. Its metrics.py
+    # must not shadow AdaptCLIP/tools/metrics, imported by the Ada evaluator.
+    sys.path[:] = isolated_paths(sys.path, script, plan["cwd"], Path(__file__).parent)
     spec = importlib.util.spec_from_file_location("ted_replay_evaluator", script)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
