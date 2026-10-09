@@ -80,6 +80,8 @@ def export_captured_run(root: Path, workspace: Path, destination: Path) -> dict:
         target = objects / entry['sha256']
         if not target.exists():
             shutil.copyfile(captures / entry['file'], target)
+        if digest_file(target) != entry['sha256']:
+            raise ValueError('Exported capture bytes do not match the original capture')
         exported.append(dict(entry, object_path='objects/' + entry['sha256'], bytes=target.stat().st_size))
     evidence = []
     for name, original in [('execution.json', workspace / 'execution.json'),

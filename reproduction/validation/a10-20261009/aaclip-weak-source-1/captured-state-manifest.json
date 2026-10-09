@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+  "host": "AA-CLIP",
+  "backbone": "ViT-L/14-336",
+  "transfer": "mvtec2btad",
+  "seed": 0,
+  "scope": "weak-source-ablation",
+  "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+  "numerical_arguments": [
+    "--preset",
+    "mvtec2btad",
+    "--model_name",
+    "ViT-L-14-336",
+    "--pretrained",
+    "openai",
+    "--adapter_load_mode",
+    "strict",
+    "--levels",
+    "6,12,18,24",
+    "--img_size",
+    "224",
+    "--batch_size",
+    "8",
+    "--num_workers",
+    "4",
+    "--source_limit_per_class",
+    "1",
+    "--max_fp_per_class",
+    "512",
+    "--max_defect_per_class",
+    "512",
+    "--normal_topk_frac",
+    "0.01",
+    "--defect_topk_frac",
+    "0.25",
+    "--tau",
+    "0.1",
+    "--fp_weight",
+    "1.0",
+    "--alphas=1.0",
+    "--blend_modes",
+    "replace,prescore_calibrated",
+    "--candidate_topk_frac",
+    "0.10",
+    "--gate_sharpness",
+    "3.0",
+    "--candidate_image_mode",
+    "baseline_plus_map_topk",
+    "--cal_pro",
+    "--aupro_max_step",
+    "50",
+    "--prescore_calib_transport_mode",
+    "subspace_tanh",
+    "--prescore_calib_subspace_rank",
+    "8",
+    "--prescore_calib_subspace_readout_mode",
+    "host_residual",
+    "--prescore_calib_subspace_basis_control",
+    "source",
+    "--prescore_calib_pair_label_control",
+    "correct",
+    "--prescore_calib_output_mode",
+    "host_residual",
+    "--prescore_calib_preserve_host_margin_weight",
+    "1.0",
+    "--prescore_calib_epochs",
+    "20",
+    "--prescore_calib_lr",
+    "0.02",
+    "--prescore_calib_max_train_points",
+    "8192",
+    "--prescore_calib_rank_margin",
+    "0.05",
+    "--prescore_calib_rank_temp",
+    "0.05",
+    "--prescore_calib_alpha_init",
+    "0.2",
+    "--prescore_calib_alpha_max",
+    "1.0",
+    "--prescore_calib_alpha_reg",
+    "0.001",
+    "--prescore_calib_hardpair_frac",
+    "0.75",
+    "--prescore_calib_learn_fp_weight",
+    "--seed",
+    "0",
+    "--device",
+    "cuda:0",
+    "--save_dir",
+    "{save_dir}"
+  ],
+  "target_coverage": {
+    "status": "reported_coverage_matches",
+    "dataset": "btad",
+    "classes_checked": 3,
+    "expected_test_images": 741,
+    "reported_image_counts_checked": true,
+    "per_image_execution_verified": false
+  },
+  "reference_sha256": "760f390b0218a506e282aba15f63dc421e2da7be6679b01f538df9daeb79cc28",
+  "original_model_inputs": [
+    {
+      "sha256": "3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02",
+      "bytes": 934088680
+    },
+    {
+      "sha256": "6b6f2c85cf81c2a4026b5796750dc41634ef5de6deead74eea5102a4922dd086",
+      "bytes": 28317921
+    },
+    {
+      "sha256": "f9462cbe336b1f3cbda831b042221d63cfdf6b418142ea2f99f7f1eaf15c528f",
+      "bytes": 122698827
+    },
+    {
+      "sha256": "f9a11767a0c3422031095c95cba69e6bb8202103ee9f6c10a80bc65f28af6646",
+      "bytes": 1164695
+    }
+  ],
+  "captured_state": [
+    {
+      "function": "get_or_collect_source_banks",
+      "file": "000-get_or_collect_source_banks.pt",
+      "sha256": "c89b2afc744b21b31f5518606e2327e3eda217975d65d0bde77dca584b3199cb",
+      "object_path": "objects/c89b2afc744b21b31f5518606e2327e3eda217975d65d0bde77dca584b3199cb",
+      "bytes": 1159453
+    },
+    {
+      "function": "train_prescore_calibrators",
+      "file": "001-train_prescore_calibrators.pt",
+      "sha256": "540a24da995392603fd47ac7d3347249325023256ef8a8d824de29668d965ff6",
+      "object_path": "objects/540a24da995392603fd47ac7d3347249325023256ef8a8d824de29668d965ff6",
+      "bytes": 102723
+    }
+  ],
+  "evidence": [
+    {
+      "file": "execution.json",
+      "sha256": "319f5c0fca1c4afd2b3cf422c469c319643865dd74d9923fcb46213248535250"
+    },
+    {
+      "file": "comparison.json",
+      "sha256": "682823e7f099cf5504cb7d5d22c580ab058d40c324349d9114882d7662fb620c"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "7b4b05d73519f32e0ac504fb9b01dc41c8fdcd48ce35053f7bde202172dae0ad"
+    },
+    {
+      "file": "capture-index.json",
+      "sha256": "b69d938b0e75423febe15a6b0442b6fc9be3c2467eabda2725177c3dd9d5df10"
+    }
+  ],
+  "capture_binding": "inventory_verified_at_export_only",
+  "limitations": [
+    "No fitting, image loading, GPU work, or pickle deserialization occurs during export.",
+    "This bundle does not include target/source images, original model weights, or an inference engine.",
+    "Download pinned original dependencies separately; their original licenses still apply.",
+    "Captured tensors may retain historical source-path metadata; they are not executed as instructions.",
+    "Per-image inference parity and a working host adapter are still required before deployment."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "captured_state_exported_requires_inference_parity_and_host_adapter",
+  "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+  "cli_commit": "9fb57a4",
+  "actual_command": "python -m reproduction export-captured-run <matching-AA-weak-source-run> <new-export-directory>",
+  "platform": "Linux / A10 node, CPU-only export with CUDA_VISIBLE_DEVICES empty",
+  "test_scope": "42 reproduction tests passed in the isolated Linux environment before the actual export",
+  "manifest": "aaclip-weak-source-1/captured-state-manifest.json",
+  "manifest_sha256": "74115d34d126d51aa7ee5bf29462eb0507fc18909a34f003391d330c3618762a",
+  "captured_objects": 2,
+  "captured_bytes": 1262176,
+  "capture_binding": "inventory_verified_at_export_only",
+  "limitations": [
+    "Calibration state was exported; no host adapter or per-image inference parity is claimed.",
+    "Tensor payloads are currently retained on the A10 node and are not newly published by this validation record.",
+    "This is the source-limit-1 ablation configuration, not the default AA-CLIP paper setting."
+  ]
+}
