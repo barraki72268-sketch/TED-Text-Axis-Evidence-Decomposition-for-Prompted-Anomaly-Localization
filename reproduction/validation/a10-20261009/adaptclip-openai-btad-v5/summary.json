@@ -1,0 +1,301 @@
+{
+  "summary": {
+    "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+    "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/data/mvtec/mvtec",
+    "source_dataset": "mvtec",
+    "target_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/data/btad/BTAD_official",
+    "target_dataset": "btad",
+    "class_name": null,
+    "pretrained_model": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/clip-cache/ViT-L-14.pt",
+    "checkpoint_load_mode": "strict",
+    "checkpoint_load_info": {
+      "checkpoint_load_mode": "strict",
+      "textual_learner": {
+        "mode": "strict",
+        "loaded_keys": 8,
+        "skipped_keys": 0,
+        "missing_keys": 0,
+        "unexpected_keys": 0
+      },
+      "visual_learner": {
+        "mode": "strict",
+        "loaded_keys": 14,
+        "skipped_keys": 0,
+        "missing_keys": 0,
+        "unexpected_keys": 0
+      }
+    },
+    "features_list": [
+      24
+    ],
+    "image_size": 518,
+    "n_ctx": 12,
+    "sigma": 4.0,
+    "fusion_type": "average_mean",
+    "bank_mining_source": "vl",
+    "tau": 20.0,
+    "fp_weight": 0.3,
+    "corr_alpha": 0.3,
+    "map_activation": "sigmoid",
+    "map_temperature": 1.0,
+    "trainfree_score_mode": "axis",
+    "vl_gate_mode": "host",
+    "vl_gate_quantile": 0.9,
+    "vl_gate_temp": 0.25,
+    "ted_insertion": "dual_branch",
+    "calib_epochs": 0,
+    "calib_lr": 0.02,
+    "calib_max_train_points": 8192,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_eta_init": 0.2,
+    "calib_eta_max": 1.0,
+    "calib_eta_reg": 0.001,
+    "calib_fp_weight_init": 1.0,
+    "calib_learn_fp_weight": false,
+    "calib_hardpair_frac": 0.75,
+    "calib_subspace_rank": 2,
+    "calib_preserve_host_margin_weight": 1.0,
+    "calib_lambda": 0.005,
+    "calib_pair_label_control": "correct",
+    "calib_score_mode": "rankr_density",
+    "calib_apply_mode": "add",
+    "calib_rankr_tau": 0.1,
+    "plugin_epochs": 0,
+    "plugin_lr": 0.02,
+    "plugin_max_train_points": 2048,
+    "plugin_hardpair_frac": 0.0,
+    "plugin_alpha": 0.5,
+    "plugin_loss": "bce",
+    "plugin_feature_space": "axis",
+    "plugin_hidden_dim": 32,
+    "plugin_rank_margin": 0.05,
+    "plugin_rank_temp": 0.05,
+    "seed": 0,
+    "max_eval_images": 0,
+    "num_workers": 4,
+    "eval_metrics": [
+      "I-AUROC",
+      "I-AP",
+      "P-AUROC",
+      "P-AP",
+      "P-AUPRO"
+    ],
+    "aupro_max_step": 200,
+    "aupro_expect_fpr": 0.3,
+    "report_group_separability": false,
+    "separability_hard_frac": 0.01,
+    "aupro_backend": "fast_threshold_cpu",
+    "bank_stats": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "bank_cache_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/source/neurips2026/results/bank_cache/adaptclip_dualbranch_vitl14openai_mvtec_vl_seed0.pt",
+    "bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+      "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/data/mvtec/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        24
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "vl",
+      "bank_feature_source": "vl"
+    },
+    "tl_bank_stats": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "tl_bank_cache_path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/source/neurips2026/results/bank_cache/adaptclip_dualbranch_vitl14openai_mvtec_tl_seed0.pt",
+    "tl_bank_cache_meta": {
+      "kind": "adaptclip_vl_branch_bank",
+      "checkpoint_path": "/home/jinyoungkim/ted-reproduce-20261009/inputs/objects/90b95703879af490b6ce841e141625516db63d23fdaef4cf86731b3d7bb3b1bb",
+      "source_root": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/adaptclip-vitl14openai-mvtec2btad-seed0/data/mvtec/mvtec",
+      "source_dataset": "mvtec",
+      "image_size": 518,
+      "features_list": [
+        24
+      ],
+      "sigma": 4.0,
+      "fusion_type": "average_mean",
+      "hard_frac": 0.01,
+      "max_good_per_class": 2,
+      "max_defect_per_class": 4,
+      "max_bank_points": 512,
+      "max_fp_per_image": 64,
+      "max_defect_per_image": 64,
+      "bank_mining_source": "tl",
+      "bank_feature_source": "tl"
+    },
+    "source_vl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.18386468291282654,
+        0.19918783009052277
+      ],
+      "coord_std": [
+        0.6576086282730103,
+        0.2169599086046219
+      ],
+      "train_points_per_class": 390,
+      "source_pair_rank_accuracy": 0.9692307710647583,
+      "source_base_pair_rank_accuracy": 0.29487180709838867,
+      "source_score_fp_mean": -1.7216806411743164,
+      "source_score_def_mean": 10.759843826293945,
+      "hardpair_frac": 0.75
+    },
+    "source_tl_calibrator": {
+      "calibration": "adaptclip_vl_source_calibrated_rankr_density_no_target",
+      "host_branch": "visual_local_adapter",
+      "host_score_source": "rankr_bank_density_margin",
+      "subspace_rank": 2,
+      "rankr_tau": 0.1,
+      "coord_mean": [
+        0.02436770685017109,
+        0.021617630496621132
+      ],
+      "coord_std": [
+        0.0845167487859726,
+        0.18436770141124725
+      ],
+      "train_points_per_class": 390,
+      "source_pair_rank_accuracy": 0.9128205180168152,
+      "source_base_pair_rank_accuracy": 0.3025641143321991,
+      "source_score_fp_mean": -1.0533050298690796,
+      "source_score_def_mean": 2.3634116649627686,
+      "hardpair_frac": 0.75
+    },
+    "source_vl_scalar_plugin": {},
+    "source_tl_scalar_plugin": {},
+    "score_definition": {
+      "baseline_txt": "official AdaptCLIP zero-shot baseline",
+      "ted_trainfree_vl": "train-free TED margin inserted at the requested AdaptCLIP local evidence point",
+      "scalar_replace_vl": "source-only scalar readout used directly at the requested AdaptCLIP local evidence point",
+      "scalar_residual_vl": "source-only scalar readout inserted as a host-anchored residual at the requested AdaptCLIP local evidence point",
+      "ted_calibrated_vl": "source-calibrated TED score inserted at the requested AdaptCLIP local evidence point"
+    }
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "01",
+      "image_auroc": 0.9144800901412964,
+      "image_ap": 0.9637494087219238,
+      "pixel_auroc": 0.9334720373153687,
+      "pixel_ap": 0.5372549295425415,
+      "pixel_aupro": 0.6041370034217834
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "02",
+      "image_auroc": 0.8373333811759949,
+      "image_ap": 0.9736126661300659,
+      "pixel_auroc": 0.935215950012207,
+      "pixel_ap": 0.6110349893569946,
+      "pixel_aupro": 0.5502995252609253
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "03",
+      "image_auroc": 0.819817066192627,
+      "image_ap": 0.4118199944496155,
+      "pixel_auroc": 0.9454206228256226,
+      "pixel_ap": 0.08615083247423172,
+      "pixel_aupro": 0.8079683184623718
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.8572101791699728,
+      "image_ap": 0.7830606897672018,
+      "pixel_auroc": 0.9380362033843994,
+      "pixel_ap": 0.41148025045792264,
+      "pixel_aupro": 0.6541349490483602
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "01",
+      "image_auroc": 0.908649206161499,
+      "image_ap": 0.9609161615371704,
+      "pixel_auroc": 0.9361429214477539,
+      "pixel_ap": 0.538247287273407,
+      "pixel_aupro": 0.5968601703643799
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "02",
+      "image_auroc": 0.8348333239555359,
+      "image_ap": 0.9731782674789429,
+      "pixel_auroc": 0.9383686780929565,
+      "pixel_ap": 0.6208648085594177,
+      "pixel_aupro": 0.5493316054344177
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "03",
+      "image_auroc": 0.8259146213531494,
+      "image_ap": 0.41855430603027344,
+      "pixel_auroc": 0.9469823241233826,
+      "pixel_ap": 0.08725488185882568,
+      "pixel_aupro": 0.8157883286476135
+    },
+    {
+      "mode": "ted_trainfree_vl",
+      "target_label": "mean",
+      "image_auroc": 0.8564657171567281,
+      "image_ap": 0.7842162450154623,
+      "pixel_auroc": 0.9404979745546976,
+      "pixel_ap": 0.4154556592305501,
+      "pixel_aupro": 0.6539933681488037
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "01",
+      "image_auroc": 0.9135082960128784,
+      "image_ap": 0.9633073806762695,
+      "pixel_auroc": 0.9375602006912231,
+      "pixel_ap": 0.5400089621543884,
+      "pixel_aupro": 0.608912467956543
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "02",
+      "image_auroc": 0.8350000381469727,
+      "image_ap": 0.973200798034668,
+      "pixel_auroc": 0.9381808638572693,
+      "pixel_ap": 0.6206740736961365,
+      "pixel_aupro": 0.5489876866340637
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "03",
+      "image_auroc": 0.8258536458015442,
+      "image_ap": 0.41902753710746765,
+      "pixel_auroc": 0.9468328356742859,
+      "pixel_ap": 0.08683833479881287,
+      "pixel_aupro": 0.8162752389907837
+    },
+    {
+      "mode": "ted_calibrated_vl",
+      "target_label": "mean",
+      "image_auroc": 0.8581206599871317,
+      "image_ap": 0.7851785719394684,
+      "pixel_auroc": 0.9408579667409261,
+      "pixel_ap": 0.4158404568831126,
+      "pixel_aupro": 0.6580584645271301
+    }
+  ]
+}

@@ -314,3 +314,11 @@ full200000-patch aggregate AUCs and were not printed on the final graphic;
 they must not be substituted for the stored full-array results. Historical
 bank/command provenance, fresh full-target collection and final layout replay
 remain pending.
+
+The A10 evidence also now includes AdaptCLIP ViT-L/14 OpenAI, MVTec-to-BTAD,
+seed0: all eight Base/OURS metrics match its archived per-seed summary at two
+decimals. The evaluator reports all three BTAD classes (741 expected test images),
+but does not supply independent per-image count traces. The original preparation
+plan, source-bank bindings and full result are preserved. This is one configuration;
+it does not establish all-backbone, all-seed agreement with every printed mean/std
+or a fresh source-bank rebuild. AdaptCLIP inference deployment remains pending.

@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, and four AdaCLIP full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank.",
+  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP and one AdaptCLIP full-BTAD seed0 configuration; not the whole paper or all ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -352,6 +352,41 @@
         {
           "file": "adaclip-l336-v4/environment.json",
           "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed0",
+      "slurm_job_id": "13728",
+      "status": "matched",
+      "finished": "2026-10-09T05:52:36.139796+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "d34633b363ba946c654406d0eb872c3f96c926257f0e1c68d2e2cb14620b819d",
+      "evidence": [
+        {
+          "file": "adaptclip-openai-btad-v5/comparison.json",
+          "sha256": "a5f04eac779094aceed6b9a773816e6825b84b3b770e24939209baacc3db5031"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/execution.json",
+          "sha256": "505257caf93f3280f99a45f0e014e878b539a03de246c5719af52ed0bbea36fe"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/summary.json",
+          "sha256": "0632bf18b84c8c50567574a7e709df4fb7a736a8a7f381813787ba2a30542d6a"
+        },
+        {
+          "file": "adaptclip-openai-btad-v5/preparation-and-results.zip",
+          "sha256": "e879553e89979f551e567e083861b6de298d264b2dea60264f6d7078a5fb972c"
         }
       ]
     }
