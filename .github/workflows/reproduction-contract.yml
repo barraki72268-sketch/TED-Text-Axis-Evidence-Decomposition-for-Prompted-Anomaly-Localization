@@ -39,6 +39,8 @@ jobs:
           assert report['status'] == 'mismatch'
           Path('figure3-fresh-audit.json').write_text(json.dumps(report, indent=2))
           PY
+      - name: Check Figure 4 fresh-array comparison rejects incorrect stored AUCs
+        run: python -m unittest discover -s tests -p "test_reproduction_rawclip_focus.py" -v
       - name: Audit Figure 4 archived AUCs and preserve NumPy1.25 percentile differences
         run: |
           python - <<'PY'

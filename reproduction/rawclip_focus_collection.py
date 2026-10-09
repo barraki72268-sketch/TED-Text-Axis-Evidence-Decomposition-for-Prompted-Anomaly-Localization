@@ -14,6 +14,29 @@ from .rawclip_focus import read_inputs
 from .source import unpack_source
 
 
+def collector_command(destination: Path, manifest: dict, summary: dict, meta: dict) -> list[str]:
+    source = destination / 'source'
+    output = destination / 'results'
+    bank_link = destination / 'bank-cache/recorded-source-bank.pt'
+    collector = next(row for row in manifest['source_scripts'] if row['path'].endswith('generate_rawclip_aggregated_distribution.py'))
+    command = ['{python}', '-u', str(source / collector['path'])]
+    settings = {'--target_root': destination / 'data/mvtec', '--target_split': summary['target_split'],
+                '--backbone': summary['backbone'], '--pretrained_dataset': summary['pretrained_dataset'],
+                '--image_size': meta['image_size'], '--prompt_mode': meta['prompt_mode'],
+                '--bank_cache_path': bank_link, '--sigma': 4.0, '--tau': 20.0,
+                '--image_score_topk': 0.01, '--hard_fp_frac': summary['hard_fp_frac'],
+                '--max_points_per_group': 200000, '--per_image_cap_abnormal': 4096,
+                '--per_image_cap_hard_fp': 4096, '--per_image_cap_other': 4096,
+                '--bins': 220, '--smooth_sigma': 2.0, '--dist_fig_width': 13.5, '--dist_fig_height': 4.6,
+                '--focus_fig_width': 12.8, '--focus_fig_height': 7.2,
+                '--combo_fig_width': 20.0, '--combo_fig_height': 4.8,
+                '--device': 'cuda:0', '--seed': 0, '--output_dir': output}
+    for flag, value in settings.items():
+        command.extend([flag, str(value)])
+    command.extend(['--features_list', *map(str, meta['features_list'])])
+    return command
+
+
 def prepare(root: Path, destination: Path, bank: Path, backbone: Path, datasets: Path) -> dict:
     if sys.platform != 'linux':
         raise RuntimeError('Figure 4 collection preparation requires Linux')
@@ -70,22 +93,7 @@ def prepare(root: Path, destination: Path, bank: Path, backbone: Path, datasets:
                             'relocated_sha256': digest_file(path)})
     output = destination / 'results'
     output.mkdir()
-    collector = next(row for row in manifest['source_scripts'] if row['path'].endswith('generate_rawclip_aggregated_distribution.py'))
-    command = ['{python}', '-u', str(source / collector['path'])]
-    settings = {'--target_root': destination / 'data/mvtec', '--target_split': summary['target_split'],
-                '--backbone': summary['backbone'], '--pretrained_dataset': summary['pretrained_dataset'],
-                '--image_size': meta['image_size'], '--prompt_mode': meta['prompt_mode'],
-                '--bank_cache_path': bank_link, '--sigma': 4.0, '--tau': 20.0,
-                '--image_score_topk': 0.01, '--hard_fp_frac': summary['hard_fp_frac'],
-                '--max_points_per_group': 200000, '--per_image_cap_abnormal': 4096,
-                '--per_image_cap_hard_fp': 4096, '--per_image_cap_other': 4096,
-                '--bins': 220, '--smooth_sigma': 2.0, '--dist_fig_width': 13.5, '--dist_fig_height': 4.6,
-                '--focus_fig_width': 12.8, '--focus_fig_height': 7.2,
-                '--combo_fig_width': 20.0, '--combo_fig_height': 4.8,
-                '--device': 'cuda:0', '--seed': 0, '--output_dir': output}
-    for flag, value in settings.items():
-        command.extend([flag, str(value)])
-    command.extend(['--features_list', *map(str, meta['features_list'])])
+    command = collector_command(destination, manifest, summary, meta)
     report = {'status': 'prepared_requires_guarded_slurm_execution', 'gpu_execution': False,
               'scope': 'Reconstructed Figure4 full-target inference with recovered current recorded-path bank; not a fresh bank rebuild',
               'source': source_report, 'assets': assets, 'datasets': {'mvtec': prepared},

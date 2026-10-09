@@ -56,6 +56,36 @@ class RawclipFocusTests(unittest.TestCase):
             expected = value if isinstance(value, list) else [value]
             self.assertEqual(args[index:index + len(expected)], list(map(str, expected)))
 
+    def test_fresh_comparison_recomputes_auc_and_preserves_disagreement(self):
+        from reproduction.rawclip_focus_run import compare_results
+        try:
+            import numpy as np
+        except ImportError:
+            self.skipTest('Numeric replay test requires the declared NumPy evaluation dependency')
+        import io
+        _, payload = read_inputs(ROOT)
+        summary = json.loads(payload['rawclip_aggregated_distribution.json'])
+        with tempfile.TemporaryDirectory() as directory:
+            arrays = Path(directory) / 'arrays.npz'
+            arrays.write_bytes(payload['rawclip_aggregated_distribution_arrays.npz'])
+            # Model-free fixture: use current NumPy statistics so the fresh
+            # summary consistency is checked independently of historical NumPy.
+            with np.load(io.BytesIO(arrays.read_bytes()), allow_pickle=False) as archive:
+                for key in archive.files:
+                    values = archive[key]
+                    method, kind = key.split('_', 1)
+                    summary['summary'][method][kind]['p50'] = float(np.percentile(values, 50))
+                    summary['summary'][method][kind]['p95'] = float(np.percentile(values, 95))
+            report = compare_results(ROOT, summary, arrays)
+            self.assertTrue(report['fresh_summary_independently_verified'])
+            self.assertTrue(all(row['exact_match'] for row in report['arrays']))
+            self.assertEqual(len(report['statistics']), 30)
+            self.assertEqual(len(report['aucs']), 6)
+            summary['pairwise_auc']['ours']['abnormal_vs_hard_fp'] = 1.0
+            report = compare_results(ROOT, summary, arrays)
+            self.assertFalse(report['fresh_summary_independently_verified'])
+            self.assertEqual(report['status'], 'mismatch')
+
     def test_original_array_summary_and_submitted_graphic_are_bound(self):
         manifest, payload = read_inputs(ROOT)
         summary = json.loads(payload['rawclip_aggregated_distribution.json'])

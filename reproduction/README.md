@@ -393,3 +393,27 @@ model**. A host adapter and per-image inference parity must still be verified.
 New executions bind the capture inventory into their terminal record. For older
 executions, the manifest explicitly says `inventory_verified_at_export_only`;
 this does not retroactively establish a historical capture-index hash.
+
+Figure 4 has a separate guarded collector for the recovered current bank. On
+Linux, validate an existing workspace without GPU inference or result creation:
+
+```bash
+CUDA_VISIBLE_DEVICES='' python -m reproduction.rawclip_focus_run   /path/to/figure4-workspace --validate-only
+```
+
+Inside a live Slurm GPU allocation, run the same module without
+`--validate-only`. Both the parent and worker verify actual Slurm PID membership,
+GPU allocation and host identity. Validation checks all archived source bytes
+with only the recorded path substitutions, the unchanged bank and official
+backbone, all MVTec input bytes and reconstructed metadata, and the original
+collector arguments. A prior execution or nonempty result folder is rejected.
+The runner records package versions and initial RNG state, preserves logs and
+outputs, and recomputes all six full-array AUCs and 30 statistics before comparing
+against archival diagnostics. A nonzero comparison exit retains differences;
+no tolerance, parameter or environment is selected to force a match.
+
+This phase uses the current bank found at the original recorded path. It does
+not establish that bank's historical identity, rebuild the VisA source bank, or
+recreate the final compact paper layout. Those remain separate required gates.
+The original collector writes four diagnostic PDFs. Input validation alone is
+not a claim of fresh GPU reproduction.
