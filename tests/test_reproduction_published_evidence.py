@@ -11,6 +11,24 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_imagebind_relocated_cpu_readouts_bind_original_and_published_source(self):
+        folder = ROOT / 'validation/a10-20261009/imagebind-relocated-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        report = json.loads((folder / 'parity.json').read_text())
+        self.assertEqual(report['engine_sha256'], digest_file(ROOT.parent / 'ted/inference/imagebind_engine.py'))
+        self.assertEqual(report['engine_sha256'], digest_file(folder / 'engine.py'))
+        self.assertEqual(report['status'], 'matched')
+        self.assertTrue(report['original_workspace_reads_denied'])
+        self.assertTrue(report['network_denied'])
+        self.assertFalse(report['gpu_used'])
+        self.assertEqual(len(report['cases']), 3)
+        for case in report['cases']:
+            self.assertEqual(set(case['map_max_abs_error']), {'host_map','tted_map','cted_map'})
+            self.assertFalse(any(case['map_max_abs_error'].values()))
+            self.assertFalse(any(case['score_abs_error'].values()))
+
     def test_rawclip_h14_l336_http_preserves_original_maps_scores_and_input_bindings(self):
         folder = ROOT / 'validation/a10-20261009/rawclip-pilab-v2'
         index = json.loads((folder / 'index.json').read_text())

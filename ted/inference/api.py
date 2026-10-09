@@ -27,6 +27,12 @@ LOG = logging.getLogger("uvicorn.error")
 
 def engine_from_env():
     family = os.environ.get("TED_ENGINE_FAMILY", "faprompt")
+    if family == "rawimagebind":
+        from .imagebind_engine import CapturedRawImageBindEngine
+        return CapturedRawImageBindEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],
+                                         workspace=os.environ["TED_RUN_WORKSPACE"],
+                                         category=os.environ.get("TED_DEFAULT_CATEGORY") or None,
+                                         device=os.environ.get("TED_DEVICE", "cpu"))
     if family == "rawclip":
         from .rawclip_engine import CapturedRawCLIPEngine
         return CapturedRawCLIPEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],

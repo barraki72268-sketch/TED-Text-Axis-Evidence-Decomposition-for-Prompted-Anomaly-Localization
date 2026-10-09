@@ -10,6 +10,21 @@ from reproduction.aa_release import prepare_release
 
 
 class ServingArchiveTests(unittest.TestCase):
+    def test_imagebind_archive_requires_explicit_host_and_restores_empty_import_directory(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bundle = self.fixture(root, 'RawImageBind')
+            empty = 'source/ADPretrain/models/ImageBind/weights'
+            (bundle / empty).mkdir(parents=True)
+            with self.assertRaises(ValueError):
+                pack_aa_bundle(bundle, root / 'wrong-host.tar.gz', 'RawCLIP')
+            record = pack_aa_bundle(bundle, root / 'imagebind.tar.gz', 'RawImageBind')
+            unpack_aa_bundle(root / 'imagebind.tar.gz', root / 'relocated', record)
+            self.assertTrue((root / 'relocated' / empty).is_dir())
+            self.assertEqual(list((root / 'relocated' / empty).iterdir()), [])
+            self.assertEqual((root / 'relocated/source/research.py').read_bytes(),
+                             (bundle / 'source/research.py').read_bytes())
+
     def test_rawclip_archive_requires_explicit_host_and_preserves_inputs(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
