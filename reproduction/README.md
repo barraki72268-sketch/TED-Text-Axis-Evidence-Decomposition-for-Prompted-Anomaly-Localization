@@ -91,6 +91,20 @@ data and execution provenance remain required. Preserved PDF hashes do not
 prove these analyses have been reproduced. Non-tabular prose claims still need
 a separate audit.
 
+The BTAD component/rank table has a partial archival trace in
+`ablations/btad-component.json`: six full-BTAD summaries account for 37 of its
+40 printed metric cells, all matching at two decimals. The FAPrompt T-TED row
+is still unresolved and is explicitly retained as missing provenance. The
+named-variant/numeric correspondence is not proof of the original table
+assembly process, and fresh GPU replay plus bank bindings remain required.
+
+```bash
+python -m reproduction compare-component-ablation --references
+```
+
+This currently exits with status 2 (`incomplete`), even when all 37 traced
+cells match. It must not be presented as a fully reproduced table.
+
 The complete captured source collection is included as a hash-pinned archive.
 Validate it or extract it into a **new, short path**:
 

@@ -1,0 +1,433 @@
+{
+  "table_label": "tab:ted_ablation",
+  "input": "archived_references",
+  "status": "incomplete",
+  "required_printed_cells": 40,
+  "compared_cells": 37,
+  "matching_cells": 37,
+  "missing_summaries": [],
+  "unresolved_rows": [
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "T-TED",
+      "reason": "Historical source for this printed row is unresolved",
+      "metrics": [
+        "pixel_auc",
+        "pixel_aupro",
+        "pixel_ap"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ablation_ted_aaclip_vitl_openai224_mvtec2btad_rank2_seed0_20260503",
+      "summary_sha256": "34e95091a365904cfb0e75a7e5c27bfdcdc01c313d5272f948bed3dea5d59ab1",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "id": "ablation_ted_aaclip_vitl_openai224_mvtec2btad_rank4_seed0_20260503",
+      "summary_sha256": "3d1dc43004eaef5b8d7cdac8ac7d55eba69c5cd0657d5a9bafd9acf780eac06f",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "id": "ablation_ted_aaclip_vitl_openai224_mvtec2btad_rank8_seed0_20260503",
+      "summary_sha256": "b687af654929cf417871463a27af533b0175cdaec753c0a2ed00674a28d616d5",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "id": "ablation_ted_aaclip_vitl_openai224_mvtec2btad_no_hardfp_seed0_20260503",
+      "summary_sha256": "61963e85ffdb7c2f2596f5a18706111b721a3e23da8b5f58cd7289c281dd9b97",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "id": "ablation_ted_faprompt_vitl336_mvtec2btad_no_hardfp_seed0_20260430",
+      "summary_sha256": "3a964016870a20ab2a45d0de5c2448a0afa9e8ec980deb9ba50dee53cdb1fa0c",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    },
+    {
+      "id": "faprompt_branchcal_vitl14_336_f6-12-18-24_dpam20_mvtec2btad_rank4_a02_officialimg_seed0_20260428",
+      "summary_sha256": "13c0527ca1f88a279bdcc23bf813c852ab90e3e24a3ccda95e66f2c5a244e930",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      }
+    }
+  ],
+  "cells": [
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_auc",
+      "actual": 92.48,
+      "printed": 92.48,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_pro",
+      "actual": 59.78487904866537,
+      "printed": 59.78,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_ap",
+      "actual": 36.553333333333335,
+      "printed": 36.55,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "T-TED",
+      "metric": "pixel_auc",
+      "actual": 86.57666666666667,
+      "printed": 86.58,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "T-TED",
+      "metric": "pixel_pro",
+      "actual": 53.498565673828125,
+      "printed": 53.5,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "T-TED",
+      "metric": "pixel_ap",
+      "actual": 27.87666666666667,
+      "printed": 27.88,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_auc",
+      "actual": 93.57666666666667,
+      "printed": 93.58,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_pro",
+      "actual": 61.759881337483726,
+      "printed": 61.76,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_ap",
+      "actual": 38.4,
+      "printed": 38.4,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED",
+      "metric": "pixel_auc",
+      "actual": 94.23333333333333,
+      "printed": 94.23,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED",
+      "metric": "pixel_pro",
+      "actual": 65.41889317830403,
+      "printed": 65.42,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "AA-CLIP",
+      "label": "C-TED",
+      "metric": "pixel_ap",
+      "actual": 39.68,
+      "printed": 39.68,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "Baseline",
+      "metric": "pixel_auc",
+      "actual": 90.52305665892307,
+      "printed": 90.52,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "Baseline",
+      "metric": "pixel_aupro",
+      "actual": 60.32157142957052,
+      "printed": 60.32,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "Baseline",
+      "metric": "pixel_ap",
+      "actual": 21.54175724334334,
+      "printed": 21.54,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_auc",
+      "actual": 94.99212893982104,
+      "printed": 94.99,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_aupro",
+      "actual": 70.92764774958292,
+      "printed": 70.93,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED w/o hard-FP",
+      "metric": "pixel_ap",
+      "actual": 45.00976824320886,
+      "printed": 45.01,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED",
+      "metric": "pixel_auc",
+      "actual": 94.99401222410732,
+      "printed": 94.99,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED",
+      "metric": "pixel_aupro",
+      "actual": 70.94833453496298,
+      "printed": 70.95,
+      "matches_2dp": true
+    },
+    {
+      "panel": "component",
+      "host": "FAPrompt",
+      "label": "C-TED",
+      "metric": "pixel_ap",
+      "actual": 45.00984111276495,
+      "printed": 45.01,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "image_auc",
+      "actual": 90.62,
+      "printed": 90.62,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_auc",
+      "actual": 92.48,
+      "printed": 92.48,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_pro",
+      "actual": 59.78487904866537,
+      "printed": 59.78,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "Baseline",
+      "metric": "pixel_ap",
+      "actual": 36.553333333333335,
+      "printed": 36.55,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=2",
+      "metric": "image_auc",
+      "actual": 91.0971058806798,
+      "printed": 91.1,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=2",
+      "metric": "pixel_auc",
+      "actual": 94.23333333333333,
+      "printed": 94.23,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=2",
+      "metric": "pixel_pro",
+      "actual": 65.41889317830403,
+      "printed": 65.42,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=2",
+      "metric": "pixel_ap",
+      "actual": 39.68,
+      "printed": 39.68,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=4",
+      "metric": "image_auc",
+      "actual": 91.26014126905118,
+      "printed": 91.26,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=4",
+      "metric": "pixel_auc",
+      "actual": 93.83333333333333,
+      "printed": 93.83,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=4",
+      "metric": "pixel_pro",
+      "actual": 65.06032180786133,
+      "printed": 65.06,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=4",
+      "metric": "pixel_ap",
+      "actual": 38.99333333333333,
+      "printed": 38.99,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=8",
+      "metric": "image_auc",
+      "actual": 91.4574403280476,
+      "printed": 91.46,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=8",
+      "metric": "pixel_auc",
+      "actual": 93.50999999999999,
+      "printed": 93.51,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=8",
+      "metric": "pixel_pro",
+      "actual": 63.66773986816406,
+      "printed": 63.67,
+      "matches_2dp": true
+    },
+    {
+      "panel": "rank",
+      "host": "AA-CLIP",
+      "label": "r=8",
+      "metric": "pixel_ap",
+      "actual": 38.260000000000005,
+      "printed": 38.26,
+      "matches_2dp": true
+    }
+  ],
+  "fresh_gpu_execution_verified": false,
+  "scope": "Partial archival trace: named variant and metric consistency; original table-assembly process and FAPrompt T-TED row provenance remain unresolved. Fresh execution and bank bindings remain required."
+}

@@ -1,5 +1,5 @@
 {
-  "scope": "All active tables, including wrap tables and supplementary/additional arXiv sections. Figures and non-tabular claims still require separate scope inventory.",
+  "scope": "All active tables, including wrap tables and supplementary/additional arXiv sections. Figures are tracked in paper-figure-scope.json; non-tabular claims still require an audit.",
   "datasets": [
     "MVTec AD",
     "VisA",
@@ -117,8 +117,13 @@
       "label": "tab:ted_ablation",
       "source": "tab/ablation.tex",
       "caption_tex": "\n  Ablation study of \\textsc{TED} on BTAD.\n  (a) validates the calibrated decoding components on adapted hosts, and\n  (b) analyzes the effect of the residual rank on AA-CLIP.\n  ",
-      "configuration_trace_status": "pending",
-      "fresh_reproduction_status": "not_complete"
+      "configuration_trace_status": "partial_archival_trace",
+      "fresh_reproduction_status": "not_complete",
+      "reference_summaries": 6,
+      "printed_cells": 40,
+      "traced_matching_cells": 37,
+      "remaining": "FAPrompt T-TED row source, original table assembly, bank bindings and fresh execution",
+      "trace": "ablations/btad-component.json"
     },
     {
       "table": 4,
@@ -189,8 +194,12 @@
       "label": "tab:weak_source_robustness",
       "source": "supp_fig/weak_source_robustness_20260506.tex",
       "caption_tex": "\nWeak-source robustness.\nAA-CLIP varies the number of source images per source class used to construct banks.\nFAPrompt varies the retained source-bank budget per class.\nValues are gains over the corresponding host baseline; $\\Delta$Loc is the mean of $\\Delta$PRO and $\\Delta$AP.\n",
-      "configuration_trace_status": "pending",
-      "fresh_reproduction_status": "not_complete"
+      "configuration_trace_status": "recipe_and_bank_inventory_available",
+      "fresh_reproduction_status": "not_complete",
+      "recipe_count": 28,
+      "bank_objects": 12,
+      "trace": "ablations/weak-source.json",
+      "remaining": "Fresh execution, bank rebuilding and unresolved historical cache-hit evidence for8 bindings"
     },
     {
       "table": 13,

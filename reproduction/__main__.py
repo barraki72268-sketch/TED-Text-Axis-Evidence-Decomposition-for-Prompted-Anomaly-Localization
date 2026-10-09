@@ -17,6 +17,10 @@ def main() -> int:
     sub = parser.add_subparsers(dest="action", required=True)
     listing = sub.add_parser("list", help="List the exact archived recipe inventory")
     listing.add_argument("--host")
+    component = sub.add_parser("compare-component-ablation", help="Audit BTAD component/rank table, retaining unresolved provenance")
+    component_inputs = component.add_mutually_exclusive_group(required=True)
+    component_inputs.add_argument("--references", action="store_true")
+    component_inputs.add_argument("--runs", type=Path)
     weak = sub.add_parser("compare-weak-source", help="Reassemble the 28-configuration weak-source ablation table")
     weak_inputs = weak.add_mutually_exclusive_group(required=True)
     weak_inputs.add_argument("--references", action="store_true", help="Audit archived summaries; does not execute GPU inference")
@@ -70,6 +74,11 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "compare-component-ablation":
+        from .component_ablation import compare_component_ablation
+        result = compare_component_ablation(ROOT, args.runs)
+        print(json.dumps(result, indent=2))
+        return 0 if result["status"] == "matched" else 2 if result["status"] == "incomplete" else 1
     if args.action == "compare-weak-source":
         from .weak_source import compare_weak_source
         result = compare_weak_source(ROOT, args.runs)
