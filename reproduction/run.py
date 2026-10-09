@@ -59,6 +59,10 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
     for item in plan["verified_objects"]:
         if digest_file(Path(item["path"])) != item["sha256"]:
             raise ValueError("Original artifact changed after preparation")
+    for item in plan.get("source_asset_links", []):
+        path = Path(item["path"])
+        if not path.is_symlink() or path.resolve() != Path(item["target"]).resolve() or digest_file(path) != item["sha256"]:
+            raise ValueError("Source-relative artifact link changed after preparation")
     for item in plan["bank_path_changes"]:
         if digest_file(Path(item["path"])) != item["derived_sha256"]:
             raise ValueError("Relocated bank changed after preparation")

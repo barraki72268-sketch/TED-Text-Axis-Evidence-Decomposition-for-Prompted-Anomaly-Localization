@@ -8,6 +8,22 @@ import uuid
 from .checkpoint_download import digest_file
 
 
+def required_backbone_assets(catalog: dict, recipe: str) -> list[dict]:
+    bindings = [b for b in catalog["bindings"] if b["recipe"] == recipe]
+    if len(bindings) != 1:
+        raise ValueError(f"Expected exactly one backbone binding for {recipe}")
+    assets = {a["sha256"]: a for a in catalog["artifacts"]}
+    selected = [assets[bindings[0]["sha256"]]]
+    # The archived AA evaluator checks this file before selecting its actual
+    # backbone, including B+ and H/14. It is a loader prerequisite, not a
+    # replacement for the recipe's selected model.
+    if bindings[0].get("host") == "AA-CLIP":
+        bootstrap = next(a for a in catalog["artifacts"] if a["id"] == "openai_vit_l14_336")
+        if bootstrap["sha256"] != selected[0]["sha256"]:
+            selected.append(bootstrap)
+    return selected
+
+
 def prepare_backbones(root: Path, destination: Path, recipe: str | None = None, resume: bool = False) -> dict:
     catalog = json.loads((root / "backbones.json").read_text(encoding="utf-8"))
     artifacts = {a["sha256"]: a for a in catalog["artifacts"]}
@@ -19,10 +35,7 @@ def prepare_backbones(root: Path, destination: Path, recipe: str | None = None, 
         if asset["bytes"] <= 0 or not asset["url"].startswith("https://"):
             raise ValueError("Invalid backbone size/URL")
     if recipe is not None:
-        bindings = [b for b in catalog["bindings"] if b["recipe"] == recipe]
-        if len(bindings) != 1:
-            raise ValueError(f"Expected exactly one backbone binding for {recipe}")
-        selected = [artifacts[bindings[0]["sha256"]]]
+        selected = required_backbone_assets(catalog, recipe)
     else:
         selected = list(artifacts.values())
     destination = destination.absolute()

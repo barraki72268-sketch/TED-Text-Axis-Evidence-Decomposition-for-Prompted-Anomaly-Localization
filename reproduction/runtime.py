@@ -13,6 +13,7 @@ from .datasets import prepare_dataset
 from .execution import verify_execution_recipes
 from .source import unpack_source
 from .recipe_lookup import execution_recipe
+from .backbone_download import required_backbone_assets
 
 ORIGINAL = "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP"
 DATA_ROOTS = {
@@ -25,6 +26,20 @@ DATA_ROOTS = {
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def link_runtime_asset(runtime: Path, relative: Path, target: Path) -> dict:
+    """Bind a computed source-relative path without changing evaluator code."""
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("Runtime asset must stay within the prepared source")
+    path = runtime / relative
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() or path.is_symlink():
+        if not path.is_symlink() or path.resolve() != target.resolve():
+            raise ValueError(f"Conflicting source-relative asset: {relative}")
+    else:
+        path.symlink_to(target.resolve())
+    return {"path": str(path), "target": str(target.resolve()), "sha256": digest_file(target)}
 
 
 def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: list[Path], dataset_config: Path) -> dict:
@@ -51,10 +66,11 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
     backbone_catalog = read_json(root / "backbones.json")
     backbone_binding = next(r for r in backbone_catalog["bindings"] if r["recipe"] == dependency_id)
     backbone = next(a for a in backbone_catalog["artifacts"] if a["sha256"] == backbone_binding["sha256"])
+    required_backbones = required_backbone_assets(backbone_catalog, dependency_id)
     checkpoint_catalog = read_json(root / "host-checkpoints.json")
     checkpoint_binding = next((r for r in checkpoint_catalog["bindings"] if r["recipe"] == dependency_id), None)
     all_assets = {a["sha256"]: a for catalog in (bank_catalog, backbone_catalog, checkpoint_catalog) for a in catalog["artifacts"]}
-    needed = {backbone["sha256"]} | {a["sha256"] for a in bank_binding["source_bank_assets"]}
+    needed = {a["sha256"] for a in required_backbones} | {a["sha256"] for a in bank_binding["source_bank_assets"]}
     if checkpoint_binding:
         needed.update(a["sha256"] for a in checkpoint_binding["checkpoint_assets"])
     objects, evidence = {}, []
@@ -92,6 +108,10 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
     backbone_path.symlink_to(objects[backbone["sha256"]])
     for original in backbone["archived_paths"]:
         mapping[original] = str(backbone_path)
+    asset_links = []
+    if recipe["host"] == "AA-CLIP":
+        bootstrap = next(a for a in required_backbones if a["id"] == "openai_vit_l14_336")
+        asset_links.append(link_runtime_asset(runtime, Path("neurips2026/AA-CLIP/model/ViT-L-14-336px.pt"), objects[bootstrap["sha256"]]))
     # URLs are retained; vendored downloaders find the verified cached filename.
     for original in ("~/.cache/clip", "/home/jinyoung/.cache/clip", "/mnt/data/hf-cache/anomalyclip",
                      "/mnt/data/pilab-kingjinyoung/ADPretrain/FAPrompt/.cache/clip",
@@ -119,6 +139,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
             mapping[item["archived_path"]] = str(checkpoint_dir if item["role"] == "ckpt_dir" else path)
             for original in all_assets[item["sha256"]]["archived_paths"]:
                 mapping[original] = str(path)
+                if original.startswith(ORIGINAL + "/"):
+                    asset_links.append(link_runtime_asset(runtime, Path(original[len(ORIGINAL) + 1:]), objects[item["sha256"]]))
     replacements = sorted(mapping.items(), key=lambda pair: -len(pair[0]))
     # One regex pass prevents replacement output from being matched again.
     pattern = re.compile("|".join(re.escape(old) for old, _ in replacements))
@@ -186,6 +208,7 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
                    "NO_ALBUMENTATIONS_UPDATE": "1"}
     report = {"recipe": recipe_id, "cwd": str(runtime), "evaluator": str(runtime / recipe["evaluator"]["path"]),
               "argv": argv, "environment": environment, "verified_objects": evidence, "source_path_changes": changes,
+              "source_asset_links": asset_links,
               "bank_path_changes": bank_changes, "datasets": prepared_data, "fresh_gpu_benchmark": False,
               "status": "prepared_requires_fresh_execution"}
     (destination / "run.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
