@@ -317,6 +317,19 @@ CPU dataset metric parity or reproduction of all paper configurations.
 
 ### AdaptCLIP captured-state worker
 
+Public archives are pinned to Hugging Face revision
+`27afd171f0e9f5161947889254d5dfb1ed51fb0a`. Download and verify every extracted
+input without authentication:
+
+```bash
+python -m reproduction.adaptclip_release openai-seed0 NEW_OPENAI_BUNDLE --cache ted-download-cache
+python -m reproduction.adaptclip_release l336-seed0 NEW_L336_BUNDLE --cache ted-download-cache
+```
+
+The client checks the published archive size/SHA-256, safe regular-file paths,
+all 931 extracted files and the passing execution binding. Inference and
+Docker checks are separate from successful byte verification.
+
 The OpenAI L/14 and L/14-336 BTAD seed-0 recipes each match all eight archived
 per-seed metrics at two decimals. Their prepared-workspace engines also match
 the original CPU evaluator's host/C-TED maps and both raw image scores on the

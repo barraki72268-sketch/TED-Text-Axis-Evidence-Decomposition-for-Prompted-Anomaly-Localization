@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP, two AdaptCLIP and three BayesPFL full-BTAD seed0 configurations; not the whole paper or all ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim. BayesPFL B+ BTAD replay used public runtime95bff4d under job13728; original preparation, execution log and numerical differences are retained. BayesPFL H14 and OpenAI fresh replays each matched 7/8; baseline image AUROC differences and complete execution logs are preserved.",
+  "scope": "Four AA-CLIP, two FAPrompt, four AdaCLIP, two AdaptCLIP and four BayesPFL full-BTAD seed0 configurations; not the whole paper or all ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14/L14 OpenAI/L14-336 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank. AdaptCLIP OpenAI BTAD replay used publicruntime95bff4d underjob13728; preparation includes historical source-bank bindings, not a new bank rebuild claim. AdaptCLIP L14-336 BTAD replay also used runtime95bff4d under job13728; its complete preparation and execution log are retained, with historical source-bank bindings rather than a new bank rebuild claim. BayesPFL B+ BTAD replay used public runtime95bff4d under job13728; original preparation, execution log and numerical differences are retained. BayesPFL H14 and OpenAI fresh replays each matched 7/8; baseline image AUROC differences and complete execution logs are preserved. BayesPFL L/14-336 terminated successfully but matched 0/8 archived metrics; full preparation/log and all differences are retained.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -527,6 +527,41 @@
         {
           "file": "bayespfl-openai-btad-v5/preparation-and-results.zip",
           "sha256": "8135408023b0268c004c65201dc3f5a822613e48d507ecbc8367b068b33c9d0f"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitl336-mvtec2btad-seed0",
+      "slurm_job_id": "13735",
+      "status": "mismatch",
+      "finished": "2026-10-09T07:25:04.499137+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 0,
+      "reference_sha256": "95a7526fe2ff826305c86a6c63629111f00b947de76155c632e36729ae2bbc90",
+      "evidence": [
+        {
+          "file": "bayespfl-l336-btad-v5/comparison.json",
+          "sha256": "41885ec82ad28a61db716ce37b4c6d5d0046e75a3e4f459616e12d84c30a0604"
+        },
+        {
+          "file": "bayespfl-l336-btad-v5/execution.json",
+          "sha256": "62293486451663bb9a28e913bada091552be5d8a085f0f33d7b69f5df468b7fa"
+        },
+        {
+          "file": "bayespfl-l336-btad-v5/summary.json",
+          "sha256": "b8d0c21a20bd66b8f92a75e53b2bf5e58656e2765cbb8b7a96e14241dd472f3f"
+        },
+        {
+          "file": "bayespfl-l336-btad-v5/preparation-and-results.zip",
+          "sha256": "f5da099541bfab47d029ed14456a926d7d4d217eb6bf53760ab12b676868b0bd"
         }
       ]
     }

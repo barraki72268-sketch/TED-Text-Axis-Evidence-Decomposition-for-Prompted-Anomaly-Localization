@@ -64,6 +64,17 @@ class ServingArchiveTests(unittest.TestCase):
             unpack_aa_bundle(root / 'adaptclip.tar.gz', root / 'relocated', record)
             self.assertEqual((root / 'relocated/source/research.py').read_bytes(),
                              (bundle / 'source/research.py').read_bytes())
+            import io
+            from unittest.mock import patch
+            from reproduction.adaptclip_release import prepare_release as prepare_adaptclip
+            record['revision'] = 'a' * 40
+            catalog = root / 'catalog.json'
+            catalog.write_text(json.dumps(dict(repository='fixture/release',releases={'adaptclip':record})))
+            with patch('reproduction.aa_release.urllib.request.urlopen',
+                       return_value=io.BytesIO((root / 'adaptclip.tar.gz').read_bytes())):
+                proof = prepare_adaptclip('adaptclip',root / 'downloaded',root / 'cache',catalog)
+            self.assertEqual(proof['status'],'verified_serving_inputs')
+            self.assertEqual(proof['authentication'],'none; standard-library HTTPS without auth headers')
 
     def fixture(self, root, host='AA-CLIP'):
         bundle = root / 'bundle'
