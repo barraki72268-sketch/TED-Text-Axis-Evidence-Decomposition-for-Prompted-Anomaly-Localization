@@ -37,7 +37,8 @@ $('form').addEventListener('submit',async event=>{event.preventDefault();const f
  try{const response=await fetch('/predict?'+params,{method:'POST',headers:{'Content-Type':file.type},body:file});const result=await response.json();if(!response.ok)throw Error(result.detail||'Inspection failed');
  if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(file);$('input-preview').src=previewUrl;
  $('host-preview').src='data:image/png;base64,'+result.previews_png_base64.host;$('cted-preview').src='data:image/png;base64,'+result.previews_png_base64.cted;
- $('download').href='data:application/octet-stream;base64,'+result.maps_npz_base64;$('score').textContent='Image score: '+result.image_score+' · '+result.image_score_policy;
+ $('download').href='data:application/octet-stream;base64,'+result.maps_npz_base64;
+ $('score').textContent=(typeof result.cted_image_score==='number'?'Host image score: '+result.image_score+' · C-TED image score: '+result.cted_image_score:'Image score: '+result.image_score)+' · '+result.image_score_policy;
  $('identity').textContent='Release: '+model+'\nArtifact SHA-256: '+result.artifact_sha256;$('result').hidden=false;$('message').textContent='Inspection complete.';
  }catch(error){$('message').textContent=error.message}finally{$('model').disabled=false;$('category').disabled=false;const item=models.find(x=>x.id===$('model').value);$('submit').disabled=!item?.ready}});
 load();

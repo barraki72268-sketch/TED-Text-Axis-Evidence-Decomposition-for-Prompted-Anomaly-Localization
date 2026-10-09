@@ -48,7 +48,7 @@ class GatewayTests(unittest.TestCase):
                 return httpx.Response(200, json=dict(artifact_sha256=sha, categories=['01']))
             seen.append((request.url.host, request.url.params.get('category'), request.content))
             return httpx.Response(200, content=json.dumps(dict(artifact_sha256=sha,
-                maps_npz_base64='unchanged-payload', image_score=.321)).encode())
+                maps_npz_base64='unchanged-payload', image_score=.321, cted_image_score=.654)).encode())
         with self.fixture(handler) as client:
             self.assertEqual(client.get('/ready').json()['models'], 2)
             self.assertEqual(len(client.get('/models').json()['models']), 2)
@@ -58,7 +58,7 @@ class GatewayTests(unittest.TestCase):
                 self.assertEqual(response.status_code, 200)
                 self.assertEqual(response.headers['X-TED-Model'], model)
                 self.assertEqual(response.json(), dict(artifact_sha256=sha * 64,
-                    maps_npz_base64='unchanged-payload', image_score=.321))
+                    maps_npz_base64='unchanged-payload', image_score=.321, cted_image_score=.654))
             self.assertEqual(seen, [('aa', '01', b'image-fixture'), ('fap', '01', b'image-fixture')])
             self.assertIn('Model release', client.get('/').text)
 
