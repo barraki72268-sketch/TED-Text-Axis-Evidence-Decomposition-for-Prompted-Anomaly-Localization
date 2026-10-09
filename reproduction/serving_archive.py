@@ -12,10 +12,8 @@ def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
-def pack_aa_bundle(bundle: Path, destination: Path) -> dict:
-    bundle, destination = bundle.resolve(), destination.absolute()
-    if destination.exists() or Path(str(destination) + '.partial').exists():
-        raise FileExistsError('Archive and partial destination must be new')
+def verify_aa_bundle(bundle: Path):
+    bundle = bundle.resolve()
     manifest = read(bundle / 'serving-bundle.json')
     exported = read(bundle / 'export/manifest.json')
     execution = read(bundle / 'export/execution.json')
@@ -59,6 +57,16 @@ def pack_aa_bundle(bundle: Path, destination: Path) -> dict:
     for name, sha in expected.items():
         if digest_file(bundle / name) != sha:
             raise ValueError('Serving input bytes changed: ' + name)
+    return manifest, expected
+
+
+def pack_aa_bundle(bundle: Path, destination: Path) -> dict:
+    bundle, destination = bundle.resolve(), destination.absolute()
+    if destination.exists() or Path(str(destination) + '.partial').exists():
+        raise FileExistsError('Archive and partial destination must be new')
+    if bundle in destination.parents:
+        raise ValueError('Archive must stay outside the original bundle')
+    manifest, expected = verify_aa_bundle(bundle)
     destination.parent.mkdir(parents=True, exist_ok=True)
     partial = Path(str(destination) + '.partial')
     # Deterministic regular-file members without machine/user ownership metadata.
@@ -93,9 +101,50 @@ def pack_aa_bundle(bundle: Path, destination: Path) -> dict:
                 scope='Exact serving inputs and fitted state; no datasets. Inference and metric evidence remain separate.')
 
 
+def unpack_aa_bundle(archive: Path, destination: Path, record: dict) -> dict:
+    """Verify a published archive and every extracted input without PyTorch."""
+    destination = destination.absolute()
+    if destination.exists():
+        raise FileExistsError('Extraction destination must be new')
+    if archive.stat().st_size != record['bytes'] or digest_file(archive) != record['sha256']:
+        raise ValueError('Serving archive size/hash differs from the published record')
+    import shutil
+    with tarfile.open(archive, 'r:gz') as source:
+        members = source.getmembers()
+        names = set()
+        for member in members:
+            name = member.name
+            relative = PurePosixPath(name)
+            if (not member.isfile() or relative.is_absolute() or '..' in relative.parts
+                    or '\\' in name or ':' in name or relative.as_posix() != name
+                    or not name or name in names):
+                raise ValueError('Serving archive contains an unsafe or duplicate member')
+            names.add(name)
+        if len(names) != record['files']:
+            raise ValueError('Serving archive file count differs from the published record')
+        destination.mkdir(parents=True, exist_ok=False)
+        for member in members:
+            target = destination / member.name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with source.extractfile(member) as stream, target.open('xb') as output:
+                shutil.copyfileobj(stream, output)
+    manifest, expected = verify_aa_bundle(destination)
+    if manifest['recipe'] != record['recipe'] or manifest['export_sha256'] != record['export_sha256']:
+        raise ValueError('Extracted recipe/artifact identity differs from published record')
+    return dict(status='verified_serving_inputs', recipe=manifest['recipe'],
+                archive_sha256=record['sha256'], files=len(expected),
+                scope='Verified bytes and passing-execution bindings only; inference checks remain separate.')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('bundle', type=Path)
     parser.add_argument('destination', type=Path)
+    parser.add_argument('--unpack', action='store_true')
+    parser.add_argument('--record', type=Path, help='Published archive JSON record, required for --unpack')
     args = parser.parse_args()
-    print(json.dumps(pack_aa_bundle(args.bundle, args.destination), indent=2))
+    if args.unpack and args.record is None:
+        parser.error('--unpack requires --record')
+    result = (unpack_aa_bundle(args.bundle, args.destination, read(args.record)) if args.unpack
+              else pack_aa_bundle(args.bundle, args.destination))
+    print(json.dumps(result, indent=2))

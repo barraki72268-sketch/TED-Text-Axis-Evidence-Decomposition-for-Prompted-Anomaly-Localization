@@ -166,6 +166,18 @@ run plan, captured bank/calibrator state, and execution evidence; dataset
 images remain outside the archive. Upstream licenses and dataset-derived
 artifact terms continue to apply.
 
+Consumers can verify the published archive record and extract only regular,
+relative-path members into a new directory, then recheck the full serving
+inventory without importing PyTorch:
+
+```bash
+python -m reproduction.serving_archive --unpack --record AA_RECIPE.json \
+  ./AA_RECIPE.tar.gz ./downloaded-AA_RECIPE
+```
+
+Use the archive JSON supplied by the release. A passing extraction report
+proves input integrity and execution binding; run inference checks separately.
+
 Before promotion, move the bundle to another directory and compare its maps
 against saved original-evaluator maps using
 [`examples.aa_bundle_parity`](../examples/aa_bundle_parity.py). Supply a fixtures

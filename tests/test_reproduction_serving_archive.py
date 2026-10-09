@@ -5,7 +5,7 @@ import tarfile
 import tempfile
 import unittest
 
-from reproduction.serving_archive import pack_aa_bundle
+from reproduction.serving_archive import pack_aa_bundle, unpack_aa_bundle
 
 
 class ServingArchiveTests(unittest.TestCase):
@@ -40,6 +40,11 @@ class ServingArchiveTests(unittest.TestCase):
             first = pack_aa_bundle(bundle, root / 'one.tar.gz')
             second = pack_aa_bundle(bundle, root / 'two.tar.gz')
             self.assertEqual(first['sha256'], second['sha256'])
+            loaded = unpack_aa_bundle(root / 'one.tar.gz', root / 'relocated', first)
+            self.assertEqual(loaded['status'], 'verified_serving_inputs')
+            self.assertEqual(loaded['files'], first['files'])
+            with self.assertRaises(FileExistsError):
+                unpack_aa_bundle(root / 'one.tar.gz', root / 'relocated', first)
             with tarfile.open(root / 'one.tar.gz') as archive:
                 self.assertEqual(len(archive.getmembers()), first['files'])
                 for member in archive:
@@ -62,3 +67,18 @@ class ServingArchiveTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'bytes changed'):
                 pack_aa_bundle(bundle, root / 'rejected.tar.gz')
             self.assertFalse((root / 'rejected.tar.gz').exists())
+
+    def test_hash_correct_archive_with_traversal_is_rejected_before_writes(self):
+        import io
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            archive = root / 'malicious.tar.gz'
+            with tarfile.open(archive, 'w:gz') as out:
+                info = tarfile.TarInfo('../outside.txt')
+                info.size = 1
+                out.addfile(info, io.BytesIO(b'x'))
+            record = dict(bytes=archive.stat().st_size, sha256=hashlib.sha256(archive.read_bytes()).hexdigest(), files=1)
+            with self.assertRaisesRegex(ValueError, 'unsafe'):
+                unpack_aa_bundle(archive, root / 'destination', record)
+            self.assertFalse((root / 'destination').exists())
+            self.assertFalse((root / 'outside.txt').exists())
