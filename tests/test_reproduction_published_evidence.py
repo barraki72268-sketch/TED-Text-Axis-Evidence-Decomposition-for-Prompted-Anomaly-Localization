@@ -267,7 +267,7 @@ class PublishedEvidenceTests(unittest.TestCase):
         index = json.loads((folder / 'gateway-evidence.json').read_text())
         self.assertEqual(digest_file(folder / index['file']), index['sha256'])
         report = json.loads((folder / index['file']).read_text())
-        registry_path = ROOT.parent / 'deployment/pilab-model-registry.json'
+        registry_path = folder / index['registry_file']
         self.assertEqual(digest_file(registry_path), report['registry_sha256'])
         registry = json.loads(registry_path.read_text(encoding='utf-8'))
         releases = {m['id']: m['artifact_sha256'] for m in registry['models']}
