@@ -885,6 +885,45 @@
           "sha256": "5e6e68c0b69b2142cce35137c4f54e68479e5d7b4b8d91e9ad22634e9ffa43d8"
         }
       ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2visa_bank32_seed0",
+      "slurm_job_id": "13735",
+      "status": "matched",
+      "finished": "2026-10-09T12:52:28.333596+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "accb5fc94b6a8f5cdbfe996d6192b61598edf40cfccc597741e54b1f39e7da6f",
+      "evidence": [
+        {
+          "file": "faprompt-visa-bank-32-v7/comparison.json",
+          "sha256": "d4d5d16ffee6eb806bc50560b996e795e41564350afe5817692020df2937cb76"
+        },
+        {
+          "file": "faprompt-visa-bank-32-v7/execution.json",
+          "sha256": "e54316506ed4bc778019d9d8cc0ddd6a5de1bca10952214457006e6837aa7432"
+        },
+        {
+          "file": "faprompt-visa-bank-32-v7/execution.log",
+          "sha256": "05d123b3f9b3781c6e086e70633d620bd1387e927b73266b6425565a387325e6"
+        },
+        {
+          "file": "faprompt-visa-bank-32-v7/run.json",
+          "sha256": "be46b75aa300e0adaf55c274575cd50a8715c96107f6dc9c99dabbabfdc2cb64"
+        },
+        {
+          "file": "faprompt-visa-bank-32-v7/summary.json",
+          "sha256": "e51ee8b58f88fc76dd46e7dd9a3fd2557bb79e7458bfa0c6e3b95a8cedd09711"
+        }
+      ]
     }
   ]
 }
