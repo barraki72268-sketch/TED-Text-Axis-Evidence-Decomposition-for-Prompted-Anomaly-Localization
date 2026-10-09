@@ -11,7 +11,8 @@
   <a href="https://huggingface.co/KIMJINYOUNG/TED-reproducibility">Models & artifacts</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="reproduction/README.md">Reproduction guide</a> ·
-  <a href="docs/SERVICE.md">Docker service</a>
+  <a href="docs/SERVICE.md">Docker service</a> ·
+  <a href="docs/RELEASE_STATUS.md">Release status</a>
 </p>
 
 **TED** is a post-hoc local scoring method for prompted anomaly localization.
@@ -25,8 +26,16 @@ service checks are identified separately below.
 
 ## Verified release
 
+**Available now:** public research source/checkpoints/banks, execution recipes,
+verified full-BTAD replays for the configurations listed below, and tested
+FAPrompt/AA-CLIP inference paths. See the [release status](docs/RELEASE_STATUS.md)
+for each component's scope and deployment limits.
+
 Status: **October 9, 2026**. Counts describe the stated check, not successful
 GPU reproduction of every configuration.
+
+<details>
+<summary>Expand verification records and exact scope</summary>
 
 | Available component | Verified scope | Evidence / entry point |
 |---|---|---|
@@ -44,6 +53,8 @@ GPU reproduction of every configuration.
 | Weak-source ablation inputs | 28 configurations / 12 public banks; anonymous acquisition verified; all 24 printed gain cells match archived-summary aggregation | [Download check](reproduction/validation/public-weak-bank-download-validation.json), [table check](reproduction/validation/weak-source-archived-table-validation.json) |
 | FAPrompt Docker/API path | Three BTAD images: HTTP raw maps match CPU historical-equation inference exactly | [Service evidence](docs/SERVICE.md) |
 
+</details>
+
 **Still required:** all model/backbone/dataset/seed GPU reruns, unresolved
 historical mean provenance, fresh source-bank rebuilding, the remaining
 ablation/figure analyses, and all-model Docker adapters. MVTec AD 2 remains
@@ -52,6 +63,13 @@ AA-CLIP H/14 have documented mismatches; successful checks above do not erase
 them. See [scope and remaining work](docs/REPRODUCIBILITY.md).
 
 ## Quick start
+
+Choose a starting point:
+
+- **Audit paper inputs:** use the GPU-free commands below.
+- **Reproduce a full dataset:** follow the [environment, data, and execution guide](reproduction/README.md).
+- **Inspect images through the API:** follow the [artifact and service guide](docs/SERVICE.md).
+- **Understand TED scoring:** run the feature-level examples in step 3.
 
 ### 1. Audit the published inputs without a GPU
 
