@@ -330,6 +330,14 @@ The client checks the published archive size/SHA-256, safe regular-file paths,
 all 931 extracted files and the passing execution binding. Inference and
 Docker checks are separate from successful byte verification.
 
+The [anonymous client proof](../reproduction/adaptclip-serving-exports.json)
+records full downloads and new extractions for both pinned releases, followed
+by exact three-image map/raw-score parity on CPU. That replay uses the public
+canonical dataset metadata and checks the raw image bytes. Original model and
+workspace reads and networking are denied; no original fixture-metadata exception
+is needed. Both denial self-checks pass. Docker and full-dataset CPU metric
+reproduction remain outside this check.
+
 The OpenAI L/14 and L/14-336 BTAD seed-0 recipes each match all eight archived
 per-seed metrics at two decimals. Their prepared-workspace engines also match
 the original CPU evaluator's host/C-TED maps and both raw image scores on the
@@ -356,13 +364,15 @@ To check a fresh extraction against the original output block:
 ```bash
 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 \
 python -m reproduction.adaptclip_image_parity NEW_BUNDLE/export NEW_BUNDLE \
-  --fixture-workspace RUN_WORKSPACE --deny-original-inputs \
+  --images-root BTAD_IMAGES_ROOT --deny-original-inputs \
   --output NEW_PARITY_REPORT.json
 ```
 
 The check denies network access and original workspace/model input reads during
-inference. Original fixture metadata is an explicit exception; test images stay
-outside the bundle and are checked against the full dataset input manifest.
+inference. Test images stay outside the bundle and are selected from the public
+canonical metadata and checked against the full dataset input manifest.
+The older `--fixture-workspace` mode remains available and explicitly permits
+the original fixture metadata; it does not establish the stronger no-exception check.
 Run each model in its own process because upstream imports use shared names.
 
 For an experimental loopback HTTP worker with the pinned research dependencies:

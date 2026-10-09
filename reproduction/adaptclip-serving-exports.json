@@ -10,7 +10,7 @@
         "bytes": 79583,
         "sha256": "4699ceadf94473b9304d6b69850afb6d2ff48655358e2577b1bf5641f27797d2"
       },
-      "status": "fresh_archive_extraction_image_parity_passed_hf_and_docker_pending",
+      "status": "anonymous_archive_acquisition_and_image_parity_passed_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -39,7 +39,7 @@
         "bytes": 79567,
         "sha256": "20a825cd5f1748ab4540d48ba885759c907951acda77932441fa2a6613b1512f"
       },
-      "status": "fresh_archive_extraction_image_parity_passed_hf_and_docker_pending",
+      "status": "anonymous_archive_acquisition_and_image_parity_passed_docker_pending",
       "capture_binding": "terminal_execution_record",
       "calibrators": [
         {
@@ -62,8 +62,8 @@
     }
   ],
   "next_gates": [
-    "Anonymous Hugging Face archive acquisition and fresh-extraction inference verification",
-    "Pilab Docker HTTP parity and model registry integration",
+    "Pilab CPU serving parity and Docker HTTP verification",
+    "Model registry integration",
     "Standalone dependency/runtime image verification"
   ],
   "readout_validation": {
@@ -205,6 +205,66 @@
     },
     "failed_api_attempt_preserved": "v1 lacked fastapi in runtime-env; v2 passed using existing api-extra dependency directory, without changing GPU runtime.",
     "anonymous_download_verified": false,
+    "docker_http_verified": false,
+    "deployment_ready": false
+  },
+  "anonymous_validation": {
+    "runtime_commit": "34717c8",
+    "revision": "27afd171f0e9f5161947889254d5dfb1ed51fb0a",
+    "archive": {
+      "path": "validation/a10-20261009/adaptclip-anonymous-v1/evidence.zip",
+      "bytes": 6551,
+      "sha256": "4281336796779b77bb22cec832f51f78b3a25fdec601fa6a5c24ba1af3412c13"
+    },
+    "files": [
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-openai-anonymous-acquisition-20261009-v1.json",
+        "bytes": 618,
+        "sha256": "7bf6cbb193ea943a6c18fbc8e4e3713febbbef213c3ed2d5679c293906b1e0b1"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-openai-anonymous-acquisition-20261009-v1.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-openai-anonymous-parity-20261009-v1.json",
+        "bytes": 2497,
+        "sha256": "c6eba2e93271bac935f5102bedb5ac2f1a5d092cf2b8c97317dd74faf74eb9cd"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-openai-anonymous-parity-20261009-v1.log",
+        "bytes": 2767,
+        "sha256": "d93cc2ebe955496921ba448f365df932ec78c1f1be3e49cc2d39bf53d37fd578"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-l336-anonymous-acquisition-20261009-v1.json",
+        "bytes": 609,
+        "sha256": "73a95c3ac4b86fa5ac727c3c7c4fd650a608d49f446ea806e5c03138dcfcdf37"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-l336-anonymous-acquisition-20261009-v1.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-l336-anonymous-parity-20261009-v1.json",
+        "bytes": 2489,
+        "sha256": "f1143a7ec5d083e5ea45b92c5cad7074dc2ecadcfe25aa90ad21505a11da8495"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/adaptclip-l336-anonymous-parity-20261009-v1.log",
+        "bytes": 2655,
+        "sha256": "a78bc13561f41573a2ddc13d888d92353196bf7c88d9b35b62b341cd02a8e66a"
+      },
+      {
+        "path": "validation/a10-20261009/adaptclip-anonymous-v1/public-metadata-verification.json",
+        "bytes": 994,
+        "sha256": "2ba22b89a06c74c87d8b624a669a06185305d1ec80cac15c8f4dec9f36480632"
+      }
+    ],
+    "anonymous_acquisition_and_image_inference_verified": true,
+    "scope": "Both public archives acquired with standard-library HTTPS without authentication; archive size/hash and all 931 extracted input files verified. Three canonical BTAD images each matched original CPU output block with original model/workspace reads and networking denied, without fixture metadata exceptions. Denial self-checks passed. Not full-dataset CPU metric reproduction.",
     "docker_http_verified": false,
     "deployment_ready": false
   }

@@ -11,6 +11,45 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_public_adaptclip_acquisition_and_inference_bind_pinned_archives(self):
+        import zipfile
+        index=json.loads((ROOT/'adaptclip-serving-exports.json').read_text())
+        catalog=json.loads((ROOT/'adaptclip-serving-releases.json').read_text())
+        proof=index['anonymous_validation']
+        self.assertTrue(proof['anonymous_acquisition_and_image_inference_verified'])
+        self.assertFalse(proof['deployment_ready'])
+        self.assertFalse(proof['docker_http_verified'])
+        archive=ROOT/proof['archive']['path']
+        self.assertEqual(digest_file(archive),proof['archive']['sha256'])
+        with zipfile.ZipFile(archive) as bundle:
+            for entry in proof['files']:
+                path=ROOT/entry['path']
+                self.assertEqual(digest_file(path),entry['sha256'])
+                if path.name!='public-metadata-verification.json':
+                    self.assertEqual(path.read_bytes(),bundle.read(path.name))
+        for variant in ['openai','l336']:
+            record=catalog['releases'][variant+'-seed0']
+            acquired=json.loads((archive.parent/('adaptclip-'+variant+'-anonymous-acquisition-20261009-v1.json')).read_text())
+            parity=json.loads((archive.parent/('adaptclip-'+variant+'-anonymous-parity-20261009-v1.json')).read_text())
+            self.assertEqual(acquired['status'],'verified_serving_inputs')
+            self.assertEqual(acquired['files'],931)
+            self.assertEqual(acquired['archive_sha256'],record['sha256'])
+            self.assertEqual(acquired['revision'],record['revision'])
+            self.assertEqual(acquired['revision'],proof['revision'])
+            self.assertEqual(acquired['authentication'],'none; standard-library HTTPS without auth headers')
+            self.assertEqual(parity['status'],'matched')
+            self.assertEqual(parity['engine']['artifact_sha256'],record['export_sha256'])
+            self.assertTrue(parity['portable_bundle_verified'])
+            self.assertTrue(parity['denial_self_checks_passed'])
+            self.assertFalse(parity['fixture_metadata_read_exception'])
+            original=json.loads((ROOT/'validation/a10-20261009'/('adaptclip-'+variant+'-image-parity-20261009-v1.json')).read_text())
+            self.assertEqual([(r['image'],r['image_sha256']) for r in parity['rows']],
+                             [(r['image'],r['image_sha256']) for r in original['rows']])
+            for row in parity['rows']:
+                for key in ['host_max_absolute_error','cted_max_absolute_error',
+                            'host_image_score_error','cted_image_score_error']:
+                    self.assertEqual(row[key],0)
+
     def test_adaptclip_fresh_archive_parity_binds_every_proof_file(self):
         import zipfile
         index = json.loads((ROOT / 'adaptclip-serving-exports.json').read_text())
