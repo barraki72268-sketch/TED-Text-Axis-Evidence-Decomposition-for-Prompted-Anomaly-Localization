@@ -17,6 +17,9 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_residual_mpdd_fresh_replay_preserves_all_44_comparisons(self):
         self.check_residual_replay('mpdd', 31, 458)
 
+    def test_residual_visa_fresh_replay_preserves_all_44_comparisons(self):
+        self.check_residual_replay('visa', 35, 2162)
+
     def check_residual_replay(self, dataset, matched, images):
         folder = ROOT / ('validation/a10-20261009/residual-' + dataset + '-v5')
         execution = json.loads((folder / 'execution.json').read_text())

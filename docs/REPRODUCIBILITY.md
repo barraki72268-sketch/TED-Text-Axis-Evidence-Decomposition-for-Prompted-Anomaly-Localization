@@ -150,7 +150,7 @@ place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then ru
 `python -m reproduction.residual_strength --runs <runs>`. That assembly checks
 summary content and coverage; inspect matching terminal execution records for
 fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
-BTAD and MPDD have now completed on A10 under Slurm job13725; the other two transfers
+BTAD, MPDD and VisA have now completed on A10 under Slurm job13725; MVTec
 remain pending until actual terminal records prove them.
 
 All four Linux preparation commands passed on the A10 host with CUDA hidden.
@@ -162,7 +162,9 @@ completed successfully but matches only36/44 archived metrics at two decimals.
 All44 comparisons and the complete summary are retained; this is a mismatch,
 not a reproduced Table14. [MPDD](../reproduction/validation/a10-20261009/residual-mpdd-v5/execution.json)
 also completed with31/44 archived metrics matching at two decimals across all
-four target classes and458 expected test images. VisA, MVTec and final aggregation
+four target classes and458 expected test images. [VisA](../reproduction/validation/a10-20261009/residual-visa-v5/execution.json)
+completed with35/44 archived metrics matching across all12 classes and2162
+expected test images. MVTec and final aggregation
 are pending. Reported target counts are checked; independent per-image traces
 are not supplied by these records.
 
@@ -217,7 +219,8 @@ python -m reproduction.axis_run ./runs/figure3 --validate-only
 
 Inside a valid GPU Slurm allocation, omit `--validate-only` to collect. The runner
 checks the job is RUNNING, GPU resources are allocated, the current host belongs
-to that job and GPUs are visible. It revalidates source, assets, full dataset
+to that job, GPUs are visible and Slurm tracks the current process in that job.
+It revalidates source, assets, full dataset
 bytes, metadata, command arguments and empty output/bank directories before
 launch. The worker records initial Python/NumPy/Torch RNG states without choosing
 a seed or claiming the historical RNG state. Success/failure, logs, all nine
