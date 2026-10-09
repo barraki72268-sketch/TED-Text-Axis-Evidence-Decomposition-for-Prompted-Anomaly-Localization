@@ -42,8 +42,7 @@ def run(workspace,images_root):
         if digest_file(p)!=binding['sha256'] or p.stat().st_size!=binding['bytes']:raise ValueError('Canonical image bytes differ')
         with Image.open(p) as image:im=image.convert('RGB')
         for alpha in summary['alphas']:
-            engine.alpha=float(alpha);engine.readout.readout.options['alpha']=float(alpha)
-            actual=engine.predict(im)
+            actual=engine.predict_for_alpha(im,alpha)
             with torch.inference_mode():
                 bank=engine.readout.bank;tensor=engine.transform(im).unsqueeze(0)
                 out=engine.host.compute_faprompt_outputs(engine.model,engine.prompts,tensor,summary['features_list'],bank['image_size'],summary['sigma'],summary['dap_token_mode'],bank['dpam_layer'],engine.pair)

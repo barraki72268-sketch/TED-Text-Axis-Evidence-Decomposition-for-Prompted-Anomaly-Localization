@@ -93,14 +93,21 @@ class CapturedFAPromptEngine:
     def info(self):
         return dict(host='FAPrompt',recipe=self.manifest['recipe'],backbone=self.manifest['backbone'],alpha=self.alpha,
             artifact_sha256=self.readout.artifact_sha256,device=str(self.device),portable_bundle=True,
-            deployment_status='captured-state image bridge; image/HTTP verification separate',model_load_ms=self.model_load_ms)
+            deployment_status='captured-state image bridge; image/HTTP verification separate',model_load_ms=self.model_load_ms,
+            alphas=self.summary['alphas'])
 
     @torch.inference_mode()
     def predict(self,image):
+        return self.predict_for_alpha(image,self.alpha)
+
+    @torch.inference_mode()
+    def predict_for_alpha(self,image,alpha):
+        if float(alpha) not in self.summary['alphas']:raise ValueError('Strength was not evaluated in this captured execution')
         if image.width*image.height>25_000_000:raise ValueError('Image exceeds pixel limit')
         if not self._lock.acquire(blocking=False):raise RuntimeError('Inference engine is busy')
         try:
             start=time.perf_counter();bank=self.readout.bank;s=self.summary
+            self.readout.readout.options['alpha']=float(alpha)
             tensor=self.transform(image.convert('RGB')).unsqueeze(0).to(self.device)
             out=self.host.compute_faprompt_outputs(self.model,self.prompts,tensor,s['features_list'],bank['image_size'],s['sigma'],s['dap_token_mode'],bank['dpam_layer'],self.pair)
             corrected=self.readout(out['patch_tokens'],out['token_score'],out['branch1_token_score'],out['branch2_token_score'])
@@ -108,5 +115,7 @@ class CapturedFAPromptEngine:
             score=float(out['official_image_score'][0])
             return dict(host_map=out['anomaly_map'],cted_map=maps,image_score=score,cted_image_score=score,
                 image_score_policy='recorded official FAPrompt image score for both host and C-TED; corrected map uses explicit recorded alpha',
-                artifact_sha256=self.readout.artifact_sha256,timing_ms=dict(total=(time.perf_counter()-start)*1000))
-        finally:self._lock.release()
+                artifact_sha256=self.readout.artifact_sha256,alpha=float(alpha),timing_ms=dict(total=(time.perf_counter()-start)*1000))
+        finally:
+            self.readout.readout.options['alpha']=self.alpha
+            self._lock.release()

@@ -27,6 +27,30 @@ class FakeEngine:
 
 
 class APIContractTests(unittest.TestCase):
+    def test_only_recorded_strengths_are_dispatched_and_preserved(self):
+        seen = []
+        class AlphaEngine(FakeEngine):
+            def info(self):
+                return dict(super().info(), alphas=[.5, 1.5])
+            def predict_for_alpha(self, image, alpha):
+                seen.append(alpha)
+                return dict(super().predict(image), alpha=alpha)
+        with TestClient(create_app(AlphaEngine)) as client:
+            for alpha in [.5, 1.5]:
+                response = client.post('/predict?alpha=' + str(alpha), content=png(),
+                                       headers={'Content-Type': 'image/png'})
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.json()['alpha'], alpha)
+            for query in ['alpha=.7', 'alpha=nan', 'alpha=inf', 'alpha=.5&category=01']:
+                response = client.post('/predict?' + query, content=png(),
+                                       headers={'Content-Type': 'image/png'})
+                self.assertEqual(response.status_code, 422)
+        self.assertEqual(seen, [.5, 1.5])
+        with TestClient(create_app(FakeEngine)) as client:
+            response = client.post('/predict?alpha=.5', content=png(),
+                                   headers={'Content-Type': 'image/png'})
+            self.assertEqual(response.status_code, 422)
+
     def test_corrected_score_is_preserved_and_nonfinite_score_is_rejected(self):
         class CorrectedEngine(FakeEngine):
             def predict(self, image):

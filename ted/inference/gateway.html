@@ -10,6 +10,7 @@
 <section class="panel"><form id="form">
 <label>Model release<select id="model" required></select></label>
 <p id="scope"></p>
+<label id="alpha-label" hidden>C-TED strength · recorded settings<select id="alpha"></select></label>
 <label id="category-label" hidden>Target category<select id="category"></select></label>
 <label>Inspection image · PNG or JPEG, up to 20 MB<input type="file" id="image" accept="image/png,image/jpeg" required></label>
 <button id="submit" disabled>Inspect image</button>
@@ -22,9 +23,10 @@
 <p id="score"></p><a id="download" download="ted-score-maps.npz">Download raw maps (.npz)</a><pre id="identity"></pre></section>
 <script>
 const $=id=>document.getElementById(id);let models=[],previewUrl=null;
-function choose(){const item=models.find(x=>x.id===$('model').value);$('result').hidden=true;$('category').replaceChildren();
+function choose(){const item=models.find(x=>x.id===$('model').value);$('result').hidden=true;$('category').replaceChildren();$('alpha').replaceChildren();
  if(!item)return;$('scope').textContent=item.scope;const categories=item.info?.categories||[];
  $('category-label').hidden=!categories.length;for(const category of categories){const option=document.createElement('option');option.value=category;option.textContent=category;$('category').append(option)}
+ const alphas=item.info?.alphas||[];$('alpha-label').hidden=!alphas.length;for(const alpha of alphas){const option=document.createElement('option');option.value=alpha;option.textContent=alpha;$('alpha').append(option)}if(alphas.length)$('alpha').value=String(item.info.alpha);
  $('submit').disabled=!item.ready;$('message').textContent=item.ready?'Ready. Upload an image to inspect.':'This model worker is currently unavailable.'}
 $('model').addEventListener('change',choose);
 async function load(){try{const response=await fetch('/models');if(!response.ok)throw Error('Could not load model releases');models=(await response.json()).models;
@@ -32,14 +34,15 @@ async function load(){try{const response=await fetch('/models');if(!response.ok)
  }catch(error){$('message').textContent=error.message}}
 $('form').addEventListener('submit',async event=>{event.preventDefault();const file=$('image').files[0];if(!file)return;
  if(file.size>20000000){$('message').textContent='Image exceeds the 20 MB limit.';return}
- $('submit').disabled=true;$('model').disabled=true;$('category').disabled=true;$('result').hidden=true;$('message').textContent='Inspecting image…';const model=$('model').value;const params=new URLSearchParams({model});
+ $('submit').disabled=true;$('model').disabled=true;$('category').disabled=true;$('alpha').disabled=true;$('result').hidden=true;$('message').textContent='Inspecting image…';const model=$('model').value;const params=new URLSearchParams({model});
  if(!$('category-label').hidden)params.set('category',$('category').value);
+ if(!$('alpha-label').hidden)params.set('alpha',$('alpha').value);
  try{const response=await fetch('/predict?'+params,{method:'POST',headers:{'Content-Type':file.type},body:file});const result=await response.json();if(!response.ok)throw Error(result.detail||'Inspection failed');
  if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(file);$('input-preview').src=previewUrl;
  $('host-preview').src='data:image/png;base64,'+result.previews_png_base64.host;$('cted-preview').src='data:image/png;base64,'+result.previews_png_base64.cted;
  $('download').href='data:application/octet-stream;base64,'+result.maps_npz_base64;
  $('score').textContent=(typeof result.cted_image_score==='number'?'Host image score: '+result.image_score+' · C-TED image score: '+result.cted_image_score:'Image score: '+result.image_score)+' · '+result.image_score_policy;
- $('identity').textContent='Release: '+model+'\nArtifact SHA-256: '+result.artifact_sha256;$('result').hidden=false;$('message').textContent='Inspection complete.';
- }catch(error){$('message').textContent=error.message}finally{$('model').disabled=false;$('category').disabled=false;const item=models.find(x=>x.id===$('model').value);$('submit').disabled=!item?.ready}});
+ $('identity').textContent='Release: '+model+'\nArtifact SHA-256: '+result.artifact_sha256+(typeof result.alpha==='number'?'\nC-TED strength: '+result.alpha:'');$('result').hidden=false;$('message').textContent='Inspection complete.';
+ }catch(error){$('message').textContent=error.message}finally{$('model').disabled=false;$('category').disabled=false;$('alpha').disabled=false;const item=models.find(x=>x.id===$('model').value);$('submit').disabled=!item?.ready}});
 load();
 </script></body></html>

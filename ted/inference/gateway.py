@@ -2,6 +2,7 @@
 import asyncio
 from contextlib import asynccontextmanager
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -89,7 +90,7 @@ def create_app(registry=None, *, transport=None, max_body_bytes=20_000_000):
         return await worker_info(model)
 
     @app.post('/predict')
-    async def predict(request: Request, model: str, category: str | None = None):
+    async def predict(request: Request, model: str, category: str | None = None, alpha: float | None = None):
         entry = selected(model)
         content_type = request.headers.get('content-type', '').split(';')[0].strip().lower()
         if content_type not in {'image/png', 'image/jpeg'}:
@@ -98,7 +99,12 @@ def create_app(registry=None, *, transport=None, max_body_bytes=20_000_000):
         if lock.locked():
             raise HTTPException(503, 'Inference busy; retry later', headers={'Retry-After': '1'})
         async with lock:
-            await worker_info(model)
+            info = await worker_info(model)
+            if alpha is not None and (category is not None or not math.isfinite(alpha) or alpha not in info.get("alphas", [])):
+                raise HTTPException(422, "Unsupported strength for this model")
+            params = {"category": category} if category is not None else {}
+            if alpha is not None:
+                params["alpha"] = alpha
             body = bytearray()
             async for chunk in request.stream():
                 if len(body) + len(chunk) > max_body_bytes:
@@ -106,10 +112,12 @@ def create_app(registry=None, *, transport=None, max_body_bytes=20_000_000):
                 body.extend(chunk)
             try:
                 response = await app.state.client.post(entry['url'] + '/predict',
-                    params={'category': category} if category is not None else {},
+                    params=params,
                     content=bytes(body), headers={'Content-Type': content_type})
                 if response.status_code == 200:
                     result = response.json()
+                    if alpha is not None and result.get('alpha') != alpha:
+                        raise HTTPException(502, 'Worker changed requested strength')
                     if result.get('artifact_sha256') != entry['artifact_sha256']:
                         raise HTTPException(502, 'Prediction artifact differs from the registered release')
                 elif response.status_code >= 500 and response.status_code != 503:

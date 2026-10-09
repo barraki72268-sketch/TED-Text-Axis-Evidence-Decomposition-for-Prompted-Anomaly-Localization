@@ -13,6 +13,30 @@ from ted.inference.gateway import create_app, load_registry
 
 
 class GatewayTests(unittest.TestCase):
+    def test_strength_is_forwarded_and_worker_cannot_silently_change_it(self):
+        seen = []
+        def handler(request):
+            sha = ('a' if request.url.host == 'aa' else 'b') * 64
+            if request.url.path == '/model-info':
+                return httpx.Response(200, json=dict(artifact_sha256=sha, alphas=[.5,1.5]))
+            alpha = float(request.url.params['alpha'])
+            seen.append(alpha)
+            return httpx.Response(200, json=dict(artifact_sha256=sha,
+                alpha=alpha if request.url.host == 'fap' else 1.5))
+        with self.fixture(handler) as client:
+            response = client.post('/predict?model=fap&alpha=.5', content=b'image',
+                                   headers={'Content-Type':'image/png'})
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()['alpha'], .5)
+            for query in ['alpha=.7','alpha=nan','alpha=inf','alpha=.5&category=01']:
+                response = client.post('/predict?model=fap&' + query, content=b'image',
+                                       headers={'Content-Type':'image/png'})
+                self.assertEqual(response.status_code, 422)
+            response = client.post('/predict?model=aa&alpha=.5', content=b'image',
+                                   headers={'Content-Type':'image/png'})
+            self.assertEqual(response.status_code, 502)
+        self.assertEqual(seen, [.5,.5])
+
     def test_busy_worker_rejects_duplicate_without_blocking_other_models(self):
         entered, release = threading.Event(), threading.Event()
         async def handler(request):
