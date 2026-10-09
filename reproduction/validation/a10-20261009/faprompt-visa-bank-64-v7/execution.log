@@ -1,0 +1,62 @@
+name ViT-L/14@336px
+text_layer False
+text_layer True
+Initializing class-specific contexts
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+embedding_pos torch.Size([1, 77, 768])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 10, 77])
+{"stage": "bank_cache_hit", "path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/faprompt_vitl336_mvtec2visa_bank64_seed0/source/neurips2026/results/bank_cache/faprompt_sourcebank_mvtec_89897d728f_trained_on_mvtecad_epoch_15_faprompt_v4_branchscore_ViT-L-14-336px_strict_f6-12-18-24_img518_dapofficial_firstk_dpam20_fpc64_dfc64_fpt128_dft128_topk0p01_seed0.pt", "num_fp": 128, "num_defect": 128}
+{"stage": "source_branch_calibrator_trained", "branch": "branch1", "calibration": "source_calibrated_host_residual_subspace_rank_no_target", "host_score_source": "faprompt_branch1_score", "subspace_rank": 4, "eta": 0.0837680920958519, "readout_gamma": 0.09196778386831284, "fp_weight": 1.0000009536743164, "train_points_per_class": 128, "source_pair_rank_accuracy": 0.5859375, "source_base_pair_rank_accuracy": 0.5703125}
+{"stage": "source_branch_calibrator_trained", "branch": "branch2", "calibration": "source_calibrated_host_residual_subspace_rank_no_target", "host_score_source": "faprompt_branch2_score", "subspace_rank": 4, "eta": 0.08197779953479767, "readout_gamma": 0.09150636941194534, "fp_weight": 1.0000009536743164, "train_points_per_class": 128, "source_pair_rank_accuracy": 0.6171875, "source_base_pair_rank_accuracy": 0.609375}
+{"stage": "target_class_done", "class_name": "candle"}
+{"stage": "target_class_done", "class_name": "capsules"}
+{"stage": "target_class_done", "class_name": "cashew"}
+{"stage": "target_class_done", "class_name": "chewinggum"}
+{"stage": "target_class_done", "class_name": "fryum"}
+{"stage": "target_class_done", "class_name": "macaroni1"}
+{"stage": "target_class_done", "class_name": "macaroni2"}
+{"stage": "target_class_done", "class_name": "pcb1"}
+{"stage": "target_class_done", "class_name": "pcb2"}
+{"stage": "target_class_done", "class_name": "pcb3"}
+{"stage": "target_class_done", "class_name": "pcb4"}
+{"stage": "target_class_done", "class_name": "pipe_fryum"}
+{
+  "baseline_official": {
+    "pixel_auc": 0.9441937292556538,
+    "pixel_ap": 0.10425728893296081,
+    "pixel_aupro": 0.7709827025731405,
+    "image_auc": 0.8275517601760177,
+    "image_ap": 0.8442828267002538
+  },
+  "baseline_maptopk": {
+    "pixel_auc": 0.9441937292556538,
+    "pixel_ap": 0.10425728893296081,
+    "pixel_aupro": 0.7709827025731405,
+    "image_auc": 0.8076897689768976,
+    "image_ap": 0.8607903422601283
+  },
+  "parallel": {
+    "support_only_alpha_0.5": {
+      "pixel_auc": 0.9346513029614022,
+      "pixel_ap": 0.1342547916286836,
+      "pixel_aupro": 0.7849238365888596,
+      "image_auc": 0.8275517601760177,
+      "image_ap": 0.8442828267002538
+    },
+    "branch_calibrated_alpha_0.5": {
+      "pixel_auc": 0.9558027881644516,
+      "pixel_ap": 0.19135686687198603,
+      "pixel_aupro": 0.8264548579851786,
+      "image_auc": 0.8275517601760177,
+      "image_ap": 0.8442828267002538
+    }
+  }
+}
+[OK] wrote /home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/faprompt_vitl336_mvtec2visa_bank64_seed0/results/summary.json
