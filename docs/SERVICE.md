@@ -178,6 +178,32 @@ python -m reproduction.serving_archive --unpack --record AA_RECIPE.json \
 Use the archive JSON supplied by the release. A passing extraction report
 proves input integrity and execution binding; run inference checks separately.
 
+### Fresh AA CPU environment
+
+A new Linux Python 3.10.22 environment with official CPU wheels passed
+dependency checking and offline three-image raw-map parity for both AA main
+and source-limit-1 bundles. It has no CUDA build. The
+[environment record](../reproduction/validation/a10-20261009/aa-public-cpu-environment.json)
+and [main](../reproduction/validation/a10-20261009/aa-public-cpu-main-parity.json)/
+[weak-source](../reproduction/validation/a10-20261009/aa-public-cpu-weak-parity.json)
+checks retain the exact scope. This does not establish full-dataset CPU metrics
+or a clean environment for every host family.
+
+Inside a new Python 3.10 virtual environment:
+
+```bash
+python -m pip install --upgrade pip==25.2 setuptools==79.0.1
+python -m pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r deployment/requirements-aa-cpu.txt
+python -m pip check
+```
+
+The recorded initial install failed with the older bundled pip's package-name
+metadata handling; the isolated pip upgrade resolved it. The original failed
+install log was retained. All installed AA service packages are pinned in the
+CPU requirements file. Public archive acquisition and inference checks are
+separate from this already passing relocated-bundle check.
+
 Before promotion, move the bundle to another directory and compare its maps
 against saved original-evaluator maps using
 [`examples.aa_bundle_parity`](../examples/aa_bundle_parity.py). Supply a fixtures

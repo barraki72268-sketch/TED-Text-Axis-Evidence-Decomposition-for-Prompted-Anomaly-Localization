@@ -11,6 +11,26 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_fresh_aa_cpu_environment_and_both_raw_map_checks(self):
+        folder = ROOT / 'validation/a10-20261009'
+        index = json.loads((folder / 'aa-clean-cpu-evidence.json').read_text())
+        for entry in index['files']:
+            self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
+        environment = json.loads((folder / 'aa-public-cpu-environment.json').read_text())
+        self.assertIsNone(environment['cuda_build'])
+        self.assertFalse(environment['cuda_available'])
+        self.assertEqual(environment['torch'], '2.9.1+cpu')
+        self.assertEqual(environment['freeze_sha256'], digest_file(folder / 'aa-public-cpu-env.freeze.txt'))
+        for name, artifact in [('main','58954532ae2ab2097e33b2a46f80011f0412339b098dc95d336bd1d09627fb55'),
+                               ('weak','e1576d5236ba7801ef7ef9f6f6d3064e60170b330631106610025399432790d5')]:
+            report = json.loads((folder / ('aa-public-cpu-' + name + '-parity.json')).read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(report['engine']['artifact_sha256'], artifact)
+            self.assertEqual(len(report['rows']), 3)
+            for row in report['rows']:
+                self.assertEqual(row['host_max_abs_error'], 0)
+                self.assertEqual(row['cted_max_abs_error'], 0)
+
     def test_gateway_evidence_covers_each_pinned_release_and_fixture(self):
         folder = ROOT / 'validation/a10-20261009'
         index = json.loads((folder / 'gateway-evidence.json').read_text())
@@ -58,7 +78,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 7)
+        self.assertEqual(len(report['results']), 8)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:

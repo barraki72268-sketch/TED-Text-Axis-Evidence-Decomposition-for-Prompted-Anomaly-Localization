@@ -1,8 +1,8 @@
 {
   "date": "2026-10-09",
   "hardware": "NVIDIA A10",
-  "scope": "Four AA-CLIP, two FAPrompt, and one AdaCLIP full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
-  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16 v4 rebuilt its bank after strict cache metadata rejected the relocated prior bank.",
+  "scope": "Four AA-CLIP, two FAPrompt, and two AdaCLIP full-BTAD seed-0 configurations; not the whole paper or all weak-source ablations.",
+  "source": "Public GitHub runtimes f8a2327,5e51bb0,17d745a,9483bc6, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0. AdaCLIP B16/H14 v4 rebuilt their banks after strict cache metadata rejected the relocated prior bank.",
   "comparison": "Against archived per-seed summaries at two decimals. All checks report 3 target classes; expected dataset size is 741 test images. Reported image-count checking varies by evaluator and is recorded per result; independent per-image execution traces are not provided.",
   "results": [
     {
@@ -246,6 +246,41 @@
         },
         {
           "file": "adaclip-b16-v4/environment.json",
+          "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
+        }
+      ]
+    },
+    {
+      "recipe": "adaclip-vith14-mvtec2btad-seed0",
+      "slurm_job_id": "13718",
+      "status": "mismatch",
+      "finished": "2026-10-09T04:02:26.619431+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 4,
+      "reference_sha256": "1fc532938229a7c6ce088bd9771dd3ec0eb532d275b45038f921f9e0e6ff3d08",
+      "evidence": [
+        {
+          "file": "adaclip-h14-v4/execution.json",
+          "sha256": "970f212be727ad57c1489c17cf8020b2351ddeb743868ea6eda1b9e90c301259"
+        },
+        {
+          "file": "adaclip-h14-v4/comparison.json",
+          "sha256": "15fdc120925103480ad3b85e89e64131984ef8ffe4cd30c0333c30c0838970d0"
+        },
+        {
+          "file": "adaclip-h14-v4/summary.json",
+          "sha256": "8b46025c4a8f9185ca95e022585652d3f7386ecd8ae9e5fadd9481480cbee2f4"
+        },
+        {
+          "file": "adaclip-h14-v4/environment.json",
           "sha256": "919801ed73407dab2f6becb219713753f0abb57f2375a871f7c2c7732847cf3b"
         }
       ]

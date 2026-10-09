@@ -32,6 +32,9 @@ AdaCLIP B/16 v4 also completes with 6/8 matches: both image AUROCs differ,
 while all six pixel metrics match at two decimals. Its source bank was rebuilt
 after strict cache metadata rejected the relocated historical bank. The original
 attempts and fresh execution records are preserved.
+AdaCLIP H/14 v4 completes with 4/8 matches; its rebuilt-bank differences are
+retained in the same dated evidence report. Neither Ada result is promoted as
+a numerically matching deployment candidate.
 The A10 differs from the paper's RTX 6000 Ada setup; the cause of these numerical
 differences has not been established.
 
