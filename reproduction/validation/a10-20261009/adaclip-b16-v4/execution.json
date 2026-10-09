@@ -1,0 +1,123 @@
+{
+  "recipe": "adaclip-vitb16-mvtec2btad-seed0",
+  "status": "mismatch",
+  "started": "2026-10-09T03:24:42.417627+00:00",
+  "plan_sha256": "b6e33a72623979731597a05147e28eaf0f47e4c994cc248fd86b486d766920bc",
+  "slurm_job_id": "13718",
+  "returncode": 0,
+  "comparison": {
+    "recipe": "adaclip-vitb16-mvtec2btad-seed0",
+    "reference_sha256": "5bc85f50cc2222b7c6d1dbc32dbb13e51d5fb8833322765a9ff83d0067935825",
+    "target_coverage": {
+      "status": "reported_coverage_matches",
+      "dataset": "btad",
+      "classes_checked": 3,
+      "expected_test_images": 741,
+      "reported_image_counts_checked": false,
+      "per_image_execution_verified": false
+    },
+    "actual_sha256": "a1e5fbf807a15ccb1a4cac760ee58daefe9a906acee876eaaef1bb4d29bcabff",
+    "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
+    "all_match_2dp": false,
+    "cells": [
+      {
+        "method": "Base",
+        "metric": "I-AUROC",
+        "actual": 61.30466262499491,
+        "expected": 61.25831405321757,
+        "delta_pp": 0.04634857177734375,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "Base",
+        "metric": "P-AUROC",
+        "actual": 56.267265478769936,
+        "expected": 56.26723766326904,
+        "delta_pp": 2.7815500892813816e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-PRO",
+        "actual": 18.509153773387276,
+        "expected": 18.509146074453987,
+        "delta_pp": 7.698933288224907e-06,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AP",
+        "actual": 4.636839559922615,
+        "expected": 4.636814049445093,
+        "delta_pp": 2.5510477522416863e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "I-AUROC",
+        "actual": 66.54585202534994,
+        "expected": 66.17787579695383,
+        "delta_pp": 0.36797622839611677,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "OURS",
+        "metric": "P-AUROC",
+        "actual": 58.03846021493276,
+        "expected": 58.03893804550171,
+        "delta_pp": -0.00047783056894701303,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "P-PRO",
+        "actual": 19.512073447306953,
+        "expected": 19.511142869790397,
+        "delta_pp": 0.0009305775165557861,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "P-AP",
+        "actual": 4.558827060585221,
+        "expected": 4.558743319163719,
+        "delta_pp": 8.374142150202601e-05,
+        "matches_printed_precision": true
+      }
+    ]
+  },
+  "capture_index_sha256": "2235ab0a5bee775c50484a40cd5a3be7621a43c30a8e4bee5ac6f49937ec587a",
+  "captured_files": [
+    {
+      "function": "get_or_collect_source_patch_banks",
+      "file": "000-get_or_collect_source_patch_banks.pt",
+      "sha256": "aa2a3778c58c78eb0f2cab6bf3cc4047837e8c939d5d75f326f1dd02686d523b"
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "file": "001-train_subspace_host_residual_calibrator.pt",
+      "sha256": "0fa65decf0cb39dc94cb529548be5335841f9a08e7977fcdbfe1c26bf9717d3e"
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "file": "002-train_subspace_host_residual_calibrator.pt",
+      "sha256": "6bbbd9138247d5ea3f58931372af3f2cc2e7643ee33617821ed0e5d30dd775ff"
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "file": "003-train_subspace_host_residual_calibrator.pt",
+      "sha256": "e362e2ac71563bf7bd9a4e6f27881b396208a9b7a3b8a809ee10bc2541f84762"
+    },
+    {
+      "function": "train_subspace_host_residual_calibrator",
+      "file": "004-train_subspace_host_residual_calibrator.pt",
+      "sha256": "590a4eae9d5e2711e91359c7b7488c544abcd7cb08cc5311a970b6c4c7feb570"
+    },
+    {
+      "function": "train_layer_calibrators",
+      "file": "005-train_layer_calibrators.pt",
+      "sha256": "2abff107e3f881296c940e381d4be6e288951eab3efc339f81e8fcb1c3621332"
+    }
+  ],
+  "finished": "2026-10-09T03:38:35.710891+00:00"
+}

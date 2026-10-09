@@ -11,6 +11,27 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_gateway_evidence_covers_each_pinned_release_and_fixture(self):
+        folder = ROOT / 'validation/a10-20261009'
+        index = json.loads((folder / 'gateway-evidence.json').read_text())
+        self.assertEqual(digest_file(folder / index['file']), index['sha256'])
+        report = json.loads((folder / index['file']).read_text())
+        registry_path = ROOT.parent / 'deployment/pilab-model-registry.json'
+        self.assertEqual(digest_file(registry_path), report['registry_sha256'])
+        registry = json.loads(registry_path.read_text())
+        releases = {m['id']: m['artifact_sha256'] for m in registry['models']}
+        self.assertEqual(report['status'], 'matched')
+        self.assertEqual(report['cases'], 9)
+        self.assertEqual(len(report['rows']), 9)
+        self.assertEqual({(r['model'], r['fixture_category']) for r in report['rows']},
+                         {(model, category) for model in releases for category in ['01', '02', '03']})
+        for row in report['rows']:
+            self.assertEqual(row['artifact_sha256'], releases[row['model']])
+            for key in ['host_max_abs_error', 'cted_max_abs_error', 'raw_image_score_abs_error']:
+                self.assertEqual(row[key], 0)
+        self.assertEqual(report['unknown_model_status'], 404)
+        self.assertEqual(report['missing_aa_category_status'], 422)
+
     def test_aa_serving_evidence_retains_cross_host_difference_and_local_parity(self):
         folder = ROOT / 'validation/a10-20261009'
         index = json.loads((folder / 'aa-serving-evidence.json').read_text())
@@ -37,7 +58,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 6)
+        self.assertEqual(len(report['results']), 7)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 for item in row['evidence']:

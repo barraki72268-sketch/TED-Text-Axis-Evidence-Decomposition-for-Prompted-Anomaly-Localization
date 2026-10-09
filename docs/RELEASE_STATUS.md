@@ -28,6 +28,10 @@ source, download, dataset, and execution records.
 A matching weak-source ablation does not establish the main configuration.
 AA-CLIP main L/14-224 matches 7/8 metrics and B+ matches 6/8 in the published
 A10 checks. Differences and failed attempts remain part of the evidence.
+AdaCLIP B/16 v4 also completes with 6/8 matches: both image AUROCs differ,
+while all six pixel metrics match at two decimals. Its source bank was rebuilt
+after strict cache metadata rejected the relocated historical bank. The original
+attempts and fresh execution records are preserved.
 The A10 differs from the paper's RTX 6000 Ada setup; the cause of these numerical
 differences has not been established.
 
@@ -38,7 +42,8 @@ differences has not been established.
 | Datasets | MVTec AD, VisA, MPDD, and BTAD inputs verified; MVTec AD 2 still needs readable source data |
 | Hugging Face | Original source, checkpoints, and banks are public; all-model serving bundles remain in progress |
 | pilab Docker | FAPrompt CPU service path verified; its recorded deployment uses a host-mounted Python runtime |
-| AA-CLIP worker | Weak-source and main L/14-336 CPU Docker HTTP each match same-pilab original equations on three images. The weak-source cross-A10 comparison retains a small difference; all-model service selection remains in progress |
+| AA-CLIP worker | Weak-source and main L/14-336 CPU Docker HTTP each match same-pilab original equations on three images. The weak-source cross-A10 comparison retains a small difference |
+| Model selection | Three artifact-pinned pilab workers are selectable through a Docker gateway; nine direct-worker/gateway cases match exactly. Other families await validation |
 | Complete release | All model/backbone/dataset/seed runs, remaining ablations and figures, fresh bank rebuilding, and all-model deployment remain required |
 
 Continue with the [quick start](../README.md#quick-start),

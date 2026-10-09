@@ -196,4 +196,39 @@ The [main worker runtime record](../reproduction/validation/a10-20261009/aa-pila
 identifies its image and mounts. Neither worker check establishes full-dataset
 CPU metric parity. Both workers use the same host-runtime profile with separate
 Compose project names; the main project sets `TED_AA_PORT=18084`.
-All-model selection, all-model publication, and a standalone container remain required.
+All-model publication and a standalone container remain required.
+
+### Selecting the three verified pilab workers
+
+The [gateway Compose profile](../deployment/gateway.pilab.compose.yaml) serves
+the model selector on pilab loopback port 18085. Its
+[registry](../deployment/pilab-model-registry.json) pins the artifact identity of
+FAPrompt paper alpha 0.5, AA main L/14-336 seed 0, and AA source-limit-1.
+These releases have different evaluation scopes, shown beside the selector.
+Other model families will be added after their serving checks pass.
+
+From your own computer, keep this SSH tunnel open:
+
+```bash
+ssh -N -L 18085:127.0.0.1:18085 pilab
+```
+
+Open `http://127.0.0.1:18085/`, select a model and (for AA) a target category,
+then upload an actual PNG or JPEG. The interface displays the input, host map,
+C-TED map, raw image score, artifact hash, and downloadable raw maps.
+The image score is not an anomaly probability or the dataset-wide paper metric.
+
+The [nine-case gateway check](../reproduction/validation/a10-20261009/model-gateway-parity.json)
+compares direct-worker and gateway HTTP predictions on three BTAD images for
+each of the three registered releases. Both maps and raw image scores have
+zero error in all nine cases. Missing AA categories return 422; unknown models
+return 404. Contract tests also check artifact mismatches, upload limits,
+unavailable workers, and independent per-worker admission.
+The actual browser upload and AA main result display were checked separately.
+This verifies service routing; it does not extend any full-dataset reproduction claim.
+
+The gateway uses Linux host networking to reach loopback-only workers, binds
+only to `127.0.0.1:18085`, and uses the existing host-mounted Python runtime.
+The recorded API parity check ran on commit `c674fa4`; the later `0b5a3b2`
+deployment only fixes hiding inactive category controls. No standalone image
+or public Internet endpoint is claimed.
