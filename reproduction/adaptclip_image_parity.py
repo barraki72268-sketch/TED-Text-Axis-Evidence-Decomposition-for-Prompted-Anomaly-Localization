@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
+import sys
 from types import SimpleNamespace
 
 from .checkpoint_download import digest_file
@@ -26,16 +27,34 @@ def original_output_block(script: Path):
     return compile(ast.Module(body=blocks, type_ignores=[]), str(script), 'exec')
 
 
-def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None) -> dict:
+def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
+        deny_original_inputs: bool = False) -> dict:
     import numpy as np
     from PIL import Image
     import torch
     from ted.inference.adaptclip_engine import CapturedAdaptCLIPEngine
 
-    engine = CapturedAdaptCLIPEngine(export_directory=exported, workspace=workspace, device='cpu')
     plan = json.loads(((fixture_workspace or workspace) / 'run.json').read_text())
     if digest_file((fixture_workspace or workspace) / 'run.json') != digest_file(workspace / 'run.json'):
         raise ValueError('Fixture workspace must share the exact original plan')
+    if deny_original_inputs:
+        if fixture_workspace is None or fixture_workspace == workspace or not (workspace / 'serving-bundle.json').is_file():
+            raise ValueError('Original-input denial requires a separate portable bundle and fixture workspace')
+        original = fixture_workspace.resolve()
+        permitted = {original / 'run.json'} | {
+            Path(data['prepared_metadata']).resolve() for data in plan['datasets'].values()}
+        old_objects = {Path(row['path']).resolve() for row in plan['verified_objects']}
+
+        def guard(event, arguments):
+            if event in {'socket.connect', 'socket.getaddrinfo'}:
+                raise PermissionError('Network access prohibited in relocated inference validation')
+            if event == 'open' and isinstance(arguments[0], (str, bytes)):
+                path = Path(arguments[0].decode() if isinstance(arguments[0], bytes) else arguments[0]).resolve()
+                if path not in permitted and (path == original or original in path.parents or path in old_objects):
+                    raise PermissionError('Original workspace/model input read prohibited')
+        # This CLI runs in a disposable process; audit hooks cannot be removed.
+        sys.addaudithook(guard)
+    engine = CapturedAdaptCLIPEngine(export_directory=exported, workspace=workspace, device='cpu')
     dataset = engine.summary['target_dataset']
     prepared = plan['datasets'][dataset]
     metadata_path = Path(prepared['prepared_metadata'])
@@ -96,7 +115,11 @@ def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None) 
                  ['host_max_absolute_error', 'cted_max_absolute_error', 'host_image_score_error', 'cted_image_score_error'])
     return {'status': 'matched' if passed else 'mismatch', 'device': 'cpu', 'engine': engine.info(),
             'scope': 'First recorded test image of each class, same CPU model versus original baseline functions and original calibrated-output AST block. Not a full-dataset metric replay or independent GPU image parity.',
-            'model_fitting': False, 'rows': rows, 'portable_bundle_verified': False, 'docker_http_verified': False}
+            'model_fitting': False, 'rows': rows,
+            'portable_bundle_verified': passed and engine.portable and deny_original_inputs,
+            'original_workspace_model_reads_and_network_denied': deny_original_inputs,
+            'fixture_metadata_read_exception': bool(deny_original_inputs),
+            'anonymous_download_verified': False, 'docker_http_verified': False}
 
 
 def main() -> int:
@@ -105,13 +128,15 @@ def main() -> int:
     parser.add_argument('workspace', type=Path)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--fixture-workspace', type=Path, help='Original dataset metadata for a portable bundle test; never used by the engine')
+    parser.add_argument('--deny-original-inputs', action='store_true', help='Reject original workspace/model inputs and networking during the relocated test; fixture metadata is explicitly excepted')
     args = parser.parse_args()
     report = {'status': 'running', 'started': datetime.now(timezone.utc).isoformat()}
     with args.output.open('x', encoding='utf-8') as stream:
         json.dump(report, stream, indent=2)
     try:
         report.update(run(args.export_directory.resolve(), args.workspace.resolve(),
-                          args.fixture_workspace.resolve() if args.fixture_workspace else None))
+                          args.fixture_workspace.resolve() if args.fixture_workspace else None,
+                          args.deny_original_inputs))
     except Exception as error:
         report.update(status='failed', error=f'{type(error).__name__}: {error}')
     report['finished'] = datetime.now(timezone.utc).isoformat()
