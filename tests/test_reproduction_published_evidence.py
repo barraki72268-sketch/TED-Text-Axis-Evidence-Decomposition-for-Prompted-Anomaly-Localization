@@ -5,6 +5,7 @@ import unittest
 from reproduction.checkpoint_download import digest_file
 from reproduction.metrics import compare, extract, extract_recipe
 from reproduction.recipe_lookup import reference_summary, execution_recipe
+from reproduction.coverage import validate_coverage
 
 
 ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
@@ -858,7 +859,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_verified_release_matches_archived_references_and_full_target_scope(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'verified-results.json').read_text())
-        self.assertEqual(len(report['results']), 24)
+        self.assertEqual(len(report['results']), 25)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 self.assertEqual(row['status'], 'matched')
@@ -881,6 +882,10 @@ class PublishedEvidenceTests(unittest.TestCase):
                     self.assertEqual(row['target_coverage']['classes_checked'], 12)
                     self.assertEqual(row['target_coverage']['expected_test_images'], 2162)
                     self.assertTrue(row['target_coverage']['reported_image_counts_checked'])
+                if row['target_coverage']['dataset'] == 'mpdd':
+                    self.assertEqual(row['target_coverage']['classes_checked'], 6)
+                    self.assertEqual(row['target_coverage']['expected_test_images'], 458)
+                    self.assertEqual(validate_coverage(ROOT, reference, actual), row['target_coverage'])
                 self.assertFalse(row['target_coverage']['per_image_execution_verified'])
 
     def test_rawclip_relocated_image_outputs_bind_exact_engine_and_terminal_state(self):

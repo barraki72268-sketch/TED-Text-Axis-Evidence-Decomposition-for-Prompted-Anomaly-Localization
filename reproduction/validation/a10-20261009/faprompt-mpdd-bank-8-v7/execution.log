@@ -1,0 +1,56 @@
+name ViT-L/14@336px
+text_layer False
+text_layer True
+Initializing class-specific contexts
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+single_para torch.Size([4, 768])
+embedding_pos torch.Size([1, 77, 768])
+tokenized_prompts shape torch.Size([1, 1, 77]) torch.Size([1, 10, 77])
+{"stage": "bank_cache_hit", "path": "/home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/faprompt_vitl336_mvtec2mpdd_bank8_seed0/source/neurips2026/results/bank_cache/faprompt_sourcebank_mvtec_b2a4848f9f_trained_on_mvtecad_epoch_15_faprompt_v4_branchscore_ViT-L-14-336px_strict_f6-12-18-24_img518_dapofficial_firstk_dpam20_fpc8_dfc8_fpt16_dft16_topk0p01_seed0.pt", "num_fp": 16, "num_defect": 16}
+{"stage": "source_branch_calibrator_trained", "branch": "branch1", "calibration": "source_calibrated_host_residual_subspace_rank_no_target", "host_score_source": "faprompt_branch1_score", "subspace_rank": 4, "eta": 0.09344641119241714, "readout_gamma": 0.09158218652009964, "fp_weight": 1.0000009536743164, "train_points_per_class": 16, "source_pair_rank_accuracy": 0.5, "source_base_pair_rank_accuracy": 0.5}
+{"stage": "source_branch_calibrator_trained", "branch": "branch2", "calibration": "source_calibrated_host_residual_subspace_rank_no_target", "host_score_source": "faprompt_branch2_score", "subspace_rank": 4, "eta": 0.09357066452503204, "readout_gamma": 0.0914497897028923, "fp_weight": 1.0000009536743164, "train_points_per_class": 16, "source_pair_rank_accuracy": 0.5625, "source_base_pair_rank_accuracy": 0.5625}
+{"stage": "target_class_done", "class_name": "bracket_black"}
+{"stage": "target_class_done", "class_name": "bracket_brown"}
+{"stage": "target_class_done", "class_name": "bracket_white"}
+{"stage": "target_class_done", "class_name": "connector"}
+{"stage": "target_class_done", "class_name": "metal_plate"}
+{"stage": "target_class_done", "class_name": "tubes"}
+{
+  "baseline_official": {
+    "pixel_auc": 0.9417452572700536,
+    "pixel_ap": 0.17587047155893507,
+    "pixel_aupro": 0.7884747584660848,
+    "image_auc": 0.7944780627321206,
+    "image_ap": 0.8351014599367068
+  },
+  "baseline_maptopk": {
+    "pixel_auc": 0.9417452572700536,
+    "pixel_ap": 0.17587047155893507,
+    "pixel_aupro": 0.7884747584660848,
+    "image_auc": 0.8578057059478305,
+    "image_ap": 0.8810794679774713
+  },
+  "parallel": {
+    "support_only_alpha_0.5": {
+      "pixel_auc": 0.08295099895593812,
+      "pixel_ap": 0.012490261774504555,
+      "pixel_aupro": 9.098076649631064e-05,
+      "image_auc": 0.7944780627321206,
+      "image_ap": 0.8351014599367068
+    },
+    "branch_calibrated_alpha_0.5": {
+      "pixel_auc": 0.9612704358659085,
+      "pixel_ap": 0.254393444597153,
+      "pixel_aupro": 0.8420442044734955,
+      "image_auc": 0.7944780627321206,
+      "image_ap": 0.8351014599367068
+    }
+  }
+}
+[OK] wrote /home/jinyoungkim/ted-reproduce-20261009/a10-runs-v5/faprompt_vitl336_mvtec2mpdd_bank8_seed0/results/summary.json
