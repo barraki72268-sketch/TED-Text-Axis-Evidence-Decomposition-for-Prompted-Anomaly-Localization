@@ -1,8 +1,8 @@
 """Experimental captured AA host bridge. Run in an isolated host worker.
 
-The verified prepared research workspace is still needed. The engine only
+Use the verified prepared workspace or an exact serving bundle. The engine only
 encodes prompts/images and reads captured calibrators; it never loads datasets
-or fits state. This is not yet the portable all-model Docker release.
+or fits state. All-model Docker deployment still requires separate validation.
 """
 import importlib.util
 import json
@@ -45,6 +45,18 @@ class CapturedAAEngine:
         execution = read(exported / 'execution.json')
         if execution['status'] != 'matched' or digest_file(workspace / 'run.json') != execution['plan_sha256']:
             raise ValueError('Workspace does not match the passing captured execution')
+        portable = workspace / 'serving-bundle.json'
+        if portable.exists():
+            bundle = read(portable)
+            if (bundle.get('schema_version') != 1 or bundle.get('host') != 'AA-CLIP' or
+                    bundle.get('recipe') != manifest['recipe'] or
+                    bundle.get('export_sha256') != digest_file(manifest_path) or
+                    bundle.get('original_plan_sha256') != execution['plan_sha256']):
+                raise ValueError('Serving bundle does not bind the original passing execution')
+            for entry in bundle['files']:
+                relative = Path(entry['path'])
+                if relative.is_absolute() or '..' in relative.parts or digest_file(workspace / relative) != entry['sha256']:
+                    raise ValueError('Serving bundle input changed')
         summary = read(exported / 'summary.json')
         if summary['blend_modes'].count('prescore_calibrated') != 1 or 1.0 not in summary['alphas']:
             raise ValueError('Expected the fixed prescore_calibrated_alpha_1 comparison recipe')
@@ -53,7 +65,7 @@ class CapturedAAEngine:
         binding_id = recipe.get('dependency_recipe', recipe['id'])
         checkpoints = read(catalog / 'host-checkpoints.json')
         binding = next(b for b in checkpoints['bindings'] if b['recipe'] == binding_id)
-        ckpt_dir = Path(summary['ckpt_dir'])
+        ckpt_dir = workspace / 'checkpoints' if portable.exists() else Path(summary['ckpt_dir'])
         for entry in binding['checkpoint_assets']:
             if digest_file(ckpt_dir / entry['checkpoint_filename']) != entry['sha256']:
                 raise ValueError('AA adapter checkpoint does not match the recorded recipe')
@@ -80,7 +92,10 @@ class CapturedAAEngine:
         self.host._add_aaclip_to_syspath()
         self.host.ensure_aaclip_pretrained_weight()
         from model.adapter import AdaptedCLIP
-        from model.clip import create_model
+        from model.clip import create_model, _MODEL_CKPT_PATHS
+        # Relocate only the selected, hash-verified weight. Preserve all model
+        # architecture, preprocessing, scoring and calibration arguments.
+        _MODEL_CKPT_PATHS[summary['model_name'].replace('/', '-')] = workspace / 'clip-cache' / backbone['filename']
         from forward_utils import calculate_similarity_map, get_adapted_text_embedding
         from dataset.constants import DOMAINS
         self.device = torch.device(device)

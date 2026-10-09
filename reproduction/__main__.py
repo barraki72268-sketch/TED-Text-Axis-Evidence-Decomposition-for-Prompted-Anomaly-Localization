@@ -52,6 +52,9 @@ def main() -> int:
     frozen = sub.add_parser("export-captured-run", help="Export fitted state from a matching full run; inference adapter/parity still required")
     frozen.add_argument("workspace", type=Path)
     frozen.add_argument("destination", type=Path)
+    serving = sub.add_parser("build-aa-serving-bundle", help="Bundle a passing AA run with exact source and weights; relocated parity still required")
+    serving.add_argument("workspace", type=Path)
+    serving.add_argument("destination", type=Path)
     checkpoints = sub.add_parser("verify-checkpoints", help="Verify host-weight bindings and optionally actual checkpoint bytes")
     checkpoints.add_argument("--directory", type=Path, help="Root containing objects/<sha256> files")
     checkpoints.add_argument("--recipe", help="Limit byte verification to one recipe's host weights")
@@ -77,6 +80,10 @@ def main() -> int:
     table.add_argument("--transfer", required=True)
     table.add_argument("--runs", type=Path, required=True, help="Directory containing <recipe-id>/summary.json")
     args = parser.parse_args()
+    if args.action == "build-aa-serving-bundle":
+        from .aa_serving_bundle import build_aa_serving_bundle
+        print(json.dumps(build_aa_serving_bundle(ROOT, args.workspace, args.destination), indent=2))
+        return 0
     if args.action == "export-captured-run":
         from .captured_export import export_captured_run
         print(json.dumps(export_captured_run(ROOT, args.workspace, args.destination), indent=2))
