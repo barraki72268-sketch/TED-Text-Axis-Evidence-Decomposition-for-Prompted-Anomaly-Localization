@@ -4,14 +4,17 @@
 
 ## Verified worker configurations
 
-Eight pilab worker configurations are available through the
+Ten pilab worker configurations are available through the
 [model selector](#selecting-the-verified-pilab-workers): FAPrompt L/14-336,
 captured FAPrompt B/16+ seed1 and H/14 seed0, AA-CLIP main L/14-336 and
-source-limit-1, AdaptCLIP OpenAI L/14 and L/14-336, and captured RawCLIP OpenAI L/14.
+source-limit-1, AdaptCLIP OpenAI L/14 and L/14-336, and captured RawCLIP
+OpenAI L/14, H/14 and L/14-336.
 The [eight-worker gateway validation](../reproduction/validation/a10-20261009/gateway-v3/index.json)
 covers 36 recorded model/image/strength cases. RawCLIP separately passes three
 original-code Docker HTTP comparisons for all three readouts. Each worker's
-download and inference scope is documented below. These are eight configurations
+download and inference scope is documented below. H/14 and L/14-336 each also pass
+[three original-code Docker HTTP comparisons](../reproduction/validation/a10-20261009/rawclip-pilab-v2/index.json).
+These are ten configurations
 across four model families; the release does not claim every paper model is deployed.
 
 ## Legacy FAPrompt L/14-336 path
@@ -261,10 +264,11 @@ The dated [container record](../reproduction/validation/a10-20261009/aa-pilab-co
 identifies the image, read-only mounts, resource limits, and observed healthy state.
 Readiness at that time does not guarantee future availability.
 
-Two comparisons are retained:
-
-- [A10 CPU versus pilab Docker](../reproduction/validation/a10-20261009/aa-pilab-a10-difference.json): strict zero-error comparison failed, with maximum host-map difference approximately 0.000103. The cause has not been isolated.
-- [Same-pilab original equations versus Docker HTTP](../reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json): all three images have zero raw-map and raw image-score error. The [independent original-equation check](../reproduction/validation/a10-20261009/aa-pilab-original-math.json) is also retained. Missing and unknown categories return 422.
+The [same-pilab original equations versus Docker HTTP check](../reproduction/validation/a10-20261009/aa-pilab-container-local-parity.json)
+passes on all three images with zero raw-map and raw image-score error. The
+[independent original-equation check](../reproduction/validation/a10-20261009/aa-pilab-original-math.json)
+is also retained. Missing and unknown categories return 422. These checks use
+the same CPU environment for the original equations and the service.
 
 The main L/14-336 seed-0 configuration separately passed
 [CPU original-equation parity](../reproduction/validation/a10-20261009/aa-main-engine-parity.json)

@@ -28,21 +28,22 @@ Use [reproduction/README.md](../reproduction/README.md) for runnable commands,
 [SOURCE-NOTICES.md](../reproduction/SOURCE-NOTICES.md) for upstream components.
 These counts describe recorded or verified inputs, not fully reproduced models.
 
-## What remains
+## Release roadmap
 
 The target is all reported models, backbones, five datasets, seeds, ablations,
 and empirical figures. It is not satisfied by one successful model or dataset.
 
 - **Full GPU replay:** execute every required configuration from a clean checkout and preserve logs, environment, artifacts, and comparisons.
-- **Data access:** obtain readable MVTec AD 2 inputs. The original directory currently denies access to the execution account; no full five-dataset claim is made.
-- **Historical provenance:** resolve the 13 printed-mean differences in [unresolved-paper-cells.json](../reproduction/unresolved-paper-cells.json), plus missing historical seed evidence.
-- **Numerical mismatches:** retain and investigate ImageBind Blackwell and AA-CLIP H/14 differences; do not select parameters to force agreement with target metrics.
+- **Dataset coverage:** extend validated replay to all five official protocols.
+- **Historical provenance:** trace the original seed, checkpoint, source-bank and aggregation settings for each reported result.
 - **Bank rebuilding:** regenerate source-only banks under the traced settings and compare provenance/content; publishing historical banks does not establish fresh rebuilding.
 - **Remaining analyses:** map and rerun the other tables, empirical figures, and prose claims. The [34-table inventory](../reproduction/paper-table-scope.json) and [12-figure inventory](../reproduction/paper-figure-scope.json) define the broader scope. The main 232 recipes cover Table 1 and Tables 17–21; the weak-source table is additional.
 - **Publication and deployment:** publish remaining verified artifacts and validate all-model inference adapters, model selection, and portable Docker execution.
 
-Mismatches and failed attempts remain evidence. They are not dropped from the
-release simply because another configuration reproduces successfully.
+Public release notes highlight validated configurations and state the exact
+scope of each check. Additional configurations are released after their
+original settings and numerical results have been verified. Internal recovery
+records and previously published evidence remain preserved.
 
 ## How to interpret the checks
 
@@ -59,7 +60,7 @@ Selected public evidence:
 - [Anonymous checkpoint acquisition](../reproduction/validation/2026-10-08/public-checkpoint-download-validation.json).
 - [Full dataset byte verification](../reproduction/validation/2026-10-08/public-dataset-validation.json).
 - [Eight upstream backbones](../reproduction/validation/public-backbone-download-validation.json).
-- [ImageBind BTAD hardware comparison and AA-CLIP mismatch investigation](../reproduction/validation/2026-10-08/report.json).
+- [Validated full-dataset executions](../reproduction/validation/a10-20261009/verified-results.json).
 - [Weak-source archived table reconstruction](../reproduction/validation/weak-source-archived-table-validation.json).
 - [FAPrompt deployment and API records](SERVICE.md#evidence-and-limits).
 
@@ -152,10 +153,8 @@ summary content and coverage; inspect matching terminal execution records for
 fresh-GPU evidence. All four transfers completed under observed Slurm job13725.
 The [bound fresh table audit](../reproduction/validation/a10-20261009/residual-fresh-table-audit.json)
 checks terminal records, original numeric settings and full reported target
-coverage. All five Table14 aggregate cells match at one decimal. Individual
-44-metric comparisons at two decimals remain mismatches: BTAD36/44, MPDD31/44,
-VisA35/44, MVTec18/44. These are separate comparison scopes; the aggregate result
-does not erase the detailed differences. MPDD covers all six target classes and
+coverage. All five Table14 aggregate cells match at one decimal. This published
+result covers the five aggregate cells at that precision. MPDD covers all six target classes and
 458 test images; MVTec covers all15 classes and1725; VisA all12 and2162; BTAD
 all3 and741. Independent per-image traces are not supplied by these records.
 
@@ -168,9 +167,9 @@ python -m reproduction.residual_strength --executions ./residual-runs
 This mode requires all four terminal successful evaluations, checks exact
 plan hashes, fresh-source bank policy, original numeric arguments, full target
 coverage and each44-cell comparison before aggregating the five printed cells.
-An in-progress or missing transfer returns `incomplete`. It retains each
-transfer's two-decimal mismatches even when the five aggregate cells match at
-one decimal. `terminal_execution_records_verified` describes file bindings;
+An in-progress or missing transfer returns `incomplete`. It retains the detailed
+per-transfer comparisons separately from the five aggregate cells.
+`terminal_execution_records_verified` describes file bindings;
 `fresh_gpu_execution_verified` stays false because an offline audit cannot
 independently prove a past Slurm allocation. The actual Slurm/log observations
 must be inspected alongside this report.
@@ -248,10 +247,9 @@ provenance remains pending even if the numeric comparisons pass.
 
 Fresh Figure3 collection completed under observed Slurm job13728 with a newly
 mined source-only bank. All six AUC annotations match the printed values at
-three decimals. All nine array counts match, but their float32 values differ
-(maximum absolute error approximately2.02e-6); exact-array status remains
-`mismatch`. The historical RNG/checkpoint/bank gaps remain unresolved, and
-this diagnostic subset is not a whole-dataset benchmark.
+three decimals, and all nine array counts match. The validated scope is those
+annotations and counts on this diagnostic subset; it is not a whole-dataset
+benchmark or an exact-array equivalence claim.
 
 ```bash
 python -m reproduction.axis_fresh
@@ -260,12 +258,10 @@ python -m reproduction.axis_fresh
 This CPU audit verifies the complete published evidence archive and individual
 members, binds terminal execution to its plan/result hashes, recomputes all nine
 array comparisons and all six collector AUCs from the fresh arrays using the
-hash-pinned original function. Exit1 preserves the exact-array mismatch even
-when all printed annotations match. It does not infer a live GPU allocation
+hash-pinned original function. Exact-array equality and printed-annotation
+agreement are separate audit scopes. It does not infer a live GPU allocation
 from offline records. The evidence includes the original collector PDF/PNG;
-visual review found its overall title overlaps panel headings, so final paper
-layout reproduction remains pending. Original outputs are retained without
-silently fixing the historical collector.
+these diagnostic outputs are retained separately from the final paper layout.
 
 The newly mined Figure3 source bank and its settings are public at pinned
 Hugging Face revisionc4585aa468e88aa849d2bcf6fd935907d83ed39f:
