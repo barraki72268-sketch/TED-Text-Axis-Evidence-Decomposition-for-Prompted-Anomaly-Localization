@@ -1,0 +1,88 @@
+{
+  "figure": 4,
+  "label": "fig:rawclip_hardfp_focus",
+  "scope": "Original archived patch-score arrays, summary and byte-identical final paper PDF located; fresh collection, numerical audit and layout rerender not yet performed",
+  "archive": {
+    "path": "figures/rawclip-focus/archived-input.zip",
+    "bytes": 4196012,
+    "sha256": "db9f305e345859978604f64530ed4682865efcd7eca0cc8f5b119a0db6952a5e",
+    "members": {
+      "rawclip_aggregated_distribution.json": {
+        "bytes": 3678,
+        "sha256": "b357ee8214c0276a8740426aba387ed64169e36f705af8d4928d395c207486f5"
+      },
+      "rawclip_aggregated_distribution_arrays.npz": {
+        "bytes": 4177810,
+        "sha256": "e474d35f3468edae516695544c989ada7f45964d656ae1a464fd652f36f6c3a7"
+      },
+      "rawclip_abnormal_hardfp_focus_twopanel_compact.pdf": {
+        "bytes": 16910,
+        "sha256": "bd999fdda64f5deaaf690576341d002a2920c09a9bd3d6f8ae70610e0152eade"
+      }
+    }
+  },
+  "original_paper_graphic": {
+    "path": "figure/rawclip_abnormal_hardfp_focus_twopanel_compact.pdf",
+    "bytes": 16910,
+    "sha256": "bd999fdda64f5deaaf690576341d002a2920c09a9bd3d6f8ae70610e0152eade",
+    "source_files_mentioning_exact_filename": [
+      "neurips2026/scripts/make_rawclip_focus_bigfont_20260505.py"
+    ]
+  },
+  "original_result_root": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/rawclip_aggregated_distribution_vitl_visa2mvtec",
+  "source_scripts": [
+    {
+      "path": "neurips2026/scripts/make_rawclip_focus_bigfont_20260505.py",
+      "sha256": "1d7becf811279a9b44f651ba94dc77b942dbb1ae1cb52990e26acfba68ca0264"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_aggregated_distribution.py",
+      "sha256": "40932545cf39506b5d5e806cc811cddcee0b9bcd322a3c24d0d3741be80cf706"
+    }
+  ],
+  "observed_summary": {
+    "backbone": "ViT-L-14-336",
+    "pretrained_dataset": "openai",
+    "target_split": "test",
+    "class_name": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/rawclip_vitl_visa_multilayer.pt",
+    "hard_fp_frac": 0.01,
+    "counts": {
+      "num_images": 1725,
+      "num_normal_images": 467,
+      "num_anomaly_images": 1258,
+      "num_abnormal_pixels": 6232232,
+      "num_hard_fp_pixels": 527243,
+      "num_other_pixels": 52195189
+    },
+    "pairwise_auc": {
+      "baseline": {
+        "abnormal_vs_hard_fp": 0.04344703045,
+        "abnormal_vs_other": 0.320733293375,
+        "hard_fp_vs_other": 0.910028767675
+      },
+      "ours": {
+        "abnormal_vs_hard_fp": 0.962106854525,
+        "abnormal_vs_other": 0.704219238275,
+        "hard_fp_vs_other": 0.0760866014
+      }
+    }
+  },
+  "plotter_protocol": {
+    "rng_initialization": "np.random.default_rng(0)",
+    "plot_subsample_per_group": 50000,
+    "state_order": "Two-panel compact output uses same generator after horizontal-clean plotting; must reproduce previous draws, not reset RNG immediately before compact output",
+    "auc": "Stable mergesort ranks without tie averaging; plotted titles disabled",
+    "panel_size_inches": [
+      12.2,
+      2.05
+    ]
+  },
+  "unresolved": [
+    "Historical collector argv and RNG provenance",
+    "Original bank metadata/bytes and source calibration settings",
+    "Recalculate array summaries/AUC from pinned original pure functions",
+    "Replay full target collection under valid Slurm",
+    "Reproduce final plot layout from archival arrays"
+  ]
+}

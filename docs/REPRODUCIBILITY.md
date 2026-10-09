@@ -283,3 +283,13 @@ passed an independent anonymous byte-for-byte download check. This verification
 covers four downloaded files, not every artifact in the inventory. Fresh
 reproduction continues to rebuild its own source bank; the published bank is
 available for inspection and does not replace the missing historical bank.
+
+Figure4 now has a [bound archival input](../reproduction/figures/rawclip-focus/manifest.json):
+six patch-score arrays, original aggregated summary and a PDF byte-identical to
+the submitted paper graphic. The summary reports all1725 MVTec test images;
+each saved array is capped at200000 sampled patches. Image-count metadata is
+not fresh execution evidence. The final plotter uses a50000-patch subsample per
+group and a single RNG whose state advances during earlier horizontal plotting
+before the compact two-panel output. Replaying only that final function with a
+reset RNG would change its samples. Numerical recalculation, original source-bank
+provenance, fresh GPU collection and final layout rerender remain pending.
