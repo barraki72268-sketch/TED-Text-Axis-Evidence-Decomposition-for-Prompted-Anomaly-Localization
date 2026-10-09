@@ -83,7 +83,7 @@ class CapturedFAPromptEngine:
             self.pair=self.host.learned_text_pair(self.model,self.prompts)
             axis=torch.nn.functional.normalize(self.pair[1]-self.pair[0],dim=0).cpu()
             torch.testing.assert_close(axis,self.readout.bank['axis'],atol=1e-5,rtol=1e-5)
-        self.transform,_=self.host.get_transform(SimpleNamespace(image_size=summary['bank']['image_size']))
+        self.transform,_=self.host.get_transform(SimpleNamespace(image_size=self.readout.bank['image_size']))
         if summary['ours_image_score_mode']!='official':raise ValueError('Non-official image-score policy needs separate implementation')
         self.summary=summary;self.manifest=manifest;self.alpha=float(alpha);self._lock=threading.Lock()
         self.model_load_ms=(time.perf_counter()-started)*1000
