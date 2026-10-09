@@ -91,6 +91,8 @@ jobs:
         run: python -m unittest discover -s tests -p "test_inference.py" -v
       - name: Compare captured AdaptCLIP branches against the archived output block
         run: python -m unittest discover -s tests -p "test_adaptclip_inference.py" -v
+      - name: Check AdaptCLIP path-only source relocation
+        run: python -m unittest discover -s tests -p "test_adaptclip_relocation.py" -v
       - name: Check API category selection, map encoding, limits, and concurrency
         run: python -m unittest discover -s tests -p "test_api.py" -v
       - name: Check model gateway selection, artifact identity, and admission

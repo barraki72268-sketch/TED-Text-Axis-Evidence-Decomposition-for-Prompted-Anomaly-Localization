@@ -53,7 +53,19 @@ class ServingArchiveTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 prepare_release('fixture', root / 'destination', root / 'cache', catalog)
 
-    def fixture(self, root):
+    def test_adaptclip_archive_binds_host_and_preserves_source_bytes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bundle = self.fixture(root, 'AdaptCLIP')
+            with self.assertRaises(ValueError):
+                pack_aa_bundle(bundle, root / 'wrong-host.tar.gz')
+            record = pack_aa_bundle(bundle, root / 'adaptclip.tar.gz', 'AdaptCLIP')
+            self.assertEqual(record['host'], 'AdaptCLIP')
+            unpack_aa_bundle(root / 'adaptclip.tar.gz', root / 'relocated', record)
+            self.assertEqual((root / 'relocated/source/research.py').read_bytes(),
+                             (bundle / 'source/research.py').read_bytes())
+
+    def fixture(self, root, host='AA-CLIP'):
         bundle = root / 'bundle'
         bundle.mkdir()
         def write(name, value):
@@ -67,11 +79,11 @@ class ServingArchiveTests(unittest.TestCase):
         state = write('export/objects/state', b'fitted state\x00')
         execution = write('export/execution.json', dict(recipe='fixture', status='matched',
                          returncode=0, finished='dated', plan_sha256=plan))
-        exported = write('export/manifest.json', dict(host='AA-CLIP', recipe='fixture',
+        exported = write('export/manifest.json', dict(host=host, recipe='fixture',
             prepared_source_files=[dict(path='research.py', sha256=source)],
             evidence=[dict(file='execution.json', sha256=execution)],
             captured_state=[dict(object_path='objects/state', sha256=state)]))
-        write('serving-bundle.json', dict(schema_version=1, host='AA-CLIP', recipe='fixture',
+        write('serving-bundle.json', dict(schema_version=1, host=host, recipe='fixture',
             export_sha256=exported, original_plan_sha256=plan,
             files=[dict(path=n, sha256=h) for n, h in [('run.json', plan),
                 ('source/research.py', source), ('weights.pt', weights)]]))
