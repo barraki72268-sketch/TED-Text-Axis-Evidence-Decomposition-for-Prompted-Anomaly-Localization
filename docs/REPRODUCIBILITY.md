@@ -149,24 +149,15 @@ Repeat the other three transfer IDs. To assemble the printed five-cell table,
 place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then run
 `python -m reproduction.residual_strength --runs <runs>`. That assembly checks
 summary content and coverage; inspect matching terminal execution records for
-fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
-BTAD, MPDD and VisA have now completed on A10 under Slurm job13725; MVTec
-remain pending until actual terminal records prove them.
-
-All four Linux preparation commands passed on the A10 host with CUDA hidden.
-The [preparation record](../reproduction/validation/a10-20261009/residual-preparation-20261009.json)
-binds the exact run-plan bytes in a SHA-verified ZIP, zero historical bank inputs,
-empty pre-run bank caches and verified weight objects. This is preparation
-evidence. The [fresh BTAD execution](../reproduction/validation/a10-20261009/residual-btad-v5/execution.json)
-completed successfully but matches only36/44 archived metrics at two decimals.
-All44 comparisons and the complete summary are retained; this is a mismatch,
-not a reproduced Table14. [MPDD](../reproduction/validation/a10-20261009/residual-mpdd-v5/execution.json)
-also completed with31/44 archived metrics matching at two decimals across all
-four target classes and458 expected test images. [VisA](../reproduction/validation/a10-20261009/residual-visa-v5/execution.json)
-completed with35/44 archived metrics matching across all12 classes and2162
-expected test images. MVTec and final aggregation
-are pending. Reported target counts are checked; independent per-image traces
-are not supplied by these records.
+fresh-GPU evidence. All four transfers completed under observed Slurm job13725.
+The [bound fresh table audit](../reproduction/validation/a10-20261009/residual-fresh-table-audit.json)
+checks terminal records, original numeric settings and full reported target
+coverage. All five Table14 aggregate cells match at one decimal. Individual
+44-metric comparisons at two decimals remain mismatches: BTAD36/44, MPDD31/44,
+VisA35/44, MVTec18/44. These are separate comparison scopes; the aggregate result
+does not erase the detailed differences. MPDD covers all six target classes and
+458 test images; MVTec covers all15 classes and1725; VisA all12 and2162; BTAD
+all3 and741. Independent per-image traces are not supplied by these records.
 
 Audit a complete set of four execution workspaces directly with:
 
@@ -198,8 +189,8 @@ stored panel summary. The collector subsamples to100000 points and handles ties
 with sklearn; the wideslim plotter uses full groups and stable ranks without tie
 averaging. Their exact differences are retained, rather than substituted.
 This is an archival array audit of a diagnostic subset, not fresh model inference
-or a whole-dataset evaluation. Fresh feature collection and the final PDF style
-provenance remain pending. The archive contains derived arrays only; source
+or a whole-dataset evaluation. Fresh collection now has separate evidence below; final PDF style
+provenance remains pending. The archive contains derived arrays only; source
 dataset terms still apply. Existing audit output files are never overwritten.
 The public command passed in a separate Linux Git worktree at commitc1ef6d5,
 using an isolated Python3.10 CPU environment with NumPy1.25.0 and sklearn1.7.2.
@@ -235,9 +226,7 @@ The resulting command is reconstructed from the diagnostic JSON and original
 parser/model defaults, not a recovered historical command. The historical bank
 is missing at its recorded path. Original RNG state and historical checkpoint
 hash were not recorded in that JSON, and training data cannot be inferred from
-the checkpoint folder name. These gaps remain explicit in the plan. A guarded
-Slurm runner, fresh collection and comparison with the original arrays are still
-required before claiming fresh Figure 3 reproduction.
+the checkpoint folder name. These gaps remain explicit in the plan. The guarded runner has now completed fresh collection; see the evidence audit below.
 
 After preparation, CPU validation is available without running a model:
 
@@ -256,3 +245,24 @@ array comparisons and six AUC annotations are retained. Array equality and AUC
 agreement are reported separately; a generated PDF alone proves neither.
 The collector also creates its own diagnostic PDF and PNG. Final printed layout
 provenance remains pending even if the numeric comparisons pass.
+
+Fresh Figure3 collection completed under observed Slurm job13728 with a newly
+mined source-only bank. All six AUC annotations match the printed values at
+three decimals. All nine array counts match, but their float32 values differ
+(maximum absolute error approximately2.02e-6); exact-array status remains
+`mismatch`. The historical RNG/checkpoint/bank gaps remain unresolved, and
+this diagnostic subset is not a whole-dataset benchmark.
+
+```bash
+python -m reproduction.axis_fresh
+```
+
+This CPU audit verifies the complete published evidence archive and individual
+members, binds terminal execution to its plan/result hashes, recomputes all nine
+array comparisons and all six collector AUCs from the fresh arrays using the
+hash-pinned original function. Exit1 preserves the exact-array mismatch even
+when all printed annotations match. It does not infer a live GPU allocation
+from offline records. The evidence includes the original collector PDF/PNG;
+visual review found its overall title overlaps panel headings, so final paper
+layout reproduction remains pending. Original outputs are retained without
+silently fixing the historical collector.

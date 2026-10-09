@@ -1,0 +1,150 @@
+{
+  "scope": "Fresh collector arrays and six AUC annotations versus pinned archival diagnostics; no final PDF layout claim",
+  "arrays": [
+    {
+      "group": "coeff_inside",
+      "actual_count": 7973,
+      "expected_count": 7973,
+      "exact_match": false,
+      "max_absolute_error": 1.7881393432617188e-07
+    },
+    {
+      "group": "coeff_hard_fp",
+      "actual_count": 64329,
+      "expected_count": 64329,
+      "exact_match": false,
+      "max_absolute_error": 2.2351741790771484e-07
+    },
+    {
+      "group": "coeff_outside",
+      "actual_count": 200000,
+      "expected_count": 200000,
+      "exact_match": false,
+      "max_absolute_error": 2.0116567611694336e-06
+    },
+    {
+      "group": "perp_inside",
+      "actual_count": 7973,
+      "expected_count": 7973,
+      "exact_match": false,
+      "max_absolute_error": 2.2561289370059967e-07
+    },
+    {
+      "group": "perp_hard_fp",
+      "actual_count": 64329,
+      "expected_count": 64329,
+      "exact_match": false,
+      "max_absolute_error": 3.4098047763109207e-07
+    },
+    {
+      "group": "perp_outside",
+      "actual_count": 200000,
+      "expected_count": 200000,
+      "exact_match": false,
+      "max_absolute_error": 4.105386324226856e-07
+    },
+    {
+      "group": "parallel_inside",
+      "actual_count": 7973,
+      "expected_count": 7973,
+      "exact_match": false,
+      "max_absolute_error": 3.364402800798416e-08
+    },
+    {
+      "group": "parallel_hard_fp",
+      "actual_count": 64329,
+      "expected_count": 64329,
+      "exact_match": false,
+      "max_absolute_error": 1.1085649020969868e-07
+    },
+    {
+      "group": "parallel_outside",
+      "actual_count": 200000,
+      "expected_count": 200000,
+      "exact_match": false,
+      "max_absolute_error": 1.1496013030409813e-07
+    }
+  ],
+  "annotations": [
+    {
+      "panel": "coeff",
+      "metric": "auc_inside_vs_hardfp",
+      "actual": 0.30172453172331526,
+      "printed": 0.302,
+      "matches_printed_3dp": true
+    },
+    {
+      "panel": "coeff",
+      "metric": "auc_inside_vs_outside",
+      "actual": 0.9376529286341402,
+      "printed": 0.938,
+      "matches_printed_3dp": true
+    },
+    {
+      "panel": "perp",
+      "metric": "auc_inside_vs_hardfp",
+      "actual": 0.8103778876491039,
+      "printed": 0.81,
+      "matches_printed_3dp": true
+    },
+    {
+      "panel": "perp",
+      "metric": "auc_inside_vs_outside",
+      "actual": 0.8885449742882228,
+      "printed": 0.889,
+      "matches_printed_3dp": true
+    },
+    {
+      "panel": "parallel",
+      "metric": "auc_inside_vs_hardfp",
+      "actual": 0.7252677529390478,
+      "printed": 0.725,
+      "matches_printed_3dp": true
+    },
+    {
+      "panel": "parallel",
+      "metric": "auc_inside_vs_outside",
+      "actual": 0.9784102376771604,
+      "printed": 0.978,
+      "matches_printed_3dp": true
+    }
+  ],
+  "all_arrays_exact": false,
+  "all_annotations_match_3dp": true,
+  "fresh_bank_stats": {
+    "0": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "1": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "2": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "3": {
+      "num_fp": 390,
+      "num_defect": 512
+    }
+  },
+  "archived_bank_stats": {
+    "0": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "1": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "2": {
+      "num_fp": 390,
+      "num_defect": 512
+    },
+    "3": {
+      "num_fp": 390,
+      "num_defect": 512
+    }
+  }
+}

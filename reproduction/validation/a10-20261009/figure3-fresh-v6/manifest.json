@@ -1,0 +1,55 @@
+{
+  "scope": "Fresh Figure3 diagnostic collection on VisA capsules, not full-dataset benchmark; exact arrays differ, printed six AUCs match",
+  "runtime_commit": "2401828",
+  "archive": {
+    "path": "validation/a10-20261009/figure3-fresh-v6/evidence.zip",
+    "bytes": 7981746,
+    "sha256": "ad1ad7c753ca73da877c5f5142968edc7ebc5ed0f8779dc475b601f09f14a2b4",
+    "members": {
+      "figure3-execution.json": {
+        "bytes": 4932,
+        "sha256": "f1be187a43a7b8d4ff269ec5bca82a3444dfb497c288e5db8105f0d274c66b37"
+      },
+      "figure3-comparison.json": {
+        "bytes": 3485,
+        "sha256": "2e0cc87c2c1c587d98bedbd737647c88eb8d273d9181f37fbbb104cb1ed99530"
+      },
+      "figure3-initial-rng.json": {
+        "bytes": 32847,
+        "sha256": "2c92c520bd105c2c0feefffbad03d5233eb27dca58c8917488cc25403f4a931c"
+      },
+      "figure3-execution.log": {
+        "bytes": 1611,
+        "sha256": "7e5eec5f0cd18db425e07558657bd169d52bc59baea879230418b5ad4fcd4bc6"
+      },
+      "results/axis_entanglement_mvtec2visa.png": {
+        "bytes": 296931,
+        "sha256": "f1f65504bbc81abb24fb27ca5084ffd7cf1c7e299ae27a4b9cf89651530e9818"
+      },
+      "results/axis_entanglement_mvtec2visa.json": {
+        "bytes": 23612113,
+        "sha256": "377baf8dea5b01f8bdba52405fe0c689756d73d5593830b9509a31564456ee94"
+      },
+      "results/axis_entanglement_mvtec2visa.pdf": {
+        "bytes": 38927,
+        "sha256": "73ffc1b4b2758a9de0714fd3948d11506847ebcde7e1fa84d4dc06a95105fb3b"
+      },
+      "figure3-plan.json": {
+        "bytes": 60435,
+        "sha256": "764fdfe281bdf0e32535c5b9537716c362560fa5e433796cd306819d2c14945a"
+      }
+    }
+  },
+  "pdf_visual_review": {
+    "status": "reviewed_with_layout_defect_preserved",
+    "page": 1,
+    "finding": "Collector suptitle overlaps panel titles. Original output is preserved; final paper has three separate wideslim panels and its exact style remains untraced."
+  },
+  "historical_gaps": [
+    "historical RNG and observed argv",
+    "historical checkpoint hash",
+    "historical bank bytes",
+    "final printed PDF style"
+  ],
+  "fresh_bank_publication": "pending"
+}
