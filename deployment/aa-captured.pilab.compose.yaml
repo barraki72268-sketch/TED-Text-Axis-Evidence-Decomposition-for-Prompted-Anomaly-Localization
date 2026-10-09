@@ -1,0 +1,45 @@
+# pilab host-runtime profile. Requires ./app and a verified ./bundle.
+# This is not a standalone image; see docs/SERVICE.md for release boundaries.
+name: ted-aa-captured
+services:
+  api:
+    image: ted-inspection:host-runtime-20261008
+    user: "${TED_UID:-1000009}:${TED_GID:-1000009}"
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 4
+    mem_limit: 12g
+    pids_limit: 256
+    ports: ["127.0.0.1:${TED_AA_PORT:-18083}:8000"]
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    command: [-m, uvicorn, "ted.inference.api:create_app", --factory, --host, 0.0.0.0, --port, "8000", --workers, "1"]
+    environment:
+      TED_ENGINE_FAMILY: aaclip
+      TED_CAPTURED_EXPORT: /bundle/export
+      TED_RUN_WORKSPACE: /bundle
+      TED_DEVICE: cpu
+      CUDA_VISIBLE_DEVICES: ""
+      PYTHONPATH: /app
+      PYTHONNOUSERSITE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "4"
+    volumes:
+      - ./app:/app:ro
+      - ./bundle:/bundle:ro
+      - /mnt/data/envs/patchcore-conda:/mnt/data/envs/patchcore-conda:ro
+    healthcheck:
+      test: [CMD, /mnt/data/envs/patchcore-conda/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready',timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: "2"
