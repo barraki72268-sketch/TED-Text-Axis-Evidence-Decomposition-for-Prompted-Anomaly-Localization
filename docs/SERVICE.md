@@ -4,14 +4,15 @@
 
 ## Verified worker configurations
 
-Seven pilab worker configurations are available through the
+Eight pilab worker configurations are available through the
 [model selector](#selecting-the-verified-pilab-workers): FAPrompt L/14-336,
 captured FAPrompt B/16+ seed1 and H/14 seed0, AA-CLIP main L/14-336 and
-source-limit-1, and AdaptCLIP OpenAI L/14 and L/14-336.
-The [gateway validation](../reproduction/validation/a10-20261009/gateway-v2/index.json)
-covers 33 recorded model/image/strength cases. Each worker's download and
-inference scope is documented below. These are seven configurations across
-three model families; the release does not claim every paper model is deployed.
+source-limit-1, AdaptCLIP OpenAI L/14 and L/14-336, and captured RawCLIP OpenAI L/14.
+The [previous seven-worker gateway validation](../reproduction/validation/a10-20261009/gateway-v2/index.json)
+covers 33 recorded model/image/strength cases. RawCLIP separately passes three
+original-code Docker HTTP comparisons for all three readouts. Each worker's
+download and inference scope is documented below. These are eight configurations
+across four model families; the release does not claim every paper model is deployed.
 
 ## Legacy FAPrompt L/14-336 path
 
@@ -442,3 +443,26 @@ The public client needs no login and checks archive size/SHA, all932 extracted i
 keeps these separate gates explicit. Strength must be explicitly chosen from
 the recorded configuration, and branch identity uses metadata rather than
 capture ordering.
+
+
+## Captured RawCLIP OpenAI L/14
+
+The CPU worker uses the captured source banks and source calibrators from the
+passing full-BTAD MVTec-to-BTAD run. It returns Base, T-TED and C-TED maps and
+three fused raw image scores without refitting. Supply the recorded BTAD
+category (`01`, `02`, or `03`); the service does not infer a category from a filename.
+
+The OpenAI archive preserves 930 regular files and verifies the original source,
+backbone, terminal execution and captured-state bindings. H/14 and L/14-336 also
+pass relocated three-image CPU checks. The OpenAI pilab worker additionally
+passes three original-code Docker HTTP comparisons with zero map and score error
+for all three readouts. See [CPU relocation evidence](../reproduction/validation/a10-20261009/rawclip-relocated-v1/index.json)
+and [OpenAI Docker evidence](../reproduction/validation/a10-20261009/rawclip-pilab-v1/index.json).
+These image checks do not replace full-dataset or multi-seed metric replay.
+
+The profile is `deployment/rawclip-captured.pilab.compose.yaml`; it mounts the
+verified bundle and host Python runtime read-only, restricts the worker to CPU,
+and publishes a loopback port. The registry selects this worker as
+`rawclip-openai-main`. Preview images share one display range across the three
+maps; downloadable NPZ arrays retain unmodified numerical outputs. Scores are
+not probabilities and no operational decision threshold has been fitted.
