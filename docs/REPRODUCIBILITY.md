@@ -168,6 +168,22 @@ expected test images. MVTec and final aggregation
 are pending. Reported target counts are checked; independent per-image traces
 are not supplied by these records.
 
+Audit a complete set of four execution workspaces directly with:
+
+```bash
+python -m reproduction.residual_strength --executions ./residual-runs
+```
+
+This mode requires all four terminal successful evaluations, checks exact
+plan hashes, fresh-source bank policy, original numeric arguments, full target
+coverage and each44-cell comparison before aggregating the five printed cells.
+An in-progress or missing transfer returns `incomplete`. It retains each
+transfer's two-decimal mismatches even when the five aggregate cells match at
+one decimal. `terminal_execution_records_verified` describes file bindings;
+`fresh_gpu_execution_verified` stays false because an offline audit cannot
+independently prove a past Slurm allocation. The actual Slurm/log observations
+must be inspected alongside this report.
+
 Figure 3 has an independent CPU audit of its archived VisA capsules diagnostic
 arrays. After installing NumPy1.25.0 and scikit-learn1.7.2 in Python3.10, run:
 

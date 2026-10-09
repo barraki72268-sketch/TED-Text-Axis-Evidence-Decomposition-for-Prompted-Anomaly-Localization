@@ -12,6 +12,47 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class ResidualStrengthTests(unittest.TestCase):
+    def test_execution_mode_binds_terminal_records_without_claiming_independent_gpu_proof(self):
+        import hashlib
+        spec = json.loads((ROOT / 'ablations/residual-strength.json').read_text())
+        folder = ROOT / 'validation/a10-20261009'
+        preparation = json.loads((folder / 'residual-preparation-20261009.json').read_text())
+        with tempfile.TemporaryDirectory() as tmp, zipfile.ZipFile(ROOT / 'ablations' / spec['archive']) as references, zipfile.ZipFile(folder / preparation['plan_archive']['file']) as plans:
+            runs = Path(tmp)
+            self.assertEqual(len(compare_residual_strength(ROOT, execution_runs=runs)['pending']), 4)
+            for recipe in spec['recipes']:
+                # Synthetic record fixtures test bindings, not actual GPU execution.
+                workspace = runs / recipe['id']
+                (workspace / 'results').mkdir(parents=True)
+                summary = references.read(recipe['reference'])
+                plan = plans.read('residual-preparation-plans/' + recipe['id'] + '.json')
+                (workspace / 'run.json').write_bytes(plan)
+                (workspace / 'results/summary.json').write_bytes(summary)
+                contract = execution_recipe(ROOT, recipe['id'])
+                values = extract_recipe(json.loads(summary), contract)
+                comparison = {'actual_sha256':hashlib.sha256(summary).hexdigest(),
+                              'reference_sha256':recipe['reference_sha256'], 'cells':compare(values,values)}
+                execution = {'recipe':recipe['id'], 'status':'matched','finished':'synthetic-test-only',
+                             'returncode':0,'slurm_job_id':'123','plan_sha256':hashlib.sha256(plan).hexdigest(),
+                             'comparison':comparison}
+                (workspace / 'comparison.json').write_text(json.dumps(comparison))
+                (workspace / 'execution.json').write_text(json.dumps(execution))
+            report = compare_residual_strength(ROOT, execution_runs=runs)
+            self.assertEqual(report['status'], 'matched')
+            self.assertTrue(report['terminal_execution_records_verified'])
+            self.assertFalse(report['fresh_gpu_execution_verified'])
+            self.assertTrue(all(row['execution']['metrics_checked']==44 for row in report['evidence']))
+            workspace = runs / spec['recipes'][0]['id']
+            execution = json.loads((workspace / 'execution.json').read_text())
+            execution['finished'] = None
+            (workspace / 'execution.json').write_text(json.dumps(execution))
+            self.assertEqual(compare_residual_strength(ROOT, execution_runs=runs)['status'], 'incomplete')
+            execution['finished'] = 'synthetic-test-only'
+            (workspace / 'execution.json').write_text(json.dumps(execution))
+            (workspace / 'run.json').write_bytes((workspace / 'run.json').read_bytes() + b' ')
+            with self.assertRaisesRegex(ValueError, 'plan hash differs'):
+                compare_residual_strength(ROOT, execution_runs=runs)
+
     def test_linux_preparation_plans_bind_all_four_fresh_source_runs(self):
         import hashlib
         folder = ROOT / 'validation/a10-20261009'
