@@ -12,6 +12,34 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class ResidualStrengthTests(unittest.TestCase):
+    def test_linux_preparation_plans_bind_all_four_fresh_source_runs(self):
+        import hashlib
+        folder = ROOT / 'validation/a10-20261009'
+        report = json.loads((folder / 'residual-preparation-20261009.json').read_text())
+        archive = folder / report['plan_archive']['file']
+        self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(), report['plan_archive']['sha256'])
+        self.assertEqual(archive.stat().st_size, report['plan_archive']['bytes'])
+        self.assertEqual(report['status'], 'prepared_four_recipes')
+        self.assertFalse(report['gpu_execution'])
+        spec = json.loads((ROOT / 'ablations/residual-strength.json').read_text())
+        self.assertEqual({r['recipe'] for r in report['rows']}, {r['id'] for r in spec['recipes']})
+        with zipfile.ZipFile(archive) as bundle:
+            self.assertEqual(len(bundle.namelist()), 5)
+            for row in report['rows']:
+                payload = bundle.read('residual-preparation-plans/' + row['recipe'] + '.json')
+                self.assertEqual(hashlib.sha256(payload).hexdigest(), row['plan_sha256'])
+                plan = json.loads(payload)
+                recipe = execution_recipe(ROOT, row['recipe'])
+                for expected, actual in zip(recipe['argv'], plan['argv']):
+                    if expected != '{save_dir}':
+                        self.assertEqual(actual, expected)
+                self.assertEqual(plan['source_bank_policy'], 'fresh_source_only')
+                self.assertEqual(plan['bank_path_changes'], [])
+                self.assertEqual(row['bank_cache_entries_before_run'], 0)
+                self.assertEqual(row['returncode'], 0)
+                self.assertEqual(len(plan['verified_objects']), row['verified_weight_objects'])
+                self.assertFalse(plan['fresh_gpu_benchmark'])
+
     def test_four_launchers_keep_all_numerical_arguments_and_compare_every_candidate(self):
         import copy
         spec = json.loads((ROOT / 'ablations/residual-strength.json').read_text())

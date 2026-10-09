@@ -151,3 +151,9 @@ place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then ru
 summary content and coverage; inspect matching terminal execution records for
 fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
 all four fresh GPU executions remain pending until actual records prove them.
+
+All four Linux preparation commands passed on the A10 host with CUDA hidden.
+The [preparation record](../reproduction/validation/a10-20261009/residual-preparation-20261009.json)
+binds the exact run-plan bytes in a SHA-verified ZIP, zero historical bank inputs,
+empty pre-run bank caches and verified weight objects. This is preparation
+evidence; fresh GPU execution and the resulting table are still pending.

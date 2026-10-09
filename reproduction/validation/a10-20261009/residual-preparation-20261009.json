@@ -1,0 +1,82 @@
+{
+  "client_commit": "95bff4d",
+  "status": "prepared_four_recipes",
+  "gpu_execution": false,
+  "finished": "2026-10-09T04:30:15.564608+00:00",
+  "rows": [
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_strength_seed0",
+      "returncode": 0,
+      "workspace": "/home/jinyoungkim/ted-reproduce-20261009/residual-runs-20261009/aaclip_vitl_openai224_visa2mvtec_strength_seed0",
+      "log": "/home/jinyoungkim/ted-reproduce-20261009/reports/residual-prepare-aaclip_vitl_openai224_visa2mvtec_strength_seed0.log",
+      "source_bank_policy": "fresh_source_only",
+      "bank_inputs": 0,
+      "verified_weight_objects": 3,
+      "resource_relocation": {
+        "archived_device": "cuda:1",
+        "runtime_device": "cuda:0",
+        "reason": "single visible GPU within a Slurm allocation"
+      },
+      "gpu_execution": false,
+      "plan_sha256": "be996860809359fb276d36092b595b13418ab8f6a1b7778a982aad7881faffd0",
+      "bank_cache_entries_before_run": 0
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2visa_strength_seed0",
+      "returncode": 0,
+      "workspace": "/home/jinyoungkim/ted-reproduce-20261009/residual-runs-20261009/aaclip_vitl_openai224_mvtec2visa_strength_seed0",
+      "log": "/home/jinyoungkim/ted-reproduce-20261009/reports/residual-prepare-aaclip_vitl_openai224_mvtec2visa_strength_seed0.log",
+      "source_bank_policy": "fresh_source_only",
+      "bank_inputs": 0,
+      "verified_weight_objects": 3,
+      "resource_relocation": {
+        "archived_device": "cuda:1",
+        "runtime_device": "cuda:0",
+        "reason": "single visible GPU within a Slurm allocation"
+      },
+      "gpu_execution": false,
+      "plan_sha256": "aeae241fbde2fde0a3236d7b971384997df0669d8a9f06d66e607e2866e63606",
+      "bank_cache_entries_before_run": 0
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+      "returncode": 0,
+      "workspace": "/home/jinyoungkim/ted-reproduce-20261009/residual-runs-20261009/aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+      "log": "/home/jinyoungkim/ted-reproduce-20261009/reports/residual-prepare-aaclip_vitl_openai224_mvtec2mpdd_strength_seed0.log",
+      "source_bank_policy": "fresh_source_only",
+      "bank_inputs": 0,
+      "verified_weight_objects": 3,
+      "resource_relocation": {
+        "archived_device": "cuda:1",
+        "runtime_device": "cuda:0",
+        "reason": "single visible GPU within a Slurm allocation"
+      },
+      "gpu_execution": false,
+      "plan_sha256": "5f0328267e67886de404d681ef85b5b931fa0d6ad11d668da29aadcb6521a49e",
+      "bank_cache_entries_before_run": 0
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_strength_seed0",
+      "returncode": 0,
+      "workspace": "/home/jinyoungkim/ted-reproduce-20261009/residual-runs-20261009/aaclip_vitl_openai224_mvtec2btad_strength_seed0",
+      "log": "/home/jinyoungkim/ted-reproduce-20261009/reports/residual-prepare-aaclip_vitl_openai224_mvtec2btad_strength_seed0.log",
+      "source_bank_policy": "fresh_source_only",
+      "bank_inputs": 0,
+      "verified_weight_objects": 3,
+      "resource_relocation": {
+        "archived_device": "cuda:1",
+        "runtime_device": "cuda:0",
+        "reason": "single visible GPU within a Slurm allocation"
+      },
+      "gpu_execution": false,
+      "plan_sha256": "cc1309b72182f3675c9a358bdbd01eae533d11a4e9e41c1c440e49bb971c9653",
+      "bank_cache_entries_before_run": 0
+    }
+  ],
+  "scope": "Linux CPU-only preparation and input identity; no fresh GPU execution claim",
+  "plan_archive": {
+    "file": "residual-preparation-plans.zip",
+    "sha256": "2abe0f4ea82731419c7b44fb2c276f2026396ba61ab56b243aa53d9ca39b566a",
+    "bytes": 113325
+  }
+}
