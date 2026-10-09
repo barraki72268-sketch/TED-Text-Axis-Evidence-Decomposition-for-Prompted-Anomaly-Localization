@@ -11,6 +11,35 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_h14_anonymous_acquisition_and_every_image_strength_are_verified(self):
+        import zipfile
+        folder = ROOT / 'validation/a10-20261009/faprompt-public-client-v2'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertTrue(index['h14_anonymous_acquisition_verified'])
+        self.assertTrue(index['h14_image_parity_verified'])
+        self.assertFalse(index['whole_paper_reproduced'])
+        self.assertEqual(digest_file(folder / 'proof.zip'),index['archive_sha256'])
+        self.assertEqual(digest_file(folder / index['bplus_evidence']['path']),index['bplus_evidence']['sha256'])
+        with zipfile.ZipFile(folder / 'proof.zip') as archive:
+            for item in index['files']:
+                self.assertEqual(digest_file(folder / item['file']),item['sha256'])
+                self.assertEqual((folder / item['file']).read_bytes(),archive.read(item['archive_member']))
+        acquisition = json.loads((folder / 'h14-acquisition.json').read_text())
+        self.assertEqual(acquisition['status'],'verified_serving_inputs')
+        self.assertEqual(acquisition['files'],932)
+        self.assertEqual(acquisition['revision'],index['revision'])
+        self.assertEqual(acquisition['authentication'],'none; standard-library HTTPS without auth headers')
+        image = json.loads((folder / 'h14-image.json').read_text())
+        self.assertEqual(image['status'],'matched')
+        self.assertEqual({(r['category'],r['alpha']) for r in image['rows']},
+                         {(c,a) for c in ['01','02','03'] for a in [.5,1.,1.5]})
+        for flag in ['original_input_reads_denied','denial_self_checks_passed','network_denied']:
+            self.assertTrue(image[flag])
+        self.assertFalse(image['fitting_performed'])
+        for row in image['rows']:
+            for key in ['host_max_absolute_error','cted_max_absolute_error','host_image_score_error','cted_image_score_error']:
+                self.assertEqual(row[key],0)
+
     def test_bplus_anonymous_public_client_and_images_are_independently_verified(self):
         folder = ROOT / 'validation/a10-20261009/faprompt-public-client-v1'
         index = json.loads((folder / 'index.json').read_text())
