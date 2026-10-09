@@ -1,0 +1,118 @@
+{
+  "Name": "/ted-imagebind-api-1",
+  "Image": "sha256:cf9336cd71afea91c222a96244d87ed4315da014132e4031a0429c89287af9e3",
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 3969622,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-09T12:06:14.120690538Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-10-09T21:33:45.528630425+09:00",
+          "End": "2026-10-09T21:33:45.637275023+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T21:34:15.638223956+09:00",
+          "End": "2026-10-09T21:34:15.754932556+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T21:34:45.756326897+09:00",
+          "End": "2026-10-09T21:34:45.866316314+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T21:35:15.867714261+09:00",
+          "End": "2026-10-09T21:35:15.974291627+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-10-09T21:35:45.975330127+09:00",
+          "End": "2026-10-09T21:35:46.081921965+09:00",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/envs/patchcore-conda",
+      "Destination": "/mnt/data/envs/patchcore-conda",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/btad-DatasetNinja",
+      "Destination": "/validation-images",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-imagebind-20261009/app",
+      "Destination": "/app",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/deploy-imagebind-20261009/bundle",
+      "Destination": "/bundle",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/data/pilab-kingjinyoung/ADPretrain/models/ImageBind/weights/imagebind_huge.pth",
+      "Destination": "/bundle/clip-cache/imagebind_huge.pth",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "model_info": {
+    "host": "RawImageBind",
+    "backbone": "ImageBind-Huge",
+    "device": "cpu",
+    "image_size": 224,
+    "category": null,
+    "categories": [
+      "01",
+      "02",
+      "03"
+    ],
+    "artifact_sha256": "6bd4c7293855986ae68a598d0d410e70a078fc0de89eb8bf90134e648a1fcb57",
+    "readouts": [
+      "baseline_txt",
+      "parallel_margin",
+      "ted_calibrated"
+    ],
+    "state": "terminal captured source bank/calibrators; no inference-time fitting"
+  },
+  "ready": {
+    "status": "ready"
+  },
+  "git_commit": "0a95ac43d3211e2712a2ca05e2da8a127d7203e9"
+}

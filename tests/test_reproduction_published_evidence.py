@@ -11,6 +11,28 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_imagebind_docker_http_and_fresh_archive_extraction_preserve_original_readouts(self):
+        folder = ROOT / 'validation/a10-20261009/imagebind-pilab-v1'
+        index = json.loads((folder / 'index.json').read_text(encoding='utf-8'))
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        self.assertEqual(digest_file(folder / 'proof.zip'), index['archive_sha256'])
+        for file in ['imagebind-pilab-http-parity-20261009-v1.json', 'imagebind-fresh-unpack-parity-20261009-v2.json']:
+            report = json.loads((folder / file).read_text(encoding='utf-8'))
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(report['engine_sha256'], digest_file(ROOT.parent / 'ted/inference/imagebind_engine.py'))
+            self.assertEqual(report['artifact_sha256'], '6bd4c7293855986ae68a598d0d410e70a078fc0de89eb8bf90134e648a1fcb57')
+            self.assertTrue(report['original_workspace_reads_denied'])
+            self.assertFalse(report['gpu_used'])
+            self.assertEqual({c['category'] for c in report['cases']}, {'01','02','03'})
+            for case in report['cases']:
+                self.assertEqual(set(case['map_max_abs_error']), {'host_map','tted_map','cted_map'})
+                self.assertFalse(any(case['map_max_abs_error'].values()))
+                self.assertFalse(any(case['score_abs_error'].values()))
+        inputs = json.loads((folder / 'imagebind-pilab-inputs-20261009-v1.json').read_text(encoding='utf-8'))
+        self.assertEqual(inputs['files'], 930)
+        self.assertEqual(inputs['status'], 'verified_serving_inputs')
+
     def test_imagebind_relocated_cpu_readouts_bind_original_and_published_source(self):
         folder = ROOT / 'validation/a10-20261009/imagebind-relocated-v1'
         index = json.loads((folder / 'index.json').read_text())
