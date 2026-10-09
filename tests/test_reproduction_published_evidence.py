@@ -11,6 +11,24 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_rawclip_captured_exports_retain_terminal_bindings_without_serving_claim(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-captures-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        for flag in ['image_inference_verified','hf_publication_verified','docker_verified','whole_paper_reproduced']:
+            self.assertFalse(index[flag])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        for key in ['h14','l336']:
+            manifest = json.loads((folder / key / 'manifest.json').read_text())
+            execution = json.loads((folder / key / 'execution.json').read_text())
+            self.assertEqual(manifest['capture_binding'], 'terminal_execution_record')
+            self.assertEqual(execution['status'], 'matched')
+            self.assertEqual(len(manifest['captured_state']), 2)
+            self.assertEqual([r['sha256'] for r in manifest['captured_state']],
+                             [r['sha256'] for r in execution['captured_files']])
+            for item in manifest['evidence']:
+                self.assertEqual(digest_file(folder / key / item['file']), item['sha256'])
+
     def test_faprompt_docker_matches_all_canonical_images_and_recorded_strengths(self):
         import zipfile
         folder = ROOT / 'validation/a10-20261009/faprompt-images-v3'
@@ -473,7 +491,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'report.json').read_text())
-        self.assertEqual(len(report['results']), 21)
+        self.assertEqual(len(report['results']), 22)
         raw_h14 = next(row for row in report['results'] if row['recipe'] == 'rawclip_vith14_mvtec2btad')
         self.assertEqual(raw_h14['status'], 'matched')
         self.assertEqual(raw_h14['metrics_matched_2dp'], 12)

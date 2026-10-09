@@ -1,0 +1,135 @@
+{
+  "recipe": "rawclip_vith14_mvtec2btad",
+  "status": "matched",
+  "started": "2026-10-09T08:26:18.661675+00:00",
+  "plan_sha256": "9c19620d3ed0d38944150d4fd6a95e00f59d4b33c106016bb2c9960d97a5b990",
+  "slurm_job_id": "13735",
+  "returncode": 0,
+  "comparison": {
+    "recipe": "rawclip_vith14_mvtec2btad",
+    "reference_sha256": "f9806d5742dfbd02f68adda7d2e05539e93dd85d66801639bd25c6168b014d13",
+    "target_coverage": {
+      "status": "reported_coverage_matches",
+      "dataset": "btad",
+      "classes_checked": 3,
+      "expected_test_images": 741,
+      "reported_image_counts_checked": false,
+      "per_image_execution_verified": false
+    },
+    "actual_sha256": "a5b8b5716d03b79a4aed4f53f69fad64affecb78e5705f7e66897235242cad36",
+    "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
+    "all_match_2dp": true,
+    "cells": [
+      {
+        "method": "Base",
+        "metric": "I-AUROC",
+        "actual": 77.2025622792671,
+        "expected": 77.2025622792671,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AUROC",
+        "actual": 23.183816694361084,
+        "expected": 23.183810216507048,
+        "delta_pp": 6.477854036290864e-06,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-PRO",
+        "actual": 3.55307183538874,
+        "expected": 3.5530727046231427,
+        "delta_pp": -8.692344026783871e-07,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AP",
+        "actual": 1.9391603796262602,
+        "expected": 1.9391600699381883,
+        "delta_pp": 3.0968807185338676e-07,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "T-TED",
+        "metric": "I-AUROC",
+        "actual": 84.4857008540931,
+        "expected": 84.4857008540931,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "T-TED",
+        "metric": "P-AUROC",
+        "actual": 78.2996193654666,
+        "expected": 78.29963581267685,
+        "delta_pp": -1.644721025684248e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "T-TED",
+        "metric": "P-PRO",
+        "actual": 55.04148999849955,
+        "expected": 55.04154662291209,
+        "delta_pp": -5.6624412536621094e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "T-TED",
+        "metric": "P-AP",
+        "actual": 13.931158248798296,
+        "expected": 13.93121479090714,
+        "delta_pp": -5.654210884387112e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "C-TED",
+        "metric": "I-AUROC",
+        "actual": 84.4877333744183,
+        "expected": 84.4877333744183,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "C-TED",
+        "metric": "P-AUROC",
+        "actual": 78.08183221222144,
+        "expected": 78.08112209072631,
+        "delta_pp": 0.0007101214951319434,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "C-TED",
+        "metric": "P-PRO",
+        "actual": 54.5283704996109,
+        "expected": 54.52948808670044,
+        "delta_pp": -0.0011175870895385742,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "C-TED",
+        "metric": "P-AP",
+        "actual": 13.854830273753063,
+        "expected": 13.854237754826718,
+        "delta_pp": 0.0005925189263447095,
+        "matches_printed_precision": true
+      }
+    ]
+  },
+  "capture_index_sha256": "57ad09a9a46ab7624d4818ee74b3b596d18ea9d2824b62b0a8b3b56def38e6a3",
+  "captured_files": [
+    {
+      "function": "get_or_collect_source_patch_banks",
+      "file": "000-get_or_collect_source_patch_banks.pt",
+      "sha256": "0f422239aee2899fab7bf2f171e22d002d72a0115f001ae40de3878fbfe5c67d"
+    },
+    {
+      "function": "train_rawclip_source_calibrators",
+      "file": "001-train_rawclip_source_calibrators.pt",
+      "sha256": "ae9ea545e925e8f699b2a89088bd533cf767dbe7153adf73a9ac0a8ba7c6b7e1"
+    }
+  ],
+  "finished": "2026-10-09T08:53:35.993299+00:00"
+}
