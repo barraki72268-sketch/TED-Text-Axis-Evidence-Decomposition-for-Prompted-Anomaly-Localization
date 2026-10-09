@@ -11,6 +11,27 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 
 class PublishedEvidenceTests(unittest.TestCase):
+    def test_rawclip_anonymous_acquisition_and_image_readouts_are_verified(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-public-client-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertTrue(index['anonymous_acquisition_verified'])
+        self.assertTrue(index['anonymous_three_image_parity_verified'])
+        for item in index['files']:
+            self.assertEqual(digest_file(folder / item['file']), item['sha256'])
+        acquisition = json.loads((folder / 'rawclip-openai-anonymous-acquisition-20261009-v1.json').read_text())
+        self.assertEqual(acquisition['files'], 930)
+        self.assertEqual(acquisition['status'], 'verified_serving_inputs')
+        parity = json.loads((folder / 'rawclip-openai-anonymous-image-parity-20261009-v1.json').read_text())
+        self.assertEqual(parity['status'], 'matched')
+        self.assertTrue(parity['network_denied'])
+        self.assertTrue(parity['original_workspace_reads_denied'])
+        self.assertFalse(parity['gpu_used'])
+        self.assertEqual(len(parity['cases']), 3)
+        for case in parity['cases']:
+            self.assertEqual(set(case['map_max_abs_error']), {'host_map','tted_map','cted_map'})
+            self.assertFalse(any(case['map_max_abs_error'].values()))
+            self.assertFalse(any(case['score_abs_error'].values()))
+
     def test_rawclip_public_catalog_binds_verified_metadata_to_immutable_revision(self):
         folder = ROOT / 'validation/a10-20261009/rawclip-public-v1'
         index = json.loads((folder / 'index.json').read_text())

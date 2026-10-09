@@ -466,3 +466,13 @@ and publishes a loopback port. The registry selects this worker as
 `rawclip-openai-main`. Preview images share one display range across the three
 maps; downloadable NPZ arrays retain unmodified numerical outputs. Scores are
 not probabilities and no operational decision threshold has been fitted.
+
+
+The [pinned public client](../reproduction/rawclip-serving-releases.json) acquires
+OpenAI L/14 from the immutable Hugging Face revision. Its anonymous download into
+a fresh cache, all930 extracted inputs, and three original-code CPU image
+comparisons have [passed](../reproduction/validation/a10-20261009/rawclip-public-client-v1/index.json).
+
+```bash
+python -m reproduction.rawclip_release openai-l14 NEW_RAWCLIP_BUNDLE --cache NEW_CACHE
+```
