@@ -76,6 +76,8 @@ class CapturedFAPromptEngine:
         model_load._MODELS[summary['model_name']]=str(weight)
         def no_download(*args,**kwargs):raise RuntimeError('Network download prohibited in captured inference')
         model_load._download=no_download
+        # Match main()'s initialization order, including projected prompt tails.
+        self.host.setup_seed(int(argument(script,plan['argv'],'--seed')))
         with torch.inference_mode():
             self.model,self.prompts,self.prompt_info=self.host.build_model(self.device,str(checkpoint),
                 summary['model_name'],summary['prompt_load_mode'],self.readout.bank['dpam_layer'],
