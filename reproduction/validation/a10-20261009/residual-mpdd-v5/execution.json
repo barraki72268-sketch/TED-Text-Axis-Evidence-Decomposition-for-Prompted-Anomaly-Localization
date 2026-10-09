@@ -1,0 +1,391 @@
+{
+  "recipe": "aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+  "status": "mismatch",
+  "started": "2026-10-09T04:48:22.763373+00:00",
+  "plan_sha256": "5f0328267e67886de404d681ef85b5b931fa0d6ad11d668da29aadcb6521a49e",
+  "slurm_job_id": "13725",
+  "returncode": 0,
+  "comparison": {
+    "recipe": "aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+    "reference_sha256": "5101394b3d27ac7d71db744162bf32f6a54a9fc434c23cda64ad495114fb3050",
+    "target_coverage": {
+      "status": "reported_coverage_matches",
+      "dataset": "mpdd",
+      "classes_checked": 6,
+      "expected_test_images": 458,
+      "reported_image_counts_checked": true,
+      "per_image_execution_verified": false
+    },
+    "actual_sha256": "db918ec6d8f1a54a54698a44f30e7c614a6868858a1b9b2ed5fcbf51cad3eff1",
+    "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
+    "all_match_2dp": false,
+    "cells": [
+      {
+        "method": "Base",
+        "metric": "I-AUROC",
+        "actual": 67.65666666666668,
+        "expected": 67.67,
+        "delta_pp": -0.013333333333321207,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "Base",
+        "metric": "P-AUROC",
+        "actual": 94.15333333333332,
+        "expected": 94.15333333333332,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-PRO",
+        "actual": 78.5071591536204,
+        "expected": 78.50717798868816,
+        "delta_pp": -1.8835067749023438e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AP",
+        "actual": 17.305,
+        "expected": 17.305,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0",
+        "metric": "I-AUROC",
+        "actual": 71.50505576021023,
+        "expected": 71.49750745103148,
+        "delta_pp": 0.0075483091787447165,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0",
+        "metric": "P-AUROC",
+        "actual": 95.24333333333334,
+        "expected": 95.24000000000001,
+        "delta_pp": 0.0033333333333303017,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0",
+        "metric": "P-PRO",
+        "actual": 83.35795005162556,
+        "expected": 83.36691792805989,
+        "delta_pp": -0.008967876434326172,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0",
+        "metric": "P-AP",
+        "actual": 22.983333333333334,
+        "expected": 22.98,
+        "delta_pp": 0.0033333333333338544,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.25",
+        "metric": "I-AUROC",
+        "actual": 71.50505576021023,
+        "expected": 71.49750745103148,
+        "delta_pp": 0.0075483091787447165,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.25",
+        "metric": "P-AUROC",
+        "actual": 95.24333333333334,
+        "expected": 95.24000000000001,
+        "delta_pp": 0.0033333333333303017,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.25",
+        "metric": "P-PRO",
+        "actual": 83.35795005162556,
+        "expected": 83.36691792805989,
+        "delta_pp": -0.008967876434326172,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.25",
+        "metric": "P-AP",
+        "actual": 22.983333333333334,
+        "expected": 22.98,
+        "delta_pp": 0.0033333333333338544,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.5",
+        "metric": "I-AUROC",
+        "actual": 71.50505576021023,
+        "expected": 71.49750745103148,
+        "delta_pp": 0.0075483091787447165,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.5",
+        "metric": "P-AUROC",
+        "actual": 95.24333333333334,
+        "expected": 95.24000000000001,
+        "delta_pp": 0.0033333333333303017,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.5",
+        "metric": "P-PRO",
+        "actual": 83.35795005162556,
+        "expected": 83.36691792805989,
+        "delta_pp": -0.008967876434326172,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_0.5",
+        "metric": "P-AP",
+        "actual": 22.983333333333334,
+        "expected": 22.98,
+        "delta_pp": 0.0033333333333338544,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_1",
+        "metric": "I-AUROC",
+        "actual": 71.50505576021023,
+        "expected": 71.49750745103148,
+        "delta_pp": 0.0075483091787447165,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_1",
+        "metric": "P-AUROC",
+        "actual": 95.24333333333334,
+        "expected": 95.24000000000001,
+        "delta_pp": 0.0033333333333303017,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_1",
+        "metric": "P-PRO",
+        "actual": 83.35795005162556,
+        "expected": 83.36691792805989,
+        "delta_pp": -0.008967876434326172,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_1",
+        "metric": "P-AP",
+        "actual": 22.983333333333334,
+        "expected": 22.98,
+        "delta_pp": 0.0033333333333338544,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_2",
+        "metric": "I-AUROC",
+        "actual": 71.50505576021023,
+        "expected": 71.49750745103148,
+        "delta_pp": 0.0075483091787447165,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_2",
+        "metric": "P-AUROC",
+        "actual": 95.24333333333334,
+        "expected": 95.24000000000001,
+        "delta_pp": 0.0033333333333303017,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_alpha_2",
+        "metric": "P-PRO",
+        "actual": 83.35795005162556,
+        "expected": 83.36691792805989,
+        "delta_pp": -0.008967876434326172,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_alpha_2",
+        "metric": "P-AP",
+        "actual": 22.983333333333334,
+        "expected": 22.98,
+        "delta_pp": 0.0033333333333338544,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0",
+        "metric": "I-AUROC",
+        "actual": 69.72824359769585,
+        "expected": 69.72824359769585,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0",
+        "metric": "P-AUROC",
+        "actual": 94.15333333333332,
+        "expected": 94.15333333333332,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0",
+        "metric": "P-PRO",
+        "actual": 78.5071591536204,
+        "expected": 78.50717798868816,
+        "delta_pp": -1.8835067749023438e-05,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0",
+        "metric": "P-AP",
+        "actual": 17.305,
+        "expected": 17.305,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.25",
+        "metric": "I-AUROC",
+        "actual": 69.69828041182468,
+        "expected": 69.69828041182468,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.25",
+        "metric": "P-AUROC",
+        "actual": 94.18833333333333,
+        "expected": 94.18833333333333,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.25",
+        "metric": "P-PRO",
+        "actual": 78.93807192643483,
+        "expected": 78.9376729329427,
+        "delta_pp": 0.00039899349212646484,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.25",
+        "metric": "P-AP",
+        "actual": 17.345,
+        "expected": 17.345,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.5",
+        "metric": "I-AUROC",
+        "actual": 69.81200062238808,
+        "expected": 69.81200062238808,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.5",
+        "metric": "P-AUROC",
+        "actual": 94.22333333333334,
+        "expected": 94.22333333333334,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.5",
+        "metric": "P-PRO",
+        "actual": 79.10287578900655,
+        "expected": 79.10251108805339,
+        "delta_pp": 0.0003647009531562162,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_0.5",
+        "metric": "P-AP",
+        "actual": 17.39666666666667,
+        "expected": 17.39666666666667,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_1",
+        "metric": "I-AUROC",
+        "actual": 69.92880890058375,
+        "expected": 69.92880890058375,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_1",
+        "metric": "P-AUROC",
+        "actual": 94.28833333333334,
+        "expected": 94.28833333333334,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_1",
+        "metric": "P-PRO",
+        "actual": 79.34339344501495,
+        "expected": 79.34462102254231,
+        "delta_pp": -0.001227577527359358,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_1",
+        "metric": "P-AP",
+        "actual": 17.585,
+        "expected": 17.585,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_2",
+        "metric": "I-AUROC",
+        "actual": 61.39153875144702,
+        "expected": 61.40056728160232,
+        "delta_pp": -0.009028530155298142,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_2",
+        "metric": "P-AUROC",
+        "actual": 94.32666666666665,
+        "expected": 94.32499999999999,
+        "delta_pp": 0.0016666666666651508,
+        "matches_printed_precision": false
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_2",
+        "metric": "P-PRO",
+        "actual": 79.07801270484924,
+        "expected": 79.07740147908528,
+        "delta_pp": 0.0006112257639614427,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "prescore_calibrated_residual_alpha_2",
+        "metric": "P-AP",
+        "actual": 17.71166666666667,
+        "expected": 17.708333333333332,
+        "delta_pp": 0.003333333333337407,
+        "matches_printed_precision": true
+      }
+    ]
+  },
+  "capture_index_sha256": "8a561a16c3c37797fc4cdb934899a3e0a007f9347a4393db4758db274595af97",
+  "captured_files": [
+    {
+      "function": "get_or_collect_source_banks",
+      "file": "000-get_or_collect_source_banks.pt",
+      "sha256": "65b21290273fe67f79a90b0d1553927eda1c3a6d45dd2900b38afab1af70a36d"
+    },
+    {
+      "function": "train_prescore_calibrators",
+      "file": "001-train_prescore_calibrators.pt",
+      "sha256": "2ac808d60bef8c4c8ed3d413e8a4e7d94e314b49587e12cf3ab86f08dd959fc7"
+    }
+  ],
+  "finished": "2026-10-09T04:53:49.621662+00:00"
+}

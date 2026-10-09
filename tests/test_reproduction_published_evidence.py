@@ -12,7 +12,13 @@ ROOT = Path(__file__).resolve().parents[1] / 'reproduction'
 
 class PublishedEvidenceTests(unittest.TestCase):
     def test_residual_btad_fresh_replay_preserves_all_44_comparisons(self):
-        folder = ROOT / 'validation/a10-20261009/residual-btad-v5'
+        self.check_residual_replay('btad', 36, 741)
+
+    def test_residual_mpdd_fresh_replay_preserves_all_44_comparisons(self):
+        self.check_residual_replay('mpdd', 31, 458)
+
+    def check_residual_replay(self, dataset, matched, images):
+        folder = ROOT / ('validation/a10-20261009/residual-' + dataset + '-v5')
         execution = json.loads((folder / 'execution.json').read_text())
         comparison = json.loads((folder / 'comparison.json').read_text())
         actual = json.loads((folder / 'summary.json').read_text())
@@ -22,12 +28,12 @@ class PublishedEvidenceTests(unittest.TestCase):
         self.assertEqual(comparison, execution['comparison'])
         self.assertEqual(cells, comparison['cells'])
         self.assertEqual(len(cells), 44)
-        self.assertEqual(sum(c['matches_printed_precision'] for c in cells), 36)
+        self.assertEqual(sum(c['matches_printed_precision'] for c in cells), matched)
         self.assertEqual(digest_file(folder / 'summary.json'), comparison['actual_sha256'])
         self.assertEqual(execution['status'], 'mismatch')
         self.assertEqual(execution['returncode'], 0)
         self.assertEqual(execution['slurm_job_id'], '13725')
-        self.assertEqual(comparison['target_coverage']['expected_test_images'], 741)
+        self.assertEqual(comparison['target_coverage']['expected_test_images'], images)
 
     def test_anonymous_aa_release_matches_pinned_archive_and_raw_maps(self):
         folder = ROOT / 'validation/a10-20261009'

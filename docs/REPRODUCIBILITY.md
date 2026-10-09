@@ -150,7 +150,7 @@ place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then ru
 `python -m reproduction.residual_strength --runs <runs>`. That assembly checks
 summary content and coverage; inspect matching terminal execution records for
 fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
-BTAD has now completed on A10 under Slurm job13725; the other three transfers
+BTAD and MPDD have now completed on A10 under Slurm job13725; the other two transfers
 remain pending until actual terminal records prove them.
 
 All four Linux preparation commands passed on the A10 host with CUDA hidden.
@@ -160,7 +160,11 @@ empty pre-run bank caches and verified weight objects. This is preparation
 evidence. The [fresh BTAD execution](../reproduction/validation/a10-20261009/residual-btad-v5/execution.json)
 completed successfully but matches only36/44 archived metrics at two decimals.
 All44 comparisons and the complete summary are retained; this is a mismatch,
-not a reproduced Table14. The other transfers and final aggregation are pending.
+not a reproduced Table14. [MPDD](../reproduction/validation/a10-20261009/residual-mpdd-v5/execution.json)
+also completed with31/44 archived metrics matching at two decimals across all
+four target classes and458 expected test images. VisA, MVTec and final aggregation
+are pending. Reported target counts are checked; independent per-image traces
+are not supplied by these records.
 
 Figure 3 has an independent CPU audit of its archived VisA capsules diagnostic
 arrays. After installing NumPy1.25.0 and scikit-learn1.7.2 in Python3.10, run:
@@ -179,3 +183,7 @@ This is an archival array audit of a diagnostic subset, not fresh model inferenc
 or a whole-dataset evaluation. Fresh feature collection and the final PDF style
 provenance remain pending. The archive contains derived arrays only; source
 dataset terms still apply. Existing audit output files are never overwritten.
+The public command passed in a separate Linux Git worktree at commitc1ef6d5,
+using an isolated Python3.10 CPU environment with NumPy1.25.0 and sklearn1.7.2.
+The [bound CPU report](../reproduction/validation/a10-20261009/figure3-public-cpu-audit.json)
+records every calculation and keeps fresh collection and layout status pending.
