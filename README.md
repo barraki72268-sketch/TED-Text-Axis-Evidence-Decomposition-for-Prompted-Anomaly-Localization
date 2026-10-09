@@ -38,6 +38,7 @@ GPU reproduction of every configuration.
 | Upstream backbone acquisition | All 8 backbone files downloaded and matched to pinned size/SHA-256 | [Download evidence](reproduction/validation/public-backbone-download-validation.json) |
 | Full dataset input checks | 23,091 referenced files across MVTec AD, VisA, MPDD, BTAD | [Dataset guide](reproduction/DATASETS.md), [byte verification](reproduction/validation/2026-10-08/public-dataset-validation.json) |
 | ImageBind fresh GPU replay | Full BTAD; all 12 Base/T-TED/C-TED metrics match the archived reference at 2 decimals on RTX 6000 Ada | [Execution and comparison](reproduction/validation/2026-10-08/report.json) |
+| AA-CLIP fresh A10 replay | Full BTAD, seed 0: source-limit-1 configuration matches 8/8 metrics; main configuration matches 7/8, with the P-PRO difference retained | [Both results and summaries](reproduction/validation/a10-20261009/report.json) |
 | Weak-source ablation inputs | 28 configurations / 12 public banks; anonymous acquisition verified; all 24 printed gain cells match archived-summary aggregation | [Download check](reproduction/validation/public-weak-bank-download-validation.json), [table check](reproduction/validation/weak-source-archived-table-validation.json) |
 | FAPrompt Docker/API path | Three BTAD images: HTTP raw maps match CPU historical-equation inference exactly | [Service evidence](docs/SERVICE.md) |
 

@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-09",
+  "hardware": "NVIDIA A10",
+  "scope": "Two full-BTAD AA-CLIP seed-0 configurations; not the whole paper or all weak-source ablations.",
+  "source": "Public GitHub runtime f8a2327, public checkpoint/backbone/bank objects, isolated Python3.10.22 torch2.9.1+cu128 NumPy1.25.0.",
+  "comparison": "Against archived per-seed summaries at two decimals. Per-class reported coverage checks 3 classes / 741 test images; independent per-image execution trace is not provided.",
+  "results": [
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_sourcelimit1_seed0",
+      "slurm_job_id": "13712",
+      "status": "matched",
+      "finished": "2026-10-09T01:40:04.177993+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "reference_sha256": "760f390b0218a506e282aba15f63dc421e2da7be6679b01f538df9daeb79cc28",
+      "evidence": [
+        {
+          "file": "aaclip-weak-source-1/execution.json",
+          "sha256": "de0efb665b3d776118809c6af46a4e4b86fac06bcf7414af1bdf3e20dbc5a599"
+        },
+        {
+          "file": "aaclip-weak-source-1/comparison.json",
+          "sha256": "653b202e895448b3d477d540ff8680257f35a0938f95072970c8a31f626a3a99"
+        },
+        {
+          "file": "aaclip-weak-source-1/summary.json",
+          "sha256": "9a80c8a36ef10e21827e9d5deb7e8fff17d05cec25c84a3fdd799a059ef301e1"
+        },
+        {
+          "file": "aaclip-weak-source-1/environment.json",
+          "sha256": "0d675640b458d72aa5ca7b60a14b0bdb6e32cd2263da0a36b36a7f66ed16d0a7"
+        }
+      ]
+    },
+    {
+      "recipe": "aaclip-vitl_openai224-mvtec2btad-seed0",
+      "slurm_job_id": "13713",
+      "status": "mismatch",
+      "finished": "2026-10-09T01:44:28.089840+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 7,
+      "reference_sha256": "3d2fbd3201933973f04d3c93e7da63f1dcb25c7b66849ad9c136bc959c770a91",
+      "evidence": [
+        {
+          "file": "aaclip-main/execution.json",
+          "sha256": "e6f8725bb24eaa8532dbb9d362b5cae89affc34e9700f6440611d59726326df7"
+        },
+        {
+          "file": "aaclip-main/comparison.json",
+          "sha256": "af20b927e7b007ae4236ffac12052c1d5b964d11213dc9d9c6fce34952a16dfa"
+        },
+        {
+          "file": "aaclip-main/summary.json",
+          "sha256": "924bac17001c0a592d86b590684a7af13ab5a0a674ee444ce37d9c298840e9d0"
+        },
+        {
+          "file": "aaclip-main/environment.json",
+          "sha256": "0d675640b458d72aa5ca7b60a14b0bdb6e32cd2263da0a36b36a7f66ed16d0a7"
+        }
+      ]
+    }
+  ],
+  "remaining": "Other model/backbone/dataset/seed combinations, source-bank rebuilds, all remaining tables and figures, provenance gaps, and all-model deployment remain incomplete."
+}

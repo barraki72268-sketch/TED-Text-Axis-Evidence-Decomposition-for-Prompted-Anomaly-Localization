@@ -364,3 +364,12 @@ data access; having their bank files does not resolve that dataset blocker.
 Historical JSON files retain original path strings for provenance; those strings
 are not instructions to create directories on a new machine. Portable execution
 configuration is undergoing fresh execution validation.
+
+The isolated runtime also binds checkpoints at the source-relative paths computed
+by the archived evaluators and relocates the shared VisA/BTAD dataset constants to
+the verified full dataset roots. These path-only changes are recorded in
+`run.json`; checkpoint links and source hashes are checked again before launch.
+For AA-CLIP, `prepare-backbones --recipe ...` includes the OpenAI L/14-336 file
+required by the evaluator's unconditional startup check, even for B+ and H/14.
+The recipe's selected backbone remains unchanged. A10 dependency installation
+and these path fixes do not establish metric agreement for every recipe.
