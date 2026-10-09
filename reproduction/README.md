@@ -215,6 +215,28 @@ internal paths, implicit backbone loading, and bank-cache behavior still need
 portable runtime preparation. The experimental commands below provide that
 preparation and execution; clean GPU validation across every loader is pending.
 
+### Evaluation environment
+
+The recorded [A10 dependency freeze](requirements-evaluation-a10.txt) targets
+Linux x86-64, Python 3.10, and PyTorch CUDA 12.8. It is an execution-environment
+record, not a claim that every model has reproduced under it. Use a separate
+environment from the artifact-only audit tools:
+
+```bash
+python3.10 -m venv .venv-eval
+. .venv-eval/bin/activate
+python -m pip install --extra-index-url https://download.pytorch.org/whl/cu128 \
+  -r reproduction/requirements-evaluation-a10.txt
+python -m pip check
+```
+
+The archived AA-CLIP adapter imports `ipdb`, and the FAPrompt loader imports
+`pkg_resources`. The fresh A10 run exposed both missing dependencies before
+model evaluation. `ipdb==0.13.13` and `setuptools==79.0.1` restore these imports;
+the original source and evaluation parameters remain unchanged. Modern
+setuptools releases that remove `pkg_resources` are incompatible with that
+archived loader. Initial failed attempts are preserved separately from retries.
+
 ```bash
 python -m reproduction prepare-run faprompt-vitl14_336-mvtec2btad-seed0 ./runs/faprompt-btad \
   --objects ./inputs --datasets ./dataset-roots.json
