@@ -10,6 +10,18 @@ from reproduction.aa_release import prepare_release
 
 
 class ServingArchiveTests(unittest.TestCase):
+    def test_faprompt_archive_requires_explicit_matching_host(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bundle = self.fixture(root, 'FAPrompt')
+            with self.assertRaises(ValueError):
+                pack_aa_bundle(bundle, root / 'wrong-host.tar.gz', 'AdaptCLIP')
+            record = pack_aa_bundle(bundle, root / 'faprompt.tar.gz', 'FAPrompt')
+            unpack_aa_bundle(root / 'faprompt.tar.gz', root / 'relocated', record)
+            self.assertEqual(record['host'], 'FAPrompt')
+            self.assertEqual((root / 'relocated/source/research.py').read_bytes(),
+                             (bundle / 'source/research.py').read_bytes())
+
     def test_public_download_roundtrip_and_offline_cache_reuse(self):
         import io
         from unittest.mock import patch
