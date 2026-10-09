@@ -32,9 +32,12 @@ class AxisRunTests(unittest.TestCase):
     def test_live_job_must_have_gpu_and_current_host(self):
         env = {'SLURM_JOB_ID':'123', 'CUDA_VISIBLE_DEVICES':'0'}
         job = 'JobId=123 JobState=RUNNING AllocTRES=cpu=8,gres/gpu=1 NodeList=gpu-host Reservation=test'
-        with patch.dict(os.environ, env, clear=True), patch('reproduction.axis_run.socket.gethostname', return_value='gpu-host'):
-            with patch('reproduction.axis_run.subprocess.run', side_effect=[SimpleNamespace(stdout=job), SimpleNamespace(stdout='gpu-host\n')]):
+        with patch.dict(os.environ, env, clear=True), patch('reproduction.axis_run.socket.gethostname', return_value='gpu-host'), patch('reproduction.axis_run.os.getpid', return_value=42):
+            with patch('reproduction.axis_run.subprocess.run', side_effect=[SimpleNamespace(stdout=job), SimpleNamespace(stdout='gpu-host\n'), SimpleNamespace(stdout='PID JOBID STEPID LOCALID GLOBALID\n42 123 batch 0 0\n')]):
                 self.assertEqual(require_live_gpu_allocation()['job_id'], '123')
+            with patch('reproduction.axis_run.subprocess.run', side_effect=[SimpleNamespace(stdout=job), SimpleNamespace(stdout='gpu-host\n'), SimpleNamespace(stdout='PID JOBID STEPID LOCALID GLOBALID\n99 123 batch 0 0\n')]):
+                with self.assertRaisesRegex(RuntimeError, 'process is not tracked'):
+                    require_live_gpu_allocation()
             for invalid in [job.replace('RUNNING','COMPLETED'), job.replace('gres/gpu=1','gres/gpu=0')]:
                 with patch('reproduction.axis_run.subprocess.run', return_value=SimpleNamespace(stdout=invalid)):
                     with self.assertRaisesRegex(RuntimeError, 'running GPU'):

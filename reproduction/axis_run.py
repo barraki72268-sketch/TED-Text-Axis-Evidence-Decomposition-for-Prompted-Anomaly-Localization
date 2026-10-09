@@ -36,9 +36,16 @@ def require_live_gpu_allocation() -> dict:
     hostname = socket.gethostname().split('.')[0]
     if hostname not in {name.split('.')[0] for name in nodes}:
         raise RuntimeError('Current host is not allocated to this Slurm job')
+    listing = subprocess.run(['scontrol', 'listpids', job], capture_output=True,
+                             text=True, check=True, timeout=20).stdout
+    memberships = [line.split() for line in listing.splitlines()[1:]]
+    current = [row for row in memberships if len(row) >= 3 and row[0] == str(os.getpid()) and row[1] == job]
+    if len(current) != 1:
+        raise RuntimeError('Current process is not tracked inside the Slurm allocation')
     return {'job_id': job, 'hostname': hostname, 'cuda_visible_devices': visible,
             'state': fields['JobState'], 'allocated_tres': tres,
-            'reservation': fields.get('Reservation'), 'end_time': fields.get('EndTime')}
+            'reservation': fields.get('Reservation'), 'end_time': fields.get('EndTime'),
+            'pid': os.getpid(), 'step_id': current[0][2]}
 
 
 def validate_prepared(root: Path, workspace: Path) -> dict:
