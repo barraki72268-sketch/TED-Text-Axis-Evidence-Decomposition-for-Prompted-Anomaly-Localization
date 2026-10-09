@@ -1,0 +1,140 @@
+{
+  "table_label": "tab:supp_residual_strength_boundary",
+  "input": "terminal_execution_workspaces",
+  "fresh_gpu_execution_verified": false,
+  "terminal_execution_records_verified": true,
+  "matching_scope": "Five printed aggregate cells at one decimal; individual 44-metric comparisons are separate",
+  "aggregation": "Unweighted mean across four AA-CLIP seed0 transfers; each deltaLoc=(deltaPRO+deltaAP)/2, native AA metrics in percentage points.",
+  "status": "matched",
+  "cells": [
+    {
+      "alpha": 0,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.0,
+      "printed": "+0.0",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 0.25,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.31398593882719394,
+      "printed": "+0.3",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 0.5,
+      "transfers": 4,
+      "actual_delta_loc_pp": 0.286150095065433,
+      "printed": "+0.3",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 1,
+      "transfers": 4,
+      "actual_delta_loc_pp": -0.041135939975578406,
+      "printed": "-0.0",
+      "matches_1dp": true
+    },
+    {
+      "alpha": 2,
+      "transfers": 4,
+      "actual_delta_loc_pp": -5.24641766522328,
+      "printed": "-5.2",
+      "matches_1dp": true
+    }
+  ],
+  "evidence": [
+    {
+      "recipe": "aaclip_vitl_openai224_visa2mvtec_strength_seed0",
+      "summary_sha256": "ec5faa7bac1dbd68c926581ce2728aac363c83ec62e02502d902d7df4b756467",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "execution": {
+        "status": "mismatch",
+        "finished": "2026-10-09T05:30:10.874962+00:00",
+        "recorded_slurm_job_id": "13725",
+        "execution_sha256": "2c5f9d4bae1af9cb677f0b68ef74492d2abb91645225f910f27762e376f26937",
+        "plan_sha256": "be996860809359fb276d36092b595b13418ab8f6a1b7778a982aad7881faffd0",
+        "comparison_sha256": "0afb65c7f0d2f5f2d4351e8459f6f2f12438bcf43f2fbf7fc718e554c1e501de",
+        "metrics_checked": 44,
+        "metrics_matched_2dp": 18,
+        "verification_scope": "Terminal record, plan and all metric bindings; offline audit cannot independently prove past GPU allocation"
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2visa_strength_seed0",
+      "summary_sha256": "bdfc766bca81d2a2e0be3ace3a97a6405840aafe325ce8a0e41e26fe56bb65df",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "execution": {
+        "status": "mismatch",
+        "finished": "2026-10-09T05:13:20.119638+00:00",
+        "recorded_slurm_job_id": "13725",
+        "execution_sha256": "8db35b9502844266a0ef7bfe3c6c67bc6646654806295a5662191cff9154bc42",
+        "plan_sha256": "aeae241fbde2fde0a3236d7b971384997df0669d8a9f06d66e607e2866e63606",
+        "comparison_sha256": "98f0e4ad6ecc4aac77dd30fdf259846bf79ac5b5f64bf11d4a1fd311b6185454",
+        "metrics_checked": 44,
+        "metrics_matched_2dp": 35,
+        "verification_scope": "Terminal record, plan and all metric bindings; offline audit cannot independently prove past GPU allocation"
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2mpdd_strength_seed0",
+      "summary_sha256": "db918ec6d8f1a54a54698a44f30e7c614a6868858a1b9b2ed5fcbf51cad3eff1",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "execution": {
+        "status": "mismatch",
+        "finished": "2026-10-09T04:53:49.621662+00:00",
+        "recorded_slurm_job_id": "13725",
+        "execution_sha256": "4e84a954df379a0870b10885975dc28ea8a6870ac67eba8674f79e8904a16a78",
+        "plan_sha256": "5f0328267e67886de404d681ef85b5b931fa0d6ad11d668da29aadcb6521a49e",
+        "comparison_sha256": "30e5077147e3feb7a246a3b107cea3cf3102b6bd189c1c775bfbbc53d837a2d3",
+        "metrics_checked": 44,
+        "metrics_matched_2dp": 31,
+        "verification_scope": "Terminal record, plan and all metric bindings; offline audit cannot independently prove past GPU allocation"
+      }
+    },
+    {
+      "recipe": "aaclip_vitl_openai224_mvtec2btad_strength_seed0",
+      "summary_sha256": "3398a40c62d95c46c0700201605327c94277889ea4e3cf7ab31ea94a9d9e878a",
+      "coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "execution": {
+        "status": "mismatch",
+        "finished": "2026-10-09T04:48:13.930851+00:00",
+        "recorded_slurm_job_id": "13725",
+        "execution_sha256": "cef1b54c1d3180ad2eb64dbd0cba27560c3399ce730d2d88e297657232690938",
+        "plan_sha256": "cc1309b72182f3675c9a358bdbd01eae533d11a4e9e41c1c440e49bb971c9653",
+        "comparison_sha256": "d4fb234ccea2b10880eb49e672504876d5692529f388441e327d0bca03b43a99",
+        "metrics_checked": 44,
+        "metrics_matched_2dp": 36,
+        "verification_scope": "Terminal record, plan and all metric bindings; offline audit cannot independently prove past GPU allocation"
+      }
+    }
+  ]
+}
