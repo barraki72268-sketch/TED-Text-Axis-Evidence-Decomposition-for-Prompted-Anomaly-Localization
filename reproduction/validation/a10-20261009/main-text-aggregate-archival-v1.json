@@ -1,0 +1,281 @@
+{
+  "status": "matched",
+  "comparison_scope": "Table 2 and Table 4(b), preserved CSV aggregation versus printed cells",
+  "input_kind": "archived_aggregate_csv",
+  "fresh_gpu_execution_verified": false,
+  "cells_compared": 27,
+  "cells_matched": 27,
+  "evidence": [
+    {
+      "file": "failure_conditioned_gain_20260504.csv",
+      "table": "tab:failure_conditioned_gains",
+      "rows": 9,
+      "original_path": "neurips2026/results/final_metric_and_novelty_tables/failure_conditioned_gain_20260504.csv",
+      "bytes": 2485,
+      "sha256": "ac6a52e270bdebbc531e768239914a19c36fe360e989909fe76969c23c35bc47"
+    },
+    {
+      "file": "simple_source_supervised_competitor_20260506.csv",
+      "table": "tab:source_memory_controls:b",
+      "rows": 16,
+      "original_path": "supp_fig/simple_source_supervised_competitor_20260506.csv",
+      "bytes": 6663,
+      "sha256": "6298d551220acb963bed5e98dbae5eaeef63b426832e68553461730597d25d32"
+    }
+  ],
+  "source_scripts": [
+    {
+      "path": "neurips2026/scripts/make_failure_conditioned_noncherry_20260504.py",
+      "sha256": "e81c8f0fbff49b9ee40afcfc28f0432ac1f561a7f799556b930e6f66646aa746"
+    },
+    {
+      "path": "neurips2026/scripts/make_simple_source_supervised_competitor_20260506.py",
+      "sha256": "12ecfb05aa63d8e82cb93d7d08de7adf7771c61fd3dd281d24df58bd22826cc1"
+    }
+  ],
+  "cells": [
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Low",
+      "metric": "bins",
+      "actual": 3,
+      "printed": 3,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Low",
+      "metric": "severity",
+      "actual": 0.06719586364669371,
+      "printed": 0.07,
+      "decimals": 2,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Low",
+      "metric": "PRO",
+      "actual": 3.7167069812615714,
+      "printed": 3.7,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Low",
+      "metric": "AP",
+      "actual": 6.259250273176038,
+      "printed": 6.3,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Low",
+      "metric": "Loc",
+      "actual": 4.987978627218805,
+      "printed": 5.0,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Mid",
+      "metric": "bins",
+      "actual": 3,
+      "printed": 3,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Mid",
+      "metric": "severity",
+      "actual": 0.09870274177870546,
+      "printed": 0.1,
+      "decimals": 2,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Mid",
+      "metric": "PRO",
+      "actual": 8.832964052756628,
+      "printed": 8.8,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Mid",
+      "metric": "AP",
+      "actual": 13.759500703806337,
+      "printed": 13.8,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "Mid",
+      "metric": "Loc",
+      "actual": 11.29623237828148,
+      "printed": 11.3,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "High",
+      "metric": "bins",
+      "actual": 3,
+      "printed": 3,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "High",
+      "metric": "severity",
+      "actual": 0.18603673178576244,
+      "printed": 0.19,
+      "decimals": 2,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "High",
+      "metric": "PRO",
+      "actual": 11.338746547698975,
+      "printed": 11.3,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "High",
+      "metric": "AP",
+      "actual": 9.845152177604282,
+      "printed": 9.8,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:failure_conditioned_gains",
+      "row": "High",
+      "metric": "Loc",
+      "actual": 10.591949362651627,
+      "printed": 10.6,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_replace",
+      "metric": "settings",
+      "actual": 16,
+      "printed": 16,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_replace",
+      "metric": "PRO",
+      "actual": -19.775182612829127,
+      "printed": -19.8,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_replace",
+      "metric": "AP",
+      "actual": -14.14178057619181,
+      "printed": -14.1,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_replace",
+      "metric": "Loc",
+      "actual": -16.958481594510467,
+      "printed": -17.0,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_residual",
+      "metric": "settings",
+      "actual": 16,
+      "printed": 16,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_residual",
+      "metric": "PRO",
+      "actual": 2.054946053897342,
+      "printed": 2.1,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_residual",
+      "metric": "AP",
+      "actual": -5.252642793160748,
+      "printed": -5.3,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "scalar_residual",
+      "metric": "Loc",
+      "actual": -1.5988483696317028,
+      "printed": -1.6,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "cted",
+      "metric": "settings",
+      "actual": 16,
+      "printed": 16,
+      "decimals": 0,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "cted",
+      "metric": "PRO",
+      "actual": 4.4428008948142335,
+      "printed": 4.4,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "cted",
+      "metric": "AP",
+      "actual": 3.7328739466623535,
+      "printed": 3.7,
+      "decimals": 1,
+      "matches": true
+    },
+    {
+      "table": "tab:source_memory_controls:b",
+      "row": "cted",
+      "metric": "Loc",
+      "actual": 4.0878374207382935,
+      "printed": 4.1,
+      "decimals": 1,
+      "matches": true
+    }
+  ]
+}

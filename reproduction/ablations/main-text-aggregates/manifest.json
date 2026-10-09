@@ -1,0 +1,67 @@
+{
+  "inputs": [
+    {
+      "file": "failure_conditioned_gain_20260504.csv",
+      "table": "tab:failure_conditioned_gains",
+      "rows": 9,
+      "original_path": "neurips2026/results/final_metric_and_novelty_tables/failure_conditioned_gain_20260504.csv",
+      "bytes": 2485,
+      "sha256": "ac6a52e270bdebbc531e768239914a19c36fe360e989909fe76969c23c35bc47"
+    },
+    {
+      "file": "simple_source_supervised_competitor_20260506.csv",
+      "table": "tab:source_memory_controls:b",
+      "rows": 16,
+      "original_path": "supp_fig/simple_source_supervised_competitor_20260506.csv",
+      "bytes": 6663,
+      "sha256": "6298d551220acb963bed5e98dbae5eaeef63b426832e68553461730597d25d32"
+    }
+  ],
+  "source_scripts": [
+    {
+      "path": "neurips2026/scripts/make_failure_conditioned_noncherry_20260504.py",
+      "sha256": "e81c8f0fbff49b9ee40afcfc28f0432ac1f561a7f799556b930e6f66646aa746"
+    },
+    {
+      "path": "neurips2026/scripts/make_simple_source_supervised_competitor_20260506.py",
+      "sha256": "12ecfb05aa63d8e82cb93d7d08de7adf7771c61fd3dd281d24df58bd22826cc1"
+    }
+  ],
+  "failure_conditioned_printed": {
+    "Low": {
+      "severity": 0.07,
+      "PRO": 3.7,
+      "AP": 6.3,
+      "Loc": 5.0
+    },
+    "Mid": {
+      "severity": 0.1,
+      "PRO": 8.8,
+      "AP": 13.8,
+      "Loc": 11.3
+    },
+    "High": {
+      "severity": 0.19,
+      "PRO": 11.3,
+      "AP": 9.8,
+      "Loc": 10.6
+    }
+  },
+  "scalar_printed": {
+    "scalar_replace": {
+      "PRO": -19.8,
+      "AP": -14.1,
+      "Loc": -17.0
+    },
+    "scalar_residual": {
+      "PRO": 2.1,
+      "AP": -5.3,
+      "Loc": -1.6
+    },
+    "cted": {
+      "PRO": 4.4,
+      "AP": 3.7,
+      "Loc": 4.1
+    }
+  }
+}

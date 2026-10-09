@@ -45,6 +45,7 @@ GPU reproduction of every configuration.
 |---|---|---|
 | T-TED and C-TED cores | Numerical parity and synthetic tests; C-TED cores for AA-CLIP, AdaCLIP, FAPrompt | [T-TED](docs/TTED.md), [C-TED](docs/CTED.md) |
 | Archived research source | 920 source files with SHA-256 verification | [Source and notices](reproduction/SOURCE-NOTICES.md) |
+| Main-text aggregate tables | Table 2 and Table 4(b): all 27 printed cells reassemble from preserved 9-bin and 16-setting CSVs; archival aggregation | [Inputs and runnable audit](reproduction/ablations/main-text-aggregates/README.md) |
 | Main/host execution recipes | 232 configurations: 207 adapted-host seed runs + 25 frozen-backbone runs | [Recipe guide](reproduction/README.md) |
 | Public host checkpoints | 11 objects bound to the 207 adapted-host configurations | [Anonymous download check](reproduction/validation/2026-10-08/public-checkpoint-download-validation.json) |
 | Public source banks | 92 adapted-host banks + 10 frozen-backbone banks | [Host-bank audit](reproduction/validation/huggingface-banks-public-verification.json), [raw-bank download](reproduction/validation/public-raw-bank-download-validation.json) |
