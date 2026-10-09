@@ -8,7 +8,7 @@ import sys
 
 from .checkpoint_download import digest_file
 from .datasets import validate_dataset
-from .metrics import compare, extract
+from .metrics import compare, extract_recipe
 from .coverage import validate_coverage
 from .runtime import read_json
 from .recipe_lookup import execution_recipe, reference_summary
@@ -52,6 +52,12 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
     output = Path(plan["argv"][plan["argv"].index("--save_dir") + 1])
     if output.resolve() != workspace / "results" or output.exists() or (workspace / "execution.json").exists():
         raise FileExistsError("Result destination must be new; preserve previous attempts")
+    if recipe.get('source_bank_policy') == 'fresh_source_only':
+        cache = workspace / 'source/neurips2026/results/bank_cache'
+        if plan.get('source_bank_policy') != 'fresh_source_only' or plan['bank_path_changes']:
+            raise ValueError('Fresh-source recipe cannot bind a historical bank')
+        if cache.is_symlink() or (cache.exists() and any(cache.iterdir())):
+            raise ValueError('Fresh-source bank cache must be empty before execution')
     changes = {r["path"]: r["after_sha256"] for r in plan["source_path_changes"]}
     for entry in read_json(root / "source-manifest.json")["files"]:
         if digest_file(workspace / "source" / entry["path"]) != changes.get(entry["path"], entry["sha256"]):
@@ -83,8 +89,8 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
         execution.update(returncode=result.returncode, status="failed" if result.returncode else "completed")
         if result.returncode == 0:
             reference, expected_summary = reference_summary(root, plan["recipe"])
-            cells = compare(extract(read_json(output / "summary.json"), reference["host"]),
-                            extract(expected_summary, reference["host"]))
+            cells = compare(extract_recipe(read_json(output / "summary.json"), recipe),
+                            extract_recipe(expected_summary, recipe))
             comparison = {"recipe": plan["recipe"], "reference_sha256": reference["reference_sha256"],
                           "target_coverage": validate_coverage(root, reference, read_json(output / "summary.json")),
                           "actual_sha256": digest_file(output / "summary.json"),

@@ -208,16 +208,13 @@ def main() -> int:
         print(json.dumps({"status": "matched" if matched else "mismatch", "std_convention": convention,
                           "seed_evidence": evidence, "cells": cells}, indent=2))
         return 0 if matched else 1
-    if args.recipe not in recipes:
-        parser.error(f"Unknown recipe: {args.recipe}")
-    recipe = recipes[args.recipe]
-    reference = ROOT / "references" / recipe["reference"]
-    reference_bytes = reference.read_bytes()
-    if hashlib.sha256(reference_bytes).hexdigest() != recipe["reference_sha256"]:
-        raise ValueError("Historical reference hash mismatch")
+    from .recipe_lookup import execution_recipe, reference_summary
+    from .metrics import extract_recipe
+    execution = execution_recipe(ROOT, args.recipe)
+    recipe, reference_summary_value = reference_summary(ROOT, args.recipe)
     actual_bytes = args.actual.read_bytes()
     coverage = validate_coverage(ROOT, recipe, json.loads(actual_bytes))
-    cells = compare(extract(json.loads(actual_bytes), recipe["host"]), extract(json.loads(reference_bytes), recipe["host"]))
+    cells = compare(extract_recipe(json.loads(actual_bytes), execution), extract_recipe(reference_summary_value, execution))
     report = {"recipe": recipe["id"], "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
               "reference_sha256": recipe["reference_sha256"], "actual_sha256": hashlib.sha256(actual_bytes).hexdigest(),
               "all_match_2dp": all(cell["matches_printed_precision"] for cell in cells), "cells": cells,

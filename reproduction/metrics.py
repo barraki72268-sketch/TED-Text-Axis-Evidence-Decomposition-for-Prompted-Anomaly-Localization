@@ -7,6 +7,27 @@ import statistics
 METRICS = ("I-AUROC", "P-AUROC", "P-PRO", "P-AP")
 
 
+def extract_recipe(summary: dict, recipe: dict) -> dict:
+    if recipe.get('scope') != 'residual-strength-ablation':
+        return extract(summary, recipe['host'])
+    alphas = [0, 0.25, 0.5, 1, 2]
+    modes = ['prescore_calibrated_residual', 'prescore_calibrated']
+    if summary['alphas'] != alphas or summary['blend_modes'] != modes or summary['img_size'] != 224:
+        raise ValueError('Residual-strength summary configuration differs')
+    candidates = summary['mean']['candidates']
+    expected = {mode + '_alpha_' + f'{alpha:g}' for mode in modes for alpha in alphas}
+    if set(candidates) != expected:
+        raise ValueError('Residual-strength candidate coverage differs')
+    rows = dict(Base=summary['mean']['baseline'], **{key: candidates[key] for key in sorted(expected)})
+    keys = ('image_auc', 'pixel_auc', 'pixel_pro', 'pixel_ap')
+    result = {name: {metric: float(row[key]) for metric, key in zip(METRICS, keys)}
+              for name, row in rows.items()}
+    if any(not math.isfinite(value) or not 0 <= value <= 100
+           for row in result.values() for value in row.values()):
+        raise ValueError('Invalid residual-strength metric')
+    return result
+
+
 def extract(summary: dict, host: str) -> dict[str, dict[str, float]]:
     """Return percentage points; do not infer units from observed magnitudes."""
     if host == "AA-CLIP":

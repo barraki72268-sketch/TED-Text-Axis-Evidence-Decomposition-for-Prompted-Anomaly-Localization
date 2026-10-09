@@ -6,7 +6,7 @@ import shutil
 
 from .checkpoint_download import digest_file
 from .coverage import validate_coverage
-from .metrics import compare, extract
+from .metrics import compare, extract_recipe
 from .recipe_lookup import execution_recipe, reference_summary
 
 
@@ -46,7 +46,7 @@ def export_captured_run(root: Path, workspace: Path, destination: Path) -> dict:
     reference, expected = reference_summary(root, plan['recipe'])
     summary_path = workspace / 'results/summary.json'
     summary = read(summary_path)
-    cells = compare(extract(summary, recipe['host']), extract(expected, recipe['host']))
+    cells = compare(extract_recipe(summary, recipe), extract_recipe(expected, recipe))
     comparison = read(workspace / 'comparison.json')
     if (comparison != execution['comparison'] or comparison['cells'] != cells or
             comparison['reference_sha256'] != reference['reference_sha256'] or

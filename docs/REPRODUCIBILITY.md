@@ -120,3 +120,34 @@ environment, GPU model, seed, exact command, and execution/comparison records.
 State whether the issue concerns artifact acquisition, full-data execution,
 per-seed agreement, or printed aggregation. Avoid attaching credentials or
 restricted original datasets.
+
+### Residual-strength boundary execution (Table14)
+
+Four AA OpenAI L/14, input224, seed0 recipes are now accepted by
+`prepare-run`, `run-prepared`, and `compare`. IDs are listed in
+[the traced launcher manifest](../reproduction/ablations/residual-strength.json).
+Each run preserves the original two blend modes and five alphas; comparison
+checks44 metrics (baseline and every candidate), not only alpha1. These recipes
+start with an empty source-bank cache and rebuild using the original source-only
+settings. Checkpoint/backbone dependencies bind to the corresponding OpenAI
+L/14 main recipe; main-table banks are not substituted. The historical logical
+GPU ordinal `cuda:1` is relocated to the single Slurm-visible `cuda:0`, recorded
+in the preparation report. No numerical parameter is changed.
+
+With full dataset roots and verified weight objects already prepared:
+
+```bash
+python -m reproduction prepare-run aaclip_vitl_openai224_mvtec2btad_strength_seed0 \
+  ./runs/residual-btad --objects ./inputs --datasets ./dataset-roots.json
+# Inside a valid Slurm GPU allocation:
+python -m reproduction run-prepared ./runs/residual-btad --require-slurm
+python -m reproduction compare aaclip_vitl_openai224_mvtec2btad_strength_seed0 \
+  ./runs/residual-btad/results/summary.json
+```
+
+Repeat the other three transfer IDs. To assemble the printed five-cell table,
+place each fresh `summary.json` under `<runs>/<recipe-id>/summary.json`, then run
+`python -m reproduction.residual_strength --runs <runs>`. That assembly checks
+summary content and coverage; inspect matching terminal execution records for
+fresh-GPU evidence. Linux preparation and fresh GPU replay are distinct gates;
+all four fresh GPU executions remain pending until actual records prove them.

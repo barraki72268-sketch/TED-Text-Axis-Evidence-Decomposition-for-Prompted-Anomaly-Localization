@@ -18,6 +18,49 @@ def execution_recipe(root: Path, recipe_id: str) -> dict:
         if len(matches) != 1:
             raise ValueError("Duplicate execution recipe")
         return matches[0]
+    residual_path = root / 'ablations/residual-strength.json'
+    if residual_path.exists():
+        manifest = read(residual_path)
+        residual = [r for r in manifest['recipes'] if r['id'] == recipe_id]
+        if residual:
+            if len(residual) != 1:
+                raise ValueError('Duplicate residual-strength recipe')
+            row = residual[0]
+            dependencies = [r for r in main if r['host'] == 'AA-CLIP'
+                            and r['transfer'] == row['preset'] and r['seed'] == row['seed']
+                            and r['backbone'] == 'ViT-L/14 OpenAI']
+            if len(dependencies) != 1:
+                raise ValueError('Residual-strength weight dependency is ambiguous')
+            dependency = dependencies[0]
+            sources = {s['path']: s for s in read(root / 'source-manifest.json')['files']}
+            launcher = manifest['launcher']
+            if sources[launcher['path']]['sha256'] != launcher['sha256']:
+                raise ValueError('Residual-strength launcher source hash mismatch')
+            command = row['archived_launcher_command']
+            if command[1:3] != ['-u', dependency['evaluator']['path']]:
+                raise ValueError('Residual-strength evaluator differs from launcher')
+            argv = list(command[3:])
+            for flag, value in [('--preset', row['preset']), ('--seed', str(row['seed'])),
+                                ('--img_size', '224'), ('--pretrained', 'openai')]:
+                if argv.count(flag) != 1 or argv[argv.index(flag) + 1] != value:
+                    raise ValueError('Residual-strength numerical configuration differs')
+            if argv.count('--save_dir') != 1 or argv.count('--device') != 1:
+                raise ValueError('Residual-strength output/device binding is ambiguous')
+            argv[argv.index('--save_dir') + 1] = '{save_dir}'
+            device = argv[argv.index('--device') + 1]
+            if device != 'cuda:1':
+                raise ValueError('Unexpected historical residual-strength GPU ordinal')
+            argv[argv.index('--device') + 1] = 'cuda:0'
+            if any(a.startswith('/') or a.split('=', 1)[0] in
+                   {'--target_limit_per_class', '--target_class_name', '--class_name'} for a in argv):
+                raise ValueError('Residual-strength paths/target coverage differ')
+            return dict(dependency, id=recipe_id, argv=argv,
+                        reference_sha256=row['reference_sha256'], dependency_recipe=dependency['id'],
+                        path_bindings={'{save_dir}': dict(argument='--save_dir', kind='new_output_directory')},
+                        scope='residual-strength-ablation', source_bank_policy='fresh_source_only',
+                        resource_relocation=dict(archived_device=device, runtime_device='cuda:0',
+                                                 reason='single visible GPU within a Slurm allocation'),
+                        argument_provenance='reconstructed archived launcher; device ordinal relocated only')
     manifest = read(root / "ablations/weak-source.json")
     matches = [r for r in manifest["recipes"] if r["id"] == recipe_id]
     if len(matches) != 1:
@@ -56,8 +99,9 @@ def execution_recipe(root: Path, recipe_id: str) -> dict:
 
 def reference_summary(root: Path, recipe_id: str):
     recipe = execution_recipe(root, recipe_id)
-    if recipe.get("scope") == "weak-source-ablation":
-        manifest = read(root / "ablations/weak-source.json")
+    if recipe.get("scope") in {"weak-source-ablation", "residual-strength-ablation"}:
+        name = 'residual-strength' if recipe['scope'] == 'residual-strength-ablation' else 'weak-source'
+        manifest = read(root / ('ablations/' + name + '.json'))
         reference = next(r for r in manifest["recipes"] if r["id"] == recipe_id)
         archive = root / "ablations" / manifest["archive"]
         if digest_file(archive) != manifest["archive_sha256"]:

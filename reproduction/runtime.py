@@ -80,7 +80,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
             raise ValueError(f"Missing dataset roots for {name}")
     kind = recipe.get("bank_kind") or ("raw" if recipe["host"] in {"RawCLIP", "RawImageBind"} else "host")
     bank_catalog = read_json(root / f"{kind}-source-banks.json")
-    bank_binding = next(r for r in bank_catalog["bindings"] if r["recipe"] == recipe_id)
+    bank_binding = (dict(source_bank_assets=[]) if recipe.get('source_bank_policy') == 'fresh_source_only'
+                    else next(r for r in bank_catalog["bindings"] if r["recipe"] == recipe_id))
     backbone_catalog = read_json(root / "backbones.json")
     backbone_binding = next(r for r in backbone_catalog["bindings"] if r["recipe"] == dependency_id)
     backbone = next(a for a in backbone_catalog["artifacts"] if a["sha256"] == backbone_binding["sha256"])
@@ -233,5 +234,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
               "source_asset_links": asset_links,
               "bank_path_changes": bank_changes, "datasets": prepared_data, "fresh_gpu_benchmark": False,
               "status": "prepared_requires_fresh_execution"}
+    if recipe.get('source_bank_policy'):
+        report['source_bank_policy'] = recipe['source_bank_policy']
+        report['resource_relocation'] = recipe['resource_relocation']
     (destination / "run.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report

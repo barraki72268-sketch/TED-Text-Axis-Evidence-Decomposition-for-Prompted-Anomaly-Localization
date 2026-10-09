@@ -66,6 +66,23 @@ class PreparedRunTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "Slurm allocation"):
                 run_prepared(Path("."), Path("."), require_slurm=True)
 
+    def test_fresh_source_recipe_rejects_injected_bank_before_launch(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root, work, _, plan = self.fixture(Path(temp))
+            catalog = json.loads((root / 'execution-recipes.json').read_text())
+            catalog['recipes'][0]['source_bank_policy'] = 'fresh_source_only'
+            (root / 'execution-recipes.json').write_text(json.dumps(catalog))
+            plan['source_bank_policy'] = 'fresh_source_only'
+            (work / 'run.json').write_text(json.dumps(plan))
+            cache = work / 'source/neurips2026/results/bank_cache'
+            cache.mkdir(parents=True)
+            (cache / 'historical.pt').write_bytes(b'previous bank')
+            with patch('reproduction.run.subprocess.run') as launch:
+                with self.assertRaisesRegex(ValueError, 'must be empty'):
+                    run_prepared(root, work)
+                launch.assert_not_called()
+            self.assertFalse((work / 'execution.json').exists())
+
     def test_terminal_record_binds_captured_state_and_rejects_bad_capture_hash(self):
         for corrupt in (False, True):
             with self.subTest(corrupt=corrupt), tempfile.TemporaryDirectory() as temp:
