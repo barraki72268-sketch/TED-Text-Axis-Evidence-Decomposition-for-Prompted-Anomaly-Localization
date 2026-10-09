@@ -9,3 +9,6 @@ reproduction/figures/**/*.json -text
 # The deployed gateway evidence binds the exact registry bytes.
 deployment/pilab-model-registry.json -text
 reproduction/validation/**/*.yaml -text
+
+# Published documentation snapshots are also hashed against immutable HF bytes.
+reproduction/validation/**/*.md -text
