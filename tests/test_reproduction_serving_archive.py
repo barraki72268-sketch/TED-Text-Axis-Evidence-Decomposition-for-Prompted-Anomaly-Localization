@@ -10,6 +10,20 @@ from reproduction.aa_release import prepare_release
 
 
 class ServingArchiveTests(unittest.TestCase):
+    def test_rawclip_archive_requires_explicit_host_and_preserves_inputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bundle = self.fixture(root, 'RawCLIP')
+            with self.assertRaises(ValueError):
+                pack_aa_bundle(bundle, root / 'wrong-host.tar.gz', 'FAPrompt')
+            record = pack_aa_bundle(bundle, root / 'rawclip.tar.gz', 'RawCLIP')
+            unpack_aa_bundle(root / 'rawclip.tar.gz', root / 'relocated', record)
+            self.assertEqual(record['host'], 'RawCLIP')
+            self.assertEqual((root / 'relocated/source/research.py').read_bytes(),
+                             (bundle / 'source/research.py').read_bytes())
+            self.assertEqual((root / 'relocated/export/objects/state').read_bytes(),
+                             (bundle / 'export/objects/state').read_bytes())
+
     def test_faprompt_archive_requires_explicit_matching_host(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

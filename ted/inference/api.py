@@ -27,6 +27,12 @@ LOG = logging.getLogger("uvicorn.error")
 
 def engine_from_env():
     family = os.environ.get("TED_ENGINE_FAMILY", "faprompt")
+    if family == "rawclip":
+        from .rawclip_engine import CapturedRawCLIPEngine
+        return CapturedRawCLIPEngine(export_directory=os.environ["TED_CAPTURED_EXPORT"],
+                                    workspace=os.environ["TED_RUN_WORKSPACE"],
+                                    category=os.environ.get("TED_DEFAULT_CATEGORY") or None,
+                                    device=os.environ.get("TED_DEVICE", "cpu"))
     if family == "faprompt_captured":
         from .faprompt_captured_engine import CapturedFAPromptEngine
         return CapturedFAPromptEngine(workspace=os.environ["TED_RUN_WORKSPACE"],
@@ -91,10 +97,16 @@ def encode_prediction(engine, body, max_pixels, category=None, alpha=None):
     if "cted_image_score" in output and not math.isfinite(output["cted_image_score"]):
         raise RuntimeError("Invalid corrected image score")
     raw = io.BytesIO()
-    np.savez_compressed(raw, host=host, cted=cted)
-    low, high = np.percentile(np.concatenate([host.ravel(), cted.ravel()]), [2, 99.5])
+    maps = dict(host=host, cted=cted)
+    if "tted_map" in output:
+        tted = np.asarray(output["tted_map"], dtype=np.float32)
+        if tted.shape != host.shape or not np.isfinite(tted).all() or not math.isfinite(output["tted_image_score"]):
+            raise RuntimeError("Invalid train-free TED output")
+        maps["tted"] = tted
+    np.savez_compressed(raw, **maps)
+    low, high = np.percentile(np.concatenate([values.ravel() for values in maps.values()]), [2, 99.5])
     previews = {}
-    for name, values in (("host", host), ("cted", cted)):
+    for name, values in maps.items():
         pixels = np.clip((values[0] - low) / max(float(high - low), 1e-8), 0, 1)
         buffer = io.BytesIO()
         Image.fromarray((pixels * 255).astype("uint8")).save(buffer, format="PNG")
@@ -112,6 +124,8 @@ def encode_prediction(engine, body, max_pixels, category=None, alpha=None):
         result["category"] = output["category"]
     if "cted_image_score" in output:
         result["cted_image_score"] = float(output["cted_image_score"])
+    if "tted_image_score" in output:
+        result["tted_image_score"] = float(output["tted_image_score"])
     return result
 
 

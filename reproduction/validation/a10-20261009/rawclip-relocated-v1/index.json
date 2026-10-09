@@ -1,0 +1,116 @@
+{
+  "files": [
+    {
+      "file": "h14/export/capture-index.json",
+      "sha256": "57ad09a9a46ab7624d4818ee74b3b596d18ea9d2824b62b0a8b3b56def38e6a3"
+    },
+    {
+      "file": "h14/export/comparison.json",
+      "sha256": "24a371a828d1ba08265713fa82417fcae4095bf0adec60ae4f8136ca6deb6c84"
+    },
+    {
+      "file": "h14/export/execution.json",
+      "sha256": "52a452d0712107e0be2e8bc1ff1348fdf9668c602f83715a73838421799f8b0a"
+    },
+    {
+      "file": "h14/export/manifest.json",
+      "sha256": "cef1556f6c751218bbc7fb55bfcee1c8811a7bae483414402b1b700436470b9d"
+    },
+    {
+      "file": "h14/export/summary.json",
+      "sha256": "a5b8b5716d03b79a4aed4f53f69fad64affecb78e5705f7e66897235242cad36"
+    },
+    {
+      "file": "h14/parity.json",
+      "sha256": "ab797df551a5842038d5fd37e8b286d9533564e2ccdb6ba4ce829074b3d027a9"
+    },
+    {
+      "file": "h14/parity.log",
+      "sha256": "d66414a9ab7b35ada22aaea43955c23646a9bedadfe63df2c8112a78edcb3953"
+    },
+    {
+      "file": "h14/serving-bundle.json",
+      "sha256": "600f05eb5fe318ed64fa60330ede911d443a6f18b68219cf93363a1050ea5f04"
+    },
+    {
+      "file": "l336/export/capture-index.json",
+      "sha256": "cf47489ffd8c189a53680b4feadaec4ad341e0c9b4d00dc6e0696a7dde5d3e80"
+    },
+    {
+      "file": "l336/export/comparison.json",
+      "sha256": "75a6f4c871bdcc6a6c1b8733b6b7f52c0e4d1ce7793e47df05fbfaa2e54b3654"
+    },
+    {
+      "file": "l336/export/execution.json",
+      "sha256": "dbe86f6d19cb5f1383d8f6deb045a15462ea72e253f9072795ab8cd65b8fdfe8"
+    },
+    {
+      "file": "l336/export/manifest.json",
+      "sha256": "57df21603cfab51b92a6f18c499b566a721dbe203d11dc940515c4d660d35428"
+    },
+    {
+      "file": "l336/export/summary.json",
+      "sha256": "b2681ab1c243bf5b89110d299fb1b0702939294d5bafca7b6b8ceebea0984f87"
+    },
+    {
+      "file": "l336/parity.json",
+      "sha256": "fffd2fd01582f4f96af19f8b12b9c1a851b7625757c66994dc20520e3c0e3cd5"
+    },
+    {
+      "file": "l336/parity.log",
+      "sha256": "d66414a9ab7b35ada22aaea43955c23646a9bedadfe63df2c8112a78edcb3953"
+    },
+    {
+      "file": "l336/serving-bundle.json",
+      "sha256": "8730e2c8b0b0e0ec4ac138cce9ea9917dab22394d2e68e9d7a8085bd73d9b2b4"
+    },
+    {
+      "file": "openai/archive.json",
+      "sha256": "4e306c377bfbd913f26398f3309340ce6956fc04b13cb28243c1e2a8a0635eac"
+    },
+    {
+      "file": "openai/export/capture-index.json",
+      "sha256": "785f802cc4f543499cae78ae70d111480af55c01009dd232e25db5b89284a88f"
+    },
+    {
+      "file": "openai/export/comparison.json",
+      "sha256": "569f40a9580d854e4371cbeaf9646a7cf35b5bd8368ad84770a2fd168606bf8c"
+    },
+    {
+      "file": "openai/export/execution.json",
+      "sha256": "c6cd0785af201ecd2f4f05a49393590d1b2b0e27814729422991dbbbc92f36a0"
+    },
+    {
+      "file": "openai/export/manifest.json",
+      "sha256": "d1b619823f1ca7e55cf10e7f3536f4c2108a73b74e67369bf079912d69efc452"
+    },
+    {
+      "file": "openai/export/summary.json",
+      "sha256": "9ac67820af0ba344fd6e9bf453cff5f5ec594037537a3003f14cb6e4fd45b96e"
+    },
+    {
+      "file": "openai/parity.json",
+      "sha256": "48f4ff176e338fb62a45506680fed83c7d5145b0c299a0c0996f81418ae606d4"
+    },
+    {
+      "file": "openai/parity.log",
+      "sha256": "d66414a9ab7b35ada22aaea43955c23646a9bedadfe63df2c8112a78edcb3953"
+    },
+    {
+      "file": "openai/serving-bundle.json",
+      "sha256": "e689601a1a09ca14ac5a346561b59c198a41a5c5b079c7006cab804745e22947"
+    }
+  ],
+  "models": [
+    "openai",
+    "l336",
+    "h14"
+  ],
+  "image_cases": 9,
+  "readouts": [
+    "baseline_txt",
+    "parallel_margin",
+    "ted_calibrated"
+  ],
+  "scope": "Three relocated packages; all nine protocol-fixed image cases match original CPU evaluator output blocks exactly for three maps and scores. Original workspace/model reads and network denied. Same CPU backbone used for both sides; HTTP/container and public download checks are separate gates."
+}

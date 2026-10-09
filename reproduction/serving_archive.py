@@ -17,7 +17,7 @@ def verify_aa_bundle(bundle: Path, expected_host='AA-CLIP'):
     manifest = read(bundle / 'serving-bundle.json')
     exported = read(bundle / 'export/manifest.json')
     execution = read(bundle / 'export/execution.json')
-    if (expected_host not in {'AA-CLIP', 'AdaptCLIP', 'FAPrompt'}
+    if (expected_host not in {'AA-CLIP', 'AdaptCLIP', 'FAPrompt', 'RawCLIP'}
             or manifest.get('schema_version') != 1 or manifest.get('host') != expected_host
             or exported.get('host') != expected_host or execution.get('status') != 'matched'
             or execution.get('returncode') != 0 or not execution.get('finished')
@@ -143,7 +143,7 @@ if __name__ == '__main__':
     parser.add_argument('destination', type=Path)
     parser.add_argument('--unpack', action='store_true')
     parser.add_argument('--record', type=Path, help='Published archive JSON record, required for --unpack')
-    parser.add_argument('--host', choices=['AA-CLIP','AdaptCLIP','FAPrompt'], default='AA-CLIP')
+    parser.add_argument('--host', choices=['AA-CLIP','AdaptCLIP','FAPrompt','RawCLIP'], default='AA-CLIP')
     args = parser.parse_args()
     if args.unpack and args.record is None:
         parser.error('--unpack requires --record')

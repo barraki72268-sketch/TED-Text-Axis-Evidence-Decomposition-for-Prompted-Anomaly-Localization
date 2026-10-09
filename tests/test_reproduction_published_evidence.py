@@ -624,7 +624,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_verified_release_matches_archived_references_and_full_target_scope(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'verified-results.json').read_text())
-        self.assertEqual(len(report['results']), 15)
+        self.assertEqual(len(report['results']), 18)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 self.assertEqual(row['status'], 'matched')
@@ -643,7 +643,36 @@ class PublishedEvidenceTests(unittest.TestCase):
                     self.assertEqual(row['target_coverage']['classes_checked'], 15)
                     self.assertEqual(row['target_coverage']['expected_test_images'], 1725)
                     self.assertTrue(row['target_coverage']['reported_image_counts_checked'])
+                if row['target_coverage']['dataset'] == 'visa':
+                    self.assertEqual(row['target_coverage']['classes_checked'], 12)
+                    self.assertEqual(row['target_coverage']['expected_test_images'], 2162)
+                    self.assertTrue(row['target_coverage']['reported_image_counts_checked'])
                 self.assertFalse(row['target_coverage']['per_image_execution_verified'])
+
+    def test_rawclip_relocated_image_outputs_bind_exact_engine_and_terminal_state(self):
+        folder = ROOT / 'validation/a10-20261009/rawclip-relocated-v1'
+        index = json.loads((folder / 'index.json').read_text())
+        self.assertEqual(index['image_cases'], 9)
+        for entry in index['files']:
+            self.assertEqual(digest_file(folder / entry['file']), entry['sha256'])
+        for model in ['openai', 'l336', 'h14']:
+            report = json.loads((folder / model / 'parity.json').read_text())
+            export = json.loads((folder / model / 'export/manifest.json').read_text())
+            execution = json.loads((folder / model / 'export/execution.json').read_text())
+            self.assertEqual(report['status'], 'matched')
+            self.assertEqual(report['engine_sha256'], digest_file(ROOT.parent / 'ted/inference/rawclip_engine.py'))
+            self.assertEqual(report['artifact_sha256'], digest_file(folder / model / 'export/manifest.json'))
+            self.assertTrue(report['original_workspace_reads_denied'])
+            self.assertTrue(report['network_denied'])
+            self.assertFalse(report['gpu_used'])
+            self.assertEqual({r['category'] for r in report['cases']}, {'01', '02', '03'})
+            for row in report['cases']:
+                self.assertEqual(set(row['map_max_abs_error']), {'host_map', 'tted_map', 'cted_map'})
+                self.assertTrue(all(error == 0 for error in row['map_max_abs_error'].values()))
+                self.assertTrue(all(error == 0 for error in row['score_abs_error'].values()))
+            self.assertEqual(execution['status'], 'matched')
+            for entry in export['captured_state']:
+                self.assertIn({k: entry[k] for k in ['function', 'file', 'sha256']}, execution['captured_files'])
 
     def test_a10_published_bytes_and_claims_match_original_execution_records(self):
         folder = ROOT / 'validation/a10-20261009'

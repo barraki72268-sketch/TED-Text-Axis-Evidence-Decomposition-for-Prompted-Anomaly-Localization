@@ -1,14 +1,23 @@
-# FAPrompt inference and Docker service
+# TED inference and Docker services
 
 [Research overview](../README.md) · [Reproduction scope](REPRODUCIBILITY.md)
 
-## Verified path
+## Verified worker configurations
+
+Seven pilab worker configurations are available through the
+[model selector](#selecting-the-verified-pilab-workers): FAPrompt L/14-336,
+captured FAPrompt B/16+ seed1 and H/14 seed0, AA-CLIP main L/14-336 and
+source-limit-1, and AdaptCLIP OpenAI L/14 and L/14-336.
+The [gateway validation](../reproduction/validation/a10-20261009/gateway-v2/index.json)
+covers 33 recorded model/image/strength cases. Each worker's download and
+inference scope is documented below. These are seven configurations across
+three model families; the release does not claim every paper model is deployed.
+
+## Legacy FAPrompt L/14-336 path
 
 The released service runs **FAPrompt ViT-L/14@336px + C-TED**, input size 518,
 with MVTec-source calibration. The paper-aligned artifact uses **alpha 0.5**.
 It is available from [KIMJINYOUNG/TED-reproducibility](https://huggingface.co/KIMJINYOUNG/TED-reproducibility).
-Other models are being reproduced; their service adapters and model selector
-are not yet released as verified functionality.
 
 The service returns raw Host/C-TED maps and the unchanged official host image
 score. That score is not a calibrated defect probability. Display-normalized

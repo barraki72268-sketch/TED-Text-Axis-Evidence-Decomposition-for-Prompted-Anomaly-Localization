@@ -27,6 +27,29 @@ class FakeEngine:
 
 
 class APIContractTests(unittest.TestCase):
+    def test_three_readouts_preserve_trainfree_map_score_and_common_display_range(self):
+        class ThreeReadouts(FakeEngine):
+            def predict(self, image):
+                return dict(super().predict(image), tted_map=np.full((1,8,8),2.),
+                            tted_image_score=1.2, cted_image_score=.9)
+        with TestClient(create_app(ThreeReadouts)) as client:
+            response=client.post('/predict',content=png(),headers={'Content-Type':'image/png'})
+            self.assertEqual(response.status_code,200)
+            data=response.json()
+            self.assertEqual(data['tted_image_score'],1.2)
+            self.assertEqual(data['cted_image_score'],.9)
+            self.assertEqual(data['display']['shared_range'],[0.,2.])
+            self.assertEqual(set(data['previews_png_base64']),{'host','tted','cted'})
+            with np.load(io.BytesIO(base64.b64decode(data['maps_npz_base64'])),allow_pickle=False) as maps:
+                self.assertEqual(set(maps.files),{'host','tted','cted'})
+                np.testing.assert_array_equal(maps['tted'],np.full((1,8,8),2.))
+        from ted.inference.api import encode_prediction
+        class InvalidReadout(ThreeReadouts):
+            def predict(self,image):
+                return dict(super().predict(image),tted_image_score=float('nan'))
+        with self.assertRaisesRegex(RuntimeError,'train-free TED'):
+            encode_prediction(InvalidReadout(),png(),25_000_000)
+
     def test_only_recorded_strengths_are_dispatched_and_preserved(self):
         seen = []
         class AlphaEngine(FakeEngine):
