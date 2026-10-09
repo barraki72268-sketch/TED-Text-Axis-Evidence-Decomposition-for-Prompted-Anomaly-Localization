@@ -28,7 +28,7 @@ def original_output_block(script: Path):
 
 
 def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
-        deny_original_inputs: bool = False) -> dict:
+        deny_original_inputs: bool = False, images_root: Path | None = None) -> dict:
     import numpy as np
     from PIL import Image
     import torch
@@ -38,11 +38,14 @@ def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
     if digest_file((fixture_workspace or workspace) / 'run.json') != digest_file(workspace / 'run.json'):
         raise ValueError('Fixture workspace must share the exact original plan')
     if deny_original_inputs:
-        if fixture_workspace is None or fixture_workspace == workspace or not (workspace / 'serving-bundle.json').is_file():
+        if ((fixture_workspace is None and images_root is None) or fixture_workspace == workspace
+                or not (workspace / 'serving-bundle.json').is_file()):
             raise ValueError('Original-input denial requires a separate portable bundle and fixture workspace')
-        original = fixture_workspace.resolve()
-        permitted = {original / 'run.json'} | {
-            Path(data['prepared_metadata']).resolve() for data in plan['datasets'].values()}
+        if fixture_workspace is None and Path(plan['cwd']).name != 'source':
+            raise ValueError('Cannot identify original source root for input denial')
+        original = (fixture_workspace.resolve() if fixture_workspace else Path(plan['cwd']).parent.resolve())
+        permitted = ({original / 'run.json'} | {
+            Path(data['prepared_metadata']).resolve() for data in plan['datasets'].values()}) if images_root is None else set()
         old_objects = {Path(row['path']).resolve() for row in plan['verified_objects']}
 
         def guard(event, arguments):
@@ -54,19 +57,34 @@ def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
                     raise PermissionError('Original workspace/model input read prohibited')
         # This CLI runs in a disposable process; audit hooks cannot be removed.
         sys.addaudithook(guard)
+        try:
+            with (original / 'source/neurips2026/scripts/official_parallel_test_adaptclip_vlrefine.py').open('rb'):
+                pass
+        except PermissionError:
+            pass
+        else:
+            raise RuntimeError('Original workspace read denial self-check failed')
+        import socket
+        try:
+            socket.getaddrinfo('localhost', 1)
+        except PermissionError:
+            pass
+        else:
+            raise RuntimeError('Network denial self-check failed')
     engine = CapturedAdaptCLIPEngine(export_directory=exported, workspace=workspace, device='cpu')
     dataset = engine.summary['target_dataset']
     prepared = plan['datasets'][dataset]
-    metadata_path = Path(prepared['prepared_metadata'])
-    if digest_file(metadata_path) != prepared['prepared_metadata_sha256']:
-        raise ValueError('Prepared target metadata changed')
+    if images_root is None:
+        metadata_path = Path(prepared['prepared_metadata'])
+        if digest_file(metadata_path) != prepared['prepared_metadata_sha256']:
+            raise ValueError('Prepared target metadata changed')
     root = Path(__file__).resolve().parent
     protocol = root / 'datasets' / dataset
-    manifest, _ = load_protocol(protocol)
+    manifest, canonical_metadata = load_protocol(protocol)
     if digest_file(protocol / 'manifest.json') != prepared['manifest_sha256']:
         raise ValueError('Target input manifest changed')
     inputs = {(row['role'], row['path']): row for row in manifest['files']}
-    classes = json.loads(metadata_path.read_text())['test']
+    classes = canonical_metadata['test'] if images_root else json.loads(metadata_path.read_text())['test']
     capture_manifest = json.loads((exported / 'manifest.json').read_text())
     calibrators = {}
     for entry in capture_manifest['captured_state']:
@@ -80,8 +98,9 @@ def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
     rows = []
     # First recorded test image of every class, fixed before observing outputs.
     for category, items in classes.items():
-        path = Path(items[0]['img_path'])
-        relative = path.relative_to(Path(prepared['roots']['images'])).as_posix()
+        path = images_root / items[0]['img_path'] if images_root else Path(items[0]['img_path'])
+        relative = (items[0]['img_path'] if images_root
+                    else path.relative_to(Path(prepared['roots']['images'])).as_posix())
         binding = inputs[('images', relative)]
         if digest_file(path) != binding['sha256'] or path.stat().st_size != binding['bytes']:
             raise ValueError('Target fixture bytes changed')
@@ -118,7 +137,8 @@ def run(exported: Path, workspace: Path, fixture_workspace: Path | None = None,
             'model_fitting': False, 'rows': rows,
             'portable_bundle_verified': passed and engine.portable and deny_original_inputs,
             'original_workspace_model_reads_and_network_denied': deny_original_inputs,
-            'fixture_metadata_read_exception': bool(deny_original_inputs),
+            'fixture_metadata_read_exception': deny_original_inputs and images_root is None,
+            'denial_self_checks_passed': deny_original_inputs,
             'anonymous_download_verified': False, 'docker_http_verified': False}
 
 
@@ -129,6 +149,7 @@ def main() -> int:
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--fixture-workspace', type=Path, help='Original dataset metadata for a portable bundle test; never used by the engine')
     parser.add_argument('--deny-original-inputs', action='store_true', help='Reject original workspace/model inputs and networking during the relocated test; fixture metadata is explicitly excepted')
+    parser.add_argument('--images-root',type=Path,help='Use public canonical metadata and supplied dataset image root; no original fixture metadata required')
     args = parser.parse_args()
     report = {'status': 'running', 'started': datetime.now(timezone.utc).isoformat()}
     with args.output.open('x', encoding='utf-8') as stream:
@@ -136,7 +157,8 @@ def main() -> int:
     try:
         report.update(run(args.export_directory.resolve(), args.workspace.resolve(),
                           args.fixture_workspace.resolve() if args.fixture_workspace else None,
-                          args.deny_original_inputs))
+                          args.deny_original_inputs,
+                          args.images_root.resolve() if args.images_root else None))
     except Exception as error:
         report.update(status='failed', error=f'{type(error).__name__}: {error}')
     report['finished'] = datetime.now(timezone.utc).isoformat()
