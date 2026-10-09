@@ -9,6 +9,7 @@ import sys
 from .checkpoint_download import digest_file
 from .datasets import validate_dataset
 from .metrics import compare, extract
+from .coverage import validate_coverage
 from .runtime import read_json
 
 
@@ -83,6 +84,7 @@ def run_prepared(root: Path, workspace: Path, require_slurm: bool = False) -> di
             cells = compare(extract(read_json(output / "summary.json"), reference["host"]),
                             extract(read_json(reference_path), reference["host"]))
             comparison = {"recipe": plan["recipe"], "reference_sha256": reference["reference_sha256"],
+                          "target_coverage": validate_coverage(root, reference, read_json(output / "summary.json")),
                           "actual_sha256": digest_file(output / "summary.json"),
                           "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
                           "all_match_2dp": all(cell["matches_printed_precision"] for cell in cells), "cells": cells}

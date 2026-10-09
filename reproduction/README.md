@@ -28,6 +28,13 @@ declared units to percentage points, and checks agreement at two decimal places.
 It exits with status 1 on a metric mismatch. It does not run inference. Use
 `--output comparison.json` to save a new comparison record.
 
+`compare`, `aggregate`, and `run-prepared` also validate the reported target
+classes against the hash-checked full test manifest. AA-CLIP and FAPrompt
+record image counts, so those counts must match too. Other upstream summary
+schemas omit image counts; their reports explicitly distinguish class coverage
+from image-count verification. Missing dataset protocols (currently MVTec AD 2)
+remain `unverified`. A matching aggregate score never proves per-image execution.
+
 `aggregate` expects `<recipe-id>/summary.json` directories. It requires every
 recorded seed in the group, then compares means and standard deviations directly
 with the printed adapted-host table. It exits with status 2 if any required run

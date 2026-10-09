@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from .metrics import METRICS, aggregate, compare, extract
+from .coverage import validate_coverage
 
 ROOT = Path(__file__).resolve().parent
 
@@ -165,8 +166,11 @@ def main() -> int:
         runs, evidence = [], []
         for row in selected:
             data = (args.runs / row["id"] / "summary.json").read_bytes()
-            runs.append(extract(json.loads(data), row["host"]))
-            evidence.append({"recipe": row["id"], "seed": row["seed"], "summary_sha256": hashlib.sha256(data).hexdigest()})
+            summary = json.loads(data)
+            coverage = validate_coverage(ROOT, row, summary)
+            runs.append(extract(summary, row["host"]))
+            evidence.append({"recipe": row["id"], "seed": row["seed"], "summary_sha256": hashlib.sha256(data).hexdigest(),
+                             "target_coverage": coverage})
         result = aggregate(runs, convention)
         cells = []
         for method_index, method in enumerate(["Base", "OURS"]):
@@ -188,10 +192,12 @@ def main() -> int:
     if hashlib.sha256(reference_bytes).hexdigest() != recipe["reference_sha256"]:
         raise ValueError("Historical reference hash mismatch")
     actual_bytes = args.actual.read_bytes()
+    coverage = validate_coverage(ROOT, recipe, json.loads(actual_bytes))
     cells = compare(extract(json.loads(actual_bytes), recipe["host"]), extract(json.loads(reference_bytes), recipe["host"]))
     report = {"recipe": recipe["id"], "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
               "reference_sha256": recipe["reference_sha256"], "actual_sha256": hashlib.sha256(actual_bytes).hexdigest(),
-              "all_match_2dp": all(cell["matches_printed_precision"] for cell in cells), "cells": cells}
+              "all_match_2dp": all(cell["matches_printed_precision"] for cell in cells), "cells": cells,
+              "target_coverage": coverage}
     text = json.dumps(report, indent=2)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

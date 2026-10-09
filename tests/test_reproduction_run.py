@@ -24,7 +24,7 @@ class PreparedRunTests(unittest.TestCase):
                   "path_bindings": {"OUTPUT": {"kind": "new_output_directory"}}}
         (root / "execution-recipes.json").write_text(json.dumps({"recipes": [recipe]}))
         (root / "recipes.json").write_text(json.dumps([{"id": "example", "host": "RawCLIP",
-                 "reference": "ref.json", "reference_sha256": hashlib.sha256(payload).hexdigest()}]))
+                 "transfer": "mvtec2btad", "reference": "ref.json", "reference_sha256": hashlib.sha256(payload).hexdigest()}]))
         (root / "source-manifest.json").write_text('{"files": []}')
         plan = {"recipe": "example", "cwd": str(work / "source"), "evaluator": str(work / "source/eval.py"),
                 "argv": ["--save_dir", str(work / "results"), "--seed", "0"], "environment": {},
