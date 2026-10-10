@@ -859,7 +859,7 @@ class PublishedEvidenceTests(unittest.TestCase):
     def test_verified_release_matches_archived_references_and_full_target_scope(self):
         folder = ROOT / 'validation/a10-20261009'
         report = json.loads((folder / 'verified-results.json').read_text())
-        self.assertEqual(len(report['results']), 25)
+        self.assertEqual(len(report['results']), 26)
         for row in report['results']:
             with self.subTest(recipe=row['recipe']):
                 self.assertEqual(row['status'], 'matched')

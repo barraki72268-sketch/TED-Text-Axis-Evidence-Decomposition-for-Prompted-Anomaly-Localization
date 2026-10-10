@@ -1002,6 +1002,45 @@
           "sha256": "f4aa2d87f3537acaf1835f7279b16460820b0a7da045dc29cbd52a74980d9f9a"
         }
       ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2mpdd_bank16_seed0",
+      "status": "matched",
+      "slurm_job_id": "13735",
+      "finished": "2026-10-09T13:48:00.219527+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "83f1f99f43124eabd69103e809c9c1df3d42d56f0a4cc69e9f615e827491ba32",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-mpdd-bank-16-v7/comparison.json",
+          "sha256": "55798e3cb29e6c873fa7e4db74ae7c8f249169cdef339799d2372f9a05ece097"
+        },
+        {
+          "file": "faprompt-mpdd-bank-16-v7/execution.json",
+          "sha256": "32e97a503479b6b4eeda90200f1abb5e2a2b0bde1e08393d3b1e37c1754f71f2"
+        },
+        {
+          "file": "faprompt-mpdd-bank-16-v7/execution.log",
+          "sha256": "ebed40a3a15baee6d8b58097b5d5b31c41c62fba0e7d343cdb06c4db75c0828c"
+        },
+        {
+          "file": "faprompt-mpdd-bank-16-v7/run.json",
+          "sha256": "bbbab5dd515ca17765246fa178a305585625427097af6db334ef421cbc488a1f"
+        },
+        {
+          "file": "faprompt-mpdd-bank-16-v7/summary.json",
+          "sha256": "240885aa139fca0ac36081f11f6262d0d8347eebdef1aeac616487908543fdbd"
+        }
+      ]
     }
   ]
 }
