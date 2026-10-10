@@ -9,6 +9,25 @@ from reproduction.bayes_bank_build import recorded_arguments
 
 
 class BayesBankBuildTests(unittest.TestCase):
+    def test_public_checkout_independently_rebuilds_identical_source_tensors(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261010/bayes-bplus-public-checkout-v3'
+        read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
+        proof, comparison = read('construction.json'), read('cpu-comparison.json')
+        self.assertEqual(proof['allocation']['job_id'], '13808')
+        self.assertEqual(proof['plan_sha256'], hashlib.sha256((base / 'run.json').read_bytes()).hexdigest())
+        self.assertTrue(comparison['public_checkout_clean'])
+        self.assertTrue(comparison['weights_only_cpu_load'])
+        self.assertEqual(comparison['first_bank_sha256'], comparison['second_bank_sha256'])
+        self.assertEqual(comparison['second_bank_sha256'], proof['bank_sha256'])
+        self.assertEqual(len(comparison['tensor_rows']), 8)
+        for row in comparison['tensor_rows']:
+            self.assertTrue(row['exact'] and row['finite'])
+            self.assertEqual(row['max_absolute_error'], 0)
+        self.assertFalse(proof['target_evaluation_performed'])
+        self.assertFalse(read('index.json')['paper_metric_reproduction_verified'])
+
     def test_live_source_collection_evidence_and_cpu_tensor_audit(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261010/bayes-bplus-mvtec-s0'
         read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))

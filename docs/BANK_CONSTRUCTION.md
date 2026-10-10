@@ -80,6 +80,15 @@ tensors. This verifies this source-collection configuration. Evaluation using
 this newly built bank, agreement with the historical bank, other model bank
 builders and paper-wide reproduction are separate checks.
 
+A second collection from a clean clone of the public GitHub commit
+`db9f5fa1098e6c0a8b30e8c81ebca58d7cb9b604` also completed in Slurm job 13808.
+It used a new output directory and the same verified prepared inputs, seed and
+GPU runtime. CPU comparison found all eight layer-bank tensors exactly equal
+to the first fresh collection, and the serialized bank SHA also matched.
+[Public-checkout collection and comparison evidence](../reproduction/validation/fresh-bank-20261010/bayes-bplus-public-checkout-v3/index.json)
+records this check. It does not compare against the historical bank or verify
+target evaluation or preparation without saved-bank inputs.
+
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 
 The [verified execution index](../reproduction/validation/a10-20261009/verified-results.json) identifies successful per-configuration evaluation checks. It does not establish fresh reconstruction of every bank, every reported seed aggregate, or the entire paper. We are completing the fresh-construction entry points and will document their verified model/dataset/seed scope separately.

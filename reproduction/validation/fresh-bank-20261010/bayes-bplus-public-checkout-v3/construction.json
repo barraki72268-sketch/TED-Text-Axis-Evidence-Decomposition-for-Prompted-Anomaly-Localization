@@ -1,0 +1,158 @@
+{
+  "recipe": "bayespfl-vitb_plus-mvtec2btad-seed0",
+  "status": "completed",
+  "started": "2026-10-10T13:00:28.943865+00:00",
+  "device": "cuda",
+  "allocation": {
+    "job_id": "13808",
+    "hostname": "jinyoung-ROMED8-2T",
+    "cuda_visible_devices": "0",
+    "state": "RUNNING",
+    "allocated_tres": "cpu=4,node=1,billing=4,gres/gpu=1",
+    "reservation": "cal_jinyoungkim_rtx6000ada_833b0d274e93",
+    "end_time": "2026-10-10T22:20:19",
+    "pid": 1250448,
+    "step_id": "batch"
+  },
+  "entrypoint_sha256": "a5413bbeb7a6b2032653d9488097e0b663e2c46dc6283efa770e84af685a07bc",
+  "plan_sha256": "7afd68b8e68da0a29be483cc479854dd280d159e7f7b7bb179c6dd01c11b793d",
+  "collection_function": "collect_source_patch_banks",
+  "historical_bank_loaded": false,
+  "target_evaluation_performed": false,
+  "source_dataset": "mvtec",
+  "recorded_arguments": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/data/mvtec/mvtec",
+    "target_dataset": "btad",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/data/btad/BTAD_official",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-B-16-plus-240.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/clip-cache/vit_b_16_plus_240-laion400m_e32-699c4b84.pt",
+    "image_size": 240,
+    "features_list": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 0,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/results"
+  },
+  "paper_metric_reproduction_verified": false,
+  "target_and_historical_bank_reads_denied": true,
+  "denied_target_roots": [
+    "/mnt/data/btad-DatasetNinja",
+    "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/data/BTAD_official/masks",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/data/btad/BTAD_official"
+  ],
+  "denied_historical_bank_paths": [
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt"
+  ],
+  "collector_sha256": "58cf5550a9703d23ef3bfbd6f658a602d651f4b289908ab173565108e9ffd429",
+  "bank_sha256": "d4a75edf4f088a17f83d486ec62a2e02cca9fda0911425210ed577cf473280b8",
+  "bank_bytes": 12947589,
+  "bank_stats": {
+    "0": {
+      "num_fp": 240,
+      "num_defect": 1024
+    },
+    "1": {
+      "num_fp": 240,
+      "num_defect": 1024
+    },
+    "2": {
+      "num_fp": 240,
+      "num_defect": 1024
+    },
+    "3": {
+      "num_fp": 240,
+      "num_defect": 1024
+    }
+  },
+  "tensor_shapes": {
+    "fp_banks": {
+      "0": [
+        240,
+        640
+      ],
+      "1": [
+        240,
+        640
+      ],
+      "2": [
+        240,
+        640
+      ],
+      "3": [
+        240,
+        640
+      ]
+    },
+    "def_banks": {
+      "0": [
+        1024,
+        640
+      ],
+      "1": [
+        1024,
+        640
+      ],
+      "2": [
+        1024,
+        640
+      ],
+      "3": [
+        1024,
+        640
+      ]
+    }
+  },
+  "environment": {
+    "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+    "torch": "2.9.1+cu128",
+    "numpy": "1.25.0"
+  },
+  "finished": "2026-10-10T13:03:23.204020+00:00"
+}
