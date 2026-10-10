@@ -32,7 +32,7 @@ class BayesRTXEvidenceTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1] / 'reproduction'
         base = root / 'validation/rtx-20261010'
         report = json.loads((base / 'report.json').read_text(encoding='utf-8'))
-        self.assertEqual(len(report['results']), 37)
+        self.assertEqual(len(report['results']), 39)
         for result in report['results']:
             for item in result['evidence']:
                 self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])

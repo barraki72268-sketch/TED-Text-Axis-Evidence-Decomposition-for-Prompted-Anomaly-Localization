@@ -1370,6 +1370,80 @@
           "sha256": "d5b3015d129abae0396885a9aeac8c4127a7cc2cd773a33765d2311ce009d618"
         }
       ]
+    },
+    {
+      "recipe": "bayespfl-vitl14openai-mvtec2visa-seed0",
+      "slurm_job_id": "13798",
+      "finished": "2026-10-10T10:38:43.671922+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-openai-visa-s0/comparison.json",
+          "sha256": "8f04fe5e223db6c47ec4717362594086e8703b4cc74c2ed9821dc99d4cb368ff"
+        },
+        {
+          "file": "bayes-openai-visa-s0/execution.json",
+          "sha256": "ff11cb2072a835f6f7bf560336b9d38716893634a2042ffffcebbb69d02f67ae"
+        },
+        {
+          "file": "bayes-openai-visa-s0/execution.log",
+          "sha256": "2ad1e4a0914db3a6cb8d0c5a9bdf7b2b840d5f21890837ab47347ba3960916af"
+        },
+        {
+          "file": "bayes-openai-visa-s0/run.json",
+          "sha256": "5bdabc441eebfe2e5774e0fb068d805c67fc00b9ab577751ee62ee4de0d17301"
+        },
+        {
+          "file": "bayes-openai-visa-s0/summary.json",
+          "sha256": "1399cbae6c397db2b0f306a27c7693120a2ba9a4e3de90cbbcab8a3aaec9b944"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitl14openai-mvtec2visa-seed1",
+      "slurm_job_id": "13798",
+      "finished": "2026-10-10T10:53:34.914807+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-openai-visa-s1/comparison.json",
+          "sha256": "8cd6edc8bac54d72fc1f9f8778ce4c9b78cf0641196c9ca287066fbcb34a0b6e"
+        },
+        {
+          "file": "bayes-openai-visa-s1/execution.json",
+          "sha256": "6956aa8807a2d673965e26426432447f1c6e64303ffb0c3c506f493b9fc7cb71"
+        },
+        {
+          "file": "bayes-openai-visa-s1/execution.log",
+          "sha256": "b647fa2d88427b887de6ec5c161537e5fa52b96ecd9aae7baf6c4d63906f2d82"
+        },
+        {
+          "file": "bayes-openai-visa-s1/run.json",
+          "sha256": "a2d82afcde5c432862e86e64b956fd7ef5ccb365538fc23a716e639737b91b09"
+        },
+        {
+          "file": "bayes-openai-visa-s1/summary.json",
+          "sha256": "3b60329e226ec50f9ffac80abd950e527bbf1a6855417cdb63b635836591646e"
+        }
+      ]
     }
   ]
 }
