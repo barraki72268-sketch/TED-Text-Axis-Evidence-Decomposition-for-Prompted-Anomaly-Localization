@@ -43,6 +43,43 @@ Target images, masks and evaluation scores must not select bank entries or tune 
 
 ## Saved banks and validation scope
 
+### Verified BayesPFL source collection
+
+The release now includes a runnable source-collection entry point for the recorded
+BayesPFL B/16+ MVTec-to-BTAD recipe, seed 0. It calls the original collector
+directly and creates new bank tensors from MVTec normal images and defect masks.
+During collection, an audit hook rejects reads of the historical bank and BTAD
+target inputs, and rejects network access. The recorded source limits remain
+8 normal and 8 defect images per class, with a 1,024-entry cap per layer.
+
+Use Linux, Python 3.10, the recorded model dependencies and a GPU Slurm allocation.
+The [observed package inventory](../reproduction/validation/fresh-bank-20261010/bayes-bplus-mvtec-s0/packages-observed.txt)
+records the environment used for this check; it is not a claim that a clean
+installation of every listed package has been independently verified.
+Download the recipe's checkpoint, backbone and saved-bank inputs using the
+[artifact guide](ARTIFACTS.md), and supply the original MVTec and BTAD data roots
+using the [runtime preparation format](../reproduction/README.md).
+
+```bash
+python -m reproduction prepare-run bayespfl-vitb_plus-mvtec2btad-seed0 ./runs/bayes-source \
+  --objects ./inputs --datasets ./dataset-roots.json
+# Inside your allocated GPU Slurm shell:
+python -m reproduction.bayes_bank_build ./runs/bayes-source ./fresh-banks/bayes-source
+```
+
+Both destinations must be new. This produces `source-bank.pt` and
+`construction.json`; keep stdout/stderr as the collection log. Preparation and
+preflight still verify saved-bank bytes and both dataset manifests. The collector
+does not load that saved bank or evaluate the target. Preparation from only model
+weights and source data is a separate step still being completed.
+
+[Execution and tensor audit](../reproduction/validation/fresh-bank-20261010/bayes-bplus-mvtec-s0/index.json)
+record Slurm job 13805, a successful source collection, four layers with
+240 Hard-FP and 1,024 defect entries each, and finite normalized 640-dimensional
+tensors. This verifies this source-collection configuration. Evaluation using
+this newly built bank, agreement with the historical bank, other model bank
+builders and paper-wide reproduction are separate checks.
+
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 
 The [verified execution index](../reproduction/validation/a10-20261009/verified-results.json) identifies successful per-configuration evaluation checks. It does not establish fresh reconstruction of every bank, every reported seed aggregate, or the entire paper. We are completing the fresh-construction entry points and will document their verified model/dataset/seed scope separately.
