@@ -1,0 +1,1567 @@
+{
+  "recipe": "bayespfl-vitb_plus-mvtec2mpdd-seed1",
+  "cwd": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source",
+  "evaluator": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source/neurips2026/scripts/probe_bayespfl_ted_smoke_20260501.py",
+  "argv": [
+    "--dataset",
+    "mvtec",
+    "--data_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/data/mvtec/mvtec",
+    "--target_dataset",
+    "mpdd",
+    "--target_data_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/data/mpdd/MPDD",
+    "--target_class",
+    "",
+    "--checkpoint_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/checkpoints/epoch_post_15_1.pth",
+    "--checkpoint_load_mode",
+    "compatible",
+    "--config_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-B-16-plus-240.json",
+    "--pretrained_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/clip-cache/vit_b_16_plus_240-laion400m_e32-699c4b84.pt",
+    "--image_size",
+    "240",
+    "--features_list",
+    "3",
+    "6",
+    "9",
+    "12",
+    "--device_id",
+    "0",
+    "--seed",
+    "1",
+    "--max_good_per_class",
+    "8",
+    "--max_defect_per_class",
+    "8",
+    "--max_bank_per_layer",
+    "1024",
+    "--max_fp_per_image",
+    "64",
+    "--max_defect_per_image",
+    "128",
+    "--hard_frac",
+    "0.01",
+    "--tau",
+    "20.0",
+    "--fp_weight",
+    "1.0",
+    "--margin_sign",
+    "def_minus_fp",
+    "--map_activation",
+    "sigmoid",
+    "--ted_combine",
+    "residual",
+    "--ted_alpha",
+    "0.05",
+    "--enable_calibrator",
+    "--calib_epochs",
+    "80",
+    "--calib_lr",
+    "0.02",
+    "--calib_eta_init",
+    "0.01",
+    "--calib_eta_max",
+    "0.05",
+    "--calib_eta_reg",
+    "1e-3",
+    "--calib_rank_margin",
+    "0.05",
+    "--calib_rank_temp",
+    "0.05",
+    "--calib_hard_frac",
+    "0.01",
+    "--calib_max_good_per_class",
+    "8",
+    "--calib_max_defect_per_class",
+    "8",
+    "--calib_max_fp_per_image",
+    "64",
+    "--calib_max_defect_per_image",
+    "128",
+    "--calib_max_train_points",
+    "8192",
+    "--image_topk",
+    "0.01",
+    "--aupro_max_step",
+    "200",
+    "--max_normal_eval",
+    "0",
+    "--max_anomaly_eval",
+    "0",
+    "--save_dir",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/results",
+    "--bank_cache_path",
+    "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt",
+    "--sample_num",
+    "5"
+  ],
+  "environment": {
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "HF_HOME": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/hf-cache",
+    "HF_HUB_OFFLINE": "1",
+    "FAPROMPT_CACHE_DIR": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/clip-cache",
+    "ANOMALYCLIP_CACHE_DIR": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/clip-cache",
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "NO_ALBUMENTATIONS_UPDATE": "1"
+  },
+  "verified_objects": [
+    {
+      "sha256": "699c4b843885d82733517f36f0911d7e1b360bcc1314dda81d8c56c76fe9524d",
+      "bytes": 833559975,
+      "path": "/mnt/data/pilab-kingjinyoung/ADPretrain/FAPrompt/.cache/clip/vit_b_16_plus_240-laion400m_e32-699c4b84.pt"
+    },
+    {
+      "sha256": "b222592c36efdc3ad7e397608bc575bf5a750aa9d7e6563c966367101c863bb4",
+      "bytes": 109524308,
+      "path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/release/host-checkpoints/objects/b222592c36efdc3ad7e397608bc575bf5a750aa9d7e6563c966367101c863bb4"
+    },
+    {
+      "sha256": "e9ff33723e5fbdaa1bf85d9deac5840a993246f80270024cfa2810773d9742fd",
+      "bytes": 12947433,
+      "path": "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt"
+    }
+  ],
+  "source_path_changes": [
+    {
+      "path": "ADPretrain/models/imagebind.py",
+      "before_sha256": "bba7112cdc52dd38e133f9e8c3d97d644d34bff81bd5ce4883e367719a517c40",
+      "after_sha256": "880a4e7cc639d854fb2ed2770699b63c078912f8f75ab36b9d0c87657a6dc8ac"
+    },
+    {
+      "path": "neurips2026/scripts/analyze_anomalyclip_subspace.py",
+      "before_sha256": "d6f7c582c5906f4993b8f07d28fc42703d0bf9215302e3c46e8459935dbcea9d",
+      "after_sha256": "3570a308830f80eeb795ae4e7127a14159a088ca68f9b9219b78a4f661d81acd"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_source_visual_damping.py",
+      "before_sha256": "85dc42d164e8ad4d8da9839d5b0765b8d3d86c6b7b2ff9e26fdda46bc4893f20",
+      "after_sha256": "581b3c909c06187be466d98f03043886c3bb1110476c431ca9b3c779d76d3723"
+    },
+    {
+      "path": "neurips2026/scripts/launch_identity_residual_joint4_full_mvtec_wait.sh",
+      "before_sha256": "861a12f6a7d51e9dab2a6e38fe981c9ea21268dabd46c5ed919f202b6be6b4fd",
+      "after_sha256": "b462a0d6ece101db1a7b84a6c76433de6aac4dfe4839ec0a9d0264be2d10bc94"
+    },
+    {
+      "path": "neurips2026/scripts/probe_faprompt_prompt_diversity.py",
+      "before_sha256": "db4e0b303c23fd1de596b457f291c05de4b3887069f166e005a1bcdc2a50a8b5",
+      "after_sha256": "78e6cd485e9e7e4b2c6dce0db004b4535276d6e194523c89f418e15f5cae69e0"
+    },
+    {
+      "path": "neurips2026/scripts/probe_faprompt_backbone_swap_feasibility.py",
+      "before_sha256": "ff0112021cb33c10d141ac801d742e38376d7dd02639c2d17caa6903f2ad9b39",
+      "after_sha256": "74d1bd7442561ec30b676b3218cb11851db8d06d703b23d743662cd6a6a2fb85"
+    },
+    {
+      "path": "neurips2026/scripts/analyze_adaptclip_vl_layer_compare.py",
+      "before_sha256": "e739fc7b139727f24f02dd92f3754b7f7b2b26afc008475e63d36abec7c94359",
+      "after_sha256": "20e13d06ed9ca14ea35083223e420b34eb8fb5f971742c5a9b48b5ff43ab0306"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_vitb_source_fulltrain_20260427.sh",
+      "before_sha256": "9fe5c07bf0d6a2a86b81e2c1f827b1de928c38182de0dbafaf554d9a4c990fe0",
+      "after_sha256": "19557b5f2efc937fedb3b5c4809d8cf67fcd8c44617e984301822f33bb0437dd"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_textreg_mvtec2visa.sh",
+      "before_sha256": "9722943c9f5a3b2e2b2795a5ec2763ef0c83ba0e0994895b4608221be74ca47b",
+      "after_sha256": "ccdea378448d751eed0a4efdd4e6e8ccd80a38a3a2e547083c33246dcd57abe9"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_official_vitl336_alpha_sweep_20260427.sh",
+      "before_sha256": "ce6cd65e2d05a293e77b72d8bc074875eb234043f170e83c436e6e0477b674ed",
+      "after_sha256": "f89e03d187bf4a7cbb1e7ed12b24300b3163a8137293bcfab42b20736964a09a"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_text_decomposition_score.py",
+      "before_sha256": "5e17f3537f398ef8aeff8e05003e47abc11d8261aebc7b95d71a141a69355bae",
+      "after_sha256": "5a1cec287dbbba405529c449269f22d3389a008b27d97e52cce4e837063b7e4d"
+    },
+    {
+      "path": "neurips2026/scripts/generate_common_failure_4subplot_figure.py",
+      "before_sha256": "b9ebbac90f04a044d13962b6ad7e99e1a97723d3329fdb076b6cfb91b8fe6dcb",
+      "after_sha256": "1111cf2f3be60f0bb164e7a711c6b7e6fe6a3438a3cafe226be610c4549829f2"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_ted_smoke_20260501.py",
+      "before_sha256": "b33a73b6467f4a976b9e38a52257669d5d03384a38362a478382ec260a739631",
+      "after_sha256": "a81bc45a1c46490693d900ac6f3dfbdc36bde8f733e103d0e6b6fbcab892270a"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_region_discriminant.py",
+      "before_sha256": "bd1e912ea5493c120486097f6a230ef9379e6fe23442dee7fc8ee2bb3d16ebc2",
+      "after_sha256": "f72405ea23d635f5f8055e78a6d68e7bc4895fc49e138298afd4bd464b2563ba"
+    },
+    {
+      "path": "neurips2026/scripts/probe_clip_drift_jacobian.py",
+      "before_sha256": "4b6439eaffdbe98dc4a9bbd44a790054b3a584ca36df7cf345d52ec91a156b09",
+      "after_sha256": "7ac9bcb0b9cd332dfec2929fc73b6a1e6f68085a0e3667f06c2fc2a46064a40d"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaptclip_vlrefine_mvtec_queue.sh",
+      "before_sha256": "0d4a7c3203a0a179c68e70a8ee09a72da3291305668ad149d5b27125c9cf3881",
+      "after_sha256": "101dd8062f33ccdad46ad9d14722b984abc1d5822a4d3738d6d1fe9a759bc43e"
+    },
+    {
+      "path": "neurips2026/scripts/adaclip_diagnostics_common.py",
+      "before_sha256": "7bd77d8ef231dedbb9018b7f419162991953b6ad13bd5255231d608a5a69479c",
+      "after_sha256": "1e967f0cf18e02c49985bf12b342c19dfad910e5b07b887f73833a0e7023a483"
+    },
+    {
+      "path": "neurips2026/scripts/queue_rawclip_calibrated_ted_20260430.py",
+      "before_sha256": "35198f555dad8c377689dc5e3f9afe1eea3ca1bb95ccf6b50d9879913e5a75c8",
+      "after_sha256": "d31845be339313a6e26d62dd9027e034d986f1fe46b68a4b69b86b053a30d1be"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaptclip_visa2mvtec.sh",
+      "before_sha256": "0ea4bebaad3bdd44777eaa1ff6fc6cd98cb2930d77d125070825786710e318c8",
+      "after_sha256": "aa0c7fc30ac44f8463f51d47f84ca6cada45538a10bddd46208564b80ad4402b"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_ted_official_seeded_20260430.py",
+      "before_sha256": "56f3d10a5d865419cbb6f72a94eb3ce23d7420cfd2a37ecf1a78faa55ae43137",
+      "after_sha256": "5c0bb99349b60e583c4db2fae3f5a0d345e9828f9ff64506b40aabc2e96825f6"
+    },
+    {
+      "path": "neurips2026/scripts/generate_discussion1_figure.py",
+      "before_sha256": "1ed56afa3534dd663f1fdc858d04460647cd9a082937c8eb10fed0e10d27f879",
+      "after_sha256": "0b6814a4268d59d3d7316243188312090e90b3e0ac00e9c9afc90d2218016a2a"
+    },
+    {
+      "path": "neurips2026/scripts/launch_bayespfl_backbone_swap_detached_20260501.py",
+      "before_sha256": "27d53307627ee557911165315b074ab1ebe56abafbb145a51b44fb800349687f",
+      "after_sha256": "402a8aa31357e598716da33dd2d1e5551c8282e32d51add1797b61caafeea60d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_layer_recipe_retrained_mvtec2visa_20260503.py",
+      "before_sha256": "591c382e22967ddbd6aeee061ab52ea9ba57de1aaf163857f7968654b0cbdb2a",
+      "after_sha256": "646e77c5b4f3cb1141ee18a8c13bdaf6ac5610d47c8a95249b2b9329a5f3e3c9"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitl_mvtec_queue.sh",
+      "before_sha256": "f5ad6f984f84a9cbf4c3a435298718e64a975cbec6527c7194ad2e9e88ee5aad",
+      "after_sha256": "6866f3acb57a1f0fc03d95fcc23d5f1bcf12f0adc606a5b0484124814b14deb0"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_baselast_ours4_fresh_visa2mvtec_20260502.py",
+      "before_sha256": "81c9ecf2d0ccfe3846176cb36da41285f47de4dde71afa79dceeb4a2565ea02b",
+      "after_sha256": "c3a571f615f760389349ed5ee8641c611be74587683da45cc813f16419a29cb6"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_vitb_allclass_retrained_20260503.py",
+      "before_sha256": "87a37a3f093b63a4ab4abf902ce33dae75f214164da3c661714d7923e184733e",
+      "after_sha256": "137cd49273c0791daf6c688436809daaffc3474c9a38a738af159ff0527cd43d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_official_lastlayer_normfix_seeded_20260502.py",
+      "before_sha256": "6b4df6a04a51b0821174fb639256f8d927895e638472aba7bd98703ef55ccd8a",
+      "after_sha256": "286893a26763ce4a8bb850ed9872837f3bd9f4c5f55ac80701f6390145c05bdc"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_ted_vlcalib_direct_20260428.py",
+      "before_sha256": "ae674b08747294d51840bcd62cbc740e869894ff4a75ba231036fa94b6f61965",
+      "after_sha256": "5b1ac2c9746d46c87ce65097856a66cb876927d53ec687f91b1dcdec7f8c00da"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaptclip_vlrefine_mvtec_queue_gpu1.sh",
+      "before_sha256": "afc55fa0768b831bb2f9b1870b328975e53432315af1ef5bee99df6ec8e8af4d",
+      "after_sha256": "b87a93e6a9592d0597295ea59ae72b516d0f17b965e452f721d3e72860b87a27"
+    },
+    {
+      "path": "neurips2026/scripts/make_layer_recipe_patch_rank_figure_20260504.py",
+      "before_sha256": "57652152c459a18893e5318c7a3f7abd369b8360ff3e989bdf4201ee0ade5ecc",
+      "after_sha256": "c58e093f1ff542752a83527e6790a7acad828493ba337f52cad5219b6a884777"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_text_axis_decomposition.py",
+      "before_sha256": "1742fff4b5f3d9145c93c678d2d1387edffe8153bb62fee22745a06aae09a58a",
+      "after_sha256": "0060296573bb6c77f45d08e75ae933764f61087ffc355b7cbd1f463f65d14707"
+    },
+    {
+      "path": "neurips2026/scripts/queue_dinov2_bridge_pro_visa_bank_20260427.sh",
+      "before_sha256": "94539ec866030ea9b6807752fe5c82acf18f67b497d5567c7cabd5d23df74754",
+      "after_sha256": "1325c94e32a4f9b4c06b24543c9df4df1e868f5e0fab3fc3b2a28206b1edb39d"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_rawclip.py",
+      "before_sha256": "1838bb409635d81eae34023220961f8f389927d38a7f71fde2669596b6ad1894",
+      "after_sha256": "898c908d65f33d174a92c60f9cfa3422eb2e4f47d2dac0ff9bbbaece344dbff2"
+    },
+    {
+      "path": "neurips2026/scripts/queue_failure_conditioned_aaclip_20260506.py",
+      "before_sha256": "a80826d30d9c90df6187bb573445585159d8a25bb787f121b1a5b838f6584072",
+      "after_sha256": "630d0006a40c7d9e7aea72259d97e8888872961ee416f7b9fa8332f051096c72"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawimagebind_mvtec_queue.sh",
+      "before_sha256": "af846546471517cc816ad567d8d7963bc221c2df764d1f0b2f47ead5266d8a5e",
+      "after_sha256": "cb06d1f97c95e83b1fe59ce279e63f196133cba54fd15d13871824782c7f6989"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_counterfactual_text_swap.py",
+      "before_sha256": "844765767d9e0a2587c66a88596331e5ae9fe0816e692591bdc6ef2029dee736",
+      "after_sha256": "aa7d71fc4512af054d94e3fc23ffa1591c99624efbed6949a761deccf094d8bb"
+    },
+    {
+      "path": "neurips2026/scripts/profile_adaclip_single_image_timing.py",
+      "before_sha256": "bfd8809e61f042324a98415a74c1f9b3d2a032ed42b13947f21087184682928c",
+      "after_sha256": "5df437c0f005404ec540fc0dfd3058258975cd937bc13d256d446019acabb762"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_proj_sweep.py",
+      "before_sha256": "78bc81ea487154988f6f45eb0994d18bf0ee82b4ac10aead7b5717a11bb019ef",
+      "after_sha256": "b1dde0cc07d44ad3dcfc3991090fa67d7e0b8ab81dd56dba892cc8d904b92a2c"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_ted_official_seeded_20260430.py",
+      "before_sha256": "ccf2809c6e91de5d8ebed45b5af5e49579250802d4f905c1abb86ceaa722ce95",
+      "after_sha256": "c61e195dece1afa7f45e9a9e71f1c6d9b81895731af07ab2034952850e40f1dc"
+    },
+    {
+      "path": "neurips2026/scripts/detach_anomalyclip_layer_recipe_retrained_all_20260502.py",
+      "before_sha256": "fd2f09a2365735ca51826994ae2663e979ec384a338a5bbea51fe46f2568617f",
+      "after_sha256": "4902efe9d130ad96b0bb9950ad5bf637e7f084526861c4f620ba506c6ac16828"
+    },
+    {
+      "path": "neurips2026/scripts/generate_semantic_attenuation_crosshost_figure.py",
+      "before_sha256": "ebf159146dae86a9ede3ef043c86fe59914f5dc5985a9ba07ec816bef627d01d",
+      "after_sha256": "a84ef591d1253391c7991e1f2e6d8e21e25930a1128bb347b5c586e6bfa81509"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaptclip_common_failure.py",
+      "before_sha256": "39ca874f612b783d8331902427a27f58f824f5761727e361f2d6c633d36c8878",
+      "after_sha256": "a9d9bfc4a48eb680109855d2c91f47ad7b04f771bd166298129f800697b46008"
+    },
+    {
+      "path": "neurips2026/scripts/queue_backbone_retrained_stress_20260501.py",
+      "before_sha256": "73ec7309f1539c8fb813e054c8759736902cedf589fb6e58d821b3a240cd12e6",
+      "after_sha256": "3270c68b0d52594f15f07b0a5f604be344ecbd2088518c26e56728a42782ade8"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_fp_visual_gate.py",
+      "before_sha256": "0838a3e9cacbd838c45b71ca21e47a6433e00aaf8fe718a93e98232585bb0815",
+      "after_sha256": "2bdd237140717608fec3251c069ff4c914e49cb238b5bc6b4896218cdf02fcce"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_gtfree_overlap_figure.py",
+      "before_sha256": "a3f6b01fcfd2279e19ff028bf72174a952155eed030dae14af63f52ac3ab1ee3",
+      "after_sha256": "954d150a0dd5250ebdd767835c02e76dbfa66fbdc58582c2701c367117b5e59a"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_parallel_margin_dashboard.py",
+      "before_sha256": "63803cd18425d0898d782925e94625819caf8443a82ff84d76a2e2418e42e76a",
+      "after_sha256": "e1bae8957225d5420ee80c0d6262713d525cd7316773324b5c0c8e64d1f2c705"
+    },
+    {
+      "path": "neurips2026/scripts/run_aaclip_mvtec2_custom.py",
+      "before_sha256": "3433eeab4ea6b00eaf1e671c284418dc8c74ddcf03c5eb15052e1bfd7d27fdb9",
+      "after_sha256": "c76ddc345f84c081b366875b97feb6af6ad19d5813a49c8b72fa81b974a09d19"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_official_seeded_20260430.py",
+      "before_sha256": "6c8ca33003352902c403f3ef1b83a6a7d42a10ba3c7c90b6c6e1aebf41d40ea7",
+      "after_sha256": "8f5034112859a59ab1e47d64e61fd34027c4e40298e51a8376eb8ae565830c0d"
+    },
+    {
+      "path": "neurips2026/scripts/analyze_anomalyclip_visual_tail.py",
+      "before_sha256": "dbe0ede2e18066fb8ddde24108f7888b115c45bb6375195979d8032cffd7c20f",
+      "after_sha256": "56212533ab532019369e4a4116eb0ff528bd54529fa34fc019bda8629ad41c0f"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_ted_backbone_swap_seeded_20260430.py",
+      "before_sha256": "3a46e3182d3e0b29734842d20963c62bf3c47281253f3f38793a73ffcbcdf03e",
+      "after_sha256": "b4282f71e135607e160dbc85caf67a0d0dc196a96f18ad7eba2c5c8d285f316f"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaptclip_textreg_mvtec2visa.sh",
+      "before_sha256": "940891ac2bd2f263dfdaefea45d9760fcbd12ad8356388ebfae0a15d0ff324d9",
+      "after_sha256": "3c994d4198907331f81da295292922d3efb5bfbde5edeba3b69d8c3b5cc88389"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaclip_cleanbank_queue_gpu1.sh",
+      "before_sha256": "2a9e0ceb65b2a6f6bcb74f7cb9c7423e3bd9019be1793b1c042df1d664ffd5b3",
+      "after_sha256": "1b80b58105753f894547f0c385cc22279fb99326008995c9a2cc8df83883204a"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_qualitative.py",
+      "before_sha256": "f825181f0a13a8baee35401467270e3ffa009c2c74d40e843eecb560f17e97e0",
+      "after_sha256": "ebdcc928ca0bd1d7ffbd865653572ebd813fe5b4278dd04690acd84d41090771"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaptclip_region_discriminant.py",
+      "before_sha256": "232aad4038ab1490f5b1102a1b5fdd77e06fea4f0b6451a275a3e989e62efb24",
+      "after_sha256": "f6f076a4a26830310d38a7e1f6c779b660f67905fbd585f2cff93bcfa6617aa1"
+    },
+    {
+      "path": "neurips2026/scripts/collect_method_figure_source_patches_20260504.py",
+      "before_sha256": "e1c5f7775fc076c281b15c282f9738754ef8dd3983d5e41098fcdeecd1a2f4c4",
+      "after_sha256": "7e8d6abd1e588b3366f9dc39714bb6a39e6bb1d6e772c9b0016b0052046024ef"
+    },
+    {
+      "path": "neurips2026/scripts/queue_simple_source_supervised_extra_hosts_20260506.py",
+      "before_sha256": "18b46ee9745580fbf8e2dc9c90aebfe7c002bce299e5c463632135799a34401c",
+      "after_sha256": "a56f75db4629b74c43c8214254fd003b3ff4b2cda7803710e1a814fcdf3d5796"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_fp_patch_text_gate.py",
+      "before_sha256": "73305aa4f4187572b0471ea8ffb2cd51c5775c6fd76a3f008fae2ceccce50883",
+      "after_sha256": "34a15508c5d099cf38181704c0159d9b537b307c32ab8815a9bb98927cce503b"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaptclip_region_bank_holdout.py",
+      "before_sha256": "bff02ff6ad8c98593825f4f31a44202820947807816b3a78dc468ef25b93769d",
+      "after_sha256": "e3c807cef49cc3f994551834d91d2e5c524000fb438eda6856a22770b58c47e1"
+    },
+    {
+      "path": "neurips2026/scripts/collect_faprompt_spatial_leakage.py",
+      "before_sha256": "011c0d1a21b44b7c7451822baf647af46f4aa9d6db0b7e9475825b116f4f075e",
+      "after_sha256": "c0f762c5f57800b8ec31a68466e7c737a92ece5570dc7dcfdf7e0be17b9c8a39"
+    },
+    {
+      "path": "neurips2026/scripts/launch_backbone_retrained_extra_hosts_20260503.py",
+      "before_sha256": "1c4d52c4a9ee231d0a7d50c0f24dbbab4dc933bd19abff3e59f5b7b520fe71eb",
+      "after_sha256": "bf783b47e39f27a9df40cd883d67a93fab099a22d67132af58267c754015e96f"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_pre_softmax_smoke_20260502.py",
+      "before_sha256": "44643aa2649e5024a110f81f57ec7cdd6c1a5bb5d805d49937c85544f9f3b7e6",
+      "after_sha256": "633a73da7f8a1034b96ad2bc470fdc355b24f768a1cf3f954fc10d45fec3e360"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitl14_openai_mvtec_queue.sh",
+      "before_sha256": "b74f497d44c6300e09b08a34ff2a6fe427c0281ed5cc4b5d2441a91a2f4352e1",
+      "after_sha256": "c9bfa59ad034ac6215e9dadc21c4b3b33963cf77a8f2c5f6feaa1996a545733c"
+    },
+    {
+      "path": "neurips2026/scripts/queue_layer_recipe_retrained_all_20260502.py",
+      "before_sha256": "16bf52951a6b3c7fa70872277aa1e4ec869a4cb742b8ee325c97b295c38d109b",
+      "after_sha256": "a42bdba9dfd7ccd952c5e570e2e5b829e5193200011b7edbeb1baa7d3d37f48e"
+    },
+    {
+      "path": "neurips2026/scripts/run_discussion_axis_datasetwise.sh",
+      "before_sha256": "f2e4560add96c08dce9c4e34e0024b2b5d326b5c3dfb51d02e748db358bd2c94",
+      "after_sha256": "c6f369bc895ae8d7fe723da1a6097c11003d86b579d474d36b6a456c6b731c33"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaclip_spatial_leakage.py",
+      "before_sha256": "cb3eba96b097eef8a997fa8cf2ddd18a30710275de3549bb63f6bd3a860849bb",
+      "after_sha256": "02993eea3e88615cb972e4bc986ef07601e6e993b1e95cd222fb98146db1d8aa"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaclip_layer_stress_cted_recovery_20260501.py",
+      "before_sha256": "aac1e28b15c68d7f955e670dc99caac95044a6ba94dc554e32a5c363b1f46704",
+      "after_sha256": "0fc166ef9ec8516f92f796bbf3e066864a50bb053772512832dd47930f9d5d0d"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_aggregated_distribution.py",
+      "before_sha256": "40932545cf39506b5d5e806cc811cddcee0b9bcd322a3c24d0d3741be80cf706",
+      "after_sha256": "412078c36307c9fe57794b13ccdfa557c21b115bc3e9032f7f4e16f1b98a28f4"
+    },
+    {
+      "path": "neurips2026/scripts/plot_problem_spatial_dashboard.py",
+      "before_sha256": "29866eef3c025f422518cfc3521e0f2ee5b114a4eb8be2c269333bf4576efe0f",
+      "after_sha256": "c1f3c178ce9d57fb8ce5481cda02393e1dadbca60a169688aca0fada5c89349d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_rawclip_trainfree_anchor_remaining_backbones_20260430.py",
+      "before_sha256": "0fe291e115e6675ab72885c036a8b9365f9fe46ee333c181c009250267c6fbb2",
+      "after_sha256": "d004dd095b627eee64ed864c70851e5109a70414d63c7d574fadf85ca51c6734"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_ted_backbone_swap_seeded_20260501.py",
+      "before_sha256": "9e7af4e1d01bc8764175ac291bd1ebe2ab3f03dfadb199520c34501b156c4ef1",
+      "after_sha256": "cf037a01aa63d51b7d353e68969e1d0df5b78396d2db87c356ab1544a6e4339b"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitl14_openai_visa2mvtec.sh",
+      "before_sha256": "89733c3b02d44c098733ede1d31f83964c37a1f2cbc2bb1dbdedf5dc7ff6f013",
+      "after_sha256": "c4d27c9f07fc5a8d6e5b6a1ad58ed168662dbe370139b843dbfd5218eeadf9c1"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_sleak_map.py",
+      "before_sha256": "6a4119d210dd513f8b02055f2950a4c855c312120424ed839efad045555e5397",
+      "after_sha256": "c63fbe1d705907a08665d3f8a182738d8c7051292c9b495e88ee1a3f83f102e7"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_extra_coverage_20260427.sh",
+      "before_sha256": "df0403458ffb8dea657fe4eac96ab28dac9777faac5aeda032adf801c827fbea",
+      "after_sha256": "20f0b5626e89009dc2566ded6ea9431e073b4ce29ac198a79b81ee77d7dc9250"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_aaclip.py",
+      "before_sha256": "f25d2fb1f16c130b69b254169e565a1b7a6ffb7ccd314e9cf891ae56e6ec00ba",
+      "after_sha256": "8e3892f9d2ead08388c775e7abc954def349daa80b6202cda68b114524610791"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaclip_textreg_fair_mvtec2visa.sh",
+      "before_sha256": "ab5d73edb57974803bbf888abe2eba12757ace81d7c7c2e9807cb48e4a49a7ea",
+      "after_sha256": "c1adcf0985ad02c7507a2bb557dd2418da35b4951d6b3dd170a4852d455ae538"
+    },
+    {
+      "path": "neurips2026/scripts/analyze_adaptclip_vl_score_forms.py",
+      "before_sha256": "bc5068d475ba060cf5aef47f90d6fe26132cf69fd43e0e8ae1beec43777b101b",
+      "after_sha256": "d4e9240c0e9b11cf144803e97a7535d78d5ce48a6e5783cd0e12d8bb0356d229"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_vitl_openai_map_topk_pro_20260427.sh",
+      "before_sha256": "e969decec4f43693211d18eeff9a1c17aa24ee29ad54eec5f12316e657e46789",
+      "after_sha256": "fab648a916dec23af6ae9693954ed3a88b6280bb856da2955e35cdd7c1b56886"
+    },
+    {
+      "path": "neurips2026/scripts/probe_faprompt_region_bank_holdout.py",
+      "before_sha256": "2aa0a2e3506dab22d4d0dd64f7d4781c502dbcd34f7c71fdcd446baa0a78449c",
+      "after_sha256": "75e1a29620d5982bde62db4d545f77062c43c86ba95951f00b32ae08e4b1ee27"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaptclip_spatial_leakage.py",
+      "before_sha256": "4c5486eb33b3ee43d91f512834a21fa760b9204c66eac0dbade440bb76fad2b3",
+      "after_sha256": "9e3d851658e6e7cbe17fff27cb4cfb6ce395c9fed01ee3522d45cbeb6dde7645"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_text_effect.py",
+      "before_sha256": "d2645d84f9a7f2110b9a2935348e86a5fa1cc81875f28b1d897f04decddeaa7e",
+      "after_sha256": "26ba59faad2e9ce408a859a70f33a8061c50805f30afe113402f2583ad7b316f"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_gtfree_entanglement.py",
+      "before_sha256": "ea024b83339da8b514756b90c437b35f4775fdfb59a54cbab3181e457d6aff00",
+      "after_sha256": "8334df9fa60a764cd63145f934b5e583407f68bcc6f98cb6c26cc7aba89443a6"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_region_bank_descriptor.py",
+      "before_sha256": "3885b87314d56ff2dadf0f12546d5be430d01ec37aa3df78b780838554b53205",
+      "after_sha256": "6f01b4758e92832d582b2f3c4a5e4c3e6a5a7ecf4dc2fa943e997ae1602365c3"
+    },
+    {
+      "path": "neurips2026/scripts/queue_faprompt_prescore_mvtec_targets_20260427.sh",
+      "before_sha256": "945d47c4c542fc3c19c7908c27fe23b8e3913f5ee2589c61c971c5d775d80fe3",
+      "after_sha256": "04e2ab3544dc1b164b0a49e2c5aba17570b8f4c55a82eb1579f79925c05f5cd1"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_adaptclip.py",
+      "before_sha256": "b9777fc16604ddc1b6625c73048ca0222154417bc78825b2fa3912debdeab4a3",
+      "after_sha256": "17eb335b66b7f63093a6504e769ea5f8aa749d663efb46c4860e36e34bddd566"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaptclip_ir_mvtec2visa.sh",
+      "before_sha256": "16bf1d5d9561007a16411598dbcdc2fc48fdd530afe9ec21a6d529d93b66e57f",
+      "after_sha256": "cd26085f4dbe5c98f0e0e717dbcf9fd3463a161bcf9f1c7dd8ede2457f085b5f"
+    },
+    {
+      "path": "neurips2026/scripts/run_rebuild_mvtec24_and_test_mpdd.sh",
+      "before_sha256": "a27bf7dbf09d858ba601750e1274dda86a8c84a751b77ee7ce61bad194ce19d7",
+      "after_sha256": "75e98eb7d58e5f917ecad3629ddcb00e9d98bd96028b0d5810cd1c75d919d529"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vith14_visa2mvtec.sh",
+      "before_sha256": "d7cf3f2eece3f932e90a78b91f011b16efb7d665a3ed592749e77f7e09e5e68b",
+      "after_sha256": "401623256d121ce591ded0038d9b34118624b5ce1e1ff4b4cc6d9787c123c22d"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_distribution_figure.py",
+      "before_sha256": "bb959526ad376171840a4e5d71fb3318672b72f97862be2c41c02b8ba1bad465",
+      "after_sha256": "e495742a289d9e70be54a61770af0ccd815f6f5a66b64350607f9cdcb412cc4a"
+    },
+    {
+      "path": "neurips2026/scripts/analyze_adaptclip_score_forms.py",
+      "before_sha256": "2f9d5a649a212e918c04407c56ec39392458811905c096ec27f4d61472d3eb69",
+      "after_sha256": "183901fcf5535b3f675d688f763e7638527e7fc4b22e140d7f3e41a992f2f352"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_dinov2base_all_metrics_20260427.sh",
+      "before_sha256": "197fd1a86a381c10bf71aa902f86659b4662eb58e323911d11f9e3089a49d783",
+      "after_sha256": "85b2a7e23d28648946d541a4044efd27c0be0cf01d2dde85a3242fb58075535b"
+    },
+    {
+      "path": "neurips2026/scripts/launch_backbone_retrained_master_20260503.py",
+      "before_sha256": "4953e7de3df8ac153479af34776017dfe7d27eebadba9b608460746341fa5bcc",
+      "after_sha256": "013ea71b10f9994cf287482d13c7feab568fbb118f9810df41edfce8a1a34844"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaclip_common_failure.py",
+      "before_sha256": "f9d5e1af709138dfe9eacd670831a61975696258555595c96557e5577ecdbfa5",
+      "after_sha256": "fead6b53ef010ed1ac8cb026712ececa05db2fd5d1d940967b66149792aa5b9e"
+    },
+    {
+      "path": "neurips2026/scripts/queue_layer_selection_burden_gpu1_20260502.py",
+      "before_sha256": "c583dd2cfb9014bebff9478b432881f8a308a487e67c270b75b30b569d85fe8c",
+      "after_sha256": "1f22c067c2799883184d74e80822c95f5982d6e1f33376f4b781706881c0a02b"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_mvtec_source_btad_mpdd_3backbones_20260427.sh",
+      "before_sha256": "8fe21a97bc60ae2be217e49e0affab617631f76b7f157b526cc5fdae15ba3d3d",
+      "after_sha256": "3f3cbb82ace07d772e38bef26edbe823027f0b8e0060279ca487a5a10cb468e1"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_fp_text_decomposition.py",
+      "before_sha256": "4f33fad50a18d86e8efd46e525d9fc48e7f3223b971478e3c4ffc5c3306cb10c",
+      "after_sha256": "9d2654a056fabffcd5298e83ea3e8e3e77242982672027f7ab31d7d0fa04fc4d"
+    },
+    {
+      "path": "neurips2026/scripts/collect_rawclip_gtfree_entanglement.py",
+      "before_sha256": "35bd3d8e5c512babba1931210fb6c80252d4182cf425b3e7e14e59a2019603db",
+      "after_sha256": "9ba8207b5453a10927f9a426f117a2a265a9818e917a50ef3a7c58163f219105"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_rawimagebind.py",
+      "before_sha256": "2cbdf1163dd25ddc00ddeb84393e60b69a4e7e7716861122e78c116ac8a1296f",
+      "after_sha256": "05845fc4fbabce4d99de1ea303280591e6c05d2dea38faa39cd39ff3182366b0"
+    },
+    {
+      "path": "neurips2026/scripts/collect_rawclip_calibrated_ted_20260430.py",
+      "before_sha256": "afebbd74506b5bb573ceec90a20dcf35d66ee298cf92c1b9e4db7d44bba10052",
+      "after_sha256": "889d7584a083061d61333f8ffbd110f1ca48971bda3f15c188362d43d3139cad"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_mvtec2btad_mpdd_full_20260501.py",
+      "before_sha256": "d3366a9719d74c66c0f5ed67e50c4c4e3cb8b10c40338dbe19cb878f45e51732",
+      "after_sha256": "8e183bb499c6be72aaa4b38e8753c4fe512e67599fbe99d9428327e6c50caaf1"
+    },
+    {
+      "path": "neurips2026/scripts/detach_faprompt_layer_recipe_retrained_20260502.py",
+      "before_sha256": "2bc3a34ff3201724b89ed6fb44b65b7f606a59e7ed1d526f1d6296eda5728ea9",
+      "after_sha256": "92f64b99446292db0a98c36ff97d9b41414b9336f6b60e776381d2ff4af59ff4"
+    },
+    {
+      "path": "neurips2026/scripts/detach_anomalyclip_layer_retrain_full4_20260502.py",
+      "before_sha256": "ba170aa9c4e634e682da174f48e0538ebaa872a564bd7a12597cf6357cb67d69",
+      "after_sha256": "6b937a2cf1e5bc73532c1fdabcbf4ea5989dc816a0883ce817b29e2056232cea"
+    },
+    {
+      "path": "neurips2026/scripts/aggregate_quick_host_survey.py",
+      "before_sha256": "5a53a2d8ca2e87ecdf68e869a4f4594cc414546e4c2ab72a7f2558a9ae625936",
+      "after_sha256": "dbace2c4055aac6131c7fc70b3f3bc448f491e1acec90a806ff636b64b13e881"
+    },
+    {
+      "path": "neurips2026/scripts/probe_faprompt_region_discriminant.py",
+      "before_sha256": "ee6c017e5fa2d3a53028fb7c570363c72e8d42a95e34466abfca4fae79a59b27",
+      "after_sha256": "5597b51eda138d023571e21a75b43bb5de2738d2fe02dfe06405b8e9bea56b9a"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_sleak_distribution.py",
+      "before_sha256": "3c0bf0b4556dda0b44cf9d7bdfa5293889e589c489271a4cd614063fa997e721",
+      "after_sha256": "2d3d447c3d70dfe34fc66649e3e825105d34cee78acc0c6ff18810257ef22236"
+    },
+    {
+      "path": "neurips2026/scripts/run_adaclip_recipe_fragility_suite.py",
+      "before_sha256": "cf8b4e6dbb6510356a5bf82f7b242ffe847152cfbe270a5d79b9421228223165",
+      "after_sha256": "0777660cb2ef77c97667f4c26cef1eb9f318a0696e1da1d0b58960549540f252"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_representative_ablation_normfix_20260502.py",
+      "before_sha256": "48b7a9d6e1361ed99470e5a8a5ad361c4170c818f30054bc82b70ef741a8acc7",
+      "after_sha256": "39967557d68ade74ee46501ab470342db9c14d1f9155b2ac04ee5700c9c3df2c"
+    },
+    {
+      "path": "neurips2026/scripts/run_region_overnight_queue.py",
+      "before_sha256": "4c363bbf95ed8aeaba4fc1abe2946359ec9516483cb7d6c19215415f3b1b3f39",
+      "after_sha256": "0d3ab10486eaf3cb02d6057ee6fda475dd2987ce918b722b16869d11e35907a5"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitb16_openai_visa2mvtec.sh",
+      "before_sha256": "9f02b70133cf972c8bfb25228a98aab37a2c428bd2866cca1fd6820accb6c11e",
+      "after_sha256": "86240a93b05b04aab8db9650491dee93752be1d8bf45f45b549ad0ef7d6c00fa"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_eta_rank_smoke_20260429.py",
+      "before_sha256": "249d17742c634de723ad4d924645aa5f6c1a1ab6335dcb3acfe15c2c3004e390",
+      "after_sha256": "81005544637ac79cc1ee84742bb55b6e4cd41eb5570620f3b18a5bce0bd34112"
+    },
+    {
+      "path": "neurips2026/scripts/queue_mvtec2_main_hosts_20260504.py",
+      "before_sha256": "8b12bf299046435eb733fbe0ce7001966e1ea25b4fd51c6656d6cc3a8bce4705",
+      "after_sha256": "b2455b258144ef3c020fead8bca9f6e11bea3b5fb4656d666e30ed8e217ac00c"
+    },
+    {
+      "path": "neurips2026/scripts/queue_main_table_ad_hosts_20260429.py",
+      "before_sha256": "681d882f446a7cf51623838646eee3b1919c81d1d1f3d361ccb2ded01ea4d89b",
+      "after_sha256": "4a358d6c2e82cb782d853b6e7487c035720e35ca83347c4b1b9d0bc3586243c5"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_dualbranch_20260429.py",
+      "before_sha256": "3a65b04613523e65b6e80418a3f068ea045f77aa1666a4fc27e3b635ae07e17e",
+      "after_sha256": "a05c0a1b148d17f273c5027d48f77231975d75ad5f19aaf63ce8455b850af16e"
+    },
+    {
+      "path": "neurips2026/scripts/collect_bayespfl_map_separability.py",
+      "before_sha256": "dfe3b99b0794e11bdbd36975513f16c8acf8f6dbce7bbfce4dcb41a939febf95",
+      "after_sha256": "038579c9663cb3f07903fda7b0bf06b4c422c9d4bb22a3a110049dccabcd6ca1"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaclip_baseline_fair_mvtec2visa.sh",
+      "before_sha256": "74f24797b8127700a4eb2c9ccbb7ed40fced5c9a194fe0e2954ad7ec8e0ad106",
+      "after_sha256": "ec659eab7d7c4806230143348254ae590d94aef8fcf073ede09147e137b2a219"
+    },
+    {
+      "path": "neurips2026/scripts/run_faprompt_mvtec2_custom.py",
+      "before_sha256": "5ce1a6e8d80366d54820b6f1dd9769553471031c6f17eeebb4edc6bbf81a6de3",
+      "after_sha256": "467aedf8fe8bbb48516529fa39a8f1a17c26076e1817d324153995d674704024"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawimagebind_all_gpu1.sh",
+      "before_sha256": "ac244097e204e74930105b8e282348a1f1f67f1879e79c1964de9933383025f0",
+      "after_sha256": "8db56dc253d499bb5eeb638235354094dc519e4d3b33e8d55e8739a592a04a04"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_native_all_metrics_20260427.sh",
+      "before_sha256": "95dffde0fbb09bd669ad7e433dfc88d58587fb6aeaf69ddaaac8f9d6cc93b04d",
+      "after_sha256": "d0b963ac43f1b615dde69ee3228a20faab5e619e4d1f10ec51daaec0ee00fc44"
+    },
+    {
+      "path": "neurips2026/scripts/queue_layer_recipe_retrained_stress_20260501.py",
+      "before_sha256": "4c6bb1b2c31a6d6adde5065b1459fd368e2152a4fff19227c702f8f483083bd2",
+      "after_sha256": "e32063e0627f5ed340dba6f06ccbd59b80315ef8b02f1b59d4976ea5769e4c1d"
+    },
+    {
+      "path": "neurips2026/scripts/collect_faprompt_text_geometry.py",
+      "before_sha256": "707678988d6b694911c8f2a7854ea47af7f7ac35f8643990e7a0258287b1c18c",
+      "after_sha256": "22a473ea3c203841e1782bc69bce12e9e6eb5921ba236189ae4115418333acaf"
+    },
+    {
+      "path": "neurips2026/scripts/queue_fullfeature_control_extra_hosts_20260504.py",
+      "before_sha256": "b5e5de9844bc9f094fcb67c809e7b0a7bcaa956e17165a4381ab3084b2f70904",
+      "after_sha256": "f3d46ff2985fa1a9bc6096c3ebaadc9b24811159512ddeb386afaa6f927df5c4"
+    },
+    {
+      "path": "neurips2026/scripts/collect_bayespfl_source_banks.py",
+      "before_sha256": "f6cc85c58dcb09936017c1476a1fac41376ffb8c6ebcf4d2dd4a8f2ae01a43c2",
+      "after_sha256": "56d622f4869aa881417f4f11c7939e2b7751985c79db23fa5bdbb786bbc75d0d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_memory_bank_control_grid_20260504.py",
+      "before_sha256": "b9f4dfc84afee4db1357c3bebc4b2741a52912ee0772d1879481ee3bcad520c0",
+      "after_sha256": "c2c9fe2db0a9bae496baefc0a7275f17d4217793859f616d721bc74e510b5984"
+    },
+    {
+      "path": "neurips2026/scripts/plot_problem_geometry_dashboard.py",
+      "before_sha256": "60aea8fde4a625a7518828915835ba463c2f9e714959ce17d4bd1814b9459dc3",
+      "after_sha256": "3026cb486157477036399b8e05a2e7af523352a81d65296124e4a70d5d6b3a77"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaclip_region_discriminant.py",
+      "before_sha256": "788b949422d700b2d5f11e7fe0172edb18a704a27b07257e7d21cd7ea7b0560c",
+      "after_sha256": "e44b546b9b714a68f579b804f399c12122c4cb7153600d73c3eac178d2386156"
+    },
+    {
+      "path": "neurips2026/scripts/make_raw_vlm_clean_heatmap_recovery_20260505.py",
+      "before_sha256": "29d8c67f5e6e81c7407a33a48672d19726a00a3c8e11d58aea034bdc73c07221",
+      "after_sha256": "63ad40be6fe8a1e4a2d4e53a277cb48183cb63a58f876a13ec8b94a10decf760"
+    },
+    {
+      "path": "neurips2026/scripts/queue_rawclip_trainfree_anchor_vitbplus_priority_20260430.py",
+      "before_sha256": "d4cbe7d253eaa2a5f40476f3ea6823af36769fec467dc284a54a97070a1767f1",
+      "after_sha256": "018ab1992534106b6408b3ac66e909f3787e0126b142ec8fbfdf98468bdd5b2a"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_stronger_ted_sweep_20260502.py",
+      "before_sha256": "443cc668b961182331a587ae43d50b0e2be36f7c30d01ab4f144f5a75bac229f",
+      "after_sha256": "cf5fb2ba1b6e08b0e46769ee794e6bfe8706891cb735d625381a5bc14d3ec4e3"
+    },
+    {
+      "path": "neurips2026/scripts/generate_host_entanglement_correction_figure.py",
+      "before_sha256": "23e62e3441bb08d7ed7740188fb2ba971635825e9539ba102bc4fe648232d819",
+      "after_sha256": "447e87884d30677cc48275aed87ba4fdd98d97aeafb67bc36a396692d27bd19e"
+    },
+    {
+      "path": "neurips2026/scripts/sweep_anomalyclip_recovery_smoke_20260502.py",
+      "before_sha256": "d2892b1aad7acb33eece317b7d086f8908ba16b315090b6af2143de07fe9a356",
+      "after_sha256": "441855491e31a5751be7d0af7abb9ad07614e52e1a95dcc27b534574fd6a0dc5"
+    },
+    {
+      "path": "neurips2026/scripts/launch_rawclip_trainfree_anchor_detached_20260501.py",
+      "before_sha256": "cca6d7f165cbd237c1d93682a15bfc1bdbbf579315fcb4aa4a9756177f3608a4",
+      "after_sha256": "41a1b74c9e5e51ef743b4a086d7a01f4d2d5f88940135becd6d0e49f57c25b7b"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_discussion_composite.py",
+      "before_sha256": "92c24338aa5966816ae4bfc1705b317b777c4cdbff9008b35e505acb432912fd",
+      "after_sha256": "127ccd257c2e7116fc22c7f92259abe8d288fbc8d33adfa12ad5fac243873ee2"
+    },
+    {
+      "path": "neurips2026/scripts/make_adaclip_layer_stress_table_20260501.py",
+      "before_sha256": "7d9f16f1d600d8d34685d221c615e3153f69390011626caa5b4c4e16a7fa0059",
+      "after_sha256": "28587b73283fafeb5d3bbc89e6d4fef40888c736e4d132fbcd0e2c6ac719a4e4"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_ted_smoke.py",
+      "before_sha256": "6406cbad99f1dba383bd215b73a8250b6a9de24f65fbc8551defb2b43dc3b8bd",
+      "after_sha256": "17205e6268e06f7754437d80f20adce82e23a2970611a6ee5c4c4a33a51fcc3b"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaptclip_text_geometry.py",
+      "before_sha256": "8d5e7480ec5da57165ead09c20d06779a8bbc7315962a5cad9758744f70192de",
+      "after_sha256": "955fcbb781cf120deaa3dc19c38b88271582f55da1c13f51ad6e352497a5db4e"
+    },
+    {
+      "path": "neurips2026/scripts/detach_anomalyclip_btc_lastlayer_fulltable_20260502.py",
+      "before_sha256": "c6dacf2a34954785d7017994c4a6364539c45552f4bb5d1700383233ec23d68a",
+      "after_sha256": "d19aed12fe7038211721dd1bbc201c65c7d663280e1085693d04070db4af18b2"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaclip_wrongclass_semantic_collapse.py",
+      "before_sha256": "dfc5e09306ed5c7f8837f758d7068f958ee847a6a107215d941b5a177da7936c",
+      "after_sha256": "2408f6c12f36c8129ab4a9e616b2c6b3f73e00bd039a1b67d4857aeb9b211197"
+    },
+    {
+      "path": "neurips2026/scripts/launch_bayespfl_baseline_strict_mvtec.sh",
+      "before_sha256": "2c97df97a0171a007eeadb522e749157c93f34116d33d6be8379220ebd16b823",
+      "after_sha256": "b8a61ac831a5a15b2423c587cca411d3f3fcfa17f94631d8e230e9a7d449c11a"
+    },
+    {
+      "path": "neurips2026/scripts/run_anomalyclip_epoch15_mvtec2visa_queue.sh",
+      "before_sha256": "5c66c82461437a05193e8ffa3991577f583344d36b987df15869d4057a9e617a",
+      "after_sha256": "5db2d89c715b9c3e866e80aacfa916432e0e6a59605a1280ac6ad72ff1ae8095"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_quick_after_hostscore_20260507.py",
+      "before_sha256": "ed3bcbab1b974c76c7cf4d773b982b211e9200fcecd5a91c3f86b081c1a8b561",
+      "after_sha256": "0e5cbfa3f0783c645fa49e3fe4036e78e8a919c675e1eb1ee778ce3c87740395"
+    },
+    {
+      "path": "neurips2026/scripts/detach_anomalyclip_btc_corrected_fulltable_20260503.py",
+      "before_sha256": "72ce9f76565c2f182022ac14fc9acb71bfa57e4cf19d3069abbb3f11c762b203",
+      "after_sha256": "d18855e62259bbbcb251754356241cac80e4a4e8f185d658877a7c57c4780d7f"
+    },
+    {
+      "path": "neurips2026/scripts/run_eval_winclip_identity_residual_all_visa.py",
+      "before_sha256": "07b11941fd9b406b5754f0690d5311761865fab2c4a06e79f3d69643729085e8",
+      "after_sha256": "fffcb936e2a6d605df8ddb73531736d300d454fc5f8c0cf4c0ac4599c8313e5b"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_lproj_visuals.py",
+      "before_sha256": "f713b29bb4775d4a43dabb6ae68a3d3f451011a43c68dcf580e2e78ed854d529",
+      "after_sha256": "504f5da5317e38d741e711fc461f17396a1d35d8382963487be29e0d9fa9842c"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_prescore_mvtec_targets_20260427.sh",
+      "before_sha256": "e04b153d5c02248c54f9bd7668cab6ae20509d51f87d1f548a627e35d83cd367",
+      "after_sha256": "ebb1ee25b0f98000d01c8f2d65b33d239678cf5085c1eec605c6f45dcd0b685d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_layer_selection_burden_20260502.py",
+      "before_sha256": "7e24182fbd78b277d07e699f20e9b6a49f97ec4c43eb66a69f38c2dbb06fdf1b",
+      "after_sha256": "dba3de22ef7444b8753e5486781a8cf65aa130dc23efd111584641e78163a193"
+    },
+    {
+      "path": "neurips2026/scripts/probe_winclip_ted_smoke.py",
+      "before_sha256": "c7bcf9b3480fae8b0554412ad1e71100e2f20d80030a0d1033edf5e326858f00",
+      "after_sha256": "3e6aab89970c5ceac07dcd700a4374c05850c9d6dbe126a394c127f7638255fe"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_official_full4_visa2mvtec_fresh_20260502.py",
+      "before_sha256": "c470fdb7a179f263d75d53ec06089db651bf0baa4a3100d3af5ba70a92604e66",
+      "after_sha256": "a6890b6b661684e6c2974370db8fa5a4be2bb8dc89751080aac40cf9d6cd55f4"
+    },
+    {
+      "path": "neurips2026/scripts/make_host_patch_pair_recovery_gallery_20260505.py",
+      "before_sha256": "246f09a09d2d3cad2422224f20bdb1b46809014bddcfacd956219625b17c8a36",
+      "after_sha256": "0fea69f026ab19b3aa1f4972c06df9cf2ba702f8301b7e9a4459c5eca474b224"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitl_visa2mvtec.sh",
+      "before_sha256": "c866797a4de2e24c6e828564615e2f05a2b4739f5ed79dadbbca1f0f5a83ecd2",
+      "after_sha256": "65e0ed97c018a51ce102410f80936911905d9a951f8f9024d56a49f81d6fd49d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_failure_conditioned_anomalyclip_20260506.py",
+      "before_sha256": "7f0a1c23fab2a15f42d2cfaf4e7bf6c6433bf601ad8b7e7c61a7d8587c2a5ec1",
+      "after_sha256": "4d6421b77163478a0af935979919d22a0bbc0cef8b300a214d5f6d38cd4f13bf"
+    },
+    {
+      "path": "neurips2026/scripts/run_eval_winclip_learned_all_visa.py",
+      "before_sha256": "998eb8e7bfa41e71af060af76ea41abb9b1caee47dc3ca77c779a74a7b6ef56d",
+      "after_sha256": "f9a088b59cb456a0ca9977a29ea563ccf5d671ce6f28f9d197f67d6ca819103f"
+    },
+    {
+      "path": "neurips2026/scripts/generate_hardfp_correction_teaser.py",
+      "before_sha256": "f64bed703866ef25cad8c94aa9309287cad08562efbfa0449677f7d05f3d2640",
+      "after_sha256": "5d7515bb92170b5ec20d9288e8d7f1c80afc8b8adca94291b4a9efd018771232"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawimagebind_visa2mvtec.sh",
+      "before_sha256": "d1d55543f686e1ef8ae2d270bd696424b978141eb21d55aaa5ecece52cfd5a89",
+      "after_sha256": "422c191412607765a9088c076913169d65e1f46a137b3ad576c9997ac34f6cb2"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaptclip_branch_dominance.py",
+      "before_sha256": "ac6fe1cbba6d2fafffe837d2f079a7192a4df8d36375a4deb4783cf866844615",
+      "after_sha256": "01cb5881e990c13c84987928d1d63c287bb07e74a5336fc4b3aea9a5badc3e44"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaclip_ir_fair_mvtec2visa.sh",
+      "before_sha256": "7aa7ef98827f411e4beaad368523d865e6b27c1d498850a0357e41de51789e4f",
+      "after_sha256": "160a77972c468e2dae965ab4a4a778b9a4bb7886fb9cc17bb3b08b70342faced"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_trainfree_anchor_detached_20260430.py",
+      "before_sha256": "d009c53ec56a021b35a3bcac35ea57e0c1efe30e4a26b87ce5ce72e69cce0f6b",
+      "after_sha256": "eaaea9639394c7983f75bdb98cf3e4e7f32eeaeb8639a54984b7ce0a270fd410"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaclip_map_separability.py",
+      "before_sha256": "2e08c9a7c1a0a5e6a733cf92c849956c5bc499ab80297029fdcb263b199c9e67",
+      "after_sha256": "7de6f5b679c45c0ddabf7a0b6e821d67569c462a03f3b87a33acf6b0658e3d85"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitb16_openai_mvtec_queue.sh",
+      "before_sha256": "820688dce34ebc39affe8b82c37fe636214c87fff5183749f57da6d6eb1e5b17",
+      "after_sha256": "591a43b46571d0744b08d7ab739418c1532628820120b19a3d91498e60ea5330"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_common_failure.py",
+      "before_sha256": "8c4563c1f6178416ee8a38005f87785b20c98a54218f5d81fd35b90634d8f39f",
+      "after_sha256": "036e4dd5568143934ac8b62a2a66f4a6bc15c1e4d07985306c486045f5c05cc3"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_purevision_ablation_figure.py",
+      "before_sha256": "ea6d413e02002c55d0bc94afef7b0d275355eaaa159144f2fdf0259fa82218bb",
+      "after_sha256": "7543e204bfa451be4419377a67975f4a0a6e5e72e655913c8df4d9d726886042"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_adaptclip_vlrefine.py",
+      "before_sha256": "c06ade64ed14339dce1fcfdfdb168bd0370ab23c6928134274001c1fb9cee762",
+      "after_sha256": "d5dc884315d8b2d5602c0e99cbfeaecc3c5f19a545b13d49c1934f9c48bbf18b"
+    },
+    {
+      "path": "neurips2026/scripts/run_anomalyclip_wrongclass_semantic_collapse_4presets.sh",
+      "before_sha256": "203029138b3e651cecb5ca9c3219ad34a0ceb9ae508761b7e43724ffb16f071d",
+      "after_sha256": "5835bedc23fb7bc3fd45f6d23b719e1aa8cec9e12f3cc0f5da95041ffbced80d"
+    },
+    {
+      "path": "neurips2026/scripts/collect_bayespfl_ted_official_seeded_20260430.py",
+      "before_sha256": "271f97fc54fd62982f4081dad1ff4c05f184998caae5d32e1c9573e91aa12816",
+      "after_sha256": "f2ac4268c2857e2feb77b7f65977c229b540da4428e7a1d62c3f128303138987"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_dpam_delta_smoke.py",
+      "before_sha256": "20f70b68ed06caf2c9b1bee13df35b48b997449bfa44715b6ccdfc82c34760e2",
+      "after_sha256": "6228db1fc4c550b110447ce223f7975a3004b5369cc918d96859a81fbb09425c"
+    },
+    {
+      "path": "neurips2026/scripts/aggregate_map_separability_dashboard.py",
+      "before_sha256": "ff09fbbbb0533059381ff63cf9dc332a971519fd9d142178e2e31e6376d20148",
+      "after_sha256": "ad0030c22e548dc29e3ce4d8cce023b6ed71b93ba47bc4061cb25394760a1d85"
+    },
+    {
+      "path": "neurips2026/scripts/make_backbone_retrained_stress_table_20260501.py",
+      "before_sha256": "9b8d2f156c4e7016bcdb77d9b4cfe629a3ae1c9470de2feda90803abcd0288c0",
+      "after_sha256": "e42513c7ab59661a8d169364dd816da062012d1a211f160a6cd64aee3d106acf"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_layer_retrain_full4_20260502.py",
+      "before_sha256": "e5b9cbcbc748174fc7fa59c9df171f0c4c3750440e5360f70d9e235b92691d27",
+      "after_sha256": "c46f0e836a43bde4932154f0c8484e1f2c113b88ed112fe86f8d125e54319ce9"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_vith14_map_topk_pro_visa_bank_20260427.sh",
+      "before_sha256": "7a5b369e7f0a5f984a9af7376362cb00c71d238ef95284808c4210f542fcc14f",
+      "after_sha256": "c8a96098ba0c5c6e5e5a7998161aa3e8b710b7f83ae7f19be9aeb59a29fd5a2e"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test.py",
+      "before_sha256": "a5e8f3a386d0eede793b8c37209f83ea0860705f0c4480c73de7721f944df054",
+      "after_sha256": "a5bea026688b49149e39198ce4ab5b1dac779283a3d12e8f7e5e2f66754ea915"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_aaclip_20260428.py",
+      "before_sha256": "96d7fcda0a0cd2a914302e46568be11a1cf26df228531a0947c7bff5152d9cf7",
+      "after_sha256": "2cb6615ce358027485f61f53d67eb091e8b29a4f568cbecdb013d60288122632"
+    },
+    {
+      "path": "neurips2026/scripts/collect_rawclip_support_ablation.py",
+      "before_sha256": "362bbf24f2eb1d83778c6f4054abf4cd212692fed435c2b765fae249f70f8296",
+      "after_sha256": "47007010acd0f6bd64f6248e3ef116314f822a6912b20022b45e2f69dc2e08e7"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitb_visa2mvtec.sh",
+      "before_sha256": "491f995c22547eb7621e4de970bbee9aa6fc742a2b94fce04967cb0b76919533",
+      "after_sha256": "444d933473f23d2ac3062f99bf59b6e4bcdba4ee9b9873d34c85e7c42297b0c7"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaclip_recipe_fragility.py",
+      "before_sha256": "085d4ae4af065da58de8b38c98c2ab98b63e1161e89042ac9bcab496dcabb591",
+      "after_sha256": "c5e1e6323d3bb143cc43fa8b96da09747716feef6c89263ba61b640097a5c200"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_fp_text_residual.py",
+      "before_sha256": "7515a4c5517005001db2af8e177ceff2383f28744574f441d4715143d15b63ce",
+      "after_sha256": "e9b6a821de5e3471a29b2e69428a202edd07be05a6b4e786caca8271bef4ef89"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_backbone_swap_seeded_20260430.py",
+      "before_sha256": "a5a0eb29d26b202a5f096cb88708b5c78b02ba65156537f555e880ba1712a635",
+      "after_sha256": "dd41febef5a38ee97ae7b055e6e5fe438ec732f59e5b38eaaa17d9263a9a42cc"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_representative_ablation_20260501.py",
+      "before_sha256": "79f54a3b1587331ea838d151f248d290b5da9ad307668870279a69a8010c2261",
+      "after_sha256": "1ad8dd5ed758d2b57091824482e757a66596cb0db25342fc6ecdc8bbd615219d"
+    },
+    {
+      "path": "neurips2026/scripts/run_adaclip_wrongclass_semantic_collapse_4presets.sh",
+      "before_sha256": "5603a9dfd4acb618472033b11ee0aae508831c91375059185c96a7514c1d9b67",
+      "after_sha256": "71e941280a4877d54fbaadcca75ff45ec105b39259b572f477762f55cfdd833b"
+    },
+    {
+      "path": "neurips2026/scripts/generate_discussion_failure_correction_figure.py",
+      "before_sha256": "a2dc364e8652ed107c342673cbd78d4a03f06f3af31db524803990a7d71b4593",
+      "after_sha256": "df883327689083eef0a5c6f1bb1909a5038ec5f6bc46ef2fc30e76007ce03846"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_trainfree_anchor_seeded_20260430.py",
+      "before_sha256": "65f88069dbfb77345f9e2258392ad9a109882b680532668d73300983db8b92e4",
+      "after_sha256": "701362c44fad68005d92ba25c9b4440c4b5aed462540f3ecd38959b18a790e95"
+    },
+    {
+      "path": "neurips2026/scripts/generate_adaclip_cleanbank_explainer_visual.py",
+      "before_sha256": "48425b558cd45da0be8e7ac02218ca652a3ad5d7efb4f23b02ed6672496f781b",
+      "after_sha256": "6236e046144e339683661a29df7ed1ef6675eb4d9f45dda5c3e73a87bb293c8d"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_ted_vlcalib_20260428.sh",
+      "before_sha256": "a80e1109166cb34d1ff4d5a105212bbafd94d30bbf9107f800fd839f1419b0a0",
+      "after_sha256": "7ec5cc61f5421f3fae2f53fce0c279200966cf35221498119adfeb98085d04fd"
+    },
+    {
+      "path": "neurips2026/scripts/prepare_bayespfl_mvtec_visa.py",
+      "before_sha256": "6d923dbd835a4489ab5098ba2e049688c3cd780e450af561eca9987a7dd45d3c",
+      "after_sha256": "1c1e25968e8947903efe4d58adc772070fc9a7fb09b29623ecdb81c8e4a480f3"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_layer_stress_baselast_ours4_20260502.py",
+      "before_sha256": "eafff636859439ec9e3b3f762470e218e496144f675a79927f8ecdedea1df086",
+      "after_sha256": "bb4e6767f8fe97ccae47a3ba3fd1d17cd97bb18b6c4ef9653a0717d852b6f55f"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_wrongclass_semantic_collapse.py",
+      "before_sha256": "a0021e6fe436f4298cd101996c7b4fb6bd0f58273547dfce63036acc65636a4c",
+      "after_sha256": "c5e7693e08a9a7122f4744b9a504521efe548637dbf7deb942f29c39c1e5aba7"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_ted_smoke_20260430.py",
+      "before_sha256": "87db998550906a908bd434b55974eaff946994185e7d2a42da3ef04ddd7a0c0e",
+      "after_sha256": "bbe0ad4fb28791e72e57cb9fd28a4bb87afe6435f7dc27173e23cfac60df3f19"
+    },
+    {
+      "path": "neurips2026/scripts/queue_extra_training_control_adapt_anomaly_20260504.py",
+      "before_sha256": "7864b2ccd1238c6c68223a2c53663a7ddda283f3da5ef96eab2163a512774f82",
+      "after_sha256": "9661b371b30b68708c8705e8a47701689f25ecbb8e36e89c9f5be654232a5b44"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_semantic_refinement_explainer.py",
+      "before_sha256": "653811926e5680f721ba2fc507f5d75d75af3ca4e631bb68d687c6428e34e50a",
+      "after_sha256": "27cf6045c7f035ee7c7e0c8fb0adfdfc9f306577c73ea8cd99a4691d4e7b9f5d"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaptclip_ted_tables_20260428.py",
+      "before_sha256": "1d5cff270a4954504a2acab57064455ffd8560ae5d54a8dfa0b6c7ea4c773ba4",
+      "after_sha256": "b88133f4b0f57ba14d5896fffeb87c674e2f9bb4a54923c58de388a2e149a070"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_text_competitive_holdout.py",
+      "before_sha256": "4f5f1e0d29a03ba4c9291cfd1042a1cca443113c83fd5cc2c93253efcdbcdfda",
+      "after_sha256": "d19f33779dbbede221533776459eb567f79695d2663c5ab37b0c9bacad9960e3"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_btc_lastlayer_fulltable_20260502.py",
+      "before_sha256": "9254c285d8dd0eafb1cbf4367a69ea4022205259002c0df3a87653232be54e86",
+      "after_sha256": "c375691d9da51c8d394404a3914f1e7bf28f01fe8e33d2ca130b17e8256de8c6"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_spatial_leakage.py",
+      "before_sha256": "5bb9c5e2716328a60da0d25cfebe4899c14d67b1040804d710550dc1b0e06064",
+      "after_sha256": "6ef018a897c3a0d1493fefcd8e34f69875bd0a8f6f58753233a9440a109538d8"
+    },
+    {
+      "path": "neurips2026/scripts/make_failure_recovery_heatmap_galleries_20260505.py",
+      "before_sha256": "2c75850714bde7f25d386ffef6e6dab7aa044fe80d6f13d81f8ca5421ac8b5bb",
+      "after_sha256": "3199765fbe04e672f9419bbefa011ff5020696c953adbbfd04b94db02fefc899"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_region_discriminant.py",
+      "before_sha256": "c2fdd331186ec9227529e3ae70117211052a85e5bc202ae748dcc1f90b365bb2",
+      "after_sha256": "ad9164d4c0e718ae3e1be2a9d97a4c26ac3aa99385dcfe5a19d7edf423348d4f"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vith14_mvtec_queue.sh",
+      "before_sha256": "1b852917a8fd5ea9304189f0b0f5012ac7f915df622d2b59baccd2d1f0387369",
+      "after_sha256": "1fe50f7b73f5d77806a9dd3f6ea0698f3c373253d7483cd634c4226d1b6365d5"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_adaclip.py",
+      "before_sha256": "7f06357ec1baca1f40ee833a9ef1d5310a6a44748358d71957658f30c7463267",
+      "after_sha256": "2f0a93693e1cc3a7ece45cd19ca0f0b5d41b9fb2de591a932765774611f93248"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_vith_and_dinov2_bridge_pro_visa_bank_20260427.sh",
+      "before_sha256": "cffb40b500c1c53ac313d6078eb44f497aa9bb9461434e2b36d5e26e7189e630",
+      "after_sha256": "78bc6483b46aaf54a391435e778fd36ecdedcf7f919a0a8cfc73895f3ebc3117"
+    },
+    {
+      "path": "neurips2026/scripts/probe_clip_cross_domain_drift_consistency.py",
+      "before_sha256": "5d58f6890126c267775ea2920ac3c05d9e0a42359b783f24b74ae4ac2b9b6826",
+      "after_sha256": "1be96e0f75670cb19c443cee9e73b2f3131c212f168bb5ba08c489d800350ab0"
+    },
+    {
+      "path": "neurips2026/scripts/probe_adaclip_region_bank_holdout.py",
+      "before_sha256": "10739a7496bf6c92d1e4e4d3b41cf8dbb6a4bbf530fe2c8021bd3d03754483fe",
+      "after_sha256": "c51cf869e70f9121855880a801eed834dd69bac9689a546db3091b0dfff18654"
+    },
+    {
+      "path": "neurips2026/scripts/queue_failure_conditioned_extra_hosts_20260504.py",
+      "before_sha256": "2f558610f98b7ccd04ca25af6fff297457cd6a91dbce491a67618664d3d80ec0",
+      "after_sha256": "9f5d698217e880518bcd0a5af24c76f8cad9ebaf13e28248d94acfd13f7c6c26"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_official_lastlayer_seeded_20260501.py",
+      "before_sha256": "553091eb6480999d58e0c33923e90bb8f0aecb4428b9af6b2588c4c1ec37deb0",
+      "after_sha256": "0112a3d9f28d9889f99b46b02992fec4b9c6774143cf99155784c1861e5b9a37"
+    },
+    {
+      "path": "neurips2026/scripts/queue_faprompt_layer_recipe_retrained_20260502.py",
+      "before_sha256": "d171c38a64914ec0f07e798ec4635a3411571a46effe5894d67c81ff803634ab",
+      "after_sha256": "20932d242e1d99bacb2cb7a4658024795f85b816b0394a4026888ead01d29525"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_learnedctx_classswap_figure.py",
+      "before_sha256": "9ff9bc7addf707e371d7d1fed0b13b26316449cfab912d9d8a3f19c82fb48ebd",
+      "after_sha256": "e4377a624f99bb040e0012b0ff5a6f4cbbe4ef57a5fbed6bfabe9cce4ecd3dfb"
+    },
+    {
+      "path": "neurips2026/scripts/detach_bayespfl_pair_axis_sweep_20260503.py",
+      "before_sha256": "3abc562715d7a0bc87fff389e93b9e2f739132bee429430ebfe12acf8974c766",
+      "after_sha256": "dd3ae2147de4430fc92162b624b90071aaf108d63daa09c7df523e67c9cd4fcd"
+    },
+    {
+      "path": "neurips2026/scripts/queue_adaptclip_extra_backbones_after_vitl336_20260429.py",
+      "before_sha256": "e2bd25bc0eb16738222c6555e1b14a8b61de771277b12062002c52f60b440d64",
+      "after_sha256": "13311fddbd4dbfc46982c78a7bd2a9b572334cf09dd38e56e6397814a7c8a16d"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_faprompt.py",
+      "before_sha256": "40ec6c2ee1582b971c2c87f49ea0f887d319dd5be69bf10023566436c77a4609",
+      "after_sha256": "0dee9ddf6e6f3be55b1eebcd779e79e208caeef8d11d97040f0fd81923a12e8e"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_ted_vitl_openai_swap_seeded_20260430.py",
+      "before_sha256": "c74de06e5f0d00765465ff637087303b1b13d3efa1cc164342c2b21633e1fa96",
+      "after_sha256": "79448f53afc643bc9f62202ce2e586d6e35c8806adc026650ba8250927ce831e"
+    },
+    {
+      "path": "neurips2026/scripts/collect_faprompt_map_separability.py",
+      "before_sha256": "aa98e35c76082f8a4a1d8e045616821dbad051cf7a1c63f3f92780c9c5c28567",
+      "after_sha256": "d63d651862f44166f8c93b92447cccac71f665e2cc577cfdb969a9e9316310ba"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_lproj_sanity.sh",
+      "before_sha256": "02abd5d59e8b57173dce2e5819819e09b22acab558965b2c08a022f639729beb",
+      "after_sha256": "12eafa98d4f62795d63c9301e57eb7c345e9af04a1bc77f3ba65f0fc9576ab94"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaptclip_mvtec_queue.sh",
+      "before_sha256": "b5bbdf206c44ccff8a5b413a561a2568ab822078c84c1425858fa5cef521512f",
+      "after_sha256": "50bd5b409e952c7d551851a1045536cd3fbda51b36e8ec03010d3e74fd48a7f3"
+    },
+    {
+      "path": "neurips2026/scripts/queue_source_readout_extra_adapted_hosts_20260506.py",
+      "before_sha256": "cc2579b34e5b8a03343512a705c1036d09e0dfd1a64222aa907cbb82c79fdbd6",
+      "after_sha256": "c34a8f3c627d5ccaf124c9461242f3ad800a5db9818ee0502b14739d5cae62c0"
+    },
+    {
+      "path": "neurips2026/scripts/probe_bayespfl_region_bank_holdout.py",
+      "before_sha256": "cfe9b524eb1a14974e9d9900559383363fc1bf3c9e5638ba4531262d5edc9064",
+      "after_sha256": "e0e1623671a14ef145365b2bc1826cf6e9ce22da40f8f98df7dfb3a7fec99a64"
+    },
+    {
+      "path": "neurips2026/scripts/collect_rawhost_inheritance.py",
+      "before_sha256": "4bb6a7208221473e7c6baa5ff4415ad9f276b6d68b21ed55efba7afeec3ff0cd",
+      "after_sha256": "267a96cc9a4014de0bc61510238dfc034fdaabb40fbcfc27ca76abf213e53131"
+    },
+    {
+      "path": "neurips2026/scripts/make_layer_backbone_retrain_diagnostic_20260503.py",
+      "before_sha256": "6a3694c301ae81e9632b46b1c88415aaf9d26e2be6085ef0556fbe0a1ac581f8",
+      "after_sha256": "6c52fe306fe83fdea097c76a25235a5ca107aa796fdc40c2c1949a1d732d2780"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_layer_recipe_retrained_all_20260502.py",
+      "before_sha256": "3f68eb0b4e6c5b31fafa958bdce52db46ec940a03cda9679ac713a084b0e8520",
+      "after_sha256": "7bf0e3af0813e6933efa23cfc44456e1b78d0f39ee1fa9f983c778938fde6199"
+    },
+    {
+      "path": "neurips2026/scripts/official_parallel_test_dinov2_bridge.py",
+      "before_sha256": "e17690cfdb62c848ee7829cd7ccfb58ed52bbfa30a53c7a83b65f5a1425872e2",
+      "after_sha256": "f3a851827363723680dde16e73c37023a83c645cde302cf4b22caf8de116c913"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaclip_text_geometry.py",
+      "before_sha256": "de202b61474c96542ce127502721e7c5791351962a60e2e2d83236f74afa3d99",
+      "after_sha256": "3427a52bddf70950305c9dd658190fe6ebe09af0aa5ab2404d2e417b3f54c474"
+    },
+    {
+      "path": "neurips2026/scripts/generate_entanglement_story_4subplot_figure.py",
+      "before_sha256": "dc844a87c56883b7f493fb368695bdf3a9d8709277e10fea8b30d1c57ad6a8b4",
+      "after_sha256": "8d9f66f1d3ead0deb303a6f669f256f715601b2b496764893a7fe1f3bfde6f09"
+    },
+    {
+      "path": "neurips2026/scripts/collect_rawfamily_gtfree_entanglement.py",
+      "before_sha256": "e6e030d8201efe425af346a02f15a7410be3807f036855caf99c226c963d934a",
+      "after_sha256": "caa6fd0fc87c27437df3679912a00e1e850b84bd9c240c9bc30e4bf1f20f891a"
+    },
+    {
+      "path": "neurips2026/scripts/queue_bayespfl_pair_axis_sweep_20260503.py",
+      "before_sha256": "08e860a2ffbfc28b71496a7175b239d00d9c7fdacc84b998b6941fde8b187381",
+      "after_sha256": "61aa4e416f0e9869885fc1a9125182376a2f14ee744b1cb065587a576cf9a47c"
+    },
+    {
+      "path": "neurips2026/scripts/queue_rawclip_calibrated_ted_trainfree_anchor_20260430.py",
+      "before_sha256": "ab3728c33c51ceac930fd94cf0610e2a46b9f1413bb7f84f06948170c82a7810",
+      "after_sha256": "7d1b3a783abbb153224ab536c4784c761dd9c9b2a336f913f13eff81e3650d3d"
+    },
+    {
+      "path": "neurips2026/scripts/launch_rawclip_baseline_anchor_detached_20260501.py",
+      "before_sha256": "ec4aa08a69223abd40bd5172f487c93447a16798c66d5cc3397c172b777da9ae",
+      "after_sha256": "6444d2c04ffa273405d0ba90dd60b071b716b57e00774720a3c0a06e70ae2743"
+    },
+    {
+      "path": "neurips2026/scripts/run_anomalyclip_epoch15_visa2btad_mpdd_full_queue.sh",
+      "before_sha256": "d31bbd62d3a2077e592e04e07d0a8698b49566c73ea24a7081bf9d13450d6f66",
+      "after_sha256": "29b1c63b68913fdb0e39602d22aea7438f1aed5d9ee89ba15b4e52ca4105d440"
+    },
+    {
+      "path": "neurips2026/scripts/queue_recipe_entanglement_diagnostic_20260503.py",
+      "before_sha256": "7e3b52864ddee81c1b42dc5e5f4ea6792fa88fe9e3376ee2d3119d56df947a6d",
+      "after_sha256": "976a8c18f7af0a3d5048b33c628dbb1f61e03dc345a0de7b20042d58492ddf31"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawfamily_story_figure.py",
+      "before_sha256": "8a03575c4cc611bbe10efd1dbbd0ac1f56262bed8ef907b4147515a72ee27adf",
+      "after_sha256": "8fe8f447bf08ef19bc587e5b17f059601f627b2094a6cd446059b3b1fbb53771"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaclip_mvtec_queue.sh",
+      "before_sha256": "f54b9a636a4029b81a575f85f58dc3e4ecf1fdfa57842da325edadee88dbf2d3",
+      "after_sha256": "858808002348d68a67716988d23e7d0e02c83e63fd99070dff8cd1312f3a5014"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_region_bank_holdout.py",
+      "before_sha256": "11d457b32e85e57acdef135d6e7d527e586b87f0a0fb4bdd7afe3083a17f54ff",
+      "after_sha256": "72b79668969775f282954d5a3c695519fb96e080ede905a05142cf4722706d84"
+    },
+    {
+      "path": "neurips2026/scripts/run_common_failure_4hosts.py",
+      "before_sha256": "d6064b8d8372506b6f7f3522dce43d5188559bfe1bb8bd472b5657a3aca83619",
+      "after_sha256": "a5c427888080209536ff92a0eb71ca00273251a88ac3b99a778f4ee51095c10d"
+    },
+    {
+      "path": "neurips2026/scripts/common_failure_metrics.py",
+      "before_sha256": "a57c84a59606280e9db0562ed6c3633137de2347ff70b6f12f08844ecefb3a53",
+      "after_sha256": "94aa6ab2bd1b343f57426d41c5b3401ec41fc48e3618c8da1c9f91fb77c764f0"
+    },
+    {
+      "path": "neurips2026/scripts/run_adaclip_wrongclass_semantic_collapse_4presets.py",
+      "before_sha256": "14c37aae2833afa6463bcc5a9015c51ee98fae46f712a2797dcb2ca03d5f0eaf",
+      "after_sha256": "bb4e021d8ad41c237a3bffe876f85bc42e95669cc96d5459f63789808637f6ff"
+    },
+    {
+      "path": "neurips2026/scripts/generate_hardfp_teaser_figure.py",
+      "before_sha256": "d069762882e95987302dc4f352fb43758458d8cf01763d0730f0262a91532ee3",
+      "after_sha256": "5789be9c33c18e9ffa09b0914f72b44d947d12e5e6bcae538641bf01d6e3ce34"
+    },
+    {
+      "path": "neurips2026/scripts/launch_adaptclip_baseline_mvtec2visa.sh",
+      "before_sha256": "5cafc095fae8908c2558ca1a6fc5f4d421fb11007ae24aaad67c67e510cc3381",
+      "after_sha256": "cfb43d496071efeb08b4dd90233ff3a6c3add1d2106beeabbed252362a66d847"
+    },
+    {
+      "path": "neurips2026/scripts/run_anomalyclip_epoch15_visa2btad_mpdd_queue.sh",
+      "before_sha256": "b41fd2a8c405797494b05f73547a1737e05f30910f7653b81901ba3819d692a7",
+      "after_sha256": "1f9866ce57e7a1cfa7294886ba776c5811096a05bc89eb19dc557eeeff40f34f"
+    },
+    {
+      "path": "neurips2026/scripts/generate_method_figure_capsule.py",
+      "before_sha256": "a0a2bbc2bf02a9f252b44ac8c0013bb271ba473ed0d980ce3e25d8443ee6360e",
+      "after_sha256": "edd4c0fad84b84741fa6402787e8976a5b98f27ff5c0f731d19552480abc29e1"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_semantic_collapse_figure.py",
+      "before_sha256": "c8b3eaed1c4869977f94378338a5ab529f41a7d1ca0155539b0fdc39be4e6227",
+      "after_sha256": "6dccdf05e76252f0319fb142d9abc5f2ebcda438edb9343934b5158caf5195eb"
+    },
+    {
+      "path": "neurips2026/scripts/queue_host_score_only_control_20260507.py",
+      "before_sha256": "8cf1ba7a8b9a01ebb84fa6896414b2c2383b567dd4584f8ba40f6175a3527576",
+      "after_sha256": "6925736f27e0a7d40c34c4183e60fa849fbf5e3bfb7a30082067972a93938916"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_ted_baselast_ours4_normfix_seeded_20260502.py",
+      "before_sha256": "b2beb6fc8caefeeb58adef38e6128caf0a9afeaa5dfc28f36915fae3591fe21e",
+      "after_sha256": "ae25f8966f665ab29a7d0c9aa36b231b5f26adb49f0b8a81203884f489f4d2da"
+    },
+    {
+      "path": "neurips2026/scripts/run_faprompt_prompt_diversity_4presets.py",
+      "before_sha256": "ad1f96f0f8312046f956f606a00c086c6819180b8f63de3bcba22817ad9a8e72",
+      "after_sha256": "f2861346a63d228598b80d7d28ae4ac225562dc68353ed21082a815d7a3107ba"
+    },
+    {
+      "path": "neurips2026/scripts/launch_layer_recipe_retrained_mvtec2visa_parallel_20260503.py",
+      "before_sha256": "9bfe0d005013f71ab1d08b7b3d88d9855e584d9de09819abda51367bed2474d1",
+      "after_sha256": "d87523c71f42501560a596a9340ec62de8af32b7b7a56c6c4d9c9e5ec61de9b9"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_rawclip_vitb_mvtec_queue.sh",
+      "before_sha256": "9ba0146d2c1bf0346f3407f987fe91bfbb89456befd88bdac3f0a07bbbf39712",
+      "after_sha256": "907cd605c87d617145a71e2fceb9b085ad2a8d47c89bfe50b89bac42f6bd481f"
+    },
+    {
+      "path": "neurips2026/scripts/smoke_adaptclip_ted_calib_sweep_20260428.py",
+      "before_sha256": "dec0ea0cece678b81be840ed97d059d6725ec7816f2cdfaabae6a9eced91cdfd",
+      "after_sha256": "fad001c30fb4b4193747418d1bf7ccefdaf6ac74a52d466379cc89901226d626"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_i_auc_map_topk_visa_bank_20260427.sh",
+      "before_sha256": "501bc688e76dd9a10b928021186bb0d4c98e5457d3efbf5be5579647ea91a6d3",
+      "after_sha256": "cbacb93a396f906ecd360f1859d2b3a1ad6a217dc014270fadf1186f3ca8de4f"
+    },
+    {
+      "path": "neurips2026/scripts/generate_common_failure_story_figure.py",
+      "before_sha256": "15885da413e21a13afcec0a5c731123ef257fd6c55aa5aaf8716c3d8a6c366e3",
+      "after_sha256": "fe269405af4d0408d12848f09676c4ec6cf14e4f67d558044f79801df979321b"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_prompt_swap_refinement_figure.py",
+      "before_sha256": "bf8a3add1070362258de9e7d950f58ba3f15b3cdd14f39eae5d9aaf671fe5135",
+      "after_sha256": "e8cde1d479c9bdbbb44c3921f07f428eb10dc17c104519fe4652f02f1f736934"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_axis_entanglement_figure.py",
+      "before_sha256": "5ceaadab77209ce1f4064614862e102beff99305e7a2a74ba2b5618fe585f233",
+      "after_sha256": "48f74a0f850e6b65a17a9265a9d9af2078f73ce2632e300a9c1a16bb0eb724ec"
+    },
+    {
+      "path": "neurips2026/scripts/run_adaptclip_branch_dominance_4presets.py",
+      "before_sha256": "2489a02e3a3e063fece47671b5209ec04c7da80d4c8bfe4fe8de52a1fd631b2d",
+      "after_sha256": "fe4ca8e2307f0226ee3901b783a49e42f8858a2d08e4d4c8c37000d912e3f32b"
+    },
+    {
+      "path": "neurips2026/scripts/queue_rawvlm_mvtec2_20260503.py",
+      "before_sha256": "abebd4ddfbda75320d03e7ea5f941246154af710cf3d10d2b916ffd85b37d795",
+      "after_sha256": "d9c50328522e0ae71171ecd45d4c1e4fc2cccf37e0505893ddb32a528898f537"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_text_collapse.py",
+      "before_sha256": "8617cc129814465e076ada19c719f0c0e2861db7f293596baf49bffc8f8e99b9",
+      "after_sha256": "0661ebede8e8f2d844710bca8df87c886153355a107b1c5b41ffce5bef9d6125"
+    },
+    {
+      "path": "neurips2026/scripts/run_official_parallel_adaclip_visa2mvtec.sh",
+      "before_sha256": "a64ceda1e3de93a4022e2fa2c3d33d2a22a09f651d41b312a7f8f20751a6b158",
+      "after_sha256": "7a1203bf24b1c71d2a973894ab0ffd9cb57d381d77795f22f6fe32057e2bbf99"
+    },
+    {
+      "path": "neurips2026/scripts/queue_training_control_20260504.py",
+      "before_sha256": "84204be7535cf264f2b8bafb46ec12f7a69248fac54bcfa6962f8b99698c1937",
+      "after_sha256": "5631cbff82cf64e9cba4c59f8136f15bbb4dbb12f784138dbe6ab8e3235c2c3b"
+    },
+    {
+      "path": "neurips2026/scripts/generate_anomalyclip_text_decomposition_visual.py",
+      "before_sha256": "f11ac1d00ceb56d5c78cc7206a4b614848fc81d013cf1627422249060fb291af",
+      "after_sha256": "087cfb7496643cb04d96deb844034ff77950efd132e9cc4fbb421852d54fcbe0"
+    },
+    {
+      "path": "neurips2026/scripts/launch_anomalyclip_tedlast_fresh_visa2mvtec_20260502.py",
+      "before_sha256": "5123c04239ba309e51308ba8309288d7baf11885217e9956cfc37c9103644421",
+      "after_sha256": "4c3152f696d469b69537184cde464ce0e7d77b7074cfb91f5cf0b8cb6d638891"
+    },
+    {
+      "path": "neurips2026/scripts/queue_aaclip_backbone_retrained_stress_20260502.py",
+      "before_sha256": "3bbf1c1312a7d14d81058593be45e497b57d14bf40cd28adefdb34b6db0c710a",
+      "after_sha256": "30ac6ecc9627744287c5de792e0b9bff2bb5e3bbe041362145305f1d127cef8a"
+    },
+    {
+      "path": "neurips2026/scripts/detach_layer_recipe_retrained_all_20260502.py",
+      "before_sha256": "0e98a6112ab90b5d5c92b352fd3fba605ec490fa83ca55c5867308e2cf5b9ff6",
+      "after_sha256": "b83b85bdacddb1f5c66dfb01ba393c8ce4ce4d4235c75859e95ba23b14897884"
+    },
+    {
+      "path": "neurips2026/scripts/queue_anomalyclip_btc_corrected_fulltable_20260503.py",
+      "before_sha256": "0bce5e2e2ee86c6a4e9a42a8af733c2a90e692358facf2b603687c33cd5c8252",
+      "after_sha256": "370e3fc6a748708f4fb0ad825686ccf787ae78bacd3749d55ba22a2ece974bbc"
+    },
+    {
+      "path": "neurips2026/scripts/collect_adaptclip_map_separability.py",
+      "before_sha256": "ee67add2f092d2efd18f6fb90e93e075dcb4c1eaab422eb0925cf46696ed2a0f",
+      "after_sha256": "b979269b46a4f2083649abf863243915f36edb98a11de0f16069b049158b00ec"
+    },
+    {
+      "path": "neurips2026/scripts/probe_anomalyclip_region_discriminant_holdout.py",
+      "before_sha256": "235807c0c06b15887323d7b408ee85a02f95258032a4c4bea624d2b1d109303d",
+      "after_sha256": "5abc911182e6dfa52248f4d4950fd5d0c2cef628b5a051ec7836f304beabc164"
+    },
+    {
+      "path": "neurips2026/scripts/probe_faprompt_common_failure.py",
+      "before_sha256": "6bbb4a757ad8fa30bc0b76b7d4b7552f10d95ae941c4178d9c990e745a53125a",
+      "after_sha256": "08f2714022d8cee52fd289823cd323643c5c6806da29f599fdb065eb8bac8223"
+    },
+    {
+      "path": "neurips2026/scripts/launch_faprompt_baseline_mvtec.sh",
+      "before_sha256": "d493f2581aca0306f09b7515559d027f622161223d10d10ca79b1bdf271c42bd",
+      "after_sha256": "d8601e5517edfc88b0d884221661f2b01e1764a0b8afb187c2e0340a71175257"
+    },
+    {
+      "path": "neurips2026/scripts/collect_anomalyclip_map_separability.py",
+      "before_sha256": "0465f5dfbdcd1b590343e436f4b2dba72730ab3facd9c3b5b9ba170c3144e416",
+      "after_sha256": "e04ab5aa40f3dd24e95e603d98eeab2f32be71cbede4d82cc3d24c3b6435a331"
+    },
+    {
+      "path": "neurips2026/scripts/generate_rawclip_textcondition_story_figure.py",
+      "before_sha256": "5cbed549b4b454605e546ac4763c946fab69271ea2f82fdc3538e354d64702da",
+      "after_sha256": "98f7255d17fe8155344a784e863526732186444f416510a9cd430bf1cf593397"
+    },
+    {
+      "path": "neurips2026/AdaptCLIP/adaptcliplib/model_load.py",
+      "before_sha256": "dd052f7468c62ff9238224408a362096f2d672deb3b7caf8653f920c4c2f8d6a",
+      "after_sha256": "bc29d5acc9ee0883d7f2a3bad571730125a1f76a9007a8c603b7f57fb5c98384"
+    },
+    {
+      "path": "neurips2026/AnomalyCLIP/AnomalyCLIP_lib/model_load.py",
+      "before_sha256": "3ec0bc8e3eca1d7c53f305c6294873f5077a1783683594d3a610d79757912b09",
+      "after_sha256": "0d75ea26aace831394797188d63315bd10ac86564e0cbbc763dbc062a9def0bf"
+    },
+    {
+      "path": "neurips2026/WinClip/WinCLIP/CLIPAD/pretrained.py",
+      "before_sha256": "78433ace9a39401b0d94d9cfce75f63e25101f0ab802d266fe9f7bfeda2d93e2",
+      "after_sha256": "40fe9299249d6e04c82efc88d1851b0bfaccf278def80cd022ce09f320b3a446"
+    },
+    {
+      "path": "neurips2026/Bayes-PFL/open_clip_local/pretrained.py",
+      "before_sha256": "14aa2b4cf05000f340a60e3d71880d09de9a2a625aa4f849739c01122f8659ad",
+      "after_sha256": "cdeba201017335fd4edeab4b355a9ac167c45d26d478b033486548d69d1d5b4a"
+    },
+    {
+      "path": "neurips2026/FAPrompt/AnomalyCLIP_lib/model_load.py",
+      "before_sha256": "0cb7f747b088b0cc459b120c93eb8735cae24307121bf17b971f29a45045f2c0",
+      "after_sha256": "867f1d7570b55b9896a1952462e88b39ee60ee413b05b96533d29f164bc7f947"
+    },
+    {
+      "path": "neurips2026/AA-CLIP/model/clip.py",
+      "before_sha256": "6606fecee8cdb715a9f402ca023e091b0a1ba7be1651854b402a63c9223d0119",
+      "after_sha256": "dff89c0286aaeb58468829a62ed93c58db051c2a8e4a17bcb43000376ae2e4f6"
+    },
+    {
+      "path": "neurips2026/AdaCLIP/method/custom_clip.py",
+      "before_sha256": "b881fc6cdcd8244acbaa37cc95eeedb95874d38f9f966be2af7d15b6aeb9f509",
+      "after_sha256": "4fbf72b7c8740f83383ac04945c080ea492fbc71b5d0c05b8c667bdd91d15fea"
+    }
+  ],
+  "source_asset_links": [
+    {
+      "path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source/neurips2026/results/bayespfl_strict_mvtec/epoch_post_15_1.pth",
+      "target": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/release/host-checkpoints/objects/b222592c36efdc3ad7e397608bc575bf5a750aa9d7e6563c966367101c863bb4",
+      "sha256": "b222592c36efdc3ad7e397608bc575bf5a750aa9d7e6563c966367101c863bb4"
+    }
+  ],
+  "bank_path_changes": [
+    {
+      "original_sha256": "e9ff33723e5fbdaa1bf85d9deac5840a993246f80270024cfa2810773d9742fd",
+      "derived_sha256": "e9ff33723e5fbdaa1bf85d9deac5840a993246f80270024cfa2810773d9742fd",
+      "path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt",
+      "transformation": "path strings only; tensor objects preserved"
+    }
+  ],
+  "datasets": {
+    "mpdd": {
+      "dataset": "mpdd",
+      "status": "verified",
+      "files_verified": 1628,
+      "file_errors": 0,
+      "error_examples": [],
+      "roots": {
+        "images": "/mnt/data/MPDD",
+        "masks": "/mnt/data/MPDD"
+      },
+      "manifest_sha256": "b5afbc084ea701bee8b2a6c8e6831d9eb35985664888226184a712b6872b34b3",
+      "metadata_sha256": "56cb6bc57f2ceab11d6085bb786c56fb9c93e951e4f7c7b8598f97ca9874d7ec",
+      "counts": {
+        "train": {
+          "bracket_black": 289,
+          "bracket_brown": 185,
+          "bracket_white": 110,
+          "connector": 128,
+          "metal_plate": 54,
+          "tubes": 122
+        },
+        "test": {
+          "bracket_black": 79,
+          "bracket_brown": 77,
+          "bracket_white": 60,
+          "connector": 44,
+          "metal_plate": 97,
+          "tubes": 101
+        }
+      },
+      "evaluation_executed": false,
+      "prepared_metadata": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/data/mpdd/MPDD/meta.json",
+      "prepared_metadata_sha256": "1d0a4e46a7982e004ca256fb4aceb2b98bf195876ad45aba7d41c1e8dbf4a2ca"
+    },
+    "mvtec": {
+      "dataset": "mvtec",
+      "status": "verified",
+      "files_verified": 6612,
+      "file_errors": 0,
+      "error_examples": [],
+      "roots": {
+        "images": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec",
+        "masks": "/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec"
+      },
+      "manifest_sha256": "061348b922755b9daf30d79bd921cf04d96eb4571ec6a15f09e830c9b6a83575",
+      "metadata_sha256": "45b03bd7da85a901ee9018b97362d50e5347420d886f9a859252069ff74f448b",
+      "counts": {
+        "train": {
+          "bottle": 209,
+          "cable": 224,
+          "capsule": 219,
+          "carpet": 280,
+          "grid": 264,
+          "hazelnut": 391,
+          "leather": 245,
+          "metal_nut": 220,
+          "pill": 267,
+          "screw": 320,
+          "tile": 230,
+          "toothbrush": 60,
+          "transistor": 213,
+          "wood": 247,
+          "zipper": 240
+        },
+        "test": {
+          "bottle": 83,
+          "cable": 150,
+          "capsule": 132,
+          "carpet": 117,
+          "grid": 78,
+          "hazelnut": 110,
+          "leather": 124,
+          "metal_nut": 115,
+          "pill": 167,
+          "screw": 160,
+          "tile": 117,
+          "toothbrush": 42,
+          "transistor": 100,
+          "wood": 79,
+          "zipper": 151
+        }
+      },
+      "evaluation_executed": false,
+      "prepared_metadata": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed1/data/mvtec/mvtec/meta.json",
+      "prepared_metadata_sha256": "8e412a7d4e4a2043769db1b0dc939d10c0acca6d1911abdf843100d762af7896"
+    }
+  },
+  "fresh_gpu_benchmark": false,
+  "status": "prepared_requires_fresh_execution"
+}

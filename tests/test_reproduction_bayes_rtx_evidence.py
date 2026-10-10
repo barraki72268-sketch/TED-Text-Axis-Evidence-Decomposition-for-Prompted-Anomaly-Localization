@@ -13,7 +13,7 @@ class BayesRTXEvidenceTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1] / 'reproduction'
         base = root / 'validation/rtx-20261010'
         report = json.loads((base / 'report.json').read_text(encoding='utf-8'))
-        self.assertEqual(len(report['results']), 2)
+        self.assertEqual(len(report['results']), 6)
         for result in report['results']:
             for item in result['evidence']:
                 self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
@@ -28,7 +28,7 @@ class BayesRTXEvidenceTests(unittest.TestCase):
             self.assertEqual(len(cells), 8)
             coverage = validate_coverage(root, reference, actual)
             self.assertEqual(coverage, result['target_coverage'])
-            self.assertEqual(coverage['classes_checked'], 3)
+            self.assertEqual(coverage['classes_checked'], 6 if 'mpdd' in result['recipe'] else 3)
             self.assertFalse(coverage['reported_image_counts_checked'])
             self.assertFalse(coverage['per_image_execution_verified'])
             checkpoint = run['argv'][run['argv'].index('--checkpoint_path') + 1]

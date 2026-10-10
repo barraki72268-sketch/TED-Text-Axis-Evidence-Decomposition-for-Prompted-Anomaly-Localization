@@ -1,5 +1,5 @@
 {
-  "scope": "Two fresh BayesPFL B+ BTAD per-seed metric replays on RTX6000Ada. Summary reports all three classes; it omits per-class image counts, so complete image-count verification is not claimed. No serving/deployment proof.",
+  "scope": "Six fresh BayesPFL B+ per-seed metric replays on RTX6000Ada: BTAD and MPDD seeds0/1/2. Summaries report all expected classes but omit per-class image counts; complete image-count verification is not claimed. No serving or deployment proof.",
   "gpu": "RTX6000Ada",
   "results": [
     {
@@ -73,6 +73,154 @@
         {
           "file": "bayes-bplus-s1/summary.json",
           "sha256": "cdb567ab0e09960e1883fdbba66d9ebcdc70ba376235bdb36a5e484436ead950"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2btad-seed2",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:23:10.041270+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-btad-s2/comparison.json",
+          "sha256": "9ce62fa6c224999111d92132559a38c88a83f05e99dbc6d94fc32be1750ae93a"
+        },
+        {
+          "file": "bayes-bplus-btad-s2/execution.json",
+          "sha256": "fe5cc463fe213300757b7e228b79cefe0c3922d7fa7aa3c0427f0358033189fc"
+        },
+        {
+          "file": "bayes-bplus-btad-s2/execution.log",
+          "sha256": "af86774093d8e20fbd5447fe4ff7cf591675b04fabdd3728f121318933a2f274"
+        },
+        {
+          "file": "bayes-bplus-btad-s2/run.json",
+          "sha256": "f034b826b6effccd0f31c25f5a42b91996ef6ae82b69c7464e97bdd3b26d3042"
+        },
+        {
+          "file": "bayes-bplus-btad-s2/summary.json",
+          "sha256": "03b811ab2943919bfd5fb994b63433016db9328b36b208314c40f0cb9fcd46d4"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2mpdd-seed0",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:28:58.429122+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-mpdd-s0/comparison.json",
+          "sha256": "6be2885f62d60df494123c98435bf5f7da3349690ecc101f9c779d83df139643"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s0/execution.json",
+          "sha256": "e547a12d3221798a53bf13f8d2a94561ee76415b57eca02e367a2c646fb99244"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s0/execution.log",
+          "sha256": "a30f1a47b62a9112257b77ac90f502a6e6b946c58fd19224d22e1ba6a3f82e30"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s0/run.json",
+          "sha256": "f3ef7fe4f6ecd5e15eb4871db95650ae164174a906a6e81fcadf885a5b65aa9f"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s0/summary.json",
+          "sha256": "2b6849c998b558b2c1aa59585361f7c8f755101890b010e6eea2857a6d272244"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2mpdd-seed1",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:34:43.592384+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-mpdd-s1/comparison.json",
+          "sha256": "1dccbc0771d71616468dcc5d9eb13791b2aca904167dcfa95d044ced7550d538"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s1/execution.json",
+          "sha256": "9e2be69338c9844d586c675084cbe6853e7d05bc9ac8d1a2ce4772a06ca80b7f"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s1/execution.log",
+          "sha256": "c6ffbc10a200cdf25c17367a02c84eaecc6e3def8aea23850ea172f996232c44"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s1/run.json",
+          "sha256": "12e0d3c5dfa7bb45c123e9a47c042bef77316aa83d6f26ee854a8e07218faa21"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s1/summary.json",
+          "sha256": "8316f2bbf89e8113d8e0d5e6f99e47e977e52416279beb1c541133d6e065c7f5"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2mpdd-seed2",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:40:27.760484+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-mpdd-s2/comparison.json",
+          "sha256": "3ed76b14c8c83aa910edcbc139552f0e4fb25a15dea8a235de208d52ec99ba4f"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s2/execution.json",
+          "sha256": "8f2b22b69a34b39e53c12a7ff32c3850236501d21d16e291f155b7fb69724955"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s2/execution.log",
+          "sha256": "f2390708327642ddef46ca1e985bfe7970799f3c4f7c7a1226dc68ca7d01574f"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s2/run.json",
+          "sha256": "7f39ab916f011f931bd697686dcfbf1bce706b93e9c793f2cbeb1fb4661ce139"
+        },
+        {
+          "file": "bayes-bplus-mpdd-s2/summary.json",
+          "sha256": "b695cebcd03dc4b2076a59bf11f6400ff746bbf2b1d4f88128c28b4d21f470e0"
         }
       ]
     }

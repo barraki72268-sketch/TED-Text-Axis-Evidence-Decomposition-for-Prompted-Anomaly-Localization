@@ -1,0 +1,728 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/source/neurips2026/Bayes-PFL/matplotlib-321d90_m because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "compatible",
+  "loaded": 6,
+  "skipped": 125,
+  "missing": 125,
+  "unexpected": 0,
+  "skipped_examples": [
+    {
+      "key": "prompt_context",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "prompt_state_normal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "prompt_state_abnormal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        448,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        448,
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.weight",
+      "checkpoint_shape": [
+        768,
+        512
+      ],
+      "model_shape": [
+        640,
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.bias",
+      "checkpoint_shape": [
+        768
+      ],
+      "model_shape": [
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        448,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        448,
+        448
+      ]
+    }
+  ],
+  "missing_examples": [
+    "prompt_context",
+    "prompt_state_normal",
+    "prompt_state_abnormal",
+    "context_encoder.weight_mean.module.0.weight",
+    "context_encoder.weight_mean.module.0.bias",
+    "context_encoder.weight_mean.module.2.weight",
+    "context_encoder.weight_mean.module.2.bias",
+    "context_encoder.weight_mean.module.4.weight",
+    "context_encoder.weight_mean.module.4.bias",
+    "context_encoder.weight_log_variance.module.0.weight",
+    "context_encoder.weight_log_variance.module.0.bias",
+    "context_encoder.weight_log_variance.module.2.weight"
+  ],
+  "unexpected_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": 0.04430507868528366,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.6551470756530762,
+      "def_host_mean": 0.5230864882469177,
+      "fp_res_mean": -0.8394581079483032,
+      "def_res_mean": -0.1097262054681778,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "1": {
+      "eta": 0.04450599476695061,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.6932938694953918,
+      "def_host_mean": 0.471483051776886,
+      "fp_res_mean": -1.3258981704711914,
+      "def_res_mean": 0.31412091851234436,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "2": {
+      "eta": 0.044243331998586655,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.6403965353965759,
+      "def_host_mean": 0.521500289440155,
+      "fp_res_mean": -1.712105393409729,
+      "def_res_mean": -0.24219337105751038,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "3": {
+      "eta": -0.040890105068683624,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.6163502335548401,
+      "def_host_mean": 0.5218027234077454,
+      "fp_res_mean": 1.9971073865890503,
+      "def_res_mean": 0.06129289045929909,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "tubes"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/data/mvtec/mvtec",
+    "target_dataset": "mpdd",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/data/mpdd/MPDD",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-B-16-plus-240.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/clip-cache/vit_b_16_plus_240-laion400m_e32-699c4b84.pt",
+    "image_size": 240,
+    "features_list": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 2,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mpdd-seed2/results",
+    "vision_width": 896,
+    "text_width": 640,
+    "embed_dim": 640,
+    "checkpoint_load_report": {
+      "mode": "compatible",
+      "loaded": 6,
+      "skipped": 125,
+      "missing": 125,
+      "unexpected": 0,
+      "skipped_examples": [
+        {
+          "key": "prompt_context",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "prompt_state_normal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "prompt_state_abnormal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            448,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            448,
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.weight",
+          "checkpoint_shape": [
+            768,
+            512
+          ],
+          "model_shape": [
+            640,
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.bias",
+          "checkpoint_shape": [
+            768
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            448,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            448,
+            448
+          ]
+        }
+      ],
+      "missing_examples": [
+        "prompt_context",
+        "prompt_state_normal",
+        "prompt_state_abnormal",
+        "context_encoder.weight_mean.module.0.weight",
+        "context_encoder.weight_mean.module.0.bias",
+        "context_encoder.weight_mean.module.2.weight",
+        "context_encoder.weight_mean.module.2.bias",
+        "context_encoder.weight_mean.module.4.weight",
+        "context_encoder.weight_mean.module.4.bias",
+        "context_encoder.weight_log_variance.module.0.weight",
+        "context_encoder.weight_log_variance.module.0.bias",
+        "context_encoder.weight_log_variance.module.2.weight"
+      ],
+      "unexpected_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.04430507868528366,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.6551470756530762,
+        "def_host_mean": 0.5230864882469177,
+        "fp_res_mean": -0.8394581079483032,
+        "def_res_mean": -0.1097262054681778,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": 0.04450599476695061,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.6932938694953918,
+        "def_host_mean": 0.471483051776886,
+        "fp_res_mean": -1.3258981704711914,
+        "def_res_mean": 0.31412091851234436,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "2": {
+        "eta": 0.044243331998586655,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.6403965353965759,
+        "def_host_mean": 0.521500289440155,
+        "fp_res_mean": -1.712105393409729,
+        "def_res_mean": -0.24219337105751038,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "3": {
+        "eta": -0.040890105068683624,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.6163502335548401,
+        "def_host_mean": 0.5218027234077454,
+        "fp_res_mean": 1.9971073865890503,
+        "def_res_mean": 0.06129289045929909,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_black",
+      "image_auroc": 0.5944148936170213,
+      "pixel_auroc": 0.6496175331018919,
+      "pixel_aupro": 0.2118968367576599,
+      "pixel_ap": 0.0014465016994130082
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.43891402714932126,
+      "pixel_auroc": 0.783118034477902,
+      "pixel_aupro": 0.2827755808830261,
+      "pixel_ap": 0.01610286063004829
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_white",
+      "image_auroc": 0.5666666666666667,
+      "pixel_auroc": 0.5900130523215874,
+      "pixel_aupro": 0.07937738299369812,
+      "pixel_ap": 0.0003364775503338746
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "connector",
+      "image_auroc": 0.4809523809523809,
+      "pixel_auroc": 0.6935665658437957,
+      "pixel_aupro": 0.4061541259288788,
+      "pixel_ap": 0.019638399452850105
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_plate",
+      "image_auroc": 0.49729144095341277,
+      "pixel_auroc": 0.37394743603846187,
+      "pixel_aupro": 0.07321759313344955,
+      "pixel_ap": 0.08724300793188058
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tubes",
+      "image_auroc": 0.46467391304347827,
+      "pixel_auroc": 0.5983522213229323,
+      "pixel_aupro": 0.21182537078857422,
+      "pixel_ap": 0.011548598492772977
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.5071522203970469,
+      "pixel_auroc": 0.6147691405177619,
+      "pixel_aupro": 0.21087448174754778,
+      "pixel_ap": 0.022719307626216476
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_black",
+      "image_auroc": 0.44680851063829785,
+      "pixel_auroc": 0.6499767350956047,
+      "pixel_aupro": 0.2158675491809845,
+      "pixel_ap": 0.0014694809441665104
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.41553544494720973,
+      "pixel_auroc": 0.7811251715852356,
+      "pixel_aupro": 0.28964555263519287,
+      "pixel_ap": 0.016040074528438118
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_white",
+      "image_auroc": 0.40888888888888886,
+      "pixel_auroc": 0.5832854778566235,
+      "pixel_aupro": 0.08098669350147247,
+      "pixel_ap": 0.00033104381005200686
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "connector",
+      "image_auroc": 0.5761904761904761,
+      "pixel_auroc": 0.6966217018569902,
+      "pixel_aupro": 0.4131683111190796,
+      "pixel_ap": 0.0197859789023627
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_plate",
+      "image_auroc": 0.4593716143011918,
+      "pixel_auroc": 0.3649147968462196,
+      "pixel_aupro": 0.07046869397163391,
+      "pixel_ap": 0.0860294146610735
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tubes",
+      "image_auroc": 0.42934782608695654,
+      "pixel_auroc": 0.5946534508749088,
+      "pixel_aupro": 0.21119077503681183,
+      "pixel_ap": 0.011249836790518662
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.45602379350883687,
+      "pixel_auroc": 0.6117628890192637,
+      "pixel_aupro": 0.2135545959075292,
+      "pixel_ap": 0.02248430493943525
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_black",
+      "image_auroc": 0.44414893617021284,
+      "pixel_auroc": 0.6459555389627368,
+      "pixel_aupro": 0.21273332834243774,
+      "pixel_ap": 0.0014346482686988277
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.41025641025641024,
+      "pixel_auroc": 0.7819750323492896,
+      "pixel_aupro": 0.2843460440635681,
+      "pixel_ap": 0.015935501330673868
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_white",
+      "image_auroc": 0.41111111111111115,
+      "pixel_auroc": 0.5878708877252523,
+      "pixel_aupro": 0.08075235784053802,
+      "pixel_ap": 0.00033562596394962643
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "connector",
+      "image_auroc": 0.5761904761904761,
+      "pixel_auroc": 0.6927737054829135,
+      "pixel_aupro": 0.41253966093063354,
+      "pixel_ap": 0.019334717212964522
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_plate",
+      "image_auroc": 0.46099674972914406,
+      "pixel_auroc": 0.37130802925003886,
+      "pixel_aupro": 0.07225143909454346,
+      "pixel_ap": 0.08687577181972944
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tubes",
+      "image_auroc": 0.4347826086956522,
+      "pixel_auroc": 0.5942374935108667,
+      "pixel_aupro": 0.21026287972927094,
+      "pixel_ap": 0.011288666702097534
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.45624771535883446,
+      "pixel_auroc": 0.612353447880183,
+      "pixel_aupro": 0.21214761833349863,
+      "pixel_ap": 0.0225341552163523
+    }
+  ]
+}

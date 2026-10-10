@@ -1119,6 +1119,84 @@
           "sha256": "45485b7ef281d791e6db0f1e13273f998638e650b698e4fe9d2187bbfe10c87a"
         }
       ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2btad_bank16_seed0",
+      "status": "matched",
+      "slurm_job_id": "13780",
+      "finished": "2026-10-10T01:24:14.817597+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "7b3b3bce56022e7932abfd04af3861db068d7ce6a6addbfa64bb18d8f7d5d3e4",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-btad-bank-16-v8/comparison.json",
+          "sha256": "0d4ddeaf176e900693c9f627a1df1b64c61d5ac62a253d1dadf7a148c56ff11c"
+        },
+        {
+          "file": "faprompt-btad-bank-16-v8/execution.json",
+          "sha256": "9664b00339e5f20c05a06c654a103635b36b600d49b2c2832d422875691b649a"
+        },
+        {
+          "file": "faprompt-btad-bank-16-v8/execution.log",
+          "sha256": "5ecf97ba4a393466ff8451a53ec2cdb76f00b8a82bbcc3480b753b3b957a3191"
+        },
+        {
+          "file": "faprompt-btad-bank-16-v8/run.json",
+          "sha256": "13c89ff51bc9202351f28fe93d0d5db63a22ed8fe3c1d548aa28347cace5bc09"
+        },
+        {
+          "file": "faprompt-btad-bank-16-v8/summary.json",
+          "sha256": "9061b89e90ded409879ea03e68a0b53fdf9bac9a41df9c1c6646c4fd873d3e21"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2btad_bank32_seed0",
+      "status": "matched",
+      "slurm_job_id": "13780",
+      "finished": "2026-10-10T01:38:24.910363+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "47cb84eec262a068ae842cf94dd3e4b2f61503aa96b215debb13e3ce3a1bf39c",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-btad-bank-32-v8/comparison.json",
+          "sha256": "439d40a8a05b13f82b3be367b75226221d2ea9c87756c17dcc1f3954025e89e4"
+        },
+        {
+          "file": "faprompt-btad-bank-32-v8/execution.json",
+          "sha256": "81776229a7e815e9525fa6b76146d9eeec7496bde2599ad7f78ce57e005ec0f8"
+        },
+        {
+          "file": "faprompt-btad-bank-32-v8/execution.log",
+          "sha256": "f1580955aabc5a2d287fafa29239262e927ba1f71e2eec00a525168258603804"
+        },
+        {
+          "file": "faprompt-btad-bank-32-v8/run.json",
+          "sha256": "7971d5acd42f3c493dfb431c9769595a2ba6e2ebf766c34f4b27654f9b8cc6cd"
+        },
+        {
+          "file": "faprompt-btad-bank-32-v8/summary.json",
+          "sha256": "fd8d07c492287eab3adcd857b1aac4d502d0ead3eb7aa9af620360bcb386a6a2"
+        }
+      ]
     }
   ]
 }
