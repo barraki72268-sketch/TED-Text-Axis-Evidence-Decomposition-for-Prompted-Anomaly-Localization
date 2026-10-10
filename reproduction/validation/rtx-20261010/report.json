@@ -1518,6 +1518,43 @@
           "sha256": "628c3b7cd4546f81250ba2ed72e6a213ad638a087264392ed32de20e9bef2cb7"
         }
       ]
+    },
+    {
+      "recipe": "bayespfl-vitl336-mvtec2visa-seed1",
+      "slurm_job_id": "13798",
+      "finished": "2026-10-10T12:16:37.292628+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "visa",
+        "classes_checked": 12,
+        "expected_test_images": 2162,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-l336-visa-s1-v2/comparison.json",
+          "sha256": "14f3e7735b5faef7fee5a4ed5c836be6fbdd8effb1550851c87a9b52d52e7266"
+        },
+        {
+          "file": "bayes-l336-visa-s1-v2/execution.json",
+          "sha256": "4d265102127ffdca55f970b5aae459ba562378a36ea91f438146cea806061784"
+        },
+        {
+          "file": "bayes-l336-visa-s1-v2/execution.log",
+          "sha256": "e673f819f3b9205d3f332e236c3aecf78d177e55bbf671769b7e362ddad33f4c"
+        },
+        {
+          "file": "bayes-l336-visa-s1-v2/run.json",
+          "sha256": "3ef581967ad13927ace82ad3980977ce0282a7ed859a2339951f6e92bb4724fa"
+        },
+        {
+          "file": "bayes-l336-visa-s1-v2/summary.json",
+          "sha256": "c24b0c87490db3a61e99e35649ed2894c00c437044301a3580c57dae0e5c1c3a"
+        }
+      ]
     }
   ]
 }
