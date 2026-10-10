@@ -1,8 +1,17 @@
 # Release status
 
-Updated October 9, 2026. The active reproducibility branch is
+Updated October 10, 2026. The active reproducibility branch is
 [`reproduction/all-models`](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/reproduction/all-models).
 Full-paper reproduction and all-model deployment remain in progress.
+
+## Current verified release
+
+- **26 full-dataset configurations** match every archived metric at the recorded printed precision, with the named model, seed, target classes and reported image counts verified. See the [execution index](../reproduction/validation/a10-20261009/verified-results.json).
+- **11 selectable worker configurations** cover FAPrompt, AA-CLIP, AdaptCLIP, RawCLIP and ImageBind. Routing evidence consists of 42 cases for the previous ten-worker registry and three additional ImageBind cases; these are separate validations. See the [service guide](SERVICE.md).
+- **27 printed cells** in main-text Table 2 and Table 4(b) can be recomputed from pinned archived CSVs with `python -m reproduction.main_text_aggregates`. This is an archival aggregation audit.
+- Public checkpoints, source banks and pinned serving bundles are available from [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). Anonymous download and isolated image-inference checks are linked in the service guide.
+
+Main-text reproduction and all-model deployment continue. The historical notes below preserve earlier verification boundaries and evidence; use the current execution index and service guide for the latest release.
 
 ## Available components
 
