@@ -191,6 +191,13 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
                 after = relocate_computed_dataset_roots(after, {
                     name: Path(item["prepared_metadata"]).parent for name, item in prepared_data.items()
                 })
+            if (path.relative_to(runtime).as_posix() == "neurips2026/scripts/collect_bayespfl_source_banks.py"
+                    and "visa" in prepared_data):
+                # Keep the official-root equality check; bind its computed
+                # constant to the same hash-verified dataset as the arguments.
+                after = relocate_computed_dataset_roots(after, {
+                    "visa": Path(prepared_data["visa"]["prepared_metadata"]).parent
+                })
             if before != after:
                 prior = digest_file(path)
                 path.write_text(after, encoding="utf-8")
