@@ -1041,6 +1041,84 @@
           "sha256": "240885aa139fca0ac36081f11f6262d0d8347eebdef1aeac616487908543fdbd"
         }
       ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2mpdd_bank32_seed0",
+      "status": "matched",
+      "slurm_job_id": "13780",
+      "finished": "2026-10-10T01:01:46.266307+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "bbff34046b61ebe0d7489bc201a3e86d809225a9b9f74f55c89b6a7d54522c3d",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-mpdd-bank-32-v8/comparison.json",
+          "sha256": "901473b3b20b9f5925af3088ad88115f897ef837b7eed646ef8cac9bbbf3018b"
+        },
+        {
+          "file": "faprompt-mpdd-bank-32-v8/execution.json",
+          "sha256": "43304d8e83bef0d3ea80bd67f560401d1f1a21cb620140eb50737b358aff5fac"
+        },
+        {
+          "file": "faprompt-mpdd-bank-32-v8/execution.log",
+          "sha256": "c5ab311965470fcc360151ad2dc1c55cce30803e931fc32c44d541f3bb3e4438"
+        },
+        {
+          "file": "faprompt-mpdd-bank-32-v8/run.json",
+          "sha256": "9ca1708e80dc1a1a4379ff37a037d7eeed9ab2a5b8ca63773ae541a43c0586b7"
+        },
+        {
+          "file": "faprompt-mpdd-bank-32-v8/summary.json",
+          "sha256": "2f071a0eb342a9a27f7c08eac66f6176b362415d2ff1c918f3100ffd60c48bc5"
+        }
+      ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2mpdd_bank64_seed0",
+      "status": "matched",
+      "slurm_job_id": "13780",
+      "finished": "2026-10-10T01:10:06.180314+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "4902fc84bedc39f137ae33641e5bad6d5921be757e023090869e59c84b064f39",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-mpdd-bank-64-v8/comparison.json",
+          "sha256": "bb7666daf927e24b6d8a95643cc581441d3fde98709bc38edcfa90c8e482258a"
+        },
+        {
+          "file": "faprompt-mpdd-bank-64-v8/execution.json",
+          "sha256": "837b54d76047100989d115edfdcfa15c0443ba62801717f521e1745e81ec7f84"
+        },
+        {
+          "file": "faprompt-mpdd-bank-64-v8/execution.log",
+          "sha256": "63c0bc6104527e943727b93bb7768e60f5fee8433f111bf3385a31ebcb097006"
+        },
+        {
+          "file": "faprompt-mpdd-bank-64-v8/run.json",
+          "sha256": "0ea634240cb49fb08a096a5d11d232d9568ce68c71fabebf4a8413b583cd03b2"
+        },
+        {
+          "file": "faprompt-mpdd-bank-64-v8/summary.json",
+          "sha256": "45485b7ef281d791e6db0f1e13273f998638e650b698e4fe9d2187bbfe10c87a"
+        }
+      ]
     }
   ]
 }

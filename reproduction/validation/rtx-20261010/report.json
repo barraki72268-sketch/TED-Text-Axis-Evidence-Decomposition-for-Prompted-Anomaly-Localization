@@ -1,0 +1,80 @@
+{
+  "scope": "Two fresh BayesPFL B+ BTAD per-seed metric replays on RTX6000Ada. Summary reports all three classes; it omits per-class image counts, so complete image-count verification is not claimed. No serving/deployment proof.",
+  "gpu": "RTX6000Ada",
+  "results": [
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2btad-seed0",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:08:42.206039+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-s0/comparison.json",
+          "sha256": "bbd2c0c154c8bc7e9aba7ebd1206c07afb5d2357da58e70f9eae8ae5c311c527"
+        },
+        {
+          "file": "bayes-bplus-s0/execution.json",
+          "sha256": "4661e37560d366f628564fb63587ee2f1be64c2e37e3f95901c58a46021d2452"
+        },
+        {
+          "file": "bayes-bplus-s0/execution.log",
+          "sha256": "645475973ce0ffcd2ee82a9265a8fb0a3dad3e0f20f43beb661a47bdd45b4836"
+        },
+        {
+          "file": "bayes-bplus-s0/run.json",
+          "sha256": "7afd68b8e68da0a29be483cc479854dd280d159e7f7b7bb179c6dd01c11b793d"
+        },
+        {
+          "file": "bayes-bplus-s0/summary.json",
+          "sha256": "ef1f848037c6e5ac33c44313d96c45328ce0b7132ceefe6212339eb08a75f1a4"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2btad-seed1",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T01:15:57.222271+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-bplus-s1/comparison.json",
+          "sha256": "e69e6e3e2b9253e730d69d94fb6cfe3f87178cebb7ac3a91da5000109688a2e6"
+        },
+        {
+          "file": "bayes-bplus-s1/execution.json",
+          "sha256": "70bc9453cfea38ae8a3f1b5956ae609002808785cb692883fd53be97bc71d1ca"
+        },
+        {
+          "file": "bayes-bplus-s1/execution.log",
+          "sha256": "61c3539c34fec4b019101bbb1dfea644d5cfe926091947f55f94484f2898505a"
+        },
+        {
+          "file": "bayes-bplus-s1/run.json",
+          "sha256": "4589c0bbaea2ef96768dbd4edd381c7d5a2f74fd411e61c25cb7e82eccb4bbae"
+        },
+        {
+          "file": "bayes-bplus-s1/summary.json",
+          "sha256": "cdb567ab0e09960e1883fdbba66d9ebcdc70ba376235bdb36a5e484436ead950"
+        }
+      ]
+    }
+  ]
+}
