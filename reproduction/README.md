@@ -45,6 +45,10 @@ rows. Host comparisons use their native score contracts. FAPrompt retains its
 official baseline image score in the archived table aggregation; the corrected
 map's top-k image score is not silently substituted.
 
+## Bank construction code
+
+See the [Defect / Hard-FP construction guide](../docs/BANK_CONSTRUCTION.md) for direct original collector links, source-only selection details and extraction commands. Downloading saved banks does not rebuild them.
+
 ## Archived research source
 
 The full scope is recorded in [paper-table-scope.json](paper-table-scope.json):

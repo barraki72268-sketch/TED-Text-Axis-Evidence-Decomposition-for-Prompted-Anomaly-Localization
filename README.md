@@ -167,6 +167,10 @@ API contracts, and the verified FAPrompt container path, see
 | [`deployment/`](deployment/) | API dependencies, recorded deployment configuration, and validation evidence |
 | [`docs/`](docs/) | Method details, release scope, and service documentation |
 
+## Defect and Hard-FP bank construction
+
+The original collectors for all seven host families are available in the [bank-construction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/BANK_CONSTRUCTION.md), with direct code links, complete-source extraction commands and source-only selection details. Saved banks are also available on [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). Fresh bank reconstruction across all paper configurations is being verified separately.
+
 ## Method
 
 <p align="center">
