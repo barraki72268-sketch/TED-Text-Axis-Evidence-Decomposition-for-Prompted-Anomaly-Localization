@@ -9,6 +9,25 @@ from reproduction.recipe_lookup import reference_summary
 
 
 class BayesRTXEvidenceTests(unittest.TestCase):
+    def test_captured_readout_proof_binds_actual_code_and_keeps_image_gate(self):
+        repo = Path(__file__).resolve().parents[1]
+        base = repo / 'reproduction/validation/rtx-20261010/bayes-readout-v1'
+        read = lambda name: json.loads((base / name).read_text(encoding='utf-8'))
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
+        proof = read('bayes-readout-parity-20261010-v1.json')
+        self.assertEqual(proof['adapter_sha256'], hashlib.sha256((repo / 'ted/inference/bayespfl_captured.py').read_bytes()).hexdigest())
+        self.assertEqual(proof['export_manifest_sha256'], hashlib.sha256((base / 'export-manifest.json').read_bytes()).hexdigest())
+        manifest = read('export-manifest.json')
+        self.assertEqual(manifest['host'], 'BayesPFL')
+        script = 'neurips2026/scripts/probe_bayespfl_ted_smoke_20260501.py'
+        bound = next(x for x in manifest['prepared_source_files'] if x['path'] == script)
+        self.assertEqual(bound['sha256'], proof['original_script_sha256'])
+        self.assertEqual(proof['max_absolute_map_error'], 0.0)
+        self.assertEqual(proof['layers'], 4)
+        self.assertFalse(proof['image_inference_verified'])
+        self.assertFalse(proof['deployment_ready'])
+
     def test_original_checkpoint_binding_and_reported_metric_scope(self):
         root = Path(__file__).resolve().parents[1] / 'reproduction'
         base = root / 'validation/rtx-20261010'
