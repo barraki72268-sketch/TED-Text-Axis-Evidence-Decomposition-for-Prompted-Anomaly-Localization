@@ -100,6 +100,10 @@ Gains depend on the host and metric: BayesPFL is a near-no-op boundary case, and
 
 Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th percentile range of the two score maps. Red contours indicate ground-truth defects. These selected improvement examples illustrate local behavior; aggregate results and limitations should be considered alongside them.
 
+## Defect and Hard-FP bank construction
+
+The original collectors for all seven host families are available in the [bank-construction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/BANK_CONSTRUCTION.md), with direct code links, complete-source extraction commands and source-only selection details. Saved banks are also available on [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). Fresh bank reconstruction across all paper configurations is being verified separately.
+
 ## Code and reproduction
 
 **Completed experiments and public code availability are separate.** The table below describes release progress, not experiments still to be run.
@@ -110,7 +114,7 @@ Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th 
 | Reported result summaries | Available |
 | T-TED feature-level scoring core | [Available and tested](docs/TTED.md) |
 | C-TED calibration and feature-level inference | [AA-CLIP, AdaCLIP, FAPrompt cores available and CPU-tested](docs/CTED.md) |
-| Host integrations and source-bank construction | Public release in preparation |
+| Source-bank construction code | [Original collectors and construction guide available](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/BANK_CONSTRUCTION.md); all-configuration fresh reconstruction checks in progress |
 | Full benchmark environment and evaluation commands | Packaging and reproduction checks pending |
 | Checkpoints / calibrated residuals | Public release in preparation |
 | Final camera-ready / arXiv link | To be added when available |
