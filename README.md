@@ -24,9 +24,9 @@ The paper experiments are complete; public code packaging and reproduction check
 [**Download checkpoints, source banks and verified serving bundles on Hugging Face**](https://huggingface.co/KIMJINYOUNG/TED-reproducibility).
 
 The latest execution records, pinned download clients, Docker worker guides and
-model selector are on the [**active reproduction branch**](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/codex/all-model-reproduction).
-Start with its [reproduction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/codex/all-model-reproduction/reproduction/README.md)
-or [serving and download guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/codex/all-model-reproduction/docs/SERVICE.md).
+model selector are on the [**active reproduction branch**](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/reproduction/all-models).
+Start with its [reproduction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/reproduction/README.md)
+or [serving and download guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/SERVICE.md).
 
 Seven model/configuration workers have passed their documented image-inference
 and routing checks. Full reproduction across all five datasets, backbones,
