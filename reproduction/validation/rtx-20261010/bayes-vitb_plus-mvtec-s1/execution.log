@@ -1,0 +1,1102 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/source/neurips2026/Bayes-PFL/matplotlib-jq16duay because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "compatible",
+  "loaded": 6,
+  "skipped": 125,
+  "missing": 125,
+  "unexpected": 0,
+  "skipped_examples": [
+    {
+      "key": "prompt_context",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "prompt_state_normal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "prompt_state_abnormal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        448,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        448,
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.weight",
+      "checkpoint_shape": [
+        768,
+        512
+      ],
+      "model_shape": [
+        640,
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.bias",
+      "checkpoint_shape": [
+        768
+      ],
+      "model_shape": [
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        448,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        448
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        448,
+        448
+      ]
+    }
+  ],
+  "missing_examples": [
+    "prompt_context",
+    "prompt_state_normal",
+    "prompt_state_abnormal",
+    "context_encoder.weight_mean.module.0.weight",
+    "context_encoder.weight_mean.module.0.bias",
+    "context_encoder.weight_mean.module.2.weight",
+    "context_encoder.weight_mean.module.2.bias",
+    "context_encoder.weight_mean.module.4.weight",
+    "context_encoder.weight_mean.module.4.bias",
+    "context_encoder.weight_log_variance.module.0.weight",
+    "context_encoder.weight_log_variance.module.0.bias",
+    "context_encoder.weight_log_variance.module.2.weight"
+  ],
+  "unexpected_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": 0.04418163374066353,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.6826133728027344,
+      "def_host_mean": 0.49378594756126404,
+      "fp_res_mean": -0.7682825922966003,
+      "def_res_mean": -0.007847762666642666,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "1": {
+      "eta": -0.0404760017991066,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.73543381690979,
+      "def_host_mean": 0.5409145355224609,
+      "fp_res_mean": 1.0489088296890259,
+      "def_res_mean": 0.00266611878760159,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "2": {
+      "eta": 0.04407719150185585,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.707718551158905,
+      "def_host_mean": 0.5431946516036987,
+      "fp_res_mean": -0.47294744849205017,
+      "def_res_mean": 0.08164697885513306,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "3": {
+      "eta": 0.044466566294431686,
+      "num_fp": 240,
+      "num_defect": 1733,
+      "fp_host_mean": 0.7130373120307922,
+      "def_host_mean": 0.5191566944122314,
+      "fp_res_mean": -1.668819785118103,
+      "def_res_mean": 0.12976428866386414,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 464, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 472, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 480, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 488, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 496, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 504, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 512, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 520, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 528, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 536, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 544, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 552, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 560, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 568, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 576, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 584, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 592, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 600, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 608, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 616, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 624, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 632, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 640, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 648, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 656, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 664, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 672, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 680, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 688, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 696, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 704, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 712, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 720, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 728, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 736, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 744, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 752, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 760, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 768, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 776, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 784, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 792, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 800, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 808, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 816, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 824, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 832, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 840, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 848, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 856, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 864, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 872, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 880, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 888, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 896, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 904, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 912, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 920, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 928, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 936, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 944, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 952, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 960, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 968, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 976, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 984, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 992, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1000, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1008, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1016, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1024, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1032, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1040, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1048, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1056, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1064, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1072, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1080, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1088, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1096, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1104, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1112, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1120, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1128, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1136, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1144, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1152, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1160, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1168, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1176, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1184, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1192, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1200, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1208, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1216, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1224, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1232, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1240, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1248, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1256, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1264, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1272, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1280, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1288, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1296, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1304, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1312, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1320, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1328, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1336, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1344, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1352, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1360, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1368, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1376, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1384, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1392, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1400, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1408, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1416, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1424, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1432, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1440, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1448, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1456, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1464, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1472, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1480, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1488, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1496, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1504, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1512, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1520, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1528, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1536, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1544, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1552, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1560, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1568, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1576, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1584, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1592, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1600, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1608, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1616, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1624, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1632, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1640, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1648, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1656, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1664, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1672, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1680, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1688, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1696, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1704, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1712, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1720, "class": "zipper"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/data/mvtec/mvtec",
+    "target_dataset": "mvtec",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/data/mvtec/mvtec",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-B-16-plus-240.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/clip-cache/vit_b_16_plus_240-laion400m_e32-699c4b84.pt",
+    "image_size": 240,
+    "features_list": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 1,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_21116958ae.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2mvtec-seed1/results",
+    "vision_width": 896,
+    "text_width": 640,
+    "embed_dim": 640,
+    "checkpoint_load_report": {
+      "mode": "compatible",
+      "loaded": 6,
+      "skipped": 125,
+      "missing": 125,
+      "unexpected": 0,
+      "skipped_examples": [
+        {
+          "key": "prompt_context",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "prompt_state_normal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "prompt_state_abnormal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            448,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            448,
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.weight",
+          "checkpoint_shape": [
+            768,
+            512
+          ],
+          "model_shape": [
+            640,
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.bias",
+          "checkpoint_shape": [
+            768
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            448,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            448
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            448,
+            448
+          ]
+        }
+      ],
+      "missing_examples": [
+        "prompt_context",
+        "prompt_state_normal",
+        "prompt_state_abnormal",
+        "context_encoder.weight_mean.module.0.weight",
+        "context_encoder.weight_mean.module.0.bias",
+        "context_encoder.weight_mean.module.2.weight",
+        "context_encoder.weight_mean.module.2.bias",
+        "context_encoder.weight_mean.module.4.weight",
+        "context_encoder.weight_mean.module.4.bias",
+        "context_encoder.weight_log_variance.module.0.weight",
+        "context_encoder.weight_log_variance.module.0.bias",
+        "context_encoder.weight_log_variance.module.2.weight"
+      ],
+      "unexpected_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.04418163374066353,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.6826133728027344,
+        "def_host_mean": 0.49378594756126404,
+        "fp_res_mean": -0.7682825922966003,
+        "def_res_mean": -0.007847762666642666,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": -0.0404760017991066,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.73543381690979,
+        "def_host_mean": 0.5409145355224609,
+        "fp_res_mean": 1.0489088296890259,
+        "def_res_mean": 0.00266611878760159,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "2": {
+        "eta": 0.04407719150185585,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.707718551158905,
+        "def_host_mean": 0.5431946516036987,
+        "fp_res_mean": -0.47294744849205017,
+        "def_res_mean": 0.08164697885513306,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "3": {
+        "eta": 0.044466566294431686,
+        "num_fp": 240,
+        "num_defect": 1733,
+        "fp_host_mean": 0.7130373120307922,
+        "def_host_mean": 0.5191566944122314,
+        "fp_res_mean": -1.668819785118103,
+        "def_res_mean": 0.12976428866386414,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bottle",
+      "image_auroc": 0.4158730158730158,
+      "pixel_auroc": 0.576677567085537,
+      "pixel_aupro": 0.18167030811309814,
+      "pixel_ap": 0.06596058897448376
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "cable",
+      "image_auroc": 0.5331709145427286,
+      "pixel_auroc": 0.6325945598063237,
+      "pixel_aupro": 0.23841452598571777,
+      "pixel_ap": 0.06672399579388831
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "capsule",
+      "image_auroc": 0.5432788193059434,
+      "pixel_auroc": 0.2283885736977838,
+      "pixel_aupro": 0.03233654797077179,
+      "pixel_ap": 0.005320324022823475
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "carpet",
+      "image_auroc": 0.60553772070626,
+      "pixel_auroc": 0.6488238299272991,
+      "pixel_aupro": 0.31822118163108826,
+      "pixel_ap": 0.040002338879544304
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "grid",
+      "image_auroc": 0.4101921470342523,
+      "pixel_auroc": 0.5274283940707227,
+      "pixel_aupro": 0.16130170226097107,
+      "pixel_ap": 0.007666604104091471
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "hazelnut",
+      "image_auroc": 0.5375,
+      "pixel_auroc": 0.44044483118059763,
+      "pixel_aupro": 0.12937310338020325,
+      "pixel_ap": 0.018091470463433738
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "leather",
+      "image_auroc": 0.553328804347826,
+      "pixel_auroc": 0.6864874817197218,
+      "pixel_aupro": 0.5403857231140137,
+      "pixel_ap": 0.046292672184760526
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_nut",
+      "image_auroc": 0.47751710654936463,
+      "pixel_auroc": 0.44012762086084334,
+      "pixel_aupro": 0.09579626470804214,
+      "pixel_ap": 0.10680875179770827
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pill",
+      "image_auroc": 0.43207855973813425,
+      "pixel_auroc": 0.6233504029345657,
+      "pixel_aupro": 0.1437920182943344,
+      "pixel_ap": 0.05727065803564537
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "screw",
+      "image_auroc": 0.4886247181799549,
+      "pixel_auroc": 0.2701496681963164,
+      "pixel_aupro": 0.006498775444924831,
+      "pixel_ap": 0.0015398803136786343
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tile",
+      "image_auroc": 0.5923520923520923,
+      "pixel_auroc": 0.5897957919549348,
+      "pixel_aupro": 0.22759194672107697,
+      "pixel_ap": 0.09902873614733416
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "toothbrush",
+      "image_auroc": 0.5277777777777777,
+      "pixel_auroc": 0.26422844992599026,
+      "pixel_aupro": 0.12043307721614838,
+      "pixel_ap": 0.009519837935584273
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "transistor",
+      "image_auroc": 0.50625,
+      "pixel_auroc": 0.5474157378575573,
+      "pixel_aupro": 0.2077961266040802,
+      "pixel_ap": 0.056968935437617024
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "wood",
+      "image_auroc": 0.4964912280701755,
+      "pixel_auroc": 0.5217256943776164,
+      "pixel_aupro": 0.20975610613822937,
+      "pixel_ap": 0.053194460800295496
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "zipper",
+      "image_auroc": 0.4803046218487395,
+      "pixel_auroc": 0.5837847509449613,
+      "pixel_aupro": 0.15872293710708618,
+      "pixel_ap": 0.025211582315946262
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.506685168421751,
+      "pixel_auroc": 0.5054282236360514,
+      "pixel_aupro": 0.18480602297931908,
+      "pixel_ap": 0.043973389147122344
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bottle",
+      "image_auroc": 0.4444444444444445,
+      "pixel_auroc": 0.5806742691841611,
+      "pixel_aupro": 0.18033954501152039,
+      "pixel_ap": 0.06638395588369775
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "cable",
+      "image_auroc": 0.5086206896551724,
+      "pixel_auroc": 0.6331310083592471,
+      "pixel_aupro": 0.23190592229366302,
+      "pixel_ap": 0.06681958256273951
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "capsule",
+      "image_auroc": 0.5508575987235741,
+      "pixel_auroc": 0.23369944913511553,
+      "pixel_aupro": 0.03331094980239868,
+      "pixel_ap": 0.00535165727667058
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "carpet",
+      "image_auroc": 0.46869983948635635,
+      "pixel_auroc": 0.6436471452921495,
+      "pixel_aupro": 0.31545886397361755,
+      "pixel_ap": 0.0395115323285196
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "grid",
+      "image_auroc": 0.5538847117794485,
+      "pixel_auroc": 0.5203512194689626,
+      "pixel_aupro": 0.15547582507133484,
+      "pixel_ap": 0.007429117646663941
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "hazelnut",
+      "image_auroc": 0.49321428571428566,
+      "pixel_auroc": 0.4405778422557587,
+      "pixel_aupro": 0.12343177199363708,
+      "pixel_ap": 0.018125877174781868
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "leather",
+      "image_auroc": 0.7017663043478259,
+      "pixel_auroc": 0.6832403575429463,
+      "pixel_aupro": 0.532345175743103,
+      "pixel_ap": 0.04475974005190009
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_nut",
+      "image_auroc": 0.4345063538611926,
+      "pixel_auroc": 0.43989241711895294,
+      "pixel_aupro": 0.09856652468442917,
+      "pixel_ap": 0.10656112841001145
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pill",
+      "image_auroc": 0.552645935624659,
+      "pixel_auroc": 0.6227825370766784,
+      "pixel_aupro": 0.14462406933307648,
+      "pixel_ap": 0.05648717058778689
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "screw",
+      "image_auroc": 0.5369952859192457,
+      "pixel_auroc": 0.275129151123143,
+      "pixel_aupro": 0.007695690728724003,
+      "pixel_ap": 0.001548784088280071
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tile",
+      "image_auroc": 0.6930014430014431,
+      "pixel_auroc": 0.5900886287967705,
+      "pixel_aupro": 0.22827482223510742,
+      "pixel_ap": 0.09904255876484203
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "toothbrush",
+      "image_auroc": 0.39444444444444443,
+      "pixel_auroc": 0.26801903840912467,
+      "pixel_aupro": 0.1180490180850029,
+      "pixel_ap": 0.009550776946739262
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "transistor",
+      "image_auroc": 0.4566666666666666,
+      "pixel_auroc": 0.5474858424387073,
+      "pixel_aupro": 0.2059706449508667,
+      "pixel_ap": 0.05693665672879936
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "wood",
+      "image_auroc": 0.5649122807017545,
+      "pixel_auroc": 0.5186448172486554,
+      "pixel_aupro": 0.19927534461021423,
+      "pixel_ap": 0.052537502955085455
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "zipper",
+      "image_auroc": 0.4734768907563025,
+      "pixel_auroc": 0.5869643853850519,
+      "pixel_aupro": 0.1635751724243164,
+      "pixel_ap": 0.025388571103356274
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.5218758116751211,
+      "pixel_auroc": 0.5056218739223617,
+      "pixel_aupro": 0.18255328939606746,
+      "pixel_ap": 0.043762307500658265
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bottle",
+      "image_auroc": 0.4444444444444444,
+      "pixel_auroc": 0.5790739662377464,
+      "pixel_aupro": 0.17914515733718872,
+      "pixel_ap": 0.06635069830647138
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "cable",
+      "image_auroc": 0.5138680659670165,
+      "pixel_auroc": 0.6341004013720802,
+      "pixel_aupro": 0.23261675238609314,
+      "pixel_ap": 0.06670715697986108
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "capsule",
+      "image_auroc": 0.5520542481053051,
+      "pixel_auroc": 0.23285295855969118,
+      "pixel_aupro": 0.03339847922325134,
+      "pixel_ap": 0.00534705386599599
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "carpet",
+      "image_auroc": 0.4658908507223114,
+      "pixel_auroc": 0.6493001398578054,
+      "pixel_aupro": 0.3197300434112549,
+      "pixel_ap": 0.040104346775738466
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "grid",
+      "image_auroc": 0.5463659147869674,
+      "pixel_auroc": 0.5287739828615923,
+      "pixel_aupro": 0.16788415610790253,
+      "pixel_ap": 0.007706585918165654
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "hazelnut",
+      "image_auroc": 0.48857142857142855,
+      "pixel_auroc": 0.44314598392342053,
+      "pixel_aupro": 0.13234186172485352,
+      "pixel_ap": 0.018216549495663023
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "leather",
+      "image_auroc": 0.7024456521739131,
+      "pixel_auroc": 0.6900977634244375,
+      "pixel_aupro": 0.539183497428894,
+      "pixel_ap": 0.0474801500987893
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_nut",
+      "image_auroc": 0.4315738025415444,
+      "pixel_auroc": 0.4402808887635911,
+      "pixel_aupro": 0.09616537392139435,
+      "pixel_ap": 0.10672322796598616
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pill",
+      "image_auroc": 0.55810147299509,
+      "pixel_auroc": 0.6245883622409338,
+      "pixel_aupro": 0.1463301181793213,
+      "pixel_ap": 0.057264740337905455
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "screw",
+      "image_auroc": 0.5382250461160074,
+      "pixel_auroc": 0.27410824929146993,
+      "pixel_aupro": 0.007616421207785606,
+      "pixel_ap": 0.001546717817105508
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tile",
+      "image_auroc": 0.6922799422799423,
+      "pixel_auroc": 0.5929822809382911,
+      "pixel_aupro": 0.22353073954582214,
+      "pixel_ap": 0.10035907497116195
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "toothbrush",
+      "image_auroc": 0.39722222222222225,
+      "pixel_auroc": 0.26715798423817605,
+      "pixel_aupro": 0.12242889404296875,
+      "pixel_ap": 0.009573423020148067
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "transistor",
+      "image_auroc": 0.46208333333333335,
+      "pixel_auroc": 0.5476490076422705,
+      "pixel_aupro": 0.20432433485984802,
+      "pixel_ap": 0.05704782931883798
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "wood",
+      "image_auroc": 0.5657894736842105,
+      "pixel_auroc": 0.5241887659419918,
+      "pixel_aupro": 0.20549482107162476,
+      "pixel_ap": 0.05381462527134701
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "zipper",
+      "image_auroc": 0.4852941176470589,
+      "pixel_auroc": 0.5860283221998198,
+      "pixel_aupro": 0.163312166929245,
+      "pixel_ap": 0.025401669279940798
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.5229473343727197,
+      "pixel_auroc": 0.5076219371662213,
+      "pixel_aupro": 0.1849001878251632,
+      "pixel_ap": 0.04424292329487453
+    }
+  ]
+}

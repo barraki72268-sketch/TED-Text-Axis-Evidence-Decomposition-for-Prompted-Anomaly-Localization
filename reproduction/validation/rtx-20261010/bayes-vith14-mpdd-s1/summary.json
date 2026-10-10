@@ -1,0 +1,459 @@
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/data/mvtec/mvtec",
+    "target_dataset": "mpdd",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/data/mpdd/MPDD",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-H-14.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/clip-cache/open_clip_pytorch_model.bin",
+    "image_size": 224,
+    "features_list": [
+      8,
+      16,
+      24,
+      32
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 1,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_135eb9aecf.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vith14-mvtec2mpdd-seed1/results",
+    "vision_width": 1280,
+    "text_width": 1024,
+    "embed_dim": 1024,
+    "checkpoint_load_report": {
+      "mode": "compatible",
+      "loaded": 6,
+      "skipped": 125,
+      "missing": 125,
+      "unexpected": 0,
+      "skipped_examples": [
+        {
+          "key": "prompt_context",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_normal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_abnormal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.weight",
+          "checkpoint_shape": [
+            768,
+            512
+          ],
+          "model_shape": [
+            1024,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.bias",
+          "checkpoint_shape": [
+            768
+          ],
+          "model_shape": [
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        }
+      ],
+      "missing_examples": [
+        "prompt_context",
+        "prompt_state_normal",
+        "prompt_state_abnormal",
+        "context_encoder.weight_mean.module.0.weight",
+        "context_encoder.weight_mean.module.0.bias",
+        "context_encoder.weight_mean.module.2.weight",
+        "context_encoder.weight_mean.module.2.bias",
+        "context_encoder.weight_mean.module.4.weight",
+        "context_encoder.weight_mean.module.4.bias",
+        "context_encoder.weight_log_variance.module.0.weight",
+        "context_encoder.weight_log_variance.module.0.bias",
+        "context_encoder.weight_log_variance.module.2.weight"
+      ],
+      "unexpected_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.04447576776146889,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7130381464958191,
+        "def_host_mean": 0.5314774513244629,
+        "fp_res_mean": -1.9966635704040527,
+        "def_res_mean": -0.01581893488764763,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": 0.04451820254325867,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7001256346702576,
+        "def_host_mean": 0.4809485375881195,
+        "fp_res_mean": -1.9224765300750732,
+        "def_res_mean": 0.33080005645751953,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "2": {
+        "eta": -0.04015050455927849,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6700062155723572,
+        "def_host_mean": 0.4860987365245819,
+        "fp_res_mean": 0.760298490524292,
+        "def_res_mean": 0.11917074769735336,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "3": {
+        "eta": -0.041024621576070786,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6971178650856018,
+        "def_host_mean": 0.5588002800941467,
+        "fp_res_mean": 1.166359782218933,
+        "def_res_mean": -0.02552087791264057,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_black",
+      "image_auroc": 0.49734042553191493,
+      "pixel_auroc": 0.2559101556200861,
+      "pixel_aupro": 0.018319234251976013,
+      "pixel_ap": 0.0005276070043116766
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.4622926093514329,
+      "pixel_auroc": 0.4720195462437297,
+      "pixel_aupro": 0.1942785084247589,
+      "pixel_ap": 0.004378625815459836
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_white",
+      "image_auroc": 0.47888888888888886,
+      "pixel_auroc": 0.5947421459707701,
+      "pixel_aupro": 0.22416940331459045,
+      "pixel_ap": 0.00035575771574992456
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "connector",
+      "image_auroc": 0.4928571428571429,
+      "pixel_auroc": 0.3826138058547317,
+      "pixel_aupro": 0.045525625348091125,
+      "pixel_ap": 0.003945530512381114
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_plate",
+      "image_auroc": 0.36078006500541715,
+      "pixel_auroc": 0.22280319222059877,
+      "pixel_aupro": 0.0214775949716568,
+      "pixel_ap": 0.07102129730728449
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tubes",
+      "image_auroc": 0.490036231884058,
+      "pixel_auroc": 0.5361471101075693,
+      "pixel_aupro": 0.1315050572156906,
+      "pixel_ap": 0.008706725425804904
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.46369922725314244,
+      "pixel_auroc": 0.4107059926695809,
+      "pixel_aupro": 0.10587923725446065,
+      "pixel_ap": 0.014822590630165325
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_black",
+      "image_auroc": 0.4647606382978724,
+      "pixel_auroc": 0.2624550519249609,
+      "pixel_aupro": 0.024077843874692917,
+      "pixel_ap": 0.0005315073074281448
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.4238310708898944,
+      "pixel_auroc": 0.47749510944542445,
+      "pixel_aupro": 0.2032477855682373,
+      "pixel_ap": 0.004438950781846308
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_white",
+      "image_auroc": 0.3888888888888889,
+      "pixel_auroc": 0.597856914656575,
+      "pixel_aupro": 0.22090233862400055,
+      "pixel_ap": 0.0003585668819642495
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "connector",
+      "image_auroc": 0.7214285714285714,
+      "pixel_auroc": 0.3783059142690853,
+      "pixel_aupro": 0.043609507381916046,
+      "pixel_ap": 0.003915544982350776
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_plate",
+      "image_auroc": 0.5384615384615385,
+      "pixel_auroc": 0.22781055291815064,
+      "pixel_aupro": 0.023443937301635742,
+      "pixel_ap": 0.07137644059136013
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tubes",
+      "image_auroc": 0.4805253623188406,
+      "pixel_auroc": 0.5339603058307026,
+      "pixel_aupro": 0.13394880294799805,
+      "pixel_ap": 0.008649903764390881
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.5029826783809344,
+      "pixel_auroc": 0.4129806415074832,
+      "pixel_aupro": 0.10820503594974677,
+      "pixel_ap": 0.014878485718223415
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_black",
+      "image_auroc": 0.46010638297872347,
+      "pixel_auroc": 0.25453591995443164,
+      "pixel_aupro": 0.01891256496310234,
+      "pixel_ap": 0.000526784736072295
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.42081447963800905,
+      "pixel_auroc": 0.47163093225718233,
+      "pixel_aupro": 0.1943669617176056,
+      "pixel_ap": 0.004362383248570626
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_white",
+      "image_auroc": 0.3677777777777778,
+      "pixel_auroc": 0.5907262347514355,
+      "pixel_aupro": 0.22092880308628082,
+      "pixel_ap": 0.00035163743675415847
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "connector",
+      "image_auroc": 0.7333333333333333,
+      "pixel_auroc": 0.38451798819681515,
+      "pixel_aupro": 0.048163339495658875,
+      "pixel_ap": 0.003960151450914836
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_plate",
+      "image_auroc": 0.5476706392199351,
+      "pixel_auroc": 0.22352071225904546,
+      "pixel_aupro": 0.021328940987586975,
+      "pixel_ap": 0.07107467321648449
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tubes",
+      "image_auroc": 0.47509057971014496,
+      "pixel_auroc": 0.5364135368037278,
+      "pixel_aupro": 0.13291841745376587,
+      "pixel_ap": 0.008733889835246174
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.5007988654429874,
+      "pixel_auroc": 0.410224220703773,
+      "pixel_aupro": 0.10610317128400008,
+      "pixel_ap": 0.014834919987340428
+    }
+  ]
+}

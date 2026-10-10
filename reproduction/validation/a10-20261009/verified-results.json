@@ -1197,6 +1197,45 @@
           "sha256": "fd8d07c492287eab3adcd857b1aac4d502d0ead3eb7aa9af620360bcb386a6a2"
         }
       ]
+    },
+    {
+      "recipe": "faprompt_vitl336_mvtec2btad_bank64_seed0",
+      "status": "matched",
+      "slurm_job_id": "13780",
+      "finished": "2026-10-10T01:52:35.880823+00:00",
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": true,
+        "per_image_execution_verified": false
+      },
+      "reference_sha256": "d873aa0f26b4d13c2c03fd69613fd71ce54fa7584637e2fa7b06aab7583740e5",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "evidence": [
+        {
+          "file": "faprompt-btad-bank-64-v8/comparison.json",
+          "sha256": "0af8b567c2bcf8bf85ecdab894294030e54d7141fb91e60db12815918e9102ed"
+        },
+        {
+          "file": "faprompt-btad-bank-64-v8/execution.json",
+          "sha256": "e94f7088e8c81a98748e3fcedc32391c913f09814cde7166494041dbff157206"
+        },
+        {
+          "file": "faprompt-btad-bank-64-v8/execution.log",
+          "sha256": "8bdde1cfcf4d3214b3909b017264a83aee74757cf8034105808c0c05449dd953"
+        },
+        {
+          "file": "faprompt-btad-bank-64-v8/run.json",
+          "sha256": "035fcb76b0b80eeb589fd2971a489f0ab47b3936a7875d81a0060a51c959e626"
+        },
+        {
+          "file": "faprompt-btad-bank-64-v8/summary.json",
+          "sha256": "5b9b00a29b826c0d003b415f75efcc5bdc92361038d5d42b401a0519302d843e"
+        }
+      ]
     }
   ]
 }

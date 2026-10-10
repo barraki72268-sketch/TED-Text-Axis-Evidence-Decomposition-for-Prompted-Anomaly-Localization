@@ -1,5 +1,5 @@
 {
-  "scope": "Six fresh BayesPFL B+ per-seed metric replays on RTX6000Ada: BTAD and MPDD seeds0/1/2. Summaries report all expected classes but omit per-class image counts; complete image-count verification is not claimed. No serving or deployment proof.",
+  "scope": "Verified BayesPFL per-seed metric replays on RTX6000Ada; each entry identifies its backbone, target dataset and seed. Summaries report all expected classes but omit per-class image counts; complete image-count verification is not claimed. No serving or deployment proof.",
   "gpu": "RTX6000Ada",
   "results": [
     {
@@ -221,6 +221,265 @@
         {
           "file": "bayes-bplus-mpdd-s2/summary.json",
           "sha256": "b695cebcd03dc4b2076a59bf11f6400ff746bbf2b1d4f88128c28b4d21f470e0"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2mvtec-seed1",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T02:05:56.630195+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vitb_plus-mvtec-s1/comparison.json",
+          "sha256": "10d532d9961de0d416ed4f49ad62eb1ffeb44dc8ec0d35b0bdc532d926c2ce18"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s1/execution.json",
+          "sha256": "a770bcf860a778360a3fa34c3ea0849619b221fafd1f573b6f2d98224d496300"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s1/execution.log",
+          "sha256": "4fdd59739ff78bc7041f8ccf086c576d60fdf9b2fb0c62673688fb41f3bf8e20"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s1/run.json",
+          "sha256": "2aecce465ba883caa45dcbdc4aaafaf41a2c8f9670fe31bc6842c5868fa06318"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s1/summary.json",
+          "sha256": "c2659bebc91b6522377d37e29de692cc40aae2bf6c9b5b28c40a252dae77860c"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vitb_plus-mvtec2mvtec-seed2",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T02:18:43.121709+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mvtec",
+        "classes_checked": 15,
+        "expected_test_images": 1725,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vitb_plus-mvtec-s2/comparison.json",
+          "sha256": "7b36d80b9992bfebbba5a5fab3ab36704247c176391b4c70c5840a24a3eac636"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s2/execution.json",
+          "sha256": "4c85f1a33277769e4799ecaa005ba16c2dba626a9a4e9497be1381b93dc012d7"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s2/execution.log",
+          "sha256": "cbbea47ff52d7470d992d596095e88d5fe851e22d23eedc623e571f528e6c333"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s2/run.json",
+          "sha256": "c4939f5b03312690ecf114dea4d7b5d0581943721743343703644178cb3bf94e"
+        },
+        {
+          "file": "bayes-vitb_plus-mvtec-s2/summary.json",
+          "sha256": "5ad29d435851175ea3749babac2148e178beb5565f3faafb1979401246e33812"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2btad-seed0",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T02:37:43.407803+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vith14-btad-s0/comparison.json",
+          "sha256": "685a8890bc14dee73c9ba8fc91c8e0c07307bbf9851808edf7b8826f74c80f57"
+        },
+        {
+          "file": "bayes-vith14-btad-s0/execution.json",
+          "sha256": "8befa4773c043409415da1215e311a97f8a98b747bf880c6f14de584cc1c8e8d"
+        },
+        {
+          "file": "bayes-vith14-btad-s0/execution.log",
+          "sha256": "8b375c25204102084ed0430d7255b524a3cd2e53ed5ffe6668096d6d0adb8217"
+        },
+        {
+          "file": "bayes-vith14-btad-s0/run.json",
+          "sha256": "bc3698c783413c300f853be117c8338b9f01ab273660cd7f0bf565074e5322fa"
+        },
+        {
+          "file": "bayes-vith14-btad-s0/summary.json",
+          "sha256": "70cfb96c1cc0c4fa73eeae66263972583c7ac05ffc84ff9205e4b9f7b3423c9a"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2btad-seed1",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T02:47:07.268946+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vith14-btad-s1/comparison.json",
+          "sha256": "eab5d308f6ae533b9da3cc549dade67ba31b980e56d964500d65a18b40850d91"
+        },
+        {
+          "file": "bayes-vith14-btad-s1/execution.json",
+          "sha256": "30ee66010eb56a8b0a7a49c522ff2e998a15f08c3c8b1cc58dbbb1019fd9444e"
+        },
+        {
+          "file": "bayes-vith14-btad-s1/execution.log",
+          "sha256": "d0f70f09f3698c37b3f4245460931028f4948666586c040a0c5d9a4a346e9510"
+        },
+        {
+          "file": "bayes-vith14-btad-s1/run.json",
+          "sha256": "00497b2d0dffb2e4bc690277c7dc8c8a78a977af0d5f338270321d8da240d7d1"
+        },
+        {
+          "file": "bayes-vith14-btad-s1/summary.json",
+          "sha256": "1fe07a1d34958517b6414f80a65ece99b71c08fabb047780a074f4a871886208"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2btad-seed2",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T02:56:26.485858+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "btad",
+        "classes_checked": 3,
+        "expected_test_images": 741,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vith14-btad-s2/comparison.json",
+          "sha256": "614a4b8c411bad77aba2bf1fd47d6d32987de0bad0dd81a72635497990c42cae"
+        },
+        {
+          "file": "bayes-vith14-btad-s2/execution.json",
+          "sha256": "0f6453965d6f0cfc901858efde3250ce8a98b692badaea5ff3e3372cb7427975"
+        },
+        {
+          "file": "bayes-vith14-btad-s2/execution.log",
+          "sha256": "f2a2af685966b032822cb649c85caa271434b0dafda779ef86dbd68a54bfacb1"
+        },
+        {
+          "file": "bayes-vith14-btad-s2/run.json",
+          "sha256": "970520d6d98db2883ff8dabf84b2787b468f1be9decd670d5768f9abd30e718a"
+        },
+        {
+          "file": "bayes-vith14-btad-s2/summary.json",
+          "sha256": "07b90a6e88b55a728e49d4ce34d81dc305d5074bf931224d0c191fba5a693ae4"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2mpdd-seed0",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T03:03:40.429564+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vith14-mpdd-s0/comparison.json",
+          "sha256": "da1f5095f70073f4ca278fef45fc05d0216dd34b7e302adb441ed9631fe9980d"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s0/execution.json",
+          "sha256": "69a18cedc610ba1d43bc92203f605dfe9d6a73f4b078354063170eb0fd292baa"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s0/execution.log",
+          "sha256": "92b0cc2224763e7cf4c0762187236b4b08a15b1d13d5404fa13594a9f2726687"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s0/run.json",
+          "sha256": "1857ef9e81b1c1bf455b66f7b947fee4843c93d7f0697d3bf6cdd1180d73afb7"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s0/summary.json",
+          "sha256": "3e27c4c1d7b6b41bb5b953826a9a0a1ae02cf1fdb63ba893311346bf779a30d5"
+        }
+      ]
+    },
+    {
+      "recipe": "bayespfl-vith14-mvtec2mpdd-seed1",
+      "slurm_job_id": "13782",
+      "finished": "2026-10-10T03:10:59.986873+00:00",
+      "metrics_checked": 8,
+      "metrics_matched_2dp": 8,
+      "target_coverage": {
+        "status": "reported_coverage_matches",
+        "dataset": "mpdd",
+        "classes_checked": 6,
+        "expected_test_images": 458,
+        "reported_image_counts_checked": false,
+        "per_image_execution_verified": false
+      },
+      "evidence": [
+        {
+          "file": "bayes-vith14-mpdd-s1/comparison.json",
+          "sha256": "80127c4af633eb8e6a01d16dd9ba206ed918419182cb029d365478b473d4fa8d"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s1/execution.json",
+          "sha256": "6dd59f095d9332f65e7be7c5601b45b1c3d9cc2e4460758acfa6f30454c77b80"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s1/execution.log",
+          "sha256": "d30efa5f5cfd52e89ef88660aa2ca5970dd0ad7135eb44d6c28998494251cb76"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s1/run.json",
+          "sha256": "7d9250cfe809ff14825908b9d36e47b318fb4325f6f99515e52df178bb10762e"
+        },
+        {
+          "file": "bayes-vith14-mpdd-s1/summary.json",
+          "sha256": "2b84d5307e734095540243af206104961db91287851d36d0d89dead52e5f47f9"
         }
       ]
     }
