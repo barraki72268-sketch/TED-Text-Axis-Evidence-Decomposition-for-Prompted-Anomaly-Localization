@@ -6,7 +6,7 @@ Full-paper reproduction and all-model deployment remain in progress.
 
 ## Current verified release
 
-- **39 BayesPFL per-seed configurations** across four backbones have all eight archived metrics matching at two decimals. This includes eight corrected VisA replays (B+ and H/14, seeds 0/1/2; OpenAI L/14, seeds 0/1). Their summaries report classes but omit per-class image counts, so this evidence is separate from the full-count index and does not establish all paper means/stds or deployment. See the [RTX metric replay index](../reproduction/validation/rtx-20261010/report.json).
+- **41 BayesPFL per-seed configurations** across four backbones have all eight archived metrics matching at two decimals. This includes ten corrected VisA replays (B+, H/14 and OpenAI L/14, seeds 0/1/2; L/14-336, seed 0). Their summaries report classes but omit per-class image counts, so this evidence is separate from the full-count index and does not establish all paper means/stds or deployment. See the [RTX metric replay index](../reproduction/validation/rtx-20261010/report.json).
 
 - **31 full-dataset configurations** match every archived metric at the recorded printed precision, with the named model, seed, target classes and reported image counts verified. See the [execution index](../reproduction/validation/a10-20261009/verified-results.json).
 - **11 selectable worker configurations** cover FAPrompt, AA-CLIP, AdaptCLIP, RawCLIP and ImageBind. Routing evidence consists of 42 cases for the previous ten-worker registry and three additional ImageBind cases; these are separate validations. See the [service guide](SERVICE.md).
