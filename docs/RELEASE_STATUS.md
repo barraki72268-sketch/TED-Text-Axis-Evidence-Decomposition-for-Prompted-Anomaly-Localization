@@ -1,7 +1,7 @@
 # Release status
 
 Updated October 9, 2026. The active reproducibility branch is
-[`codex/all-model-reproduction`](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/codex/all-model-reproduction).
+[`reproduction/all-models`](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/tree/reproduction/all-models).
 Full-paper reproduction and all-model deployment remain in progress.
 
 ## Available components

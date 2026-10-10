@@ -2,7 +2,7 @@ name: Reproduction contracts
 
 on:
   push:
-    branches: [main, codex/all-model-reproduction]
+    branches: [main, reproduction/all-models]
     paths: [reproduction/**, ted/inference/**, ted/cted/**, tests/test_reproduction*.py, tests/test_aaclip_inference.py, tests/test_inference.py, tests/test_api.py, tests/test_gateway.py, deployment/pilab-model-registry.json, deployment/gateway.pilab.compose.yaml, deployment/requirements-api.txt, .gitattributes, .github/workflows/reproduction-contract.yml]
   pull_request:
     paths: [reproduction/**, ted/inference/**, ted/cted/**, tests/test_reproduction*.py, tests/test_aaclip_inference.py, tests/test_inference.py, tests/test_api.py, tests/test_gateway.py, deployment/pilab-model-registry.json, deployment/gateway.pilab.compose.yaml, deployment/requirements-api.txt, .gitattributes, .github/workflows/reproduction-contract.yml]

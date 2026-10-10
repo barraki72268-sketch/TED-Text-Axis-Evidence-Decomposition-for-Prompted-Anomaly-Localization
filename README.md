@@ -102,10 +102,10 @@ Choose a starting point:
 ### 1. Audit the published inputs without a GPU
 
 Use Python **3.10+**. These checks do not need PyTorch and do not run inference.
-The active reproducibility release is on `codex/all-model-reproduction`:
+The active reproducibility release is on `reproduction/all-models`:
 
 ```bash
-git clone --branch codex/all-model-reproduction --single-branch \
+git clone --branch reproduction/all-models --single-branch \
   https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization.git ted
 cd ted
 python -m reproduction verify-references
