@@ -232,12 +232,11 @@ Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th 
 ## Citation
 
 ```bibtex
-@inproceedings{kim2026ted,
-  title     = {{TED}: Text-Axis Evidence Decomposition for Prompted Anomaly Localization},
-  author    = {Kim, JinYoung and Kim, Geonho and Park, GiJeong and Lee, Geonu and Yoo, Youngjoon},
-  booktitle = {Advances in Neural Information Processing Systems},
-  year      = {2026},
-  url       = {https://openreview.net/forum?id=2lzL7Y6lmU}
+@article{kim2026ted,
+  title={TED: Text-Axis Evidence Decomposition for Prompted Anomaly Localization},
+  author={Kim, JinYoung and Kim, Geonho and Park, GiJeong and Lee, Geonu and Yoo, YoungJoon},
+  journal={arXiv preprint arXiv:2609.39033},
+  year={2026}
 }
 ```
 
