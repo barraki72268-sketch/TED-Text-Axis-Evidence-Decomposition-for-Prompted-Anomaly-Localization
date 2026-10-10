@@ -28,8 +28,11 @@ model selector are on the [**active reproduction branch**](https://github.com/ba
 Start with its [reproduction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/reproduction/README.md)
 or [serving and download guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/SERVICE.md).
 
-Seven model/configuration workers have passed their documented image-inference
-and routing checks. Full reproduction across all five datasets, backbones,
+Eleven model/configuration workers have passed their documented image-inference
+and routing checks (42 cases for the earlier ten-worker registry, plus three
+ImageBind cases checked separately). The active release lists
+[26 verified full-dataset configurations](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/reproduction/validation/a10-20261009/verified-results.json)
+with metric, seed, class coverage and execution evidence. Full reproduction across all five datasets, backbones,
 seeds, ablations and figures is still in progress. New releases list verified
 configurations with their exact model, dataset, seed and metric scope; artifact
 availability alone does not establish reproduction. The sections below retain the earlier
