@@ -1,0 +1,397 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/source/neurips2026/Bayes-PFL/matplotlib-ocvld08x because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "strict",
+  "loaded": 131,
+  "skipped": 0,
+  "missing": 0,
+  "unexpected": 0,
+  "skipped_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": 0.04435262084007263,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7143883109092712,
+      "def_host_mean": 0.7688785195350647,
+      "fp_res_mean": -1.9306265115737915,
+      "def_res_mean": -0.2718930244445801,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "1": {
+      "eta": 0.04415110871195793,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.741623044013977,
+      "def_host_mean": 0.8018919825553894,
+      "fp_res_mean": -2.007059335708618,
+      "def_res_mean": -0.34028732776641846,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "2": {
+      "eta": 0.044123273342847824,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7099279761314392,
+      "def_host_mean": 0.8055415749549866,
+      "fp_res_mean": -1.9665695428848267,
+      "def_res_mean": -0.38274073600769043,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "3": {
+      "eta": 0.044177647680044174,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7528179883956909,
+      "def_host_mean": 0.8070645928382874,
+      "fp_res_mean": -2.005862236022949,
+      "def_res_mean": -1.1250958442687988,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "01"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "02"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 464, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 472, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 480, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 488, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 496, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 504, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 512, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 520, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 528, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 536, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 544, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 552, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 560, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 568, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 576, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 584, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 592, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 600, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 608, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 616, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 624, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 632, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 640, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 648, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 656, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 664, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 672, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 680, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 688, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 696, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 704, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 712, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 720, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 728, "class": "03"}
+{"stage": "bayespfl_ted_progress", "images_done": 736, "class": "03"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/data/mvtec/mvtec",
+    "target_dataset": "btad",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/data/btad/BTAD_official",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/checkpoints/epoch_post_15_1.pth",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-L-14.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/clip-cache/ViT-L-14.pt",
+    "image_size": 224,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 2,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_39fbff91d7.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2btad-seed2/results",
+    "vision_width": 1024,
+    "text_width": 768,
+    "embed_dim": 768,
+    "checkpoint_load_report": {
+      "mode": "strict",
+      "loaded": 131,
+      "skipped": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "skipped_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.04435262084007263,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7143883109092712,
+        "def_host_mean": 0.7688785195350647,
+        "fp_res_mean": -1.9306265115737915,
+        "def_res_mean": -0.2718930244445801,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "1": {
+        "eta": 0.04415110871195793,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.741623044013977,
+        "def_host_mean": 0.8018919825553894,
+        "fp_res_mean": -2.007059335708618,
+        "def_res_mean": -0.34028732776641846,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "2": {
+        "eta": 0.044123273342847824,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7099279761314392,
+        "def_host_mean": 0.8055415749549866,
+        "fp_res_mean": -1.9665695428848267,
+        "def_res_mean": -0.38274073600769043,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "3": {
+        "eta": 0.044177647680044174,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7528179883956909,
+        "def_host_mean": 0.8070645928382874,
+        "fp_res_mean": -2.005862236022949,
+        "def_res_mean": -1.1250958442687988,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "01",
+      "image_auroc": 0.5199222546161322,
+      "pixel_auroc": 0.7975269448422314,
+      "pixel_aupro": 0.5004265308380127,
+      "pixel_ap": 0.38950686121526035
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "02",
+      "image_auroc": 0.7186666666666667,
+      "pixel_auroc": 0.8860599979728512,
+      "pixel_aupro": 0.5909143686294556,
+      "pixel_ap": 0.48777025636882626
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "03",
+      "image_auroc": 0.901280487804878,
+      "pixel_auroc": 0.9523798352878866,
+      "pixel_aupro": 0.8269170522689819,
+      "pixel_ap": 0.20592842115111057
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.7132898030292257,
+      "pixel_auroc": 0.8786555927009897,
+      "pixel_aupro": 0.6394193172454834,
+      "pixel_ap": 0.36106851291173236
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "01",
+      "image_auroc": 0.858114674441205,
+      "pixel_auroc": 0.7968622113665266,
+      "pixel_aupro": 0.49920225143432617,
+      "pixel_ap": 0.3872762544977209
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "02",
+      "image_auroc": 0.826,
+      "pixel_auroc": 0.8853944787860271,
+      "pixel_aupro": 0.5891448259353638,
+      "pixel_ap": 0.4848235555471252
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "03",
+      "image_auroc": 0.8189024390243902,
+      "pixel_auroc": 0.9517923843824598,
+      "pixel_aupro": 0.8252504467964172,
+      "pixel_ap": 0.19821671418987197
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.834339037821865,
+      "pixel_auroc": 0.8780163581783378,
+      "pixel_aupro": 0.6378658413887024,
+      "pixel_ap": 0.35677217474490597
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "01",
+      "image_auroc": 0.858114674441205,
+      "pixel_auroc": 0.7969945178813058,
+      "pixel_aupro": 0.5027643442153931,
+      "pixel_ap": 0.38766107827193663
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "02",
+      "image_auroc": 0.8253333333333334,
+      "pixel_auroc": 0.8855064539598564,
+      "pixel_aupro": 0.5935447216033936,
+      "pixel_ap": 0.4850558383789691
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "03",
+      "image_auroc": 0.8187804878048781,
+      "pixel_auroc": 0.9518579096104649,
+      "pixel_aupro": 0.8266223073005676,
+      "pixel_ap": 0.19930601291119387
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.8340761651931388,
+      "pixel_auroc": 0.8781196271505424,
+      "pixel_aupro": 0.640977124373118,
+      "pixel_ap": 0.35734097652069985
+    }
+  ]
+}

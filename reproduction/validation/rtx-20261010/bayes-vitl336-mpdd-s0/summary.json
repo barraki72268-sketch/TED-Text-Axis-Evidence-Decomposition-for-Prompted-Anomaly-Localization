@@ -1,0 +1,311 @@
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/data/mvtec/mvtec",
+    "target_dataset": "mpdd",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/data/mpdd/MPDD",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/checkpoints/epoch_post_15_1.pth",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-L-14-336.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/clip-cache/ViT-L-14-336px.pt",
+    "image_size": 518,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 0,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_8296073642.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mpdd-seed0/results",
+    "vision_width": 1024,
+    "text_width": 768,
+    "embed_dim": 768,
+    "checkpoint_load_report": {
+      "mode": "strict",
+      "loaded": 131,
+      "skipped": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "skipped_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": -0.040479663759469986,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7778010964393616,
+        "def_host_mean": 0.7295004725456238,
+        "fp_res_mean": -1.9903204441070557,
+        "def_res_mean": -1.3614139556884766,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": -0.03404437378048897,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7546796798706055,
+        "def_host_mean": 0.78284752368927,
+        "fp_res_mean": -2.0912821292877197,
+        "def_res_mean": -1.5897853374481201,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "2": {
+        "eta": 0.0409090556204319,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7367483377456665,
+        "def_host_mean": 0.7738654613494873,
+        "fp_res_mean": -2.1095001697540283,
+        "def_res_mean": -1.5846871137619019,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "3": {
+        "eta": 0.043762851506471634,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7392995357513428,
+        "def_host_mean": 0.7230974435806274,
+        "fp_res_mean": -2.2341480255126953,
+        "def_res_mean": -1.4742554426193237,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_black",
+      "image_auroc": 0.6662234042553191,
+      "pixel_auroc": 0.9749561776855992,
+      "pixel_aupro": 0.9189237356185913,
+      "pixel_ap": 0.055633841759537686
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5731523378582202,
+      "pixel_auroc": 0.9348844258612821,
+      "pixel_aupro": 0.8765109777450562,
+      "pixel_ap": 0.05216346509463011
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_white",
+      "image_auroc": 0.6266666666666667,
+      "pixel_auroc": 0.9964437384137201,
+      "pixel_aupro": 0.9770165085792542,
+      "pixel_ap": 0.10606709909380226
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "connector",
+      "image_auroc": 0.8785714285714286,
+      "pixel_auroc": 0.9552525911774725,
+      "pixel_aupro": 0.8559728860855103,
+      "pixel_ap": 0.17478685262983037
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_plate",
+      "image_auroc": 0.9653304442036836,
+      "pixel_auroc": 0.960234517476194,
+      "pixel_aupro": 0.8773227334022522,
+      "pixel_ap": 0.6785878178133447
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tubes",
+      "image_auroc": 0.9728260869565217,
+      "pixel_auroc": 0.9935725430763881,
+      "pixel_aupro": 0.9762192964553833,
+      "pixel_ap": 0.7440028342446511
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.7804617280853066,
+      "pixel_auroc": 0.9692239989484426,
+      "pixel_aupro": 0.9136610229810079,
+      "pixel_ap": 0.30187365177263276
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_black",
+      "image_auroc": 0.6063829787234043,
+      "pixel_auroc": 0.9748855572871256,
+      "pixel_aupro": 0.9178290963172913,
+      "pixel_ap": 0.05561486205958945
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5784313725490197,
+      "pixel_auroc": 0.9347857103593944,
+      "pixel_aupro": 0.8745215535163879,
+      "pixel_ap": 0.05249378332800076
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_white",
+      "image_auroc": 0.72,
+      "pixel_auroc": 0.996422648753789,
+      "pixel_aupro": 0.9766889810562134,
+      "pixel_ap": 0.10577964509755367
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "connector",
+      "image_auroc": 0.6785714285714286,
+      "pixel_auroc": 0.9548855895220747,
+      "pixel_aupro": 0.8571665287017822,
+      "pixel_ap": 0.17540022268282057
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_plate",
+      "image_auroc": 0.9149512459371615,
+      "pixel_auroc": 0.9602256650166481,
+      "pixel_aupro": 0.8769527673721313,
+      "pixel_ap": 0.6768277452590562
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tubes",
+      "image_auroc": 0.975090579710145,
+      "pixel_auroc": 0.9935299144017484,
+      "pixel_aupro": 0.9759823083877563,
+      "pixel_ap": 0.7423034055219653
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.7455712675818598,
+      "pixel_auroc": 0.9691225142234634,
+      "pixel_aupro": 0.9131902058919271,
+      "pixel_ap": 0.301403277324831
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_black",
+      "image_auroc": 0.6170212765957448,
+      "pixel_auroc": 0.9748809072088847,
+      "pixel_aupro": 0.9188952445983887,
+      "pixel_ap": 0.05540969343922195
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5784313725490196,
+      "pixel_auroc": 0.934548124356446,
+      "pixel_aupro": 0.8772054314613342,
+      "pixel_ap": 0.0522004107696664
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_white",
+      "image_auroc": 0.72,
+      "pixel_auroc": 0.9964266320447402,
+      "pixel_aupro": 0.9772276878356934,
+      "pixel_ap": 0.10537411224430124
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "connector",
+      "image_auroc": 0.6761904761904762,
+      "pixel_auroc": 0.9549829774765408,
+      "pixel_aupro": 0.8583434820175171,
+      "pixel_ap": 0.17519346015100962
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_plate",
+      "image_auroc": 0.9214517876489707,
+      "pixel_auroc": 0.9603320681699965,
+      "pixel_aupro": 0.8770935535430908,
+      "pixel_ap": 0.6783788252904586
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tubes",
+      "image_auroc": 0.9769021739130435,
+      "pixel_auroc": 0.9935645510389687,
+      "pixel_aupro": 0.976202130317688,
+      "pixel_ap": 0.7437954590491858
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.7483328478162091,
+      "pixel_auroc": 0.969122543382596,
+      "pixel_aupro": 0.9141612549622854,
+      "pixel_ap": 0.3017253268239739
+    }
+  ]
+}

@@ -1,0 +1,1085 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/source/neurips2026/Bayes-PFL/matplotlib-fq6taq_r because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "compatible",
+  "loaded": 6,
+  "skipped": 125,
+  "missing": 125,
+  "unexpected": 0,
+  "skipped_examples": [
+    {
+      "key": "prompt_context",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        1024
+      ]
+    },
+    {
+      "key": "prompt_state_normal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        1024
+      ]
+    },
+    {
+      "key": "prompt_state_abnormal",
+      "checkpoint_shape": [
+        3,
+        5,
+        768
+      ],
+      "model_shape": [
+        3,
+        5,
+        1024
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        640,
+        1024
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        640,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.2.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.weight",
+      "checkpoint_shape": [
+        768,
+        512
+      ],
+      "model_shape": [
+        1024,
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_mean.module.4.bias",
+      "checkpoint_shape": [
+        768
+      ],
+      "model_shape": [
+        1024
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.weight",
+      "checkpoint_shape": [
+        512,
+        768
+      ],
+      "model_shape": [
+        640,
+        1024
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.0.bias",
+      "checkpoint_shape": [
+        512
+      ],
+      "model_shape": [
+        640
+      ]
+    },
+    {
+      "key": "context_encoder.weight_log_variance.module.2.weight",
+      "checkpoint_shape": [
+        512,
+        512
+      ],
+      "model_shape": [
+        640,
+        640
+      ]
+    }
+  ],
+  "missing_examples": [
+    "prompt_context",
+    "prompt_state_normal",
+    "prompt_state_abnormal",
+    "context_encoder.weight_mean.module.0.weight",
+    "context_encoder.weight_mean.module.0.bias",
+    "context_encoder.weight_mean.module.2.weight",
+    "context_encoder.weight_mean.module.2.bias",
+    "context_encoder.weight_mean.module.4.weight",
+    "context_encoder.weight_mean.module.4.bias",
+    "context_encoder.weight_log_variance.module.0.weight",
+    "context_encoder.weight_log_variance.module.0.bias",
+    "context_encoder.weight_log_variance.module.2.weight"
+  ],
+  "unexpected_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": -0.04109027609229088,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7086343765258789,
+      "def_host_mean": 0.5617172718048096,
+      "fp_res_mean": 1.786801815032959,
+      "def_res_mean": -0.124894879758358,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "1": {
+      "eta": -0.04088297113776207,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.6993505954742432,
+      "def_host_mean": 0.5105949640274048,
+      "fp_res_mean": 1.906496524810791,
+      "def_res_mean": 0.06769996136426926,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "2": {
+      "eta": 0.044530779123306274,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.6817083954811096,
+      "def_host_mean": 0.5159478783607483,
+      "fp_res_mean": -1.8744093179702759,
+      "def_res_mean": -0.06278464198112488,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "3": {
+      "eta": -0.040361370891332626,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.6354623436927795,
+      "def_host_mean": 0.5110957026481628,
+      "fp_res_mean": 0.5954902172088623,
+      "def_res_mean": 0.010233964771032333,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "candle"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "capsules"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 464, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 472, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 480, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 488, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 496, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 504, "class": "cashew"}
+{"stage": "bayespfl_ted_progress", "images_done": 512, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 520, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 528, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 536, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 544, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 552, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 560, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 568, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 576, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 584, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 592, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 600, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 608, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 616, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 624, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 632, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 640, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 648, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 656, "class": "chewinggum"}
+{"stage": "bayespfl_ted_progress", "images_done": 664, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 672, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 680, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 688, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 696, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 704, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 712, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 720, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 728, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 736, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 744, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 752, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 760, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 768, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 776, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 784, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 792, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 800, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 808, "class": "fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 816, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 824, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 832, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 840, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 848, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 856, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 864, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 872, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 880, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 888, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 896, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 904, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 912, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 920, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 928, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 936, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 944, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 952, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 960, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 968, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 976, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 984, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 992, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1000, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1008, "class": "macaroni1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1016, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1024, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1032, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1040, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1048, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1056, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1064, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1072, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1080, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1088, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1096, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1104, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1112, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1120, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1128, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1136, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1144, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1152, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1160, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1168, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1176, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1184, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1192, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1200, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1208, "class": "macaroni2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1216, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1224, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1232, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1240, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1248, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1256, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1264, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1272, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1280, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1288, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1296, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1304, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1312, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1320, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1328, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1336, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1344, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1352, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1360, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1368, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1376, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1384, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1392, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1400, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1408, "class": "pcb1"}
+{"stage": "bayespfl_ted_progress", "images_done": 1416, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1424, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1432, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1440, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1448, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1456, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1464, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1472, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1480, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1488, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1496, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1504, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1512, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1520, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1528, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1536, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1544, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1552, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1560, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1568, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1576, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1584, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1592, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1600, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1608, "class": "pcb2"}
+{"stage": "bayespfl_ted_progress", "images_done": 1616, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1624, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1632, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1640, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1648, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1656, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1664, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1672, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1680, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1688, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1696, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1704, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1712, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1720, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1728, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1736, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1744, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1752, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1760, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1768, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1776, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1784, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1792, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1800, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1808, "class": "pcb3"}
+{"stage": "bayespfl_ted_progress", "images_done": 1816, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1824, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1832, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1840, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1848, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1856, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1864, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1872, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1880, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1888, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1896, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1904, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1912, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1920, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1928, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1936, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1944, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1952, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1960, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1968, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1976, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1984, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 1992, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 2000, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 2008, "class": "pcb4"}
+{"stage": "bayespfl_ted_progress", "images_done": 2016, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2024, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2032, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2040, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2048, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2056, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2064, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2072, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2080, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2088, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2096, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2104, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2112, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2120, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2128, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2136, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2144, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2152, "class": "pipe_fryum"}
+{"stage": "bayespfl_ted_progress", "images_done": 2160, "class": "pipe_fryum"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/data/mvtec/mvtec",
+    "target_dataset": "visa",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/data/visa/1cls",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-H-14.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/clip-cache/open_clip_pytorch_model.bin",
+    "image_size": 224,
+    "features_list": [
+      8,
+      16,
+      24,
+      32
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 2,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_135eb9aecf.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/bayes-visa-replay-runs-20261010-v1/bayespfl-vith14-mvtec2visa-seed2/results",
+    "vision_width": 1280,
+    "text_width": 1024,
+    "embed_dim": 1024,
+    "checkpoint_load_report": {
+      "mode": "compatible",
+      "loaded": 6,
+      "skipped": 125,
+      "missing": 125,
+      "unexpected": 0,
+      "skipped_examples": [
+        {
+          "key": "prompt_context",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_normal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "prompt_state_abnormal",
+          "checkpoint_shape": [
+            3,
+            5,
+            768
+          ],
+          "model_shape": [
+            3,
+            5,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.2.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.weight",
+          "checkpoint_shape": [
+            768,
+            512
+          ],
+          "model_shape": [
+            1024,
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_mean.module.4.bias",
+          "checkpoint_shape": [
+            768
+          ],
+          "model_shape": [
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.weight",
+          "checkpoint_shape": [
+            512,
+            768
+          ],
+          "model_shape": [
+            640,
+            1024
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.0.bias",
+          "checkpoint_shape": [
+            512
+          ],
+          "model_shape": [
+            640
+          ]
+        },
+        {
+          "key": "context_encoder.weight_log_variance.module.2.weight",
+          "checkpoint_shape": [
+            512,
+            512
+          ],
+          "model_shape": [
+            640,
+            640
+          ]
+        }
+      ],
+      "missing_examples": [
+        "prompt_context",
+        "prompt_state_normal",
+        "prompt_state_abnormal",
+        "context_encoder.weight_mean.module.0.weight",
+        "context_encoder.weight_mean.module.0.bias",
+        "context_encoder.weight_mean.module.2.weight",
+        "context_encoder.weight_mean.module.2.bias",
+        "context_encoder.weight_mean.module.4.weight",
+        "context_encoder.weight_mean.module.4.bias",
+        "context_encoder.weight_log_variance.module.0.weight",
+        "context_encoder.weight_log_variance.module.0.bias",
+        "context_encoder.weight_log_variance.module.2.weight"
+      ],
+      "unexpected_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": -0.04109027609229088,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7086343765258789,
+        "def_host_mean": 0.5617172718048096,
+        "fp_res_mean": 1.786801815032959,
+        "def_res_mean": -0.124894879758358,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": -0.04088297113776207,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6993505954742432,
+        "def_host_mean": 0.5105949640274048,
+        "fp_res_mean": 1.906496524810791,
+        "def_res_mean": 0.06769996136426926,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "2": {
+        "eta": 0.044530779123306274,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6817083954811096,
+        "def_host_mean": 0.5159478783607483,
+        "fp_res_mean": -1.8744093179702759,
+        "def_res_mean": -0.06278464198112488,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "3": {
+        "eta": -0.040361370891332626,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.6354623436927795,
+        "def_host_mean": 0.5110957026481628,
+        "fp_res_mean": 0.5954902172088623,
+        "def_res_mean": 0.010233964771032333,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "candle",
+      "image_auroc": 0.4928,
+      "pixel_auroc": 0.6058662625556436,
+      "pixel_aupro": 0.19337372481822968,
+      "pixel_ap": 0.0018587568259427997
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "capsules",
+      "image_auroc": 0.5176666666666667,
+      "pixel_auroc": 0.605401080595384,
+      "pixel_aupro": 0.17261993885040283,
+      "pixel_ap": 0.004560484393647218
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "cashew",
+      "image_auroc": 0.5034000000000001,
+      "pixel_auroc": 0.6064180502367649,
+      "pixel_aupro": 0.2923942804336548,
+      "pixel_ap": 0.02267554320521052
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "chewinggum",
+      "image_auroc": 0.4954,
+      "pixel_auroc": 0.622734894306717,
+      "pixel_aupro": 0.14481009542942047,
+      "pixel_ap": 0.008043437489545337
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "fryum",
+      "image_auroc": 0.42419999999999997,
+      "pixel_auroc": 0.470280215153357,
+      "pixel_aupro": 0.11172012984752655,
+      "pixel_ap": 0.020715480830602113
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "macaroni1",
+      "image_auroc": 0.5208,
+      "pixel_auroc": 0.6347259868638383,
+      "pixel_aupro": 0.14478573203086853,
+      "pixel_ap": 0.0005843376338125896
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "macaroni2",
+      "image_auroc": 0.47340000000000004,
+      "pixel_auroc": 0.6697860934514829,
+      "pixel_aupro": 0.3083770275115967,
+      "pixel_ap": 0.00045635718573206797
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pcb1",
+      "image_auroc": 0.4644,
+      "pixel_auroc": 0.7317896862811372,
+      "pixel_aupro": 0.2508028745651245,
+      "pixel_ap": 0.013902310151000526
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pcb2",
+      "image_auroc": 0.4698,
+      "pixel_auroc": 0.6298346372747095,
+      "pixel_aupro": 0.2591654658317566,
+      "pixel_ap": 0.003950067464460112
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pcb3",
+      "image_auroc": 0.4917821782178218,
+      "pixel_auroc": 0.4066926411471819,
+      "pixel_aupro": 0.05192533880472183,
+      "pixel_ap": 0.0019706285540768546
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pcb4",
+      "image_auroc": 0.5543564356435644,
+      "pixel_auroc": 0.5903736553261507,
+      "pixel_aupro": 0.24228344857692719,
+      "pixel_ap": 0.009609607321950372
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pipe_fryum",
+      "image_auroc": 0.44239999999999996,
+      "pixel_auroc": 0.7795626101794866,
+      "pixel_aupro": 0.35380858182907104,
+      "pixel_ap": 0.05270432655446275
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.4875337733773377,
+      "pixel_auroc": 0.6127888177809878,
+      "pixel_aupro": 0.21050555321077505,
+      "pixel_ap": 0.011752611467536941
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "candle",
+      "image_auroc": 0.4801000000000001,
+      "pixel_auroc": 0.6081356505285948,
+      "pixel_aupro": 0.1964891105890274,
+      "pixel_ap": 0.0018681948605084953
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "capsules",
+      "image_auroc": 0.5203333333333333,
+      "pixel_auroc": 0.6131644051460498,
+      "pixel_aupro": 0.1737132966518402,
+      "pixel_ap": 0.004677692539956133
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "cashew",
+      "image_auroc": 0.5082,
+      "pixel_auroc": 0.6092250034997353,
+      "pixel_aupro": 0.30011463165283203,
+      "pixel_ap": 0.021913124249714075
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "chewinggum",
+      "image_auroc": 0.45100000000000007,
+      "pixel_auroc": 0.6302432906660771,
+      "pixel_aupro": 0.14831654727458954,
+      "pixel_ap": 0.008164656948347053
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "fryum",
+      "image_auroc": 0.48239999999999994,
+      "pixel_auroc": 0.4796277030336351,
+      "pixel_aupro": 0.12162455916404724,
+      "pixel_ap": 0.02123476587180884
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "macaroni1",
+      "image_auroc": 0.5310999999999999,
+      "pixel_auroc": 0.6348049011201077,
+      "pixel_aupro": 0.14714595675468445,
+      "pixel_ap": 0.0005806505081071533
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "macaroni2",
+      "image_auroc": 0.5421,
+      "pixel_auroc": 0.6703304300132973,
+      "pixel_aupro": 0.3007190227508545,
+      "pixel_ap": 0.00045234509934931723
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pcb1",
+      "image_auroc": 0.5018,
+      "pixel_auroc": 0.7350798495013262,
+      "pixel_aupro": 0.2515653967857361,
+      "pixel_ap": 0.014520719788028305
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pcb2",
+      "image_auroc": 0.5194,
+      "pixel_auroc": 0.6288534970057493,
+      "pixel_aupro": 0.2621375322341919,
+      "pixel_ap": 0.003915776695389607
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pcb3",
+      "image_auroc": 0.4869306930693069,
+      "pixel_auroc": 0.4065839005228315,
+      "pixel_aupro": 0.053121794015169144,
+      "pixel_ap": 0.0019756532430601557
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pcb4",
+      "image_auroc": 0.5048514851485149,
+      "pixel_auroc": 0.5885375106568562,
+      "pixel_aupro": 0.24373358488082886,
+      "pixel_ap": 0.009360805739845754
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pipe_fryum",
+      "image_auroc": 0.5228,
+      "pixel_auroc": 0.7795615156074267,
+      "pixel_aupro": 0.35162240266799927,
+      "pixel_ap": 0.05222978368401299
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.5042512926292629,
+      "pixel_auroc": 0.615345638108474,
+      "pixel_aupro": 0.2125253196184834,
+      "pixel_ap": 0.011741180769010656
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "candle",
+      "image_auroc": 0.4798,
+      "pixel_auroc": 0.6062944058448707,
+      "pixel_aupro": 0.1926870048046112,
+      "pixel_ap": 0.0018685045083941662
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "capsules",
+      "image_auroc": 0.5125000000000001,
+      "pixel_auroc": 0.6047851006039415,
+      "pixel_aupro": 0.16914448142051697,
+      "pixel_ap": 0.004564135758113649
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "cashew",
+      "image_auroc": 0.5169999999999999,
+      "pixel_auroc": 0.6087253696936549,
+      "pixel_aupro": 0.29182547330856323,
+      "pixel_ap": 0.02285309567081573
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "chewinggum",
+      "image_auroc": 0.45039999999999997,
+      "pixel_auroc": 0.621984463739356,
+      "pixel_aupro": 0.14708855748176575,
+      "pixel_ap": 0.008039353040777833
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "fryum",
+      "image_auroc": 0.48040000000000005,
+      "pixel_auroc": 0.47116952502692927,
+      "pixel_aupro": 0.11363508552312851,
+      "pixel_ap": 0.020753162732992797
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "macaroni1",
+      "image_auroc": 0.5284,
+      "pixel_auroc": 0.6379849945837056,
+      "pixel_aupro": 0.14671523869037628,
+      "pixel_ap": 0.0005939816231537425
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "macaroni2",
+      "image_auroc": 0.5386,
+      "pixel_auroc": 0.6707961872258618,
+      "pixel_aupro": 0.30581068992614746,
+      "pixel_ap": 0.0004586395575220756
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pcb1",
+      "image_auroc": 0.4977,
+      "pixel_auroc": 0.7314392998481427,
+      "pixel_aupro": 0.2541577219963074,
+      "pixel_ap": 0.013728639816949101
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pcb2",
+      "image_auroc": 0.5154000000000001,
+      "pixel_auroc": 0.6320089508806546,
+      "pixel_aupro": 0.2632920444011688,
+      "pixel_ap": 0.0039897076034271185
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pcb3",
+      "image_auroc": 0.4886138613861386,
+      "pixel_auroc": 0.4093998365178263,
+      "pixel_aupro": 0.05471254885196686,
+      "pixel_ap": 0.0019809286290192315
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pcb4",
+      "image_auroc": 0.5122772277227723,
+      "pixel_auroc": 0.5925460659337782,
+      "pixel_aupro": 0.24835516512393951,
+      "pixel_ap": 0.009738891719060708
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pipe_fryum",
+      "image_auroc": 0.531,
+      "pixel_auroc": 0.7814606045993527,
+      "pixel_aupro": 0.3550805449485779,
+      "pixel_ap": 0.05357715255501785
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.5043409240924092,
+      "pixel_auroc": 0.6140495670415062,
+      "pixel_aupro": 0.21187537970642248,
+      "pixel_ap": 0.011845516101270335
+    }
+  ]
+}

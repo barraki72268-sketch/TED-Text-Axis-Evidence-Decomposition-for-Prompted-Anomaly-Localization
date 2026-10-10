@@ -1,0 +1,808 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/source/neurips2026/Bayes-PFL/matplotlib-o4p62c6y because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "strict",
+  "loaded": 131,
+  "skipped": 0,
+  "missing": 0,
+  "unexpected": 0,
+  "skipped_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": -0.04047972708940506,
+      "num_fp": 1680,
+      "num_defect": 5070,
+      "fp_host_mean": 0.7778010964393616,
+      "def_host_mean": 0.7295004725456238,
+      "fp_res_mean": -1.990325689315796,
+      "def_res_mean": -1.3614091873168945,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    },
+    "1": {
+      "eta": -0.03404489532113075,
+      "num_fp": 1680,
+      "num_defect": 5070,
+      "fp_host_mean": 0.7546796798706055,
+      "def_host_mean": 0.78284752368927,
+      "fp_res_mean": -2.091264247894287,
+      "def_res_mean": -1.5897612571716309,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "2": {
+      "eta": 0.0409124493598938,
+      "num_fp": 1680,
+      "num_defect": 5070,
+      "fp_host_mean": 0.7367483377456665,
+      "def_host_mean": 0.7738654613494873,
+      "fp_res_mean": -2.109565258026123,
+      "def_res_mean": -1.5847700834274292,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "3": {
+      "eta": 0.043763238936662674,
+      "num_fp": 1680,
+      "num_defect": 5070,
+      "fp_host_mean": 0.7392995357513428,
+      "def_host_mean": 0.7230974435806274,
+      "fp_res_mean": -2.2341480255126953,
+      "def_res_mean": -1.4742450714111328,
+      "source_base_mean_rank_ok": 0.0,
+      "source_calibrated_mean_rank_ok": 0.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "bottle"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "cable"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "capsule"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 464, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 472, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 480, "class": "carpet"}
+{"stage": "bayespfl_ted_progress", "images_done": 488, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 496, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 504, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 512, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 520, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 528, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 536, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 544, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 552, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 560, "class": "grid"}
+{"stage": "bayespfl_ted_progress", "images_done": 568, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 576, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 584, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 592, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 600, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 608, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 616, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 624, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 632, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 640, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 648, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 656, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 664, "class": "hazelnut"}
+{"stage": "bayespfl_ted_progress", "images_done": 672, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 680, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 688, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 696, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 704, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 712, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 720, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 728, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 736, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 744, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 752, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 760, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 768, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 776, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 784, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 792, "class": "leather"}
+{"stage": "bayespfl_ted_progress", "images_done": 800, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 808, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 816, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 824, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 832, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 840, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 848, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 856, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 864, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 872, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 880, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 888, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 896, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 904, "class": "metal_nut"}
+{"stage": "bayespfl_ted_progress", "images_done": 912, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 920, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 928, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 936, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 944, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 952, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 960, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 968, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 976, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 984, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 992, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1000, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1008, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1016, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1024, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1032, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1040, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1048, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1056, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1064, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1072, "class": "pill"}
+{"stage": "bayespfl_ted_progress", "images_done": 1080, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1088, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1096, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1104, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1112, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1120, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1128, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1136, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1144, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1152, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1160, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1168, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1176, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1184, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1192, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1200, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1208, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1216, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1224, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1232, "class": "screw"}
+{"stage": "bayespfl_ted_progress", "images_done": 1240, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1248, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1256, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1264, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1272, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1280, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1288, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1296, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1304, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1312, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1320, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1328, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1336, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1344, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1352, "class": "tile"}
+{"stage": "bayespfl_ted_progress", "images_done": 1360, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1368, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1376, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1384, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1392, "class": "toothbrush"}
+{"stage": "bayespfl_ted_progress", "images_done": 1400, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1408, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1416, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1424, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1432, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1440, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1448, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1456, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1464, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1472, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1480, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1488, "class": "transistor"}
+{"stage": "bayespfl_ted_progress", "images_done": 1496, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1504, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1512, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1520, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1528, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1536, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1544, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1552, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1560, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1568, "class": "wood"}
+{"stage": "bayespfl_ted_progress", "images_done": 1576, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1584, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1592, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1600, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1608, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1616, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1624, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1632, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1640, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1648, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1656, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1664, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1672, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1680, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1688, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1696, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1704, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1712, "class": "zipper"}
+{"stage": "bayespfl_ted_progress", "images_done": 1720, "class": "zipper"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/data/mvtec/mvtec",
+    "target_dataset": "mvtec",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/data/mvtec/mvtec",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/checkpoints/epoch_post_15_1.pth",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-L-14-336.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/clip-cache/ViT-L-14-336px.pt",
+    "image_size": 518,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 0,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_6eab6cc6bd.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl336-mvtec2mvtec-seed0/results",
+    "vision_width": 1024,
+    "text_width": 768,
+    "embed_dim": 768,
+    "checkpoint_load_report": {
+      "mode": "strict",
+      "loaded": 131,
+      "skipped": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "skipped_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 1024,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": -0.04047972708940506,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7778010964393616,
+        "def_host_mean": 0.7295004725456238,
+        "fp_res_mean": -1.990325689315796,
+        "def_res_mean": -1.3614091873168945,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      },
+      "1": {
+        "eta": -0.03404489532113075,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7546796798706055,
+        "def_host_mean": 0.78284752368927,
+        "fp_res_mean": -2.091264247894287,
+        "def_res_mean": -1.5897612571716309,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "2": {
+        "eta": 0.0409124493598938,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7367483377456665,
+        "def_host_mean": 0.7738654613494873,
+        "fp_res_mean": -2.109565258026123,
+        "def_res_mean": -1.5847700834274292,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "3": {
+        "eta": 0.043763238936662674,
+        "num_fp": 1680,
+        "num_defect": 5070,
+        "fp_host_mean": 0.7392995357513428,
+        "def_host_mean": 0.7230974435806274,
+        "fp_res_mean": -2.2341480255126953,
+        "def_res_mean": -1.4742450714111328,
+        "source_base_mean_rank_ok": 0.0,
+        "source_calibrated_mean_rank_ok": 0.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bottle",
+      "image_auroc": 0.9388888888888889,
+      "pixel_auroc": 0.9702823208001808,
+      "pixel_aupro": 0.9379144906997681,
+      "pixel_ap": 0.7649351427000209
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "cable",
+      "image_auroc": 0.8828710644677662,
+      "pixel_auroc": 0.9430053567442463,
+      "pixel_aupro": 0.7931195497512817,
+      "pixel_ap": 0.4521152210153649
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "capsule",
+      "image_auroc": 0.9078579976067013,
+      "pixel_auroc": 0.9729043708179411,
+      "pixel_aupro": 0.9428504705429077,
+      "pixel_ap": 0.40412860404700157
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "carpet",
+      "image_auroc": 0.9979935794542536,
+      "pixel_auroc": 0.9929145025648191,
+      "pixel_aupro": 0.9815928936004639,
+      "pixel_ap": 0.8286146020308666
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "grid",
+      "image_auroc": 0.9415204678362573,
+      "pixel_auroc": 0.9864123984014266,
+      "pixel_aupro": 0.9534851312637329,
+      "pixel_ap": 0.48830692687573973
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "hazelnut",
+      "image_auroc": 0.9835714285714285,
+      "pixel_auroc": 0.9892338597917725,
+      "pixel_aupro": 0.9630845189094543,
+      "pixel_ap": 0.7105820071288768
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "leather",
+      "image_auroc": 0.998641304347826,
+      "pixel_auroc": 0.9967872769480483,
+      "pixel_aupro": 0.9937744736671448,
+      "pixel_ap": 0.6528214278544324
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_nut",
+      "image_auroc": 0.9486803519061584,
+      "pixel_auroc": 0.9918764038633239,
+      "pixel_aupro": 0.9282327890396118,
+      "pixel_ap": 0.9620491934048168
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "pill",
+      "image_auroc": 0.8603382433169668,
+      "pixel_auroc": 0.9914298894917637,
+      "pixel_aupro": 0.9784683585166931,
+      "pixel_ap": 0.7710289073998194
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "screw",
+      "image_auroc": 0.8040582086493133,
+      "pixel_auroc": 0.9866992575058702,
+      "pixel_aupro": 0.9482737183570862,
+      "pixel_ap": 0.4363354837071878
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tile",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9876868642604504,
+      "pixel_aupro": 0.9709415435791016,
+      "pixel_ap": 0.8706931782921891
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "toothbrush",
+      "image_auroc": 0.763888888888889,
+      "pixel_auroc": 0.9804563510453855,
+      "pixel_aupro": 0.9473415613174438,
+      "pixel_ap": 0.5270273939393018
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "transistor",
+      "image_auroc": 0.9204166666666667,
+      "pixel_auroc": 0.8476358168817402,
+      "pixel_aupro": 0.634693443775177,
+      "pixel_ap": 0.21689906680274676
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "wood",
+      "image_auroc": 0.9903508771929823,
+      "pixel_auroc": 0.9795352505897122,
+      "pixel_aupro": 0.9615999460220337,
+      "pixel_ap": 0.7439439389002889
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "zipper",
+      "image_auroc": 0.983718487394958,
+      "pixel_auroc": 0.9804783462501165,
+      "pixel_aupro": 0.9145007133483887,
+      "pixel_ap": 0.754605842267295
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.9281864303459371,
+      "pixel_auroc": 0.9731558843971198,
+      "pixel_aupro": 0.9233249068260193,
+      "pixel_ap": 0.6389391290910633
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bottle",
+      "image_auroc": 0.9873015873015873,
+      "pixel_auroc": 0.9703286507788531,
+      "pixel_aupro": 0.9372557997703552,
+      "pixel_ap": 0.7603849249086007
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "cable",
+      "image_auroc": 0.9263493253373314,
+      "pixel_auroc": 0.9431593050010855,
+      "pixel_aupro": 0.7933740019798279,
+      "pixel_ap": 0.452329949094373
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "capsule",
+      "image_auroc": 0.9573195053849222,
+      "pixel_auroc": 0.9728858216213252,
+      "pixel_aupro": 0.9432979226112366,
+      "pixel_ap": 0.4014463974248809
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "carpet",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.992612744696718,
+      "pixel_aupro": 0.9818992614746094,
+      "pixel_ap": 0.8194751466758883
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "grid",
+      "image_auroc": 0.9983291562238931,
+      "pixel_auroc": 0.9860872386304906,
+      "pixel_aupro": 0.9531764388084412,
+      "pixel_ap": 0.4864978563504455
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "hazelnut",
+      "image_auroc": 0.9864285714285714,
+      "pixel_auroc": 0.9891089980342567,
+      "pixel_aupro": 0.9627306461334229,
+      "pixel_ap": 0.7053491083710084
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "leather",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9967244341996963,
+      "pixel_aupro": 0.9934960007667542,
+      "pixel_ap": 0.6464650784554801
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_nut",
+      "image_auroc": 0.9960899315738025,
+      "pixel_auroc": 0.9917044952668097,
+      "pixel_aupro": 0.9270929098129272,
+      "pixel_ap": 0.9608233659530724
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "pill",
+      "image_auroc": 0.9609929078014184,
+      "pixel_auroc": 0.9915516172752606,
+      "pixel_aupro": 0.9783886671066284,
+      "pixel_ap": 0.7717541777691289
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "screw",
+      "image_auroc": 0.8585775773724124,
+      "pixel_auroc": 0.9874637809532679,
+      "pixel_aupro": 0.9478597640991211,
+      "pixel_ap": 0.43427343395098567
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tile",
+      "image_auroc": 0.9953102453102454,
+      "pixel_auroc": 0.9876298793347761,
+      "pixel_aupro": 0.9706295132637024,
+      "pixel_ap": 0.866949864663896
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "toothbrush",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9802699658680365,
+      "pixel_aupro": 0.9469872713088989,
+      "pixel_ap": 0.5229497367135838
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "transistor",
+      "image_auroc": 0.8416666666666667,
+      "pixel_auroc": 0.8508440397965535,
+      "pixel_aupro": 0.638334333896637,
+      "pixel_ap": 0.22407892691122447
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "wood",
+      "image_auroc": 0.9736842105263157,
+      "pixel_auroc": 0.9798579299317685,
+      "pixel_aupro": 0.9603052139282227,
+      "pixel_ap": 0.7409456762559664
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "zipper",
+      "image_auroc": 0.9971113445378151,
+      "pixel_auroc": 0.9801212117825722,
+      "pixel_aupro": 0.9136759042739868,
+      "pixel_ap": 0.7526497704310453
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.9652774019643321,
+      "pixel_auroc": 0.9733566742114313,
+      "pixel_aupro": 0.9232335766156514,
+      "pixel_ap": 0.636424894261972
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bottle",
+      "image_auroc": 0.9880952380952381,
+      "pixel_auroc": 0.970673988232184,
+      "pixel_aupro": 0.9378368854522705,
+      "pixel_ap": 0.7653827298764553
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "cable",
+      "image_auroc": 0.9248500749625188,
+      "pixel_auroc": 0.9429319274561329,
+      "pixel_aupro": 0.7907477021217346,
+      "pixel_ap": 0.45019024693529724
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "capsule",
+      "image_auroc": 0.9573195053849222,
+      "pixel_auroc": 0.9728964356162837,
+      "pixel_aupro": 0.9435742497444153,
+      "pixel_ap": 0.4034764400457569
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "carpet",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9928796231870373,
+      "pixel_aupro": 0.9821905493736267,
+      "pixel_ap": 0.8281291324614766
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "grid",
+      "image_auroc": 0.9983291562238931,
+      "pixel_auroc": 0.9865997144656631,
+      "pixel_aupro": 0.9535242319107056,
+      "pixel_ap": 0.48897734443925667
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "hazelnut",
+      "image_auroc": 0.9864285714285714,
+      "pixel_auroc": 0.9893233698707787,
+      "pixel_aupro": 0.962964653968811,
+      "pixel_ap": 0.7114847037188757
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "leather",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9967963184360308,
+      "pixel_aupro": 0.9938365817070007,
+      "pixel_ap": 0.6542883516561327
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_nut",
+      "image_auroc": 0.9960899315738025,
+      "pixel_auroc": 0.9919195557837082,
+      "pixel_aupro": 0.9281692504882812,
+      "pixel_ap": 0.9623115002628365
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "pill",
+      "image_auroc": 0.9601745771958539,
+      "pixel_auroc": 0.9915373288479356,
+      "pixel_aupro": 0.9787790775299072,
+      "pixel_ap": 0.7727607135903245
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "screw",
+      "image_auroc": 0.8581676573068252,
+      "pixel_auroc": 0.9870246886099715,
+      "pixel_aupro": 0.9509004354476929,
+      "pixel_ap": 0.4357775855608591
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tile",
+      "image_auroc": 0.996031746031746,
+      "pixel_auroc": 0.9878239895664931,
+      "pixel_aupro": 0.9707368612289429,
+      "pixel_ap": 0.8720723250911957
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "toothbrush",
+      "image_auroc": 1.0,
+      "pixel_auroc": 0.9803950227337204,
+      "pixel_aupro": 0.9475126266479492,
+      "pixel_ap": 0.5257456748989817
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "transistor",
+      "image_auroc": 0.8358333333333333,
+      "pixel_auroc": 0.848120389309864,
+      "pixel_aupro": 0.6363341808319092,
+      "pixel_ap": 0.21766795540138775
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "wood",
+      "image_auroc": 0.974561403508772,
+      "pixel_auroc": 0.9796322246592153,
+      "pixel_aupro": 0.9610050320625305,
+      "pixel_ap": 0.7454570492707298
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "zipper",
+      "image_auroc": 0.9971113445378151,
+      "pixel_auroc": 0.9805319493031768,
+      "pixel_aupro": 0.9151607751846313,
+      "pixel_ap": 0.7547161604953105
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.9648661693055529,
+      "pixel_auroc": 0.9732724350718798,
+      "pixel_aupro": 0.9235515395800272,
+      "pixel_ap": 0.6392291942469918
+    }
+  ]
+}

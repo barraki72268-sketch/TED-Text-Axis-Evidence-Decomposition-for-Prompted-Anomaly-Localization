@@ -1,0 +1,103 @@
+{
+  "recipe": "bayespfl-vitl14openai-mvtec2btad-seed2",
+  "status": "matched",
+  "started": "2026-10-10T04:35:33.934066+00:00",
+  "plan_sha256": "56780514321376c3526889a4a24b2c5ed6c4ff0e86016d38661bfc573c20c9d9",
+  "slurm_job_id": "13782",
+  "returncode": 0,
+  "comparison": {
+    "recipe": "bayespfl-vitl14openai-mvtec2btad-seed2",
+    "reference_sha256": "120a2b695f03b2b81d7e978a549d830d06e0af9c8213552230c77efb58aeb1b1",
+    "target_coverage": {
+      "status": "reported_coverage_matches",
+      "dataset": "btad",
+      "classes_checked": 3,
+      "expected_test_images": 741,
+      "reported_image_counts_checked": false,
+      "per_image_execution_verified": false
+    },
+    "actual_sha256": "5c61719ee11ee4b4ad95b6e374f27bbe1c1e433807a21f85ea72fc6b039519a3",
+    "comparison": "fresh run versus archived per-seed summary; not a claim of agreement with every printed paper cell",
+    "all_match_2dp": true,
+    "cells": [
+      {
+        "method": "Base",
+        "metric": "I-AUROC",
+        "actual": 71.32898030292257,
+        "expected": 71.32898030292257,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AUROC",
+        "actual": 87.86555927009897,
+        "expected": 87.86555927009897,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-PRO",
+        "actual": 63.94193172454834,
+        "expected": 63.94193172454834,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "Base",
+        "metric": "P-AP",
+        "actual": 36.106851291173236,
+        "expected": 36.106851291173236,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "I-AUROC",
+        "actual": 83.40761651931388,
+        "expected": 83.40761651931388,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "P-AUROC",
+        "actual": 87.81196271505424,
+        "expected": 87.81196271505424,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "P-PRO",
+        "actual": 64.0977124373118,
+        "expected": 64.0977124373118,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      },
+      {
+        "method": "OURS",
+        "metric": "P-AP",
+        "actual": 35.734097652069984,
+        "expected": 35.734097652069984,
+        "delta_pp": 0.0,
+        "matches_printed_precision": true
+      }
+    ]
+  },
+  "capture_index_sha256": "10fc29232dde81a3401e3f1f57c8968c0441334ebbd93b1325dd24365c4e452d",
+  "captured_files": [
+    {
+      "function": "get_or_collect_banks",
+      "file": "000-get_or_collect_banks.pt",
+      "sha256": "5768d0bfa452e1897fe2943b73d817f789f3108d0d9bb9e4fd970376efd8253b"
+    },
+    {
+      "function": "train_source_calibrators",
+      "file": "001-train_source_calibrators.pt",
+      "sha256": "235c21ec281cf59ddc5d905c2e2d7bfd8c76e2be60282716586ac0037a295488"
+    }
+  ],
+  "finished": "2026-10-10T04:42:30.587682+00:00"
+}

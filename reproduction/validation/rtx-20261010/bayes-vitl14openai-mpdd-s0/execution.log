@@ -1,0 +1,434 @@
+mkdir -p failed for path /tmp/mpl: [Errno 28] No space left on device: '/tmp/mpl'
+Matplotlib created a temporary cache directory at /mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/source/neurips2026/Bayes-PFL/matplotlib-4jjmo7z2 because there was an issue with the default path (/tmp/mpl); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/source/neurips2026/Bayes-PFL/models/model_CLIP.py:318: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/envs/patchcore-conda/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+{
+  "stage": "bayespfl_checkpoint_loaded",
+  "mode": "strict",
+  "loaded": 131,
+  "skipped": 0,
+  "missing": 0,
+  "unexpected": 0,
+  "skipped_examples": []
+}
+{
+  "stage": "bayespfl_source_calibrators_trained",
+  "calibrators": {
+    "0": {
+      "eta": 0.04405593499541283,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7313379049301147,
+      "def_host_mean": 0.7843229174613953,
+      "fp_res_mean": -1.949280858039856,
+      "def_res_mean": -0.27805373072624207,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "1": {
+      "eta": 0.04403692111372948,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7462829947471619,
+      "def_host_mean": 0.8049871921539307,
+      "fp_res_mean": -2.024322986602783,
+      "def_res_mean": -0.3437292277812958,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "2": {
+      "eta": 0.04416094347834587,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7173338532447815,
+      "def_host_mean": 0.8140132427215576,
+      "fp_res_mean": -1.977573037147522,
+      "def_res_mean": -0.3831339180469513,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    },
+    "3": {
+      "eta": 0.04444769024848938,
+      "num_fp": 360,
+      "num_defect": 1927,
+      "fp_host_mean": 0.7479604482650757,
+      "def_host_mean": 0.8068982362747192,
+      "fp_res_mean": -2.0233256816864014,
+      "def_res_mean": -1.130671739578247,
+      "source_base_mean_rank_ok": 1.0,
+      "source_calibrated_mean_rank_ok": 1.0
+    }
+  }
+}
+{"stage": "bayespfl_ted_progress", "images_done": 8, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 16, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 24, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 32, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 40, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 48, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 56, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 64, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 72, "class": "bracket_black"}
+{"stage": "bayespfl_ted_progress", "images_done": 80, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 88, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 96, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 104, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 112, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 120, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 128, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 136, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 144, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 152, "class": "bracket_brown"}
+{"stage": "bayespfl_ted_progress", "images_done": 160, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 168, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 176, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 184, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 192, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 200, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 208, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 216, "class": "bracket_white"}
+{"stage": "bayespfl_ted_progress", "images_done": 224, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 232, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 240, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 248, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 256, "class": "connector"}
+{"stage": "bayespfl_ted_progress", "images_done": 264, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 272, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 280, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 288, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 296, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 304, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 312, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 320, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 328, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 336, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 344, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 352, "class": "metal_plate"}
+{"stage": "bayespfl_ted_progress", "images_done": 360, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 368, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 376, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 384, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 392, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 400, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 408, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 416, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 424, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 432, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 440, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 448, "class": "tubes"}
+{"stage": "bayespfl_ted_progress", "images_done": 456, "class": "tubes"}
+{
+  "summary": {
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/data/mvtec/mvtec",
+    "target_dataset": "mpdd",
+    "target_data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/data/mpdd/MPDD",
+    "target_class": "",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/checkpoints/epoch_post_15_1.pth",
+    "config_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/source/neurips2026/Bayes-PFL/open_clip_local/model_configs/ViT-L-14.json",
+    "pretrained_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/clip-cache/ViT-L-14.pt",
+    "image_size": 224,
+    "features_list": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "num_flows": 10,
+    "prompt_context_len": 5,
+    "prompt_num": 3,
+    "prompt_state_len": 5,
+    "sample_num": 5,
+    "device_id": 0,
+    "seed": 0,
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "exclude_class": null,
+    "bank_cache_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/source/neurips2026/results/bank_cache/bayespfl_mvtec_epoch_post_15_1_39fbff91d7.pt",
+    "refresh_bank_cache": false,
+    "tau": 20.0,
+    "fp_weight": 1.0,
+    "margin_sign": "def_minus_fp",
+    "map_activation": "sigmoid",
+    "ted_combine": "residual",
+    "ted_alpha": 0.05,
+    "enable_calibrator": true,
+    "calib_epochs": 80,
+    "calib_lr": 0.02,
+    "calib_eta_init": 0.01,
+    "calib_eta_max": 0.05,
+    "calib_eta_reg": 0.001,
+    "calib_rank_margin": 0.05,
+    "calib_rank_temp": 0.05,
+    "calib_hard_frac": 0.01,
+    "calib_max_good_per_class": 8,
+    "calib_max_defect_per_class": 8,
+    "calib_max_fp_per_image": 64,
+    "calib_max_defect_per_image": 128,
+    "calib_max_train_points": 8192,
+    "image_topk": 0.01,
+    "aupro_max_step": 200,
+    "max_normal_eval": 0,
+    "max_anomaly_eval": 0,
+    "save_dir": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitl14openai-mvtec2mpdd-seed0/results",
+    "vision_width": 1024,
+    "text_width": 768,
+    "embed_dim": 768,
+    "checkpoint_load_report": {
+      "mode": "strict",
+      "loaded": 131,
+      "skipped": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "skipped_examples": []
+    },
+    "bank_stats": {
+      "0": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "1": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "2": {
+        "num_fp": 240,
+        "num_defect": 1024
+      },
+      "3": {
+        "num_fp": 240,
+        "num_defect": 1024
+      }
+    },
+    "source_calibrators": {
+      "0": {
+        "eta": 0.04405593499541283,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7313379049301147,
+        "def_host_mean": 0.7843229174613953,
+        "fp_res_mean": -1.949280858039856,
+        "def_res_mean": -0.27805373072624207,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "1": {
+        "eta": 0.04403692111372948,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7462829947471619,
+        "def_host_mean": 0.8049871921539307,
+        "fp_res_mean": -2.024322986602783,
+        "def_res_mean": -0.3437292277812958,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "2": {
+        "eta": 0.04416094347834587,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7173338532447815,
+        "def_host_mean": 0.8140132427215576,
+        "fp_res_mean": -1.977573037147522,
+        "def_res_mean": -0.3831339180469513,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      },
+      "3": {
+        "eta": 0.04444769024848938,
+        "num_fp": 360,
+        "num_defect": 1927,
+        "fp_host_mean": 0.7479604482650757,
+        "def_host_mean": 0.8068982362747192,
+        "fp_res_mean": -2.0233256816864014,
+        "def_res_mean": -1.130671739578247,
+        "source_base_mean_rank_ok": 1.0,
+        "source_calibrated_mean_rank_ok": 1.0
+      }
+    },
+    "score_definition": {
+      "baseline_txt": "official Bayes-PFL local anomaly map and image score",
+      "ted_trainfree": "Bayes-PFL host map combined with fixed TED residual according to ted_combine/ted_alpha",
+      "ted_calibrated": "source-only layerwise eta calibration of TED residual on Bayes-PFL local map"
+    },
+    "aupro_backend": "precomputed_region_fast_aupro"
+  },
+  "rows": [
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_black",
+      "image_auroc": 0.5631648936170213,
+      "pixel_auroc": 0.92777635771556,
+      "pixel_aupro": 0.7981932759284973,
+      "pixel_ap": 0.017769573808355595
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.5618401206636501,
+      "pixel_auroc": 0.9492670256474008,
+      "pixel_aupro": 0.820580780506134,
+      "pixel_ap": 0.0554374660027304
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "bracket_white",
+      "image_auroc": 0.4222222222222222,
+      "pixel_auroc": 0.9714787388040231,
+      "pixel_aupro": 0.892537534236908,
+      "pixel_ap": 0.02281081824297001
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "connector",
+      "image_auroc": 0.730952380952381,
+      "pixel_auroc": 0.9574654319801607,
+      "pixel_aupro": 0.8518770337104797,
+      "pixel_ap": 0.10475278747067303
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "metal_plate",
+      "image_auroc": 0.9306608884073673,
+      "pixel_auroc": 0.949176950016019,
+      "pixel_aupro": 0.8479061126708984,
+      "pixel_ap": 0.6548660085188357
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "tubes",
+      "image_auroc": 0.9791666666666667,
+      "pixel_auroc": 0.9929515176370952,
+      "pixel_aupro": 0.9732049703598022,
+      "pixel_ap": 0.6611501047422998
+    },
+    {
+      "mode": "baseline_txt",
+      "target_label": "mean",
+      "image_auroc": 0.6980011954215515,
+      "pixel_auroc": 0.9580193369667098,
+      "pixel_aupro": 0.8640499512354533,
+      "pixel_ap": 0.25279779313097744
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_black",
+      "image_auroc": 0.5871010638297872,
+      "pixel_auroc": 0.9274538978561467,
+      "pixel_aupro": 0.8002874851226807,
+      "pixel_ap": 0.017834569367000928
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.6184012066365008,
+      "pixel_auroc": 0.9492270457573931,
+      "pixel_aupro": 0.820088267326355,
+      "pixel_ap": 0.05538518628460112
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "bracket_white",
+      "image_auroc": 0.5733333333333334,
+      "pixel_auroc": 0.9713086844899618,
+      "pixel_aupro": 0.8926327228546143,
+      "pixel_ap": 0.02262863983261422
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "connector",
+      "image_auroc": 0.5880952380952381,
+      "pixel_auroc": 0.9570121791198347,
+      "pixel_aupro": 0.8503600358963013,
+      "pixel_ap": 0.10325194985659339
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "metal_plate",
+      "image_auroc": 0.894907908992416,
+      "pixel_auroc": 0.9491377389157032,
+      "pixel_aupro": 0.8498243689537048,
+      "pixel_ap": 0.6520075835572038
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "tubes",
+      "image_auroc": 0.9764492753623188,
+      "pixel_auroc": 0.9928656903956291,
+      "pixel_aupro": 0.9729194641113281,
+      "pixel_ap": 0.6566167724379262
+    },
+    {
+      "mode": "ted_trainfree",
+      "target_label": "mean",
+      "image_auroc": 0.7063813377082657,
+      "pixel_auroc": 0.9578342060891115,
+      "pixel_aupro": 0.8643520573774973,
+      "pixel_ap": 0.2512874502226566
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_black",
+      "image_auroc": 0.5871010638297872,
+      "pixel_auroc": 0.9275586391308815,
+      "pixel_aupro": 0.797544002532959,
+      "pixel_ap": 0.01785006195511029
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_brown",
+      "image_auroc": 0.6199095022624435,
+      "pixel_auroc": 0.9492590749888258,
+      "pixel_aupro": 0.8213565349578857,
+      "pixel_ap": 0.05544476490513841
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "bracket_white",
+      "image_auroc": 0.5755555555555556,
+      "pixel_auroc": 0.9713725740568083,
+      "pixel_aupro": 0.8953977823257446,
+      "pixel_ap": 0.0228033389709213
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "connector",
+      "image_auroc": 0.5880952380952381,
+      "pixel_auroc": 0.9571452173571757,
+      "pixel_aupro": 0.8521447777748108,
+      "pixel_ap": 0.10404575396952598
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "metal_plate",
+      "image_auroc": 0.8943661971830986,
+      "pixel_auroc": 0.9491489821417963,
+      "pixel_aupro": 0.8504613637924194,
+      "pixel_ap": 0.652475684720687
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "tubes",
+      "image_auroc": 0.9764492753623188,
+      "pixel_auroc": 0.9928730441710784,
+      "pixel_aupro": 0.9730690121650696,
+      "pixel_ap": 0.657222171311046
+    },
+    {
+      "mode": "ted_calibrated",
+      "target_label": "mean",
+      "image_auroc": 0.7069128053814069,
+      "pixel_auroc": 0.9578929219744278,
+      "pixel_aupro": 0.8649955789248148,
+      "pixel_ap": 0.2516402959720715
+    }
+  ]
+}
