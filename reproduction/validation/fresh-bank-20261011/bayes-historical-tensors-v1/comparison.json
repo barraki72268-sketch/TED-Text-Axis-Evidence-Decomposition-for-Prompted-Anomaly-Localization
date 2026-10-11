@@ -1,0 +1,144 @@
+{
+  "status": "matched",
+  "weights_only_cpu_load": true,
+  "historical_sha256": "e9ff33723e5fbdaa1bf85d9deac5840a993246f80270024cfa2810773d9742fd",
+  "fresh_sha256": "d4a75edf4f088a17f83d486ec62a2e02cca9fda0911425210ed577cf473280b8",
+  "archive_bytes_equal": false,
+  "tensor_rows": [
+    {
+      "group": "fp_banks",
+      "layer": 0,
+      "historical_shape": [
+        240,
+        640
+      ],
+      "fresh_shape": [
+        240,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "fp_banks",
+      "layer": 1,
+      "historical_shape": [
+        240,
+        640
+      ],
+      "fresh_shape": [
+        240,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "fp_banks",
+      "layer": 2,
+      "historical_shape": [
+        240,
+        640
+      ],
+      "fresh_shape": [
+        240,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "fp_banks",
+      "layer": 3,
+      "historical_shape": [
+        240,
+        640
+      ],
+      "fresh_shape": [
+        240,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "def_banks",
+      "layer": 0,
+      "historical_shape": [
+        1024,
+        640
+      ],
+      "fresh_shape": [
+        1024,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "def_banks",
+      "layer": 1,
+      "historical_shape": [
+        1024,
+        640
+      ],
+      "fresh_shape": [
+        1024,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "def_banks",
+      "layer": 2,
+      "historical_shape": [
+        1024,
+        640
+      ],
+      "fresh_shape": [
+        1024,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "group": "def_banks",
+      "layer": 3,
+      "historical_shape": [
+        1024,
+        640
+      ],
+      "fresh_shape": [
+        1024,
+        640
+      ],
+      "exact": true,
+      "max_absolute_error": 0.0
+    }
+  ],
+  "historical_metadata": null,
+  "fresh_metadata": {
+    "host": "Bayes-PFL",
+    "dataset": "mvtec",
+    "data_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/data/mvtec/mvtec",
+    "checkpoint_path": "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/rtx-bayes-runs-20261010/bayespfl-vitb_plus-mvtec2btad-seed0/checkpoints/epoch_post_15_1.pth",
+    "checkpoint_load_mode": "compatible",
+    "features_list": [
+      3,
+      6,
+      9,
+      12
+    ],
+    "hard_frac": 0.01,
+    "max_good_per_class": 8,
+    "max_defect_per_class": 8,
+    "max_bank_per_layer": 1024,
+    "max_fp_per_image": 64,
+    "max_defect_per_image": 128,
+    "source_class": null,
+    "exclude_class": null
+  },
+  "scope": "Byte-verified historical bank versus first public-checkout fresh collection, BayesPFL Bplus MVTec seed0; no target metric claim."
+}

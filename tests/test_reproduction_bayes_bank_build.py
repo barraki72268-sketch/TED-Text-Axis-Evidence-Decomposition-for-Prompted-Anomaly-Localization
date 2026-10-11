@@ -25,6 +25,32 @@ class BayesBankBuildTests(unittest.TestCase):
         self.assertTrue(proof['ordinary_evaluation_rejected'] and proof['numerical_args_equal_original'])
         self.assertFalse(proof['gpu_collection_verified'] or proof['target_evaluation_verified'])
 
+    def test_historical_bank_comparison_binds_exact_tensors_to_fresh_collection(self):
+        root = Path(__file__).resolve().parents[1] / 'reproduction'
+        base = root / 'validation/fresh-bank-20261011/bayes-historical-tensors-v1'
+        index = json.loads((base / 'index.json').read_bytes())
+        for item in index['evidence']:
+            self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
+        fresh_path = base / index['fresh_construction_evidence']
+        self.assertEqual(hashlib.sha256(fresh_path.read_bytes()).hexdigest(), index['fresh_construction_evidence_sha256'])
+        comparison = json.loads((base / 'comparison.json').read_bytes())
+        self.assertEqual(json.loads(fresh_path.read_bytes())['bank_sha256'], comparison['fresh_sha256'])
+        bindings = json.loads((root / 'host-source-banks.json').read_bytes())
+        binding = next(b for b in bindings['bindings'] if b['recipe'] == index['recipe'])
+        self.assertEqual(binding['source_bank_assets'][0]['sha256'], comparison['historical_sha256'])
+        self.assertTrue(comparison['weights_only_cpu_load'])
+        self.assertFalse(comparison['archive_bytes_equal'])
+        rows = comparison['tensor_rows']
+        self.assertEqual({(r['group'], r['layer']) for r in rows},
+                         {(g, layer) for g in ('fp_banks', 'def_banks') for layer in range(4)})
+        self.assertEqual(len(rows), 8)
+        for row in rows:
+            self.assertTrue(row['exact'])
+            self.assertEqual(row['max_absolute_error'], 0)
+            self.assertEqual(row['historical_shape'], row['fresh_shape'])
+            self.assertEqual(row['fresh_shape'], [240 if row['group'] == 'fp_banks' else 1024, 640])
+        self.assertFalse(index['target_evaluation_verified'] or index['paper_metric_reproduction_verified'])
+
     def test_cold_cpu_preparation_excludes_bank_and_target_inputs(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-cold-preparation-v1'
         read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))

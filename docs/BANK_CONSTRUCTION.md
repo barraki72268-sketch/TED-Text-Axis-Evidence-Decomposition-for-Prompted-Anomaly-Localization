@@ -70,15 +70,15 @@ python -m reproduction.bayes_bank_build ./runs/bayes-source ./fresh-banks/bayes-
 Both destinations must be new. This produces `source-bank.pt` and
 `construction.json`; keep stdout/stderr as the collection log. Preparation and
 preflight still verify saved-bank bytes and both dataset manifests. The collector
-does not load that saved bank or evaluate the target. Preparation from only model
-weights and source data is a separate step still being completed.
+does not load that saved bank or evaluate the target. Preparation from only model weights and source data has since been checked on
+CPU, as documented below; GPU collection on that preparation remains pending.
 
 [Execution and tensor audit](../reproduction/validation/fresh-bank-20261010/bayes-bplus-mvtec-s0/index.json)
 record Slurm job 13805, a successful source collection, four layers with
 240 Hard-FP and 1,024 defect entries each, and finite normalized 640-dimensional
 tensors. This verifies this source-collection configuration. Evaluation using
-this newly built bank, agreement with the historical bank, other model bank
-builders and paper-wide reproduction are separate checks.
+this newly built bank, other model bank builders and paper-wide reproduction
+remain separate checks. The historical-bank tensor comparison is documented below.
 
 A second collection from a clean clone of the public GitHub commit
 `db9f5fa1098e6c0a8b30e8c81ebca58d7cb9b604` also completed in Slurm job 13808.
@@ -88,6 +88,15 @@ to the first fresh collection, and the serialized bank SHA also matched.
 [Public-checkout collection and comparison evidence](../reproduction/validation/fresh-bank-20261010/bayes-bplus-public-checkout-v3/index.json)
 records this check. It does not compare against the historical bank or verify
 target evaluation or preparation without saved-bank inputs.
+
+A subsequent CPU comparison against the recipe's SHA-verified historical bank
+found **all eight Hard-FP/Defect layer tensors exactly equal**, with maximum
+absolute error 0, for this B/16+ MVTec seed-0 configuration. The serialized files
+have different hashes: the historical `meta` value is null in the comparison, while the fresh
+output includes construction metadata. This is tensor identity, not file identity.
+[Historical-bank comparison evidence](../reproduction/validation/fresh-bank-20261011/bayes-historical-tensors-v1/index.json)
+binds both bank hashes to the public-checkout construction proof. This comparison
+does not establish target evaluation, other configurations or paper-wide means.
 
 ### Preparation using only source data and model weights
 
