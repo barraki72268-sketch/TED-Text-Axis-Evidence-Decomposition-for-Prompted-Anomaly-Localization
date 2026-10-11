@@ -10,6 +10,21 @@ from reproduction.bayes_bank_build import recorded_arguments
 
 
 class BayesBankBuildTests(unittest.TestCase):
+    def test_clean_public_checkout_executes_cold_preparation_cli(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-cold-public-checkout-v2'
+        read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
+        proof, plan = read('proof.json'), read('run.json')
+        self.assertTrue(proof['public_checkout_clean'] and proof['actual_cli_executed'])
+        self.assertEqual(proof['public_commit'], '86dfdb4f5ca72707494853289a4276a3fa1996ac')
+        self.assertEqual(proof['plan_sha256'], hashlib.sha256((base / 'run.json').read_bytes()).hexdigest())
+        self.assertEqual(set(plan['datasets']), {'mvtec'})
+        self.assertEqual(len(plan['verified_objects']), 2)
+        self.assertFalse(plan['bank_path_changes'])
+        self.assertTrue(proof['ordinary_evaluation_rejected'] and proof['numerical_args_equal_original'])
+        self.assertFalse(proof['gpu_collection_verified'] or proof['target_evaluation_verified'])
+
     def test_cold_cpu_preparation_excludes_bank_and_target_inputs(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-cold-preparation-v1'
         read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))

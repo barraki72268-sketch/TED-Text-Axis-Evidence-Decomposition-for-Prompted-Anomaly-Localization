@@ -113,6 +113,13 @@ The earlier two successful GPU collections used the prepared workspace described
 above; they are separate evidence from this CPU preparation check. Cross-dataset
 evaluation using the new bank remains a separate step.
 
+The same CPU preparation CLI also passed from a clean GitHub checkout pinned to
+`86dfdb4f5ca72707494853289a4276a3fa1996ac`, using new input and workspace
+directories containing only the two model objects and MVTec data roots.
+[Public-checkout CLI evidence](../reproduction/validation/fresh-bank-20261011/bayes-cold-public-checkout-v2/index.json)
+preserves the plan, actual command wrapper, denial checks and log. This check
+does not add GPU bank-generation or target-evaluation evidence.
+
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 
 The [verified execution index](../reproduction/validation/a10-20261009/verified-results.json) identifies successful per-configuration evaluation checks. It does not establish fresh reconstruction of every bank, every reported seed aggregate, or the entire paper. We are completing the fresh-construction entry points and will document their verified model/dataset/seed scope separately.
