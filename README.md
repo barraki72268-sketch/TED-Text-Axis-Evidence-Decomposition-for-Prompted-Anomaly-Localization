@@ -110,6 +110,12 @@ backbone and MVTec source data is also verified. The guide documents
 BTAD inputs. GPU collection on this new preparation and cross-dataset evaluation
 with its newly generated bank remain in progress.
 
+For the verified B/16+ MVTec seed-0 GPU collection, all eight newly collected
+Hard-FP/Defect layer tensors exactly match the SHA-verified historical bank
+(maximum absolute error 0). Serialized file hashes differ; target evaluation
+using the fresh bank is still pending. See the
+[comparison evidence](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/reproduction/validation/fresh-bank-20261011/bayes-historical-tensors-v1/index.json).
+
 ## Code and reproduction
 
 **Completed experiments and public code availability are separate.** The table below describes release progress, not experiments still to be run.
