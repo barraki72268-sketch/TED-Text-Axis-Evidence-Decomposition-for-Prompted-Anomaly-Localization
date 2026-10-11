@@ -104,6 +104,12 @@ Each Host/C-TED pair shares the same color scale, using the pooled 2nd–99.5th 
 
 The original collectors for all seven host families are available in the [bank-construction guide](https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/blob/reproduction/all-models/docs/BANK_CONSTRUCTION.md), with direct code links, complete-source extraction commands and source-only selection details. A runnable BayesPFL B/16+ source-bank builder has now completed MVTec collection for seed 0 inside a verified GPU allocation; the guide includes commands and tensor-audit evidence. Evaluation using this newly built bank and fresh reconstruction across all paper configurations are being verified separately. Saved banks are also available on [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility).
 
+For this BayesPFL configuration, CPU preparation using only the model checkpoint,
+backbone and MVTec source data is also verified. The guide documents
+`prepare-run --bank-collection-only`, which requires no saved-bank objects or
+BTAD inputs. GPU collection on this new preparation and cross-dataset evaluation
+with its newly generated bank remain in progress.
+
 ## Code and reproduction
 
 **Completed experiments and public code availability are separate.** The table below describes release progress, not experiments still to be run.
