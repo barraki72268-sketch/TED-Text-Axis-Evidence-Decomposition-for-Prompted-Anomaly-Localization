@@ -134,9 +134,11 @@ does not add GPU bank-generation or target-evaluation evidence.
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
 MVTec-to-BTAD, seed 0. Supply the collection output directory and the exact
 `run.json` used to collect it. Preparation binds the new bank hash, collection
-proof and plan, preserves the recorded settings and checkpoint basename, and
-keeps the initial historical preparation as evidence. It still requires the
-historical bank objects for the full preparation preflight.
+proof and plan, and preserves the recorded settings and checkpoint basename.
+The current default needs only the checkpoint/backbone objects, both dataset
+roots and the new bank with its construction proof and collection plan. It does
+not require the historical saved-bank object. The optional `--historical-preflight`
+retains the earlier preparation mode and its full saved-bank byte verification.
 
 ```bash
 python -m reproduction.bayes_fresh_evaluation prepare \
@@ -157,6 +159,18 @@ The same CPU CLI subsequently passed from a clean published checkout at
 binds the plan, collection provenance, command wrapper and unallocated-run
 rejection. GPU target evaluation remains pending; these preparation checks
 do not add cross-dataset metric results.
+
+The newer bank-independent preparation was checked on CPU using an object root
+containing only the two model objects. An actual read-denial hook rejected a
+historical-bank self-check and observed no further attempted historical-bank
+reads during preparation or validation. Both source and target dataset bytes
+were verified, the fresh bank was bound, and GPU execution without an allocation
+was rejected. [Bank-independent preparation evidence](../reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-bankfree-v4/index.json)
+preserves that prototype overlay run and exact code bytes. A clean published
+checkout check of this newer preparation mode remains pending, as does actual
+GPU target evaluation. The collection proof supplied here comes from the
+previous successful GPU construction; collection on the newer source-only
+preparation remains a separate pending check.
 
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 
