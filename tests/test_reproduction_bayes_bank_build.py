@@ -4,11 +4,39 @@ import hashlib
 from pathlib import Path
 import unittest
 import zipfile
+from unittest.mock import patch
 
 from reproduction.bayes_bank_build import recorded_arguments
 
 
 class BayesBankBuildTests(unittest.TestCase):
+    def test_cold_cpu_preparation_excludes_bank_and_target_inputs(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-cold-preparation-v1'
+        read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base / item['file']).read_bytes()).hexdigest(), item['sha256'])
+        proof, plan = read('proof.json'), read('run.json')
+        self.assertEqual(set(plan['datasets']), {'mvtec'})
+        self.assertEqual(plan['bank_path_changes'], [])
+        self.assertEqual(len(plan['verified_objects']), 2)
+        self.assertTrue(proof['cpu_only'] and proof['numerical_args_equal_original'])
+        self.assertTrue(proof['ordinary_evaluation_rejected'])
+        self.assertEqual(proof['denial_selfchecks']['denied_bank_selfchecks'], 2)
+        self.assertEqual(proof['denial_selfchecks']['denied_target_selfchecks'], 3)
+        self.assertFalse(proof['gpu_collection_verified'])
+        self.assertFalse(proof['target_evaluation_verified'])
+
+    def test_source_collection_plan_cannot_run_target_evaluation(self):
+        from reproduction.run import validate_prepared
+        plan = {'recipe': 'test', 'preparation_scope': 'source_bank_collection_only'}
+        recipe = {'host': 'BayesPFL', 'transfer': 'mvtec2btad'}
+        with tempfile.TemporaryDirectory() as directory, patch('reproduction.run.read_json', return_value=plan), patch('reproduction.run.execution_recipe', return_value=recipe):
+            with self.assertRaisesRegex(ValueError, 'cannot execute target evaluation'):
+                validate_prepared(Path(directory), Path(directory))
+            plan.update(datasets={'mvtec': {}}, bank_path_changes=[{'path': 'bank'}])
+            with self.assertRaisesRegex(ValueError, 'target data or historical banks'):
+                validate_prepared(Path(directory), Path(directory), allow_bank_collection=True)
+
     def test_public_checkout_independently_rebuilds_identical_source_tensors(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261010/bayes-bplus-public-checkout-v3'
         read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))

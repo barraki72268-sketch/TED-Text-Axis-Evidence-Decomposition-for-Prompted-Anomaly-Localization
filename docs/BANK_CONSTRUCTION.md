@@ -89,6 +89,30 @@ to the first fresh collection, and the serialized bank SHA also matched.
 records this check. It does not compare against the historical bank or verify
 target evaluation or preparation without saved-bank inputs.
 
+### Preparation using only source data and model weights
+
+For BayesPFL B/16+ MVTec, seed 0, CPU preparation has also been checked without
+saved-bank objects or BTAD inputs. Use an object directory containing the
+recipe's checkpoint and backbone, and a dataset-roots JSON containing only the
+MVTec entry:
+
+```bash
+python -m reproduction prepare-run bayespfl-vitb_plus-mvtec2btad-seed0 ./runs/bayes-cold \
+  --objects ./model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+This verifies the model weights, original source and MVTec bytes, preserves the
+checkpoint basename and recorded numerical arguments, and writes a workspace
+restricted to source collection. `run-prepared` rejects it because it has no
+target data. The [CPU preparation proof](../reproduction/validation/fresh-bank-20261011/bayes-cold-preparation-v1/index.json)
+records actual denial checks for historical-bank and target reads and network
+blocking throughout preparation and validation. GPU collection using this new
+workspace has not yet been run. Once checked in a valid allocation, the intended
+collection command is `python -m reproduction.bayes_bank_build ./runs/bayes-cold ./fresh-banks/bayes-cold`.
+The earlier two successful GPU collections used the prepared workspace described
+above; they are separate evidence from this CPU preparation check. Cross-dataset
+evaluation using the new bank remains a separate step.
+
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 
 The [verified execution index](../reproduction/validation/a10-20261009/verified-results.json) identifies successful per-configuration evaluation checks. It does not establish fresh reconstruction of every bank, every reported seed aggregate, or the entire paper. We are completing the fresh-construction entry points and will document their verified model/dataset/seed scope separately.
