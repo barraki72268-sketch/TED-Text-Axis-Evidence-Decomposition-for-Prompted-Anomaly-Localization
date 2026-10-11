@@ -150,9 +150,13 @@ python -m reproduction.bayes_fresh_evaluation run ./runs/bayes-fresh-target
 The destination must be new. The run command checks live Slurm GPU allocation
 and actual process membership; an unallocated invocation was rejected in the
 [CPU preparation evidence](../reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-preparation-v2/index.json).
-That evidence used a prototype code overlay on a GitHub checkout. A clean
-published-feature checkout check and GPU target evaluation remain pending.
-This preparation result is not a new cross-dataset metric result.
+That initial evidence used a prototype code overlay on a GitHub checkout.
+The same CPU CLI subsequently passed from a clean published checkout at
+`ca4d6f944413f51607674a9b39febfd4932a1d44`, using a separate new workspace.
+[Public-checkout preparation evidence](../reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-public-v3/index.json)
+binds the plan, collection provenance, command wrapper and unallocated-run
+rejection. GPU target evaluation remains pending; these preparation checks
+do not add cross-dataset metric results.
 
 For immediate evaluation using the historical banks, see [artifact downloads](ARTIFACTS.md) and [Hugging Face](https://huggingface.co/KIMJINYOUNG/TED-reproducibility). `prepare-source-banks` downloads and verifies saved banks; it does **not** mine new banks.
 

@@ -7,6 +7,21 @@ from reproduction.bayes_fresh_evaluation import verify_collection_settings
 
 
 class FreshBankEvaluationGuards(unittest.TestCase):
+    def test_clean_public_checkout_cli_preparation_is_bound_and_not_gpu_evaluation(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-public-v3'
+        read = lambda n: json.loads((base/n).read_bytes())
+        index, proof = read('index.json'), read('proof.json')
+        for item in index['evidence']:
+            self.assertEqual(hashlib.sha256((base/item['file']).read_bytes()).hexdigest(), item['sha256'])
+        self.assertTrue(proof['public_checkout_clean'] and proof['actual_cli_executed'])
+        self.assertEqual(proof['public_commit'], 'ca4d6f944413f51607674a9b39febfd4932a1d44')
+        self.assertEqual(proof['plan_sha256'], hashlib.sha256((base/'run.json').read_bytes()).hexdigest())
+        self.assertEqual(proof['helper_sha256'], hashlib.sha256((base/'wrapper.py').read_bytes()).hexdigest())
+        self.assertTrue(proof['unallocated_gpu_run_rejected'])
+        self.assertFalse(proof['target_evaluation_performed'] or proof['gpu_execution_performed'])
+        for name, sha in proof['evidence_files'].items():
+            self.assertEqual(hashlib.sha256((base/name).read_bytes()).hexdigest(), sha)
+
     def test_actual_cpu_cli_proof_binds_code_plan_and_unallocated_run_rejection(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-preparation-v2'
         read = lambda n: json.loads((base/n).read_bytes())
