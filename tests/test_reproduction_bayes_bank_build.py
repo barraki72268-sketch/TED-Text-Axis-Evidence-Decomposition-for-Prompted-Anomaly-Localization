@@ -78,6 +78,23 @@ class BayesBankBuildTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'target data or historical banks'):
                 validate_prepared(Path(directory), Path(directory), allow_bank_collection=True)
 
+    def test_adapt_source_only_preparation_has_no_vl_or_tl_bank_inputs(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261012/adapt-cold-preparation-v2'
+        read = lambda n: json.loads((base/n).read_bytes())
+        proof, plan = read('proof.json'), read('run.json')
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base/item['file']).read_bytes()).hexdigest(), item['sha256'])
+        self.assertEqual(proof['plan_sha256'], hashlib.sha256((base/'run.json').read_bytes()).hexdigest())
+        self.assertTrue(proof['actual_CLI_executed'] and proof['ordinary_target_evaluation_rejected'])
+        self.assertEqual(proof['denial_selfchecks'], 3)
+        self.assertEqual(proof['blocked_reads_after_selfcheck'], 0)
+        self.assertFalse(proof['bank_collection_performed'] or proof['target_evaluation_performed'] or proof['GPU_submitted'])
+        self.assertEqual(set(plan['datasets']), {'mvtec'})
+        self.assertEqual(plan['bank_path_changes'], [])
+        for option, name in [('--bank_cache_path','unavailable-historical-bank.pt'),
+                             ('--tl_bank_cache_path','unavailable-historical-tl-bank.pt')]:
+            self.assertEqual(Path(plan['argv'][plan['argv'].index(option)+1]).name, name)
+
     def test_public_checkout_independently_rebuilds_identical_source_tensors(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261010/bayes-bplus-public-checkout-v3'
         read = lambda n: json.loads((base / n).read_text(encoding='utf-8'))

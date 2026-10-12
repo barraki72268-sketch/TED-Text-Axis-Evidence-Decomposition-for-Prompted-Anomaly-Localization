@@ -10,7 +10,7 @@ from .checkpoint_download import digest_file
 from .datasets import validate_dataset
 from .metrics import compare, extract_recipe
 from .coverage import validate_coverage
-from .runtime import read_json
+from .runtime import read_json, SOURCE_COLLECTION_HOSTS, SOURCE_COLLECTION_BANK_ARGUMENTS, absent_collection_bank_path
 from .recipe_lookup import execution_recipe, reference_summary
 
 
@@ -26,14 +26,15 @@ def validate_prepared(root: Path, workspace: Path, require_slurm: bool = False,
         raise ValueError('Fresh evaluation workspace requires collection provenance')
     collection_only = plan.get('preparation_scope') == 'source_bank_collection_only'
     if collection_only:
-        if not allow_bank_collection or recipe['host'] != 'BayesPFL':
+        if not allow_bank_collection or recipe['host'] not in SOURCE_COLLECTION_HOSTS:
             raise ValueError('Source-collection workspace cannot execute target evaluation')
         source, target = recipe['transfer'].split('2', 1)
         if source == target or set(plan['datasets']) != {source} or plan['bank_path_changes']:
             raise ValueError('Source-collection plan contains target data or historical banks')
         if plan.get('historical_bank_inputs_required') is not False or plan.get('target_dataset_inputs_required') is not False:
             raise ValueError('Source-collection input scope is missing')
-        if (workspace / 'unavailable-target').exists() or (workspace / 'unavailable-historical-bank.pt').exists():
+        if (workspace / 'unavailable-target').exists() or any(absent_collection_bank_path(workspace, a).exists()
+                                                            for a in SOURCE_COLLECTION_BANK_ARGUMENTS):
             raise ValueError('Source-only absent-input paths must remain absent')
     if Path(plan["evaluator"]).resolve() != workspace / "source" / recipe["evaluator"]["path"]:
         raise ValueError("Prepared evaluator path mismatch")
@@ -52,8 +53,8 @@ def validate_prepared(root: Path, workspace: Path, require_slurm: bool = False,
                 required = workspace / "results"
             elif collection_only and kind == 'prepared_target_dataset':
                 required = workspace / 'unavailable-target'
-            elif collection_only and binding.get('argument') == '--bank_cache_path':
-                required = workspace / 'unavailable-historical-bank.pt'
+            elif collection_only and binding.get('argument') in SOURCE_COLLECTION_BANK_ARGUMENTS:
+                required = absent_collection_bank_path(workspace, binding['argument'])
             elif kind in {"prepared_source_dataset", "prepared_target_dataset"}:
                 name = source_name if kind == "prepared_source_dataset" else target_name
                 required = Path(plan["datasets"][name]["prepared_metadata"]).parent

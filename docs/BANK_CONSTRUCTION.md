@@ -129,7 +129,26 @@ directories containing only the two model objects and MVTec data roots.
 preserves the plan, actual command wrapper, denial checks and log. This check
 does not add GPU bank-generation or target-evaluation evidence.
 
-### Preparing target evaluation with the newly collected bank
+### AdaptCLIP source-only preparation
+
+Source-only preparation is also supported for cross-dataset AdaptCLIP recipes.
+For `adaptclip-vitl14openai-mvtec2btad-seed0`, the CPU preparation CLI passed
+with only the model checkpoint/backbone and MVTec dataset roots. Both the VL and
+TL historical-bank paths remain absent; an actual denial hook rejected bank and
+BTAD read self-checks and saw no further attempted blocked reads. Ordinary
+target evaluation rejects this source-only workspace.
+
+```bash
+python -m reproduction prepare-run adaptclip-vitl14openai-mvtec2btad-seed0 ./runs/adapt-cold \
+  --objects ./adapt-model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+[AdaptCLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261012/adapt-cold-preparation-v2/index.json)
+records a prototype overlay run. A clean published-checkout check, a fresh
+VL/TL bank-generation entry point and actual GPU collection remain pending.
+The BayesPFL bank-generation command above does not support AdaptCLIP.
+
+### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
 MVTec-to-BTAD, seed 0. Supply the collection output directory and the exact

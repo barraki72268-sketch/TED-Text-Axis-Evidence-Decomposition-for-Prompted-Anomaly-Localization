@@ -22,6 +22,15 @@ DATA_ROOTS = {
     "mpdd": ["/mnt/data/MPDD", "/mnt/data/pilab-kingjinyoung/ADPretrain/datasets/MPDD"],
     "btad": [ORIGINAL + "/neurips2026/data/BTAD_official"],
 }
+SOURCE_COLLECTION_HOSTS = {'BayesPFL', 'AdaptCLIP'}
+SOURCE_COLLECTION_BANK_ARGUMENTS = {'--bank_cache_path', '--tl_bank_cache_path'}
+
+
+def absent_collection_bank_path(workspace: Path, argument: str) -> Path:
+    if argument not in SOURCE_COLLECTION_BANK_ARGUMENTS:
+        raise ValueError('Unsupported source-collection bank argument')
+    return workspace / ('unavailable-historical-bank.pt' if argument == '--bank_cache_path'
+                        else 'unavailable-historical-tl-bank.pt')
 
 
 def read_json(path: Path):
@@ -84,8 +93,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
         if bank_collection_only or recipe['host'] != 'BayesPFL' or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]:
             raise ValueError('Fresh-bank evaluation preparation requires cross-dataset BayesPFL')
         fresh_bank = fresh_bank.resolve(strict=True)
-    if bank_collection_only and (recipe['host'] != 'BayesPFL' or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]):
-        raise ValueError('Bank-only preparation currently supports cross-dataset BayesPFL recipes')
+    if bank_collection_only and (recipe['host'] not in SOURCE_COLLECTION_HOSTS or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]):
+        raise ValueError('Bank-only preparation currently supports cross-dataset BayesPFL and AdaptCLIP recipes')
     dependency_id = recipe.get("dependency_recipe", recipe_id)
     source_name, target_name = recipe["transfer"].split("2", 1)
     if source_name not in DATA_ROOTS or target_name not in DATA_ROOTS:
@@ -246,8 +255,8 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
             value = destination / "results"
         elif bank_collection_only and kind == 'prepared_target_dataset':
             value = destination / 'unavailable-target'
-        elif bank_collection_only and binding.get('argument') == '--bank_cache_path':
-            value = destination / 'unavailable-historical-bank.pt'
+        elif bank_collection_only and binding.get('argument') in SOURCE_COLLECTION_BANK_ARGUMENTS:
+            value = absent_collection_bank_path(destination, binding['argument'])
         elif kind in {"prepared_source_dataset", "prepared_target_dataset"}:
             name = source_name if kind == "prepared_source_dataset" else target_name
             value = Path(prepared_data[name]["prepared_metadata"]).parent
