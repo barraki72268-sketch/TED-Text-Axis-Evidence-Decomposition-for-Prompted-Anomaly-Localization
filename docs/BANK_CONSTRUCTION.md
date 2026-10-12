@@ -12,11 +12,22 @@ These are byte-identical copies of the captured research source. They depend on 
 | FAPrompt | [official_parallel_test_faprompt.py](../research/bank_construction/official_parallel_test_faprompt.py) | `collect_source_banks` |
 | AdaCLIP | [official_parallel_test_adaclip.py](../research/bank_construction/official_parallel_test_adaclip.py) | `collect_source_patch_banks` |
 | AdaptCLIP | [official_parallel_test_adaptclip.py](../research/bank_construction/official_parallel_test_adaptclip.py) | `collect_source_patch_banks` |
+| AdaptCLIP VL/TL branches | [analyze_adaptclip_vl_score_forms.py](../research/bank_construction/analyze_adaptclip_vl_score_forms.py) | `collect_vl_source_banks` |
 | BayesPFL | [collect_bayespfl_source_banks.py](../research/bank_construction/collect_bayespfl_source_banks.py) | `collect_source_patch_banks` |
 | RawCLIP | [official_parallel_test_rawclip.py](../research/bank_construction/official_parallel_test_rawclip.py) | `collect_source_patch_banks` |
 | ImageBind | [official_parallel_test_rawimagebind.py](../research/bank_construction/official_parallel_test_rawimagebind.py) | `collect_source_patch_banks` |
 
-The [manifest](../research/bank_construction/manifest.json) records each original archive path, file size and SHA-256. Original component licenses are listed in [source notices](../reproduction/SOURCE-NOTICES.md). AdaptCLIP's VL-refine evaluation imports the collector from `official_parallel_test_adaptclip.py`; its readout is not interchangeable with the plain evaluator.
+The [manifest](../research/bank_construction/manifest.json) records each original archive path, file size and SHA-256. Original component licenses are listed in [source notices](../reproduction/SOURCE-NOTICES.md).
+
+For recorded AdaptCLIP VL-refine recipes, the
+[original evaluator](../research/bank_construction/official_parallel_test_adaptclip_vlrefine.py)
+imports the model builder from `official_parallel_test_adaptclip.py`, and imports
+`get_or_collect_vl_banks` from `analyze_adaptclip_vl_score_forms.py`. That cache
+wrapper calls `collect_vl_source_banks`. For `ted_insertion=dual_branch`, the
+original evaluator supplies VL mining/VL features for one bank and TL mining/TL
+features for the other. Use those recorded branch settings and budgets; the
+plain AdaptCLIP collector is a different collection path. These additional
+scripts are unchanged archive bytes and require the full source dependencies.
 
 ## Obtain the complete source
 
@@ -144,8 +155,13 @@ python -m reproduction prepare-run adaptclip-vitl14openai-mvtec2btad-seed0 ./run
 ```
 
 [AdaptCLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261012/adapt-cold-preparation-v2/index.json)
-records a prototype overlay run. A clean published-checkout check, a fresh
-VL/TL bank-generation entry point and actual GPU collection remain pending.
+records a prototype overlay run. The same CPU preparation also passed from a
+clean published checkout at `61de3cbef1732d03ae69f25296ecad3fbf326ed3`, using new
+model-only input roots and a new workspace.
+[Public-checkout evidence](../reproduction/validation/fresh-bank-20261013/adapt-cold-public-v3/index.json)
+binds the actual CLI wrapper, plan, denial checks and rejection of target
+evaluation. A fresh VL/TL bank-generation entry point and actual GPU collection
+remain pending.
 The BayesPFL bank-generation command above does not support AdaptCLIP.
 
 ### BayesPFL target preparation
