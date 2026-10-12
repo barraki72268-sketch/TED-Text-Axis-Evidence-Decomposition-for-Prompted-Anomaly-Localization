@@ -7,6 +7,21 @@ from reproduction.bayes_fresh_evaluation import verify_collection_settings, veri
 
 
 class FreshBankEvaluationGuards(unittest.TestCase):
+    def test_bank_independent_public_checkout_cpu_proof_preserves_scope(self):
+        base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261012/bayes-fresh-evaluation-bankfree-public-v5'
+        read = lambda n: json.loads((base/n).read_bytes())
+        proof, plan = read('proof.json'), read('run.json')
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((base/item['file']).read_bytes()).hexdigest(), item['sha256'])
+        self.assertTrue(proof['actual_cli_executed'] and proof['clean_public_checkout'])
+        self.assertFalse(proof['prototype_overlay'] or proof['historical_inputs_required_for_preparation'])
+        self.assertTrue(proof['historical_bank_read_denial_selfcheck_passed'] and proof['unallocated_gpu_run_rejected'])
+        self.assertEqual(proof['historical_bank_reads_attempted_after_selfcheck'], 0)
+        self.assertFalse(proof['target_evaluation_performed'] or proof['gpu_execution_performed'])
+        self.assertEqual(proof['plan_sha256'], hashlib.sha256((base/'run.json').read_bytes()).hexdigest())
+        self.assertEqual(proof['helper_sha256'], hashlib.sha256((base/'wrapper.py').read_bytes()).hexdigest())
+        self.assertEqual(set(proof['model_only_object_sha256']), {o['sha256'] for o in plan['verified_objects']})
+
     def test_actual_bank_independent_cpu_preparation_binds_proof_and_no_gpu_claim(self):
         base = Path(__file__).resolve().parents[1] / 'reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-bankfree-v4'
         read = lambda n: json.loads((base/n).read_bytes())

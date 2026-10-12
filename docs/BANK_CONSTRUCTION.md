@@ -166,9 +166,12 @@ historical-bank self-check and observed no further attempted historical-bank
 reads during preparation or validation. Both source and target dataset bytes
 were verified, the fresh bank was bound, and GPU execution without an allocation
 was rejected. [Bank-independent preparation evidence](../reproduction/validation/fresh-bank-20261011/bayes-fresh-evaluation-bankfree-v4/index.json)
-preserves that prototype overlay run and exact code bytes. A clean published
-checkout check of this newer preparation mode remains pending, as does actual
-GPU target evaluation. The collection proof supplied here comes from the
+preserves that prototype overlay run and exact code bytes. The same preparation
+subsequently passed from a clean published checkout at
+`c37e03278fef87f6168576b36a3f54f9089d58ca`, with new model-only inputs and a new
+workspace. [Clean public-checkout evidence](../reproduction/validation/fresh-bank-20261012/bayes-fresh-evaluation-bankfree-public-v5/index.json)
+binds the actual CLI wrapper, plan, read-denial self-check and unallocated-run
+rejection. Actual GPU target evaluation remains pending. The collection proof supplied here comes from the
 previous successful GPU construction; collection on the newer source-only
 preparation remains a separate pending check.
 
