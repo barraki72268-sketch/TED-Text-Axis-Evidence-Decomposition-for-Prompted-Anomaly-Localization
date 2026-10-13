@@ -191,6 +191,24 @@ live Slurm GPU membership. Its GPU construction path has **not been executed or
 verified**; the published inspection checks do not establish new-bank tensor or
 metric agreement. No AdaptCLIP bank from this entry point is published yet.
 
+### FAPrompt source-only preparation
+
+For `faprompt-vitb16plus-mvtec2btad-seed1`, CPU source-only preparation passed
+with only the original checkpoint/backbone and MVTec dataset roots. An actual
+read-denial hook rejected historical-bank and BTAD read self-checks and observed
+no further attempted blocked reads. The prepared source cache must remain empty
+before collection; ordinary target evaluation rejects this workspace.
+
+```bash
+python -m reproduction prepare-run faprompt-vitb16plus-mvtec2btad-seed1 ./runs/fap-cold \
+  --objects ./fap-model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+[FAPrompt CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/fap-cold-preparation-v1/index.json)
+records a prototype overlay run. A clean published-checkout preparation check,
+the fresh collection CLI and actual GPU collection remain pending. The existing
+BayesPFL and AdaptCLIP collection entry points do not support FAPrompt.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+

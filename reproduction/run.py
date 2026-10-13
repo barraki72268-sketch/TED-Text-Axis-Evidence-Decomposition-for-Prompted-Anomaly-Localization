@@ -36,6 +36,10 @@ def validate_prepared(root: Path, workspace: Path, require_slurm: bool = False,
         if (workspace / 'unavailable-target').exists() or any(absent_collection_bank_path(workspace, a).exists()
                                                             for a in SOURCE_COLLECTION_BANK_ARGUMENTS):
             raise ValueError('Source-only absent-input paths must remain absent')
+        if recipe['host'] == 'FAPrompt':
+            cache = workspace / 'source/neurips2026/results/bank_cache'
+            if cache.is_symlink() or (cache.exists() and any(cache.iterdir())):
+                raise ValueError('FAPrompt source-only bank cache must remain empty before collection')
     if Path(plan["evaluator"]).resolve() != workspace / "source" / recipe["evaluator"]["path"]:
         raise ValueError("Prepared evaluator path mismatch")
     if Path(plan["cwd"]).resolve() != workspace / "source":

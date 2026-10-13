@@ -47,7 +47,7 @@ def main() -> int:
     runtime.add_argument("--objects", type=Path, action="append", required=True, help="Search roots containing objects/<sha256>; may be repeated")
     runtime.add_argument("--datasets", type=Path, required=True, help="JSON mapping dataset names to images/masks roots")
     runtime.add_argument('--bank-collection-only', action='store_true',
-                         help='BayesPFL/AdaptCLIP source collection preparation: require only model weights and source data; cannot evaluate target')
+                         help='BayesPFL/AdaptCLIP/FAPrompt source collection preparation: require only model weights and source data; cannot evaluate target')
     run = sub.add_parser("run-prepared", help="Verify and execute a prepared full recipe, retaining comparison evidence")
     run.add_argument("workspace", type=Path)
     run.add_argument("--require-slurm", action="store_true", help="Refuse execution outside a Slurm allocation")

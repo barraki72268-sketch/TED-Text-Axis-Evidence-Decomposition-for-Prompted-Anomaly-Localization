@@ -1,0 +1,296 @@
+"""Prepare an isolated Linux research runtime from verified public inputs."""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import sys
+
+from .checkpoint_download import digest_file
+from .datasets import prepare_dataset
+from .execution import verify_execution_recipes
+from .source import unpack_source
+from .recipe_lookup import execution_recipe
+from .backbone_download import required_backbone_assets
+
+ORIGINAL = "/mnt/data/pilab-kingjinyoung/ADPretrain-CLIP"
+DATA_ROOTS = {
+    "mvtec": ["/mnt/data/pilab-kingjinyoung/ijepa/data/mvtec"],
+    "visa": [ORIGINAL + "/neurips2026/data/VisA_pytorch_official/1cls"],
+    "mpdd": ["/mnt/data/MPDD", "/mnt/data/pilab-kingjinyoung/ADPretrain/datasets/MPDD"],
+    "btad": [ORIGINAL + "/neurips2026/data/BTAD_official"],
+}
+SOURCE_COLLECTION_HOSTS = {'BayesPFL', 'AdaptCLIP', 'FAPrompt'}
+SOURCE_COLLECTION_BANK_ARGUMENTS = {'--bank_cache_path', '--tl_bank_cache_path'}
+
+
+def absent_collection_bank_path(workspace: Path, argument: str) -> Path:
+    if argument not in SOURCE_COLLECTION_BANK_ARGUMENTS:
+        raise ValueError('Unsupported source-collection bank argument')
+    return workspace / ('unavailable-historical-bank.pt' if argument == '--bank_cache_path'
+                        else 'unavailable-historical-tl-bank.pt')
+
+
+def read_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def link_runtime_asset(runtime: Path, relative: Path, target: Path) -> dict:
+    """Bind a computed source-relative path without changing evaluator code."""
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("Runtime asset must stay within the prepared source")
+    path = runtime / relative
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() or path.is_symlink():
+        if not path.is_symlink() or path.resolve() != target.resolve():
+            raise ValueError(f"Conflicting source-relative asset: {relative}")
+    else:
+        path.symlink_to(target.resolve())
+    return {"path": str(path), "target": str(target.resolve()), "sha256": digest_file(target)}
+
+
+def relocate_computed_dataset_roots(text: str, roots: dict[str, Path]) -> str:
+    # These archived constants construct paths from ROOT, so replacing absolute
+    # string literals alone cannot relocate them. Bind only the two known
+    # dataset path expressions; preserve all evaluation settings and code.
+    expressions = {
+        "visa": ('OFFICIAL_VISA_ROOT', 'ROOT / "neurips2026" / "data" / "VisA_pytorch_official" / "1cls"'),
+        "btad": ('BTAD_ROOT', 'ROOT / "neurips2026" / "data" / "BTAD_official"'),
+    }
+    for name, (constant, expression) in expressions.items():
+        if name in roots:
+            pattern = r"(?m)^" + re.escape(constant + " = " + expression) + r"$"
+            replacement = constant + " = Path(" + json.dumps(str(roots[name])) + ")"
+            text, count = re.subn(pattern, lambda _: replacement, text)
+            if count != 1:
+                raise ValueError(f"Archived computed dataset root differs: {constant}")
+    return text
+
+
+def preserve_checkpoint_basename(destination: Path, target: Path, archived_path: str) -> Path:
+    """Keep filename-derived evaluator settings while retaining verified bytes."""
+    name = Path(archived_path).name
+    if not name or name in {'.', '..'} or '\\' in name or ':' in name:
+        raise ValueError('Invalid archived checkpoint filename')
+    link_runtime_asset(destination, Path('checkpoints') / name, target)
+    return destination / 'checkpoints' / name
+
+
+def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: list[Path], dataset_config: Path,
+                *, bank_collection_only: bool = False, fresh_bank: Path | None = None) -> dict:
+    if sys.platform != "linux":
+        raise RuntimeError("Research runtime preparation currently requires Linux; artifact verification works on Windows too")
+    import torch  # CPU-only bank metadata relocation; no model/GPU initialization.
+
+    destination = destination.absolute()
+    if destination.exists():
+        raise FileExistsError(f"Run workspace must be new: {destination}")
+    verify_execution_recipes(root)
+    recipe = execution_recipe(root, recipe_id)
+    if fresh_bank is not None:
+        if bank_collection_only or recipe['host'] != 'BayesPFL' or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]:
+            raise ValueError('Fresh-bank evaluation preparation requires cross-dataset BayesPFL')
+        fresh_bank = fresh_bank.resolve(strict=True)
+    if bank_collection_only and (recipe['host'] not in SOURCE_COLLECTION_HOSTS or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]):
+        raise ValueError('Bank-only preparation currently supports cross-dataset BayesPFL, AdaptCLIP and FAPrompt recipes')
+    dependency_id = recipe.get("dependency_recipe", recipe_id)
+    source_name, target_name = recipe["transfer"].split("2", 1)
+    if source_name not in DATA_ROOTS or target_name not in DATA_ROOTS:
+        raise ValueError("This dataset protocol is not yet published; MVTec AD 2 remains required")
+    datasets = read_json(dataset_config)
+    dataset_names = {source_name} if bank_collection_only else {source_name, target_name}
+    for name in dataset_names:
+        if name not in datasets:
+            raise ValueError(f"Missing dataset roots for {name}")
+    kind = recipe.get("bank_kind") or ("raw" if recipe["host"] in {"RawCLIP", "RawImageBind"} else "host")
+    bank_catalog = read_json(root / f"{kind}-source-banks.json")
+    bank_binding = (dict(source_bank_assets=[]) if bank_collection_only or fresh_bank is not None or recipe.get('source_bank_policy') == 'fresh_source_only'
+                    else next(r for r in bank_catalog["bindings"] if r["recipe"] == recipe_id))
+    backbone_catalog = read_json(root / "backbones.json")
+    backbone_binding = next(r for r in backbone_catalog["bindings"] if r["recipe"] == dependency_id)
+    backbone = next(a for a in backbone_catalog["artifacts"] if a["sha256"] == backbone_binding["sha256"])
+    required_backbones = required_backbone_assets(backbone_catalog, dependency_id)
+    checkpoint_catalog = read_json(root / "host-checkpoints.json")
+    checkpoint_binding = next((r for r in checkpoint_catalog["bindings"] if r["recipe"] == dependency_id), None)
+    all_assets = {a["sha256"]: a for catalog in (bank_catalog, backbone_catalog, checkpoint_catalog) for a in catalog["artifacts"]}
+    needed = {a["sha256"] for a in required_backbones} | {a["sha256"] for a in bank_binding["source_bank_assets"]}
+    if checkpoint_binding:
+        needed.update(a["sha256"] for a in checkpoint_binding["checkpoint_assets"])
+    objects, evidence = {}, []
+    for sha in sorted(needed):
+        asset = all_assets[sha]
+        path = next((p / "objects" / sha for p in object_roots if (p / "objects" / sha).is_file()), None)
+        if path is None:
+            raise FileNotFoundError(f"Required artifact objects/{sha}")
+        if path.stat().st_size != asset["bytes"] or digest_file(path) != sha:
+            raise ValueError(f"Artifact hash/size mismatch: {sha}")
+        objects[sha] = path.resolve()
+        evidence.append({"sha256": sha, "bytes": asset["bytes"], "path": str(path.resolve())})
+    destination.mkdir(parents=True, exist_ok=False)
+    runtime = destination / "source"
+    unpack_source(root / "source.zip", root / "source-manifest.json", runtime)
+    mapping = {
+        "/mnt/data/pilab-kingjinyoung/ted-reproduce-20261008/snapshot": str(runtime),
+        ORIGINAL: str(runtime),
+        "/mnt/data/pilab-kingjinyoung/ADPretrain": str(runtime / "ADPretrain"),
+    }
+    prepared_data = {}
+    for name in sorted(dataset_names):
+        inputs = datasets[name]
+        # Keep source basenames used in historical bank filename construction.
+        prepared = destination / "data" / name / Path(DATA_ROOTS[name][0]).name
+        report = prepare_dataset(root / "datasets" / name, Path(inputs["images"]), Path(inputs["masks"]) if inputs.get("masks") else None, prepared)
+        if report["file_errors"]:
+            raise ValueError(f"Dataset verification failed: {name}: {report['error_examples']}")
+        prepared_data[name] = report
+        for original in DATA_ROOTS[name]:
+            mapping[original] = str(prepared)
+    clip_cache = destination / "clip-cache"
+    clip_cache.mkdir()
+    backbone_path = clip_cache / backbone["filename"]
+    backbone_path.symlink_to(objects[backbone["sha256"]])
+    for original in backbone["archived_paths"]:
+        mapping[original] = str(backbone_path)
+    asset_links = []
+    if recipe["host"] == "AA-CLIP":
+        bootstrap = next(a for a in required_backbones if a["id"] == "openai_vit_l14_336")
+        asset_links.append(link_runtime_asset(runtime, Path("neurips2026/AA-CLIP/model/ViT-L-14-336px.pt"), objects[bootstrap["sha256"]]))
+    # URLs are retained; vendored downloaders find the verified cached filename.
+    for original in ("~/.cache/clip", "/home/jinyoung/.cache/clip", "/mnt/data/hf-cache/anomalyclip",
+                     "/mnt/data/pilab-kingjinyoung/ADPretrain/FAPrompt/.cache/clip",
+                     "/mnt/data/pilab-kingjinyoung/.cache/clip"):
+        mapping[original] = str(clip_cache)
+    if "vit_h14" in backbone["id"]:
+        hub = destination / "hf-cache" / "hub" / "models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K"
+        revision = "1c2b8495b28150b8a4922ee1c8edee224c284c0c"
+        snapshot = hub / "snapshots" / revision
+        snapshot.mkdir(parents=True)
+        (snapshot / backbone["filename"]).symlink_to(backbone_path)
+        (hub / "refs").mkdir()
+        (hub / "refs/main").write_text(revision, encoding="utf-8")
+        mapping["/mnt/data/hf-cache/hub/models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K/blobs/" + backbone["sha256"]] = str(backbone_path)
+    if checkpoint_binding:
+        checkpoint_dir = destination / "checkpoints"
+        checkpoint_dir.mkdir()
+        for item in checkpoint_binding["checkpoint_assets"]:
+            path = checkpoint_dir / item["checkpoint_filename"]
+            if path.exists() or path.is_symlink():
+                if not path.is_symlink() or path.resolve() != objects[item["sha256"]]:
+                    raise ValueError(f"Conflicting checkpoint filename: {path.name}")
+            else:
+                path.symlink_to(objects[item["sha256"]])
+            mapping[item["archived_path"]] = str(checkpoint_dir if item["role"] == "ckpt_dir" else path)
+            for original in all_assets[item["sha256"]]["archived_paths"]:
+                mapping[original] = str(path)
+                if original.startswith(ORIGINAL + "/"):
+                    asset_links.append(link_runtime_asset(runtime, Path(original[len(ORIGINAL) + 1:]), objects[item["sha256"]]))
+    replacements = sorted(mapping.items(), key=lambda pair: -len(pair[0]))
+    # One regex pass prevents replacement output from being matched again.
+    pattern = re.compile("|".join(re.escape(old) for old, _ in replacements))
+    def relocate(value):
+        if isinstance(value, str):
+            return pattern.sub(lambda match: mapping[match.group()], value)
+        if isinstance(value, dict):
+            return {key: relocate(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [relocate(item) for item in value]
+        if isinstance(value, tuple):
+            return tuple(relocate(item) for item in value)
+        return value
+    changes = []
+    for path in runtime.rglob("*"):
+        if path.is_file() and path.suffix in {".py", ".json", ".yaml", ".yml", ".sh"}:
+            before = path.read_text(encoding="utf-8")
+            after = relocate(before)
+            if path.relative_to(runtime).as_posix() == "neurips2026/scripts/common_failure_metrics.py":
+                after = relocate_computed_dataset_roots(after, {
+                    name: Path(item["prepared_metadata"]).parent for name, item in prepared_data.items()
+                })
+            if (path.relative_to(runtime).as_posix() == "neurips2026/scripts/collect_bayespfl_source_banks.py"
+                    and "visa" in prepared_data):
+                # Keep the official-root equality check; bind its computed
+                # constant to the same hash-verified dataset as the arguments.
+                after = relocate_computed_dataset_roots(after, {
+                    "visa": Path(prepared_data["visa"]["prepared_metadata"]).parent
+                })
+            if before != after:
+                prior = digest_file(path)
+                path.write_text(after, encoding="utf-8")
+                changes.append({"path": str(path.relative_to(runtime)), "before_sha256": prior, "after_sha256": digest_file(path)})
+    bank_dir = runtime / "neurips2026/results/bank_cache"
+    bank_dir.mkdir(parents=True, exist_ok=True)
+    bank_paths, bank_changes = {}, []
+    if fresh_bank is not None:
+        binding = next(b for b in recipe['path_bindings'].values() if b.get('argument') == '--bank_cache_path')
+        output = bank_dir / 'fresh-source-bank.pt'
+        output.symlink_to(fresh_bank)
+        bank_paths[binding['sha256']] = output
+        bank_changes.append(dict(original_sha256=binding['sha256'], derived_sha256=digest_file(fresh_bank),
+                                 path=str(output), transformation='Separately collected source bank; no historical bank input'))
+    for item in bank_binding["source_bank_assets"]:
+        original = objects[item["sha256"]]
+        bank = torch.load(original, map_location="cpu", weights_only=True)
+        transformed = relocate(bank)
+        name = Path(item["archived_path"]).name
+        if name.startswith("faprompt_sourcebank_") and bank.get("source_root"):
+            new_root = Path(transformed["source_root"])
+            tag = hashlib.sha1(str(new_root.resolve()).encode()).hexdigest()[:10]
+            name = re.sub(r"^(faprompt_sourcebank_)[^_]+_[0-9a-f]{10}_", lambda m: m.group(1) + new_root.name + "_" + tag + "_", name)
+        output = bank_dir / name
+        if output.exists():
+            raise FileExistsError(f"Bank name collision: {name}")
+        torch.save(transformed, output)
+        bank_paths[item["sha256"]] = output
+        bank_changes.append({"original_sha256": item["sha256"], "derived_sha256": digest_file(output), "path": str(output), "transformation": "path strings only; tensor objects preserved"})
+    argv = []
+    for arg in recipe["argv"]:
+        if arg not in recipe["path_bindings"]:
+            argv.append(arg)
+            continue
+        binding = recipe["path_bindings"][arg]
+        kind = binding["kind"]
+        if kind == "new_output_directory":
+            value = destination / "results"
+        elif bank_collection_only and kind == 'prepared_target_dataset':
+            value = destination / 'unavailable-target'
+        elif bank_collection_only and binding.get('argument') in SOURCE_COLLECTION_BANK_ARGUMENTS:
+            value = absent_collection_bank_path(destination, binding['argument'])
+        elif kind in {"prepared_source_dataset", "prepared_target_dataset"}:
+            name = source_name if kind == "prepared_source_dataset" else target_name
+            value = Path(prepared_data[name]["prepared_metadata"]).parent
+        elif kind == "source_file":
+            value = runtime / binding["path"]
+        elif binding["sha256"] in bank_paths:
+            value = bank_paths[binding["sha256"]]
+        elif binding["sha256"] == backbone["sha256"]:
+            value = backbone_path
+        else:
+            value = objects[binding["sha256"]]
+        if recipe['host'] == 'BayesPFL' and binding.get('argument') == '--checkpoint_path':
+            # The preserved evaluator derives stage from epoch_post_*_<stage>.
+            # A SHA-named object silently changes that stage to its fallback.
+            value = preserve_checkpoint_basename(destination, value, binding['archived_path'])
+        argv.append(str(value))
+    environment = {"PYTHONNOUSERSITE": "1", "PYTHONDONTWRITEBYTECODE": "1", "HF_HOME": str(destination / "hf-cache"),
+                   "HF_HUB_OFFLINE": "1", "FAPROMPT_CACHE_DIR": str(clip_cache), "ANOMALYCLIP_CACHE_DIR": str(clip_cache),
+                   "OMP_NUM_THREADS": "4", "MKL_NUM_THREADS": "4", "OPENBLAS_NUM_THREADS": "4",
+                   "NO_ALBUMENTATIONS_UPDATE": "1"}
+    report = {"recipe": recipe_id, "cwd": str(runtime), "evaluator": str(runtime / recipe["evaluator"]["path"]),
+              "argv": argv, "environment": environment, "verified_objects": evidence, "source_path_changes": changes,
+              "source_asset_links": asset_links,
+              "bank_path_changes": bank_changes, "datasets": prepared_data, "fresh_gpu_benchmark": False,
+              "status": "prepared_requires_fresh_execution"}
+    if bank_collection_only:
+        report.update(preparation_scope='source_bank_collection_only',
+                      historical_bank_inputs_required=False, target_dataset_inputs_required=False,
+                      status='prepared_for_source_collection_not_target_evaluation')
+    if fresh_bank is not None:
+        report.update(preparation_scope='fresh_bank_target_evaluation', historical_bank_inputs_required=False,
+                      target_dataset_inputs_required=True)
+    if recipe.get('source_bank_policy'):
+        report['source_bank_policy'] = recipe['source_bank_policy']
+        report['resource_relocation'] = recipe['resource_relocation']
+    (destination / "run.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    return report
