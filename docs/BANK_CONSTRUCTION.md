@@ -268,6 +268,12 @@ collection CLI, fresh source bank construction, source calibration and target
 evaluation remain pending. Existing BayesPFL, AdaptCLIP and FAPrompt collection
 entry points do not support AA-CLIP.
 
+The same CPU preparation also passed from a clean published checkout at
+`8bf701e1bd03c0bc0a2dd7e948ecb617a5fc4250`, using new model-only input roots
+and a new source workspace. [Public-checkout preparation evidence](../reproduction/validation/fresh-bank-20261013/aaclip-cold-public-v2/index.json)
+binds the actual command wrapper, source/model plan, denial checks and rejection
+of target execution. It adds no bank construction or GPU evaluation evidence.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
