@@ -213,9 +213,31 @@ binds the command wrapper, plan, actual denial checks and original collector
 argument mapping for 20 execution-catalog recipes. The direct collection path
 must retain the original model loader's computed `effective_dpam_layer`, seed
 and class/total budgets. This static mapping does not verify bank construction
-or cover all paper ablations. The fresh collection CLI and actual GPU collection
-remain pending. The existing
+or cover all paper ablations. Actual GPU collection remains pending. The existing
 BayesPFL and AdaptCLIP collection entry points do not support FAPrompt.
+
+The experimental FAPrompt entry point supports CPU inspection:
+
+```bash
+python -m reproduction.fap_bank_build ./runs/fap-cold --inspect
+```
+
+[Prototype inspection evidence](../reproduction/validation/fresh-bank-20261013/fap-bank-build-inspection-v1/index.json)
+records an actual CPU CLI invocation on the prepared MVTec source workspace,
+read-denial self-checks for historical banks, target data and source bank caches,
+and rejection of collection without an allocation before creating a destination.
+Inspection executes the original parser and preset configuration assignment;
+it initializes no model and constructs no bank. The code and evidence use a
+prototype overlay. Parser and direct-call checks cover 20 recorded recipes,
+not all paper ablations.
+
+The collection implementation calls the original `collect_source_banks`
+directly, retaining `setup_seed`, model-build arguments, the computed
+`effective_dpam_layer`, collection budgets and the complete original bank
+dictionary and protocol metadata. It requires a new destination and live Slurm
+GPU membership. Its GPU construction path has **not been executed or verified**;
+no FAPrompt bank from this entry point is published yet. Source calibration and
+cross-dataset target evaluation remain separate pending work.
 
 ### BayesPFL target preparation
 
