@@ -357,6 +357,27 @@ the verified source-only workspace read-only.
 binds the wrapper, entry-point hash, plan and denial checks. GPU construction
 remains unverified.
 
+### RawImageBind source-only preparation
+
+CPU preparation passed for `rawimagebind_mvtec2btad` using only the verified
+ImageBind Huge backbone object and MVTec source data. The existing 4.8 GB model
+object was reused read-only through a link; no model bytes were copied. The
+historical bank and target paths remain absent. Actual historical-bank and BTAD
+read self-checks were denied, with no subsequent attempted blocked reads.
+Ordinary target execution rejects this source-only workspace.
+
+```bash
+python -m reproduction prepare-run rawimagebind_mvtec2btad ./runs/imagebind-cold \
+  --objects ./imagebind-model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+[RawImageBind CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/imagebind-cold-preparation-v1/index.json)
+records an actual prototype-overlay CLI invocation and model/source verification.
+The static model/collector call audit covers five recorded recipes, not every
+paper experiment. The direct collection CLI, fresh source banks, source
+calibration and target evaluation remain pending. Existing collection entry
+points do not support RawImageBind; this preparation check constructs no bank.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
