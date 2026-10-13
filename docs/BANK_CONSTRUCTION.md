@@ -263,9 +263,9 @@ python -m reproduction prepare-run aaclip-vitbplus-mvtec2btad-legacy-seed0 ./run
 [AA-CLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/aaclip-cold-preparation-v1/index.json)
 records an actual prototype-overlay CLI invocation, model/source hash checks,
 denial checks and preserved recorded settings. The static collector audit covers
-48 execution-catalog recipes; it does not cover every paper ablation. The direct
-collection CLI, fresh source bank construction, source calibration and target
-evaluation remain pending. Existing BayesPFL, AdaptCLIP and FAPrompt collection
+48 execution-catalog recipes; it does not cover every paper ablation. Fresh
+source bank construction, source calibration and target evaluation remain
+pending. Existing BayesPFL, AdaptCLIP and FAPrompt collection
 entry points do not support AA-CLIP.
 
 The same CPU preparation also passed from a clean published checkout at
@@ -273,6 +273,28 @@ The same CPU preparation also passed from a clean published checkout at
 and a new source workspace. [Public-checkout preparation evidence](../reproduction/validation/fresh-bank-20261013/aaclip-cold-public-v2/index.json)
 binds the actual command wrapper, source/model plan, denial checks and rejection
 of target execution. It adds no bank construction or GPU evaluation evidence.
+
+The experimental AA-CLIP entry point supports CPU inspection:
+
+```bash
+python -m reproduction.aaclip_bank_build ./runs/aa-cold --inspect
+```
+
+[Prototype inspection evidence](../reproduction/validation/fresh-bank-20261013/aaclip-bank-build-inspection-v1/index.json)
+records an actual CPU CLI invocation on the verified source-only workspace and
+rejection of unallocated collection before destination creation. Historical
+bank, target and source-cache read self-checks were denied with no subsequent
+attempted blocked reads. Inspection parses recorded settings and reports the
+original initialization span and direct collector arguments; it initializes no
+model and creates no bank.
+
+Collection retains the complete original model setup: bootstrap weight,
+backbone creation, adapted model, image/text adapter loading, evaluation mode,
+parameter freezing and seed. It calls the original `collect_source_banks`
+directly and saves its complete dictionary and protocol metadata. A new
+destination and live Slurm GPU membership are required. Its GPU path has
+**not been executed or verified**. No AA-CLIP bank from this entry point is
+published yet. Source calibration and target evaluation remain pending.
 
 ### BayesPFL target preparation
 
