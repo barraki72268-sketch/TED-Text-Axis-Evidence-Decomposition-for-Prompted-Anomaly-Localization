@@ -13,6 +13,21 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 class OriginalAAConstruction(unittest.TestCase):
+    def test_clean_public_inspection_preserves_scope(self):
+        folder=ROOT/'reproduction/validation/fresh-bank-20261013/aaclip-bank-public-inspection-v2'
+        read=lambda n:json.loads((folder/n).read_bytes())
+        proof=read('proof.json')
+        for e in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((folder/e['file']).read_bytes()).hexdigest(),e['sha256'])
+        self.assertTrue(proof['actual_CPU_CLI_inspection'] and proof['clean_public_checkout'])
+        self.assertFalse(proof['prototype_overlay'] or proof['bank_collection_performed'] or proof['GPU_submitted'])
+        self.assertEqual(proof['plan_sha256'],hashlib.sha256((folder/'run.json').read_bytes()).hexdigest())
+        self.assertEqual(proof['helper_sha256'],hashlib.sha256((folder/'wrapper.py').read_bytes()).hexdigest())
+        self.assertEqual(proof['denial_selfchecks'],3)
+        self.assertEqual(proof['blocked_reads_after_selfcheck'],[])
+        self.assertTrue(proof['unallocated_collection_rejected'])
+        self.assertFalse(proof['destination_created'] or proof['target_evaluation_performed'])
+
     def test_actual_cpu_inspection_evidence_is_bound_and_scoped(self):
         folder=ROOT/'reproduction/validation/fresh-bank-20261013/aaclip-bank-build-inspection-v1'
         read=lambda n:json.loads((folder/n).read_bytes())

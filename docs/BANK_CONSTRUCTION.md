@@ -296,6 +296,13 @@ destination and live Slurm GPU membership are required. Its GPU path has
 **not been executed or verified**. No AA-CLIP bank from this entry point is
 published yet. Source calibration and target evaluation remain pending.
 
+The same inspection and unallocated collection rejection passed from a clean
+published checkout at `2cafd232894d394cae44aef76a3c9659289bf64c`, reusing the
+verified source-only workspace read-only.
+[Public-checkout inspection evidence](../reproduction/validation/fresh-bank-20261013/aaclip-bank-public-inspection-v2/index.json)
+binds the actual wrapper, entry-point hash, plan and denial checks. It adds CPU
+inspection evidence; GPU construction remains unverified.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
