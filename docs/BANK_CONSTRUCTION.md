@@ -175,8 +175,14 @@ original model call and direct VL/TL collection arguments. It initializes no
 model and constructs no bank. [Prototype inspection evidence](../reproduction/validation/fresh-bank-20261013/adapt-bank-build-inspection-v1/index.json)
 records an actual CPU invocation, checks of all 46 recorded AdaptCLIP recipe
 arguments, and rejection of collection without a GPU allocation before creating
-an output directory. This prototype used a code overlay; a clean published
-checkout inspection remains pending.
+an output directory. That initial prototype used a code overlay. Inspection
+also passed from a clean published checkout at
+`4cc102cfab7be89980621ad8776771490ab0ef0c`.
+[Public-checkout inspection and cache-format evidence](../reproduction/validation/fresh-bank-20261013/adapt-bank-public-inspection-v3/index.json)
+records the actual CPU CLI and unallocated collection rejection. Separately,
+the original save/load/getter functions accepted two synthetic VL/TL tensor
+fixtures with exact tensor and metadata round trips and no source mining.
+This compatibility test is not fresh bank reconstruction or image inference.
 
 The collection implementation calls the original `collect_vl_source_banks`
 directly for both recorded branches, retaining original seed, model-build

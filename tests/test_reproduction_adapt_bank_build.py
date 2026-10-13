@@ -12,6 +12,21 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class AdaptOriginalCollectionCalls(unittest.TestCase):
+    def test_clean_public_inspection_and_synthetic_protocol_are_scoped(self):
+        folder = ROOT/'reproduction/validation/fresh-bank-20261013/adapt-bank-public-inspection-v3'
+        read = lambda n: json.loads((folder/n).read_bytes())
+        proof = read('proof.json')
+        for e in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((folder/e['file']).read_bytes()).hexdigest(), e['sha256'])
+        self.assertTrue(proof['clean_public_checkout'] and proof['actual_CLI_inspection'])
+        self.assertTrue(proof['unallocated_collection_rejected'] and proof['synthetic_test_is_not_source_bank_reconstruction'])
+        self.assertFalse(proof['bank_collection_performed'] or proof['GPU_submitted'] or proof['target_evaluation_performed'])
+        self.assertEqual(proof['helper_sha256'],hashlib.sha256((folder/'wrapper.py').read_bytes()).hexdigest())
+        self.assertEqual(proof['plan_sha256'],hashlib.sha256((folder/'run.json').read_bytes()).hexdigest())
+        self.assertEqual({x['branch'] for x in proof['synthetic_cache_consumer_results']},{'vl','tl'})
+        self.assertTrue(all(x['exact_tensors'] and x['metadata_equal'] and x['original_cache_getter_reused_without_mining']
+                            for x in proof['synthetic_cache_consumer_results']))
+
     def test_actual_cpu_inspection_evidence_claims_no_collection(self):
         folder = ROOT/'reproduction/validation/fresh-bank-20261013/adapt-bank-build-inspection-v1'
         read = lambda n: json.loads((folder/n).read_bytes())
