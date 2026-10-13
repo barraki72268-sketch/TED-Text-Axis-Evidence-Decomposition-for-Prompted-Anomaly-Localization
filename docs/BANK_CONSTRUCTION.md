@@ -323,6 +323,12 @@ The direct collection CLI, fresh source banks, source calibration and target
 evaluation remain pending. Existing collection entry points do not support
 RawCLIP; this preparation check constructs no bank.
 
+The same CPU preparation passed from a clean published checkout at
+`b646505746857c16484eb95cc0c60a22ffc8e49e`, with a new backbone-only input root
+and new source workspace. [Public-checkout evidence](../reproduction/validation/fresh-bank-20261013/rawclip-cold-public-v2/index.json)
+binds the actual wrapper, plan, source/model verification, denial checks and
+rejection of target execution. It adds no bank mining or GPU evaluation evidence.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
