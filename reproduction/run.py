@@ -36,7 +36,7 @@ def validate_prepared(root: Path, workspace: Path, require_slurm: bool = False,
         if (workspace / 'unavailable-target').exists() or any(absent_collection_bank_path(workspace, a).exists()
                                                             for a in SOURCE_COLLECTION_BANK_ARGUMENTS):
             raise ValueError('Source-only absent-input paths must remain absent')
-        if recipe['host'] in {'FAPrompt', 'AA-CLIP'}:
+        if recipe['host'] in {'FAPrompt', 'AA-CLIP', 'RawCLIP'}:
             cache = workspace / 'source/neurips2026/results/bank_cache'
             if cache.is_symlink() or (cache.exists() and any(cache.iterdir())):
                 raise ValueError(f"{recipe['host']} source-only bank cache must remain empty before collection")

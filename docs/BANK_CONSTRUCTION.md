@@ -303,6 +303,26 @@ verified source-only workspace read-only.
 binds the actual wrapper, entry-point hash, plan and denial checks. It adds CPU
 inspection evidence; GPU construction remains unverified.
 
+### RawCLIP source-only preparation
+
+CPU source-only preparation passed for `rawclip_vitbplus_mvtec2btad` using the
+original B/16+ backbone object and MVTec source data. The historical bank path
+and target dataset path remain absent. An actual read-denial hook rejected
+historical-bank and BTAD self-checks and observed no later blocked reads;
+ordinary target execution rejects this workspace.
+
+```bash
+python -m reproduction prepare-run rawclip_vitbplus_mvtec2btad ./runs/raw-cold \
+  --objects ./raw-model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+[RawCLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/rawclip-cold-preparation-v1/index.json)
+records an actual prototype-overlay CLI invocation and preserved settings. The
+static collector audit covers 20 recorded recipes, not every paper ablation.
+The direct collection CLI, fresh source banks, source calibration and target
+evaluation remain pending. Existing collection entry points do not support
+RawCLIP; this preparation check constructs no bank.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+

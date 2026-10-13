@@ -22,7 +22,7 @@ DATA_ROOTS = {
     "mpdd": ["/mnt/data/MPDD", "/mnt/data/pilab-kingjinyoung/ADPretrain/datasets/MPDD"],
     "btad": [ORIGINAL + "/neurips2026/data/BTAD_official"],
 }
-SOURCE_COLLECTION_HOSTS = {'BayesPFL', 'AdaptCLIP', 'FAPrompt', 'AA-CLIP'}
+SOURCE_COLLECTION_HOSTS = {'BayesPFL', 'AdaptCLIP', 'FAPrompt', 'AA-CLIP', 'RawCLIP'}
 SOURCE_COLLECTION_BANK_ARGUMENTS = {'--bank_cache_path', '--tl_bank_cache_path'}
 
 
@@ -94,7 +94,7 @@ def prepare_run(root: Path, recipe_id: str, destination: Path, object_roots: lis
             raise ValueError('Fresh-bank evaluation preparation requires cross-dataset BayesPFL')
         fresh_bank = fresh_bank.resolve(strict=True)
     if bank_collection_only and (recipe['host'] not in SOURCE_COLLECTION_HOSTS or recipe['transfer'].split('2')[0] == recipe['transfer'].split('2')[1]):
-        raise ValueError('Bank-only preparation currently supports cross-dataset BayesPFL, AdaptCLIP, FAPrompt and AA-CLIP recipes')
+        raise ValueError('Bank-only preparation currently supports cross-dataset BayesPFL, AdaptCLIP, FAPrompt, AA-CLIP and RawCLIP recipes')
     dependency_id = recipe.get("dependency_recipe", recipe_id)
     source_name, target_name = recipe["transfer"].split("2", 1)
     if source_name not in DATA_ROOTS or target_name not in DATA_ROOTS:
