@@ -350,6 +350,13 @@ are required. Its GPU path has **not been executed or verified**. No RawCLIP
 bank from this entry point is published yet; source calibration and target
 evaluation remain pending.
 
+The same CPU inspection and unallocated collection rejection passed from a
+clean published checkout at `c7fb4bb61ba0f38c1067180962038c021cbeba40`, reusing
+the verified source-only workspace read-only.
+[Public-checkout inspection evidence](../reproduction/validation/fresh-bank-20261013/rawclip-bank-public-inspection-v2/index.json)
+binds the wrapper, entry-point hash, plan and denial checks. GPU construction
+remains unverified.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
