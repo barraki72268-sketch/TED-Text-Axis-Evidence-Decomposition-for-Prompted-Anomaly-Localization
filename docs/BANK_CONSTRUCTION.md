@@ -319,15 +319,36 @@ python -m reproduction prepare-run rawclip_vitbplus_mvtec2btad ./runs/raw-cold \
 [RawCLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/rawclip-cold-preparation-v1/index.json)
 records an actual prototype-overlay CLI invocation and preserved settings. The
 static collector audit covers 20 recorded recipes, not every paper ablation.
-The direct collection CLI, fresh source banks, source calibration and target
-evaluation remain pending. Existing collection entry points do not support
-RawCLIP; this preparation check constructs no bank.
+Fresh source banks, source calibration and target evaluation remain pending.
+This preparation check constructs no bank.
 
 The same CPU preparation passed from a clean published checkout at
 `b646505746857c16484eb95cc0c60a22ffc8e49e`, with a new backbone-only input root
 and new source workspace. [Public-checkout evidence](../reproduction/validation/fresh-bank-20261013/rawclip-cold-public-v2/index.json)
 binds the actual wrapper, plan, source/model verification, denial checks and
 rejection of target execution. It adds no bank mining or GPU evaluation evidence.
+
+The experimental RawCLIP entry point supports CPU inspection:
+
+```bash
+python -m reproduction.rawclip_bank_build ./runs/raw-cold --inspect
+```
+
+[Prototype inspection evidence](../reproduction/validation/fresh-bank-20261013/rawclip-bank-build-inspection-v1/index.json)
+records an actual CPU CLI invocation and rejection of unallocated collection
+before creating a destination. Historical-bank, target and source-cache read
+self-checks were denied with no subsequent attempted blocked reads. Inspection
+parses recorded settings and reports the original model/layer/transform setup,
+direct collector arguments and cache metadata assignment; it initializes no
+model and constructs no bank.
+
+Collection calls the original `collect_source_patch_banks` directly, retaining
+image-size and layer resolution, prompts, source exclusion, mining budgets and
+the original metadata/save format. It adds no seed or numerical setting absent
+from the recorded arguments. A new destination and live Slurm GPU membership
+are required. Its GPU path has **not been executed or verified**. No RawCLIP
+bank from this entry point is published yet; source calibration and target
+evaluation remain pending.
 
 ### BayesPFL target preparation
 
