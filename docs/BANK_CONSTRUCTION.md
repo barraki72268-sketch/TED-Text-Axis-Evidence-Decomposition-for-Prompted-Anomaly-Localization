@@ -378,6 +378,12 @@ paper experiment. The direct collection CLI, fresh source banks, source
 calibration and target evaluation remain pending. Existing collection entry
 points do not support RawImageBind; this preparation check constructs no bank.
 
+The same CPU preparation passed from a clean published checkout at
+`e877c3afaae38cf949789cbd3c854f47e4c51c77`, with new model-only input roots and
+a new source workspace. [Public-checkout evidence](../reproduction/validation/fresh-bank-20261013/imagebind-cold-public-v2/index.json)
+binds the actual wrapper, source/model plan, denial checks and rejection of
+target execution. It adds no model initialization, bank mining or GPU evaluation.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+

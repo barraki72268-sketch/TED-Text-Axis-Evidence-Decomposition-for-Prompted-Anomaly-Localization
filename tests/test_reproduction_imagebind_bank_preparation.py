@@ -9,6 +9,23 @@ from reproduction.run import validate_prepared
 
 
 class ImageBindSourceOnlyPreparation(unittest.TestCase):
+    def test_clean_public_source_only_preparation_is_bound_and_scoped(self):
+        root=Path(__file__).resolve().parents[1]
+        folder=root/'reproduction/validation/fresh-bank-20261013/imagebind-cold-public-v2'
+        read=lambda n:json.loads((folder/n).read_bytes())
+        proof,plan=read('proof.json'),read('run.json')
+        for e in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((folder/e['file']).read_bytes()).hexdigest(),e['sha256'])
+        self.assertTrue(proof['actual_CLI_executed'] and proof['clean_public_checkout'])
+        self.assertFalse(proof['prototype_overlay'] or proof['bank_collection_performed'] or proof['GPU_submitted'])
+        self.assertEqual(proof['plan_sha256'],hashlib.sha256((folder/'run.json').read_bytes()).hexdigest())
+        self.assertEqual(proof['helper_sha256'],hashlib.sha256((folder/'wrapper.py').read_bytes()).hexdigest())
+        self.assertEqual(proof['denial_selfchecks'],3)
+        self.assertEqual(proof['blocked_reads_after_selfcheck'],0)
+        self.assertEqual(set(plan['datasets']),{'mvtec'})
+        self.assertEqual(len(proof['model_objects']),1)
+        self.assertTrue(proof['ordinary_target_evaluation_rejected'])
+
     def test_actual_source_only_preparation_preserves_model_and_scope(self):
         root=Path(__file__).resolve().parents[1]
         folder=root/'reproduction/validation/fresh-bank-20261013/imagebind-cold-preparation-v1'
