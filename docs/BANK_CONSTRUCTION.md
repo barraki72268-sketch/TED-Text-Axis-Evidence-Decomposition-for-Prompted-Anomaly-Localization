@@ -246,6 +246,28 @@ GPU membership. Its GPU construction path has **not been executed or verified**;
 no FAPrompt bank from this entry point is published yet. Source calibration and
 cross-dataset target evaluation remain separate pending work.
 
+### AA-CLIP source-only preparation
+
+CPU preparation passed for `aaclip-vitbplus-mvtec2btad-legacy-seed0` with MVTec
+source data and four verified model objects: the requested backbone, original
+L/14-336 bootstrap weight, image adapter and text adapter. Historical bank and
+BTAD read self-checks were denied; no later blocked reads were attempted.
+Source cache contents and ordinary target execution are rejected for this
+source-only workspace.
+
+```bash
+python -m reproduction prepare-run aaclip-vitbplus-mvtec2btad-legacy-seed0 ./runs/aa-cold \
+  --objects ./aa-model-inputs --datasets ./mvtec-roots.json --bank-collection-only
+```
+
+[AA-CLIP CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/aaclip-cold-preparation-v1/index.json)
+records an actual prototype-overlay CLI invocation, model/source hash checks,
+denial checks and preserved recorded settings. The static collector audit covers
+48 execution-catalog recipes; it does not cover every paper ablation. The direct
+collection CLI, fresh source bank construction, source calibration and target
+evaluation remain pending. Existing BayesPFL, AdaptCLIP and FAPrompt collection
+entry points do not support AA-CLIP.
+
 ### BayesPFL target preparation
 
 The following preparation CLI has passed a CPU check for BayesPFL B/16+
