@@ -1,0 +1,323 @@
+{
+  "scope": "Static original caller/signature and explicit recorded argument audit only; no source bank generation.",
+  "source_sha256": "40ec6c2ee1582b971c2c87f49ea0f887d319dd5be69bf10023566436c77a4609",
+  "collector": "collect_source_banks",
+  "parameters": [
+    "batch_size",
+    "dap_token_mode",
+    "device",
+    "dpam_layer",
+    "features_list",
+    "image_size",
+    "max_defect_per_class",
+    "max_defect_total",
+    "max_fp_per_class",
+    "max_fp_total",
+    "model",
+    "model_name",
+    "normal_topk_frac",
+    "num_workers",
+    "prompt_learner",
+    "prompt_load_mode",
+    "seed",
+    "sigma",
+    "source_fp_mode",
+    "source_root"
+  ],
+  "original_model_build_call": "build_model(device=device, checkpoint_path=cfg['checkpoint_path'], model_name=args.model_name, prompt_load_mode=args.prompt_load_mode, dpam_layer=args.dpam_layer, depth=args.depth, n_ctx=args.n_ctx, t_n_ctx=args.t_n_ctx)",
+  "direct_collection_keyword_expressions": {
+    "model": "model",
+    "prompt_learner": "prompt_learner",
+    "source_root": "cfg['source_root']",
+    "model_name": "args.model_name",
+    "prompt_load_mode": "args.prompt_load_mode",
+    "image_size": "args.image_size",
+    "batch_size": "args.batch_size",
+    "num_workers": "args.num_workers",
+    "device": "device",
+    "features_list": "args.features_list",
+    "sigma": "args.sigma",
+    "dap_token_mode": "args.dap_token_mode",
+    "dpam_layer": "prompt_load_info['effective_dpam_layer']",
+    "max_fp_per_class": "args.max_fp_per_class",
+    "max_defect_per_class": "args.max_defect_per_class",
+    "max_fp_total": "args.max_fp_total",
+    "max_defect_total": "args.max_defect_total",
+    "normal_topk_frac": "args.normal_topk_frac",
+    "seed": "args.seed",
+    "source_fp_mode": "args.source_fp_mode"
+  },
+  "excluded_getter_cache_keywords": [
+    "cache_dir",
+    "checkpoint_path",
+    "force_rebuild_bank",
+    "preset"
+  ],
+  "recipes": [
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2btad-seed1",
+      "transfer": "mvtec2btad",
+      "settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2btad-seed2",
+      "transfer": "mvtec2btad",
+      "settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2mpdd-seed1",
+      "transfer": "mvtec2mpdd",
+      "settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2mpdd-seed2",
+      "transfer": "mvtec2mpdd",
+      "settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2visa-seed1",
+      "transfer": "mvtec2visa",
+      "settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-mvtec2visa-seed2",
+      "transfer": "mvtec2visa",
+      "settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-visa2mvtec-seed1",
+      "transfer": "visa2mvtec",
+      "settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitb16plus-visa2mvtec-seed2",
+      "transfer": "visa2mvtec",
+      "settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vith14-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vith14-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vith14-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vith14-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14_336-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14_336-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14_336-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14_336-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14openai-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14openai-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14openai-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    },
+    {
+      "recipe": "faprompt-vitl14openai-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_fp_per_class": "512",
+        "--max_defect_per_class": "512",
+        "--max_fp_total": "4096",
+        "--max_defect_total": "4096",
+        "--normal_topk_frac": "0.01"
+      }
+    }
+  ],
+  "recipe_count": 20,
+  "effective_dpam_layer": "Original build_model prompt_load_info effective_dpam_layer; must preserve this computed value.",
+  "original_seed": "setup_seed(args.seed)",
+  "fresh_collection_verified": false,
+  "GPU_execution_performed": false
+}

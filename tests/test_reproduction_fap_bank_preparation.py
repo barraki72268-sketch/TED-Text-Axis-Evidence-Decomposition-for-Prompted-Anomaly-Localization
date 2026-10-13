@@ -9,6 +9,25 @@ from reproduction.run import validate_prepared
 
 
 class FAPSourceOnlyPreparation(unittest.TestCase):
+    def test_clean_public_preparation_proof_preserves_scope_and_arguments(self):
+        root=Path(__file__).resolve().parents[1]
+        folder=root/'reproduction/validation/fresh-bank-20261013/fap-cold-public-v2'
+        read=lambda n:json.loads((folder/n).read_bytes())
+        proof,plan=read('proof.json'),read('run.json')
+        for e in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((folder/e['file']).read_bytes()).hexdigest(),e['sha256'])
+        self.assertTrue(proof['clean_public_checkout'] and proof['actual_CLI_executed'])
+        self.assertEqual(proof['public_commit'],'238ff4aefcf67e2be2068e0b5ab1045fb9290694')
+        self.assertEqual(proof['plan_sha256'],hashlib.sha256((folder/'run.json').read_bytes()).hexdigest())
+        self.assertFalse(proof['bank_collection_performed'] or proof['GPU_submitted'] or proof['target_evaluation_performed'])
+        self.assertEqual(proof['denial_selfchecks'],3)
+        self.assertEqual(proof['blocked_reads_after_selfcheck'],0)
+        self.assertEqual(set(plan['datasets']),{'mvtec'})
+        self.assertEqual(plan['bank_path_changes'],[])
+        audit=read('static-call-audit.json')
+        self.assertEqual(audit['recipe_count'],20)
+        self.assertFalse(audit['fresh_collection_verified'] or audit['GPU_execution_performed'])
+
     def test_actual_cpu_cli_evidence_is_not_bank_construction(self):
         root=Path(__file__).resolve().parents[1]
         folder=root/'reproduction/validation/fresh-bank-20261013/fap-cold-preparation-v1'

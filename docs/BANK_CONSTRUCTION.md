@@ -205,8 +205,16 @@ python -m reproduction prepare-run faprompt-vitb16plus-mvtec2btad-seed1 ./runs/f
 ```
 
 [FAPrompt CPU preparation evidence](../reproduction/validation/fresh-bank-20261013/fap-cold-preparation-v1/index.json)
-records a prototype overlay run. A clean published-checkout preparation check,
-the fresh collection CLI and actual GPU collection remain pending. The existing
+records a prototype overlay run. The same CPU preparation also passed from a
+clean published checkout at `238ff4aefcf67e2be2068e0b5ab1045fb9290694`, with new
+model-only input roots and a new workspace.
+[Public-checkout preparation and static call evidence](../reproduction/validation/fresh-bank-20261013/fap-cold-public-v2/index.json)
+binds the command wrapper, plan, actual denial checks and original collector
+argument mapping for 20 execution-catalog recipes. The direct collection path
+must retain the original model loader's computed `effective_dpam_layer`, seed
+and class/total budgets. This static mapping does not verify bank construction
+or cover all paper ablations. The fresh collection CLI and actual GPU collection
+remain pending. The existing
 BayesPFL and AdaptCLIP collection entry points do not support FAPrompt.
 
 ### BayesPFL target preparation
