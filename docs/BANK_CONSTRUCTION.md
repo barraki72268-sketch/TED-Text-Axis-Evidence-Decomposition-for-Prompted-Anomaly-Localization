@@ -160,9 +160,30 @@ clean published checkout at `61de3cbef1732d03ae69f25296ecad3fbf326ed3`, using ne
 model-only input roots and a new workspace.
 [Public-checkout evidence](../reproduction/validation/fresh-bank-20261013/adapt-cold-public-v3/index.json)
 binds the actual CLI wrapper, plan, denial checks and rejection of target
-evaluation. A fresh VL/TL bank-generation entry point and actual GPU collection
-remain pending.
+evaluation. Fresh VL/TL collection and verification of the GPU construction
+path remain pending.
 The BayesPFL bank-generation command above does not support AdaptCLIP.
+
+The experimental AdaptCLIP entry point can inspect this source-only workspace:
+
+```bash
+python -m reproduction.adapt_bank_build ./runs/adapt-cold --inspect
+```
+
+Inspection executes only the original argument-parser prefix and reports the
+original model call and direct VL/TL collection arguments. It initializes no
+model and constructs no bank. [Prototype inspection evidence](../reproduction/validation/fresh-bank-20261013/adapt-bank-build-inspection-v1/index.json)
+records an actual CPU invocation, checks of all 46 recorded AdaptCLIP recipe
+arguments, and rejection of collection without a GPU allocation before creating
+an output directory. This prototype used a code overlay; a clean published
+checkout inspection remains pending.
+
+The collection implementation calls the original `collect_vl_source_banks`
+directly for both recorded branches, retaining original seed, model-build
+arguments, metadata and bank-save function. It requires a new destination and
+live Slurm GPU membership. Its GPU construction path has **not been executed or
+verified**; the published inspection checks do not establish new-bank tensor or
+metric agreement. No AdaptCLIP bank from this entry point is published yet.
 
 ### BayesPFL target preparation
 

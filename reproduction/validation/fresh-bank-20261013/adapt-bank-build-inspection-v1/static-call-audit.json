@@ -1,0 +1,1246 @@
+{
+  "scope": "Static original-AST call-signature and recorded-argv audit only; not parser execution or bank construction.",
+  "evaluator_sha256": "c06ade64ed14339dce1fcfdfdb168bd0370ab23c6928134274001c1fb9cee762",
+  "collector_sha256": "bc5068d475ba060cf5aef47f90d6fe26132cf69fd43e0e8ae1beec43777b101b",
+  "original_model_build_call": "build_model(args.device, args.checkpoint_path, args.image_size, args.n_ctx, args.vl_reduction, args.pretrained_model, checkpoint_load_mode=args.checkpoint_load_mode)",
+  "collector_parameters": [
+    "bank_feature_source",
+    "bank_mining_source",
+    "device",
+    "dpam_layer",
+    "features_list",
+    "fusion_type",
+    "hard_frac",
+    "image_size",
+    "learned_text_features",
+    "max_bank_points",
+    "max_defect_per_class",
+    "max_defect_per_image",
+    "max_fp_per_image",
+    "max_good_per_class",
+    "model",
+    "sigma",
+    "source_dataset",
+    "source_root",
+    "textual_learner",
+    "visual_learner"
+  ],
+  "direct_collector_calls": [
+    {
+      "original_getter_call": "get_or_collect_vl_banks(model=model, textual_learner=textual_learner, visual_learner=visual_learner, learned_text_features=learned_text_features, source_root=args.source_root, source_dataset=args.source_dataset, image_size=args.image_size, features_list=args.features_list, dpam_layer=dpam_layer, sigma=args.sigma, fusion_type=args.fusion_type, device=args.device, hard_frac=args.hard_frac, max_good_per_class=args.max_good_per_class, max_defect_per_class=args.max_defect_per_class, max_bank_points=args.max_bank_points, max_fp_per_image=args.max_fp_per_image, max_defect_per_image=args.max_defect_per_image, checkpoint_path=args.checkpoint_path, bank_cache_path=args.bank_cache_path, bank_mining_source=vl_bank_mining_source, bank_feature_source='vl')",
+      "direct_function": "collect_vl_source_banks",
+      "direct_keyword_expressions": {
+        "model": "model",
+        "textual_learner": "textual_learner",
+        "visual_learner": "visual_learner",
+        "learned_text_features": "learned_text_features",
+        "source_root": "args.source_root",
+        "source_dataset": "args.source_dataset",
+        "image_size": "args.image_size",
+        "features_list": "args.features_list",
+        "dpam_layer": "dpam_layer",
+        "sigma": "args.sigma",
+        "fusion_type": "args.fusion_type",
+        "device": "args.device",
+        "hard_frac": "args.hard_frac",
+        "max_good_per_class": "args.max_good_per_class",
+        "max_defect_per_class": "args.max_defect_per_class",
+        "max_bank_points": "args.max_bank_points",
+        "max_fp_per_image": "args.max_fp_per_image",
+        "max_defect_per_image": "args.max_defect_per_image",
+        "bank_mining_source": "vl_bank_mining_source",
+        "bank_feature_source": "'vl'"
+      },
+      "excluded_cache_keywords": [
+        "bank_cache_path",
+        "checkpoint_path"
+      ]
+    },
+    {
+      "original_getter_call": "get_or_collect_vl_banks(model=model, textual_learner=textual_learner, visual_learner=visual_learner, learned_text_features=learned_text_features, source_root=args.source_root, source_dataset=args.source_dataset, image_size=args.image_size, features_list=args.features_list, dpam_layer=dpam_layer, sigma=args.sigma, fusion_type=args.fusion_type, device=args.device, hard_frac=args.hard_frac, max_good_per_class=args.max_good_per_class, max_defect_per_class=args.max_defect_per_class, max_bank_points=args.max_bank_points, max_fp_per_image=args.max_fp_per_image, max_defect_per_image=args.max_defect_per_image, checkpoint_path=args.checkpoint_path, bank_cache_path=tl_cache_path, bank_mining_source='tl', bank_feature_source='tl')",
+      "direct_function": "collect_vl_source_banks",
+      "direct_keyword_expressions": {
+        "model": "model",
+        "textual_learner": "textual_learner",
+        "visual_learner": "visual_learner",
+        "learned_text_features": "learned_text_features",
+        "source_root": "args.source_root",
+        "source_dataset": "args.source_dataset",
+        "image_size": "args.image_size",
+        "features_list": "args.features_list",
+        "dpam_layer": "dpam_layer",
+        "sigma": "args.sigma",
+        "fusion_type": "args.fusion_type",
+        "device": "args.device",
+        "hard_frac": "args.hard_frac",
+        "max_good_per_class": "args.max_good_per_class",
+        "max_defect_per_class": "args.max_defect_per_class",
+        "max_bank_points": "args.max_bank_points",
+        "max_fp_per_image": "args.max_fp_per_image",
+        "max_defect_per_image": "args.max_defect_per_image",
+        "bank_mining_source": "'tl'",
+        "bank_feature_source": "'tl'"
+      },
+      "excluded_cache_keywords": [
+        "bank_cache_path",
+        "checkpoint_path"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "3fa296a44737a05880a6a9502206d0b4ba648239f1879ed97a56ef38cdba7fd0",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2btad-seed1",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "e59e0ac533a466c19cafcbbbca77474a1d63cfea02da28bcd6e1cf737742856b",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2btad-seed2",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "308325f2305ef29a006a511fd1c148d62b136355a8e792eb7e6acac89149c979",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "a52fd607779d50b69bbc721b270ac75444c4b5450d7285edabee3e205a6559ab",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2mpdd-seed1",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "732d41a0a5c2b3825e635fb621c68fc3d0b9309f95f7bd54c65f7e4ecde69384",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2mpdd-seed2",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "8531da9460037a38188cfefb0b15e527b251bcf38a137280154aab6e86a7d066",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "d0d85454772f04150648ba4df0301b4ce2c16bc2b4b63d576b1276b09e0ad37b",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2visa-seed1",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "e55064bf9d4494c7316e714d85f200c547cff2cb9f3caa8417c97be5a7d1a72d",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-mvtec2visa-seed2",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "8877cf1b43d0fc95d323ab4d2ab38494b890f03c6ca7b4a6554a8e6bec6b707a",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "bfef30b6bed2ada6324d277a7a19cd8a8df648dc6c9b7e8f128d6848244059af",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-visa2mvtec-seed1",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "a8055295b00dc378fca88d337c369f3fa5c841f0b110542a1e3ff55f22d3e1bf",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitb16plus-visa2mvtec-seed2",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "99171cd11fd75744f25fba684886da4978493d384647dd6f68f0d6f6eb96e8aa",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "debb3c0363d8161ff4397f7247f3ae44de575c38d2b25a5e7e30e0dfeeb90fcc",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2btad-seed1",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "053923cfb66af4b63d11c6559d6fefc96d2446e342fc4c41540982aa9ade1072",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2btad-seed2",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "691eb6a0aa1e4294a4b3a9367753dd5eaabb5bb67402d085f8dd2e95d44c978e",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "ca0e97e947504a5270d35f9f5c258afbac1018624acffd0d1171439c9659d5b3",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2mpdd-seed1",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "2daacb5df74ef2dfd8e329a2a4b878b605910956c030b9262600ae3b0f6529be",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2mpdd-seed2",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "4c9c8eeb337bb3616ac95eaceacf02fd0a7bd4a8afe9295555c128cd8cfeb023",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "bc4e7cac318705db4bce42acc25efd6a29f19f1d13c9c8dd3c341a3498b140fa",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2visa-seed1",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "bb7346cfb8749dcc9b9249a74d46cc1c814559fa9a5a4873cf283832e5bb0dd8",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-mvtec2visa-seed2",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "3f3f5531463e3ea467e125f01988c95b39d0a3fc18651e8b61bdb9c38591ff05",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "9213c626c3559c49f2c55643acb743abd730900ce54a3a0dfccde84cd2b58006",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-visa2mvtec-seed1",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "8288fc5b721db01f64f148e209bcccb65faeb00f19f7a8a507dcbd95587324cd",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vith14-visa2mvtec-seed2",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "082f0a0d08181512f940dd1180204c102ecb2fcd45ff012c40f738f343aa3792",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "compatible"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "23e969285fc5d8084556f0d3b0138e91008ceed31a4cbbf7a2f83d03d6000497",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed1",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "58a166ecd52046cdea612f20581813afdbbc7bea3b8a39dfd67d5219ae1db69b",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2btad-seed2",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "f10e0e69149a9172e9349f0cf7f0cacc44acf3f866111880aa1d502e0afe16b4",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "34d9fd5f83969a16e91396d172c3d27ec4255eb55e8bd151f0315e5dc7406752",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2mpdd-seed1",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "32bdb384af50d9922cd739617b7e031a4ed1db7e45b031b443911370fdb84ed2",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2mpdd-seed2",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "c4acb9d85ad68c52ac10834c577863bfa632c016dc8b14c9e70140ef06b0f05a",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "7d69ffcb35420504c742d8cfee92642705e7986fc62f7e0bd29242bb96e665cf",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2visa-seed1",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "34900552845a21e915c4106b6895ee46b3b6ac91431d392d2da7d8cfa1e0aa1b",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-mvtec2visa-seed2",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "6dce2f31dd3d8a7d1bb91117fc1b8389303ec78e623246bd92ff6f9589e1755d",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "f9b9592fd3089557733b3d1ff206f62dff83e2fd8c248c93697cda7eb3ac9887",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-visa2mvtec-seed1",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "05634d2277af3455da52bd98e4a2623dc5f7109335f18a4c32181fbd861744d7",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl14openai-visa2mvtec-seed2",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "3335091e4b530be3285fce7abc3d6e1f70ab5ee6dc299c261d40fc130e6810ee",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed0",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "80dd1aea58d4a427dc92444f99377aa6e4681d0e115251349cf6cfc0784bbcfd",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed1",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "51d30ba125ed4d566e1219c4bd6f0583a3f89a2093bb282157b1720df1ee1fe2",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2btad-seed2",
+      "transfer": "mvtec2btad",
+      "argv_sha256": "1ac7a27c32ac2e35878175f925721640b2cb8a1da2f604e8db89f07b6a479c10",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2mpdd-seed0",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "a1ebae989f7dd388ea01818b4f501c29fe14b09b59fb92ea5ac1e1493bafb658",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2mpdd-seed1",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "74b2cd0492c17507cfb488c5175e2cdbab832a167f634a09a362cf9bb22f6abf",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2mpdd-seed2",
+      "transfer": "mvtec2mpdd",
+      "argv_sha256": "e4b5a73df84d20151bc87159f7a0800f9c85b2bf425e5ed8dc3e6f02ffa4abca",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-mvtec2visa-seed0",
+      "transfer": "mvtec2visa",
+      "argv_sha256": "b5c12b4835fcc96bab72a3d300d33f48aba61312c590fddd21e7f75efdeb9021",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-visa2mvtec-seed0",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "95abaf9aa7b6d7463481eb874c8789f12948206576c23d3526471cc250559b74",
+      "recorded_explicit_settings": {
+        "--seed": "0",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-visa2mvtec-seed1",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "95b029aa2177f878cbaf506d3972de5fdfc1b41a78352cb5b3d4357c7d03a02b",
+      "recorded_explicit_settings": {
+        "--seed": "1",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    },
+    {
+      "recipe": "adaptclip-vitl336-visa2mvtec-seed2",
+      "transfer": "visa2mvtec",
+      "argv_sha256": "ce4a11c6d3ce9111b8bd959eaa4aaa2801cc243b51d912be12a5ea127ab4e243",
+      "recorded_explicit_settings": {
+        "--seed": "2",
+        "--image_size": "518",
+        "--max_good_per_class": "2",
+        "--max_defect_per_class": "4",
+        "--max_bank_points": "512",
+        "--max_fp_per_image": "64",
+        "--max_defect_per_image": "64",
+        "--checkpoint_load_mode": "strict"
+      },
+      "collection_branches": [
+        {
+          "mining": "vl",
+          "features": "vl"
+        },
+        {
+          "mining": "tl",
+          "features": "tl"
+        }
+      ]
+    }
+  ],
+  "recipe_count": 46,
+  "GPU_execution_performed": false,
+  "fresh_collection_verified": false,
+  "next": "Execute original parser on verified source-only preparation; initialize original model under actual allocation; call original collector directly twice with these same settings; deny historical/target/network reads and preserve separate fresh VL/TL artifacts."
+}
