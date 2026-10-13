@@ -231,6 +231,13 @@ it initializes no model and constructs no bank. The code and evidence use a
 prototype overlay. Parser and direct-call checks cover 20 recorded recipes,
 not all paper ablations.
 
+Inspection and the unallocated collection rejection also passed from a clean
+published checkout at `13316b8317661735504b504f759fa7fd27a23b67`, reusing the
+verified source-only workspace read-only.
+[Public-checkout inspection evidence](../reproduction/validation/fresh-bank-20261013/fap-bank-public-inspection-v2/index.json)
+binds the actual CLI wrapper, plan, entry-point hash, three denial self-checks
+and zero subsequent attempted blocked reads. This adds CPU inspection evidence.
+
 The collection implementation calls the original `collect_source_banks`
 directly, retaining `setup_seed`, model-build arguments, the computed
 `effective_dpam_layer`, collection budgets and the complete original bank

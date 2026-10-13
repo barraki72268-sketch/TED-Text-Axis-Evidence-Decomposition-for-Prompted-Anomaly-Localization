@@ -13,6 +13,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class OriginalFapConstruction(unittest.TestCase):
+    def test_clean_public_inspection_and_scope(self):
+        folder=ROOT/'reproduction/validation/fresh-bank-20261013/fap-bank-public-inspection-v2'
+        read=lambda n:json.loads((folder/n).read_bytes())
+        proof=read('proof.json')
+        for item in read('index.json')['evidence']:
+            self.assertEqual(hashlib.sha256((folder/item['file']).read_bytes()).hexdigest(),item['sha256'])
+        self.assertTrue(proof['clean_public_checkout'] and proof['actual_CPU_CLI_inspection'])
+        self.assertFalse(proof['prototype_overlay'] or proof['bank_collection_performed'] or proof['GPU_submitted'])
+        self.assertEqual(proof['public_commit'],'13316b8317661735504b504f759fa7fd27a23b67')
+        self.assertEqual(proof['plan_sha256'],hashlib.sha256((folder/'run.json').read_bytes()).hexdigest())
+        self.assertEqual(proof['helper_sha256'],hashlib.sha256((folder/'wrapper.py').read_bytes()).hexdigest())
+        self.assertTrue(proof['unallocated_collection_rejected'])
+        self.assertFalse(proof['destination_created'] or proof['target_evaluation_performed'])
+
     def test_actual_inspection_evidence_is_scoped_and_bound(self):
         folder=ROOT/'reproduction/validation/fresh-bank-20261013/fap-bank-build-inspection-v1'
         read=lambda n:json.loads((folder/n).read_bytes())
