@@ -11,4 +11,6 @@ GitHub Actions publishes only `project-page/` to GitHub Pages. No installation o
 
 The Pages workflow runs on changes to this directory or the workflow itself, and can also be run manually. In repository Settings > Pages, the source is GitHub Actions.
 
-Public page: https://barraki72268-sketch.github.io/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/
+Public page: https://barraki72268-sketch.github.io/TED/
+
+The public project page is now maintained at https://github.com/barraki72268-sketch/TED. The original long Pages address redirects to the short public address. The original page source remains here as a fallback.
