@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TED: Text-Axis Evidence Decomposition for Prompted Anomaly Localization</title>
+  <meta name="description" content="TED compares source defect and hard false positive evidence along a vision-language model's text axis to improve local anomaly scores while keeping the host fixed.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="TED: Text-Axis Evidence Decomposition">
+  <meta property="og:description" content="Source evidence for prompted anomaly localization. Frozen host. No target training.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://barraki72268-sketch.github.io/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/">
+  <meta property="og:image" content="https://barraki72268-sketch.github.io/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/assets/overview.webp">
+  <meta name="citation_title" content="TED: Text-Axis Evidence Decomposition for Prompted Anomaly Localization">
+  <meta name="citation_author" content="Kim, JinYoung">
+  <meta name="citation_author" content="Kim, Geonho">
+  <meta name="citation_author" content="Park, GiJeong">
+  <meta name="citation_author" content="Lee, Geonu">
+  <meta name="citation_author" content="Yoo, YoungJoon">
+  <meta name="citation_publication_date" content="2026/09/30">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2609.39033">
+  <link rel="canonical" href="https://barraki72268-sketch.github.io/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="navigation" aria-label="Page sections">
+    <div class="nav-inner">
+      <a class="wordmark" href="#top" aria-label="TED project home">TED</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero container" id="top">
+      <h1><span class="ted-name">TED:</span> Text-Axis Evidence Decomposition<br class="wide-break"> for Prompted Anomaly Localization</h1>
+      <p class="authors"><span>JinYoung Kim<sup>1</sup></span><span>Geonho Kim<sup>1</sup></span><span>GiJeong Park<sup>1</sup></span><span>Geonu Lee<sup>2</sup></span><span>YoungJoon Yoo<sup>1*</sup></span></p>
+      <div class="affiliations"><p><sup>1</sup> Department of Artificial Intelligence, Chung-Ang University, Seoul, Korea</p><p><sup>2</sup> SNUAILAB Co., Ltd., Seoul, Korea</p></div>
+      <p class="correspondence">* Corresponding author</p>
+      <div class="resources" aria-label="Research resources">
+        <a class="resource" href="https://arxiv.org/pdf/2609.39033" target="_blank" rel="noopener"><span aria-hidden="true">▤</span> Paper</a>
+        <a class="resource" href="https://arxiv.org/abs/2609.39033" target="_blank" rel="noopener">arXiv</a>
+        <a class="resource" href="https://github.com/barraki72268-sketch/TED-Text-Axis-Evidence-Decomposition-for-Prompted-Anomaly-Localization" target="_blank" rel="noopener">Code</a>
+      </div>
+      <p class="tagline">A high anomaly response can come from a defect<br class="desktop-only"> or a visually complex normal region.</p>
+      <figure class="overview-figure">
+        <button class="image-button" data-zoom="assets/overview.webp" data-caption="TED overview. Original paper architecture diagram.">
+          <img src="assets/overview.webp" alt="TED architecture: fixed host patch and text features, source defect and false positive banks, direct T-TED scoring, and a C-TED residual around the host score." fetchpriority="high" width="1600" height="410">
+          <span class="zoom-hint">View full size</span>
+        </button>
+        <figcaption>TED compares source defect and hard normal evidence along the host’s text axis. T-TED uses the evidence contrast directly; C-TED adds a learned, bounded correction to the host score.</figcaption>
+      </figure>
+    </header>
+
+    <section class="section section-shaded" id="abstract" aria-labelledby="abstract-heading">
+      <div class="text-container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <p>Prompted vision-language models can assign high anomaly scores to both true defects and visually complex normal regions. Stronger defect sensitivity therefore does not always produce reliable local rankings. We introduce <strong>Text-Axis Evidence Decomposition (TED)</strong>, which compares each patch response with source defect patches and source normal patches that the host mistakes for anomalies. The comparison uses the host’s normal-to-anomaly text direction while keeping its backbone and prompts fixed.</p>
+        <p>T-TED uses the source evidence contrast directly without optimizing additional scoring parameters. C-TED learns a bounded residual from labeled source pairs and freezes it before target inference. Transfer experiments on frozen backbones and adapted hosts show improvements in many pixel localization settings, with gains that depend on the host and the extent of hard normal competition.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="problem" aria-labelledby="problem-heading">
+      <h2 id="problem-heading">Defects and hard normal regions compete</h2>
+      <p class="section-intro">Normal edges, reflections, textures, and object parts can receive scores close to those of real defects. We call these confusing normal patches <strong>hard false positives</strong>.</p>
+      <figure class="paper-figure">
+        <button class="image-button" data-zoom="assets/competition.webp" data-caption="Hard false positive competition and text-axis response. Original TED paper diagnostic."><img src="assets/competition.webp" loading="lazy" width="1600" height="358" alt="Original bar charts compare defect separation from ordinary normal patches and hard false positives, and compare parallel and orthogonal text-axis responses."><span class="zoom-hint">View full size</span></button>
+        <figcaption>Adapted hosts separate defects from ordinary normal patches more easily than from hard false positives. The text-axis response remains useful, motivating evidence comparison within that response.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section section-shaded" id="method" aria-labelledby="method-heading">
+      <div class="container">
+        <h2 id="method-heading">Compare evidence on the same text axis</h2>
+        <p class="section-intro">Source masks identify defect patches, while high host scores identify confusing source normal patches. TED stores their visual features in two banks, then projects both banks and each query onto the current query’s text direction.</p>
+        <div class="method-columns">
+          <article>
+            <h3>T-TED: direct evidence scoring</h3>
+            <p>Compare the query’s axis coefficient with the source defect and hard normal coefficients. Average the evidence contrast across selected layers to obtain the local score.</p>
+            <p class="equation" aria-label="r equals q defect minus lambda false positive times q false positive">r = q<sub>def</sub> − λ<sub>fp</sub> q<sub>fp</sub></p>
+            <p class="method-note">No additional scoring parameter optimization. Source labels are still required to construct the banks.</p>
+          </article>
+          <article>
+            <h3>C-TED: source residual learning</h3>
+            <p>Retain the adapted host score and use the evidence margin to learn a bounded residual from source defect and hard normal pairs.</p>
+            <p class="equation" aria-label="s C equals s host plus gamma tanh of a m hat plus b">s<sub>C</sub> = s<sub>host</sub> + γ tanh(a m̂ + b)</p>
+            <p class="method-note">The host stays fixed during calibration. Residual parameters are frozen before target inference.</p>
+          </article>
+        </div>
+        <p class="shared-note">Both modes use labeled source evidence. Neither performs target-domain training.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="analysis" aria-labelledby="analysis-heading">
+      <h2 id="analysis-heading">Retain useful responses, reduce ambiguity</h2>
+      <p class="section-intro">A strong response alone does not reveal whether it comes from a defect or a hard normal patch. The source evidence margin reorders those responses while retaining separation from ordinary normal regions.</p>
+      <figure class="paper-figure">
+        <button class="image-button" data-zoom="assets/distributions.webp" data-caption="One diagnostic case: on-axis response, orthogonal residual, and source-supported margin. Original TED paper distributions."><img src="assets/distributions.webp" loading="lazy" width="1600" height="258" alt="Orange defect, blue hard false positive, and green ordinary normal score distributions under three scoring methods. The source margin improves both comparisons over the original on-axis score."><span class="zoom-hint">View full size</span></button>
+        <figcaption>In this case, the source-supported margin improves defect versus hard normal AUC from 0.302 to 0.725 and defect versus ordinary normal AUC from 0.938 to 0.978. The orthogonal residual has the higher hard normal AUC (0.810), but weaker ordinary-normal separation (0.889). These are case diagnostics, not dataset averages.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section section-shaded" id="results" aria-labelledby="results-heading">
+      <div class="container">
+        <h2 id="results-heading">Transfer results</h2>
+        <p class="section-intro">Compare the baseline and TED with the same host checkpoint and processing settings. The source banks and correction are fixed before evaluating target datasets.</p>
+        <figure class="paper-figure">
+          <button class="image-button" data-zoom="assets/transfer-summary.webp" data-caption="Adapted-host transfer summary. Upper panels of the original TED results figure."><img src="assets/transfer-summary.webp" loading="lazy" width="1600" height="335" alt="Original TED transfer summary with host-wise improvement rates, mean changes in pixel metrics, target-wise changes, and metric consistency."><span class="zoom-hint">View full size</span></button>
+          <figcaption>Original adapted-host summary. Improvements are more consistent for pixel localization than image detection. Some host and target combinations show mixed or negative changes; full results are reported in the paper.</figcaption>
+        </figure>
+        <div class="result-example">
+          <h3>An adapted-host example</h3>
+          <p>AA-CLIP · ViT-B/16+ · MVTec AD</p>
+          <div class="table-wrap"><table><caption class="sr-only">Selected original AA-CLIP results, mean plus or minus standard deviation</caption><thead><tr><th scope="col">Pixel metric</th><th scope="col">Host</th><th scope="col">C-TED</th></tr></thead><tbody><tr><th scope="row">AUROC</th><td>39.27 ± 0.00</td><td>69.22 ± 0.35</td></tr><tr><th scope="row">PRO</th><td>11.86 ± 0.00</td><td>38.88 ± 0.82</td></tr><tr><th scope="row">AP</th><td>2.97 ± 0.00</td><td>10.39 ± 0.17</td></tr></tbody></table></div>
+          <p class="table-source">Selected rows from the paper’s complete AA-CLIP results. Values are percentages and retain the reported standard deviations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="qualitative" aria-labelledby="qualitative-heading">
+      <h2 id="qualitative-heading">Qualitative localization</h2>
+      <p class="section-intro">Original FAPrompt and C-TED comparisons. Ground-truth defects are outlined in red, and each Host/C-TED pair uses a shared color scale.</p>
+      <div class="example-tabs" role="tablist" aria-label="Qualitative examples">
+        <button role="tab" id="example-tab-1" aria-controls="example-panel" aria-selected="true" data-example="1">Example 1</button><button role="tab" id="example-tab-2" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="2">Example 2</button><button role="tab" id="example-tab-3" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="3">Example 3</button><button role="tab" id="example-tab-4" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="4">Example 4</button><button role="tab" id="example-tab-5" aria-controls="example-panel" aria-selected="false" tabindex="-1" data-example="5">Example 5</button>
+      </div>
+      <div class="example-panel" id="example-panel" role="tabpanel" aria-labelledby="example-tab-1" tabindex="0">
+        <div class="example-headings"><span>Input + ground truth</span><span>Host</span><span>C-TED</span></div>
+        <button class="image-button" id="example-zoom" data-zoom="assets/qualitative-1.webp" data-caption="Qualitative example 1. Original TED paper, first row of the qualitative comparison."><img id="example-image" src="assets/qualitative-1.webp" loading="lazy" width="1600" height="507" alt="Example 1: original input with ground truth, FAPrompt host anomaly map, and C-TED anomaly map."><span class="zoom-hint">View full size</span></button>
+      </div>
+      <div class="example-navigation"><button id="previous-example" type="button">Previous</button><p id="example-status" aria-live="polite">Example 1 of 5</p><button id="next-example" type="button">Next</button></div>
+      <p class="gallery-source">Each example is a contiguous row from the original paper. Image content and color scales are preserved.</p>
+    </section>
+
+    <section class="section section-shaded" id="controls" aria-labelledby="controls-heading">
+      <div class="container">
+        <h2 id="controls-heading">Source labels matter</h2>
+        <p class="section-intro">Swapping or shuffling source labels reduces the gains under the same residual capacity and calibration budget. Correct defect and hard normal evidence matters beyond adding trainable parameters.</p>
+        <figure class="paper-figure compact-figure"><button class="image-button" data-zoom="assets/label-controls.webp" data-caption="Original source-supervision controls. Correct C-TED versus corrupted source labels."><img src="assets/label-controls.webp" loading="lazy" width="1400" height="545" alt="Original control chart compares correct C-TED labels against label swap and label shuffle across transfer settings."><span class="zoom-hint">View full size</span></button><figcaption>Original source-supervision control. Transfer direction, host, and label corruption settings are shown on the horizontal axis.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section text-container" id="citation" aria-labelledby="citation-heading">
+      <h2 id="citation-heading">BibTeX</h2>
+      <div class="citation-heading-row"><p>Cite TED</p><button id="copy-citation" type="button">Copy BibTeX</button></div>
+      <pre tabindex="0"><code id="bibtex">@article{kim2026ted,
+  title={TED: Text-Axis Evidence Decomposition for Prompted Anomaly Localization},
+  author={Kim, JinYoung and Kim, Geonho and Park, GiJeong and Lee, Geonu and Yoo, YoungJoon},
+  journal={arXiv preprint arXiv:2609.39033},
+  year={2026}
+}</code></pre>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer><div class="text-container"><p>TED · Chung-Ang University &amp; SNUAILAB</p><p class="footer-credit">Page layout inspired by <a href="https://prefixaac.github.io/" target="_blank" rel="noopener">Prefix AAC</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>.</p></div></footer>
+  <dialog id="image-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><p id="dialog-caption"></p><button id="close-dialog" type="button" aria-label="Close full-size image">Close</button></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div></dialog>
+</body>
+</html>
